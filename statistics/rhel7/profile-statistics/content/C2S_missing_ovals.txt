@@ -1,0 +1,2 @@
+rsyslog_accept_remote_messages_tcp
+rsyslog_accept_remote_messages_udp

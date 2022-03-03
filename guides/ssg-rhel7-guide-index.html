@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Guide to the Secure Configuration of Red Hat Enterprise Linux 7</title>
+		<script>
+			function change_profile(option_element)
+			{
+				var benchmark_id=option_element.getAttribute('data-benchmark-id');
+				var profile_id=option_element.getAttribute('data-profile-id');
+				var eval_snippet=document.getElementById('eval_snippet');
+				var input_path='/usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml';
+				if (profile_id == '')
+				{
+					if (benchmark_id == '')
+						eval_snippet.innerHTML='# oscap xccdf eval ' + input_path;
+					else
+						eval_snippet.innerHTML='# oscap xccdf eval --benchmark-id ' + benchmark_id + ' &#92;<br/>' + input_path;
+				}
+				else
+				{
+					if (benchmark_id == '')
+						eval_snippet.innerHTML='# oscap xccdf eval --profile ' + profile_id + ' &#92;<br/>' + input_path;
+					else
+						eval_snippet.innerHTML='# oscap xccdf eval --benchmark-id ' + benchmark_id + ' &#92;<br/>--profile ' + profile_id + ' &#92;<br/>' + input_path;
+				}
+				window.open(option_element.value, 'guide');
+			}
+		</script>
+		<style>
+			html, body { margin: 0; height: 100% }
+			#js_switcher { position: fixed; right: 30px; top: 10px; padding: 2px; background: #ddd; border: 1px solid #999 }
+			#guide_div { margin: auto; width: 99%; height: 99% }
+		</style>
+	</head>
+	<body onload="document.getElementById('js_switcher').style.display = 'block'">
+		<noscript>
+Profiles: <a target="guide" href="ssg-rhel7-guide-anssi_nt28_enhanced.html">ANSSI-BP-028 (enhanced) in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-anssi_nt28_high.html">ANSSI-BP-028 (high) in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-anssi_nt28_intermediary.html">ANSSI-BP-028 (intermediary) in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-anssi_nt28_minimal.html">ANSSI-BP-028 (minimal) in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-e8.html">Australian Cyber Security Centre (ACSC) Essential Eight in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-C2S.html">C2S for Red Hat Enterprise Linux 7 in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-cis_server_l1.html">CIS Red Hat Enterprise Linux 7 Benchmark for Level 1 - Server in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-cis_workstation_l1.html">CIS Red Hat Enterprise Linux 7 Benchmark for Level 1 - Workstation in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-cis.html">CIS Red Hat Enterprise Linux 7 Benchmark for Level 2 - Server in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-cis_workstation_l2.html">CIS Red Hat Enterprise Linux 7 Benchmark for Level 2 - Workstation in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-cjis.html">Criminal Justice Information Services (CJIS) Security Policy in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-stig.html">DISA STIG for Red Hat Enterprise Linux 7 in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-stig_gui.html">DISA STIG with GUI for Red Hat Enterprise Linux 7 in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-hipaa.html">Health Insurance Portability and Accountability Act (HIPAA) in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-ncp.html">NIST National Checklist Program Security Guide in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-ospp.html">OSPP - Protection Profile for General Purpose Operating Systems v4.2.1 in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-pci-dss.html">PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 7 in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-rhelh-stig.html">RHV hardening based on STIG for Red Hat Enterprise Linux 7 in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-rht-ccp.html">Red Hat Corporate Profile for Certified Cloud Providers (RH CCP) in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-standard.html">Standard System Security Profile for Red Hat Enterprise Linux 7 in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-cui.html">Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171) in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>, <a target="guide" href="ssg-rhel7-guide-rhelh-vpp.html">VPP - Protection Profile for Virtualization v. 1.0 for Red Hat Virtualization in xccdf_org.ssgproject.content_benchmark_RHEL-7</a>
+		</noscript>
+		<div id="js_switcher" style="display: none">
+			Profile: 
+			<select style="margin-bottom: 5px" onchange="change_profile(this.options[this.selectedIndex]);">
+
+<option value="ssg-rhel7-guide-anssi_nt28_enhanced.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_anssi_nt28_enhanced">ANSSI-BP-028 (enhanced)</option>
+<option value="ssg-rhel7-guide-anssi_nt28_high.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_anssi_nt28_high">ANSSI-BP-028 (high)</option>
+<option value="ssg-rhel7-guide-anssi_nt28_intermediary.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_anssi_nt28_intermediary">ANSSI-BP-028 (intermediary)</option>
+<option value="ssg-rhel7-guide-anssi_nt28_minimal.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_anssi_nt28_minimal">ANSSI-BP-028 (minimal)</option>
+<option value="ssg-rhel7-guide-e8.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_e8">Australian Cyber Security Centre (ACSC) Essential Eight</option>
+<option value="ssg-rhel7-guide-C2S.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_C2S">C2S for Red Hat Enterprise Linux 7</option>
+<option value="ssg-rhel7-guide-cis_server_l1.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_cis_server_l1">CIS Red Hat Enterprise Linux 7 Benchmark for Level 1 - Server</option>
+<option value="ssg-rhel7-guide-cis_workstation_l1.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_cis_workstation_l1">CIS Red Hat Enterprise Linux 7 Benchmark for Level 1 - Workstation</option>
+<option value="ssg-rhel7-guide-cis.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_cis">CIS Red Hat Enterprise Linux 7 Benchmark for Level 2 - Server</option>
+<option value="ssg-rhel7-guide-cis_workstation_l2.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_cis_workstation_l2">CIS Red Hat Enterprise Linux 7 Benchmark for Level 2 - Workstation</option>
+<option value="ssg-rhel7-guide-cjis.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_cjis">Criminal Justice Information Services (CJIS) Security Policy</option>
+<option value="ssg-rhel7-guide-stig.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_stig">DISA STIG for Red Hat Enterprise Linux 7</option>
+<option value="ssg-rhel7-guide-stig_gui.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_stig_gui">DISA STIG with GUI for Red Hat Enterprise Linux 7</option>
+<option value="ssg-rhel7-guide-hipaa.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_hipaa">Health Insurance Portability and Accountability Act (HIPAA)</option>
+<option value="ssg-rhel7-guide-ncp.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_ncp">NIST National Checklist Program Security Guide</option>
+<option value="ssg-rhel7-guide-ospp.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_ospp">OSPP - Protection Profile for General Purpose Operating Systems v4.2.1</option>
+<option value="ssg-rhel7-guide-pci-dss.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_pci-dss">PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 7</option>
+<option value="ssg-rhel7-guide-rhelh-stig.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_rhelh-stig">RHV hardening based on STIG for Red Hat Enterprise Linux 7</option>
+<option value="ssg-rhel7-guide-rht-ccp.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_rht-ccp">Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)</option>
+<option value="ssg-rhel7-guide-standard.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_standard">Standard System Security Profile for Red Hat Enterprise Linux 7</option>
+<option value="ssg-rhel7-guide-cui.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_cui">Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)</option>
+<option value="ssg-rhel7-guide-rhelh-vpp.html" data-benchmark-id="" data-profile-id="xccdf_org.ssgproject.content_profile_rhelh-vpp">VPP - Protection Profile for Virtualization v. 1.0 for Red Hat Virtualization</option>
+			</select>
+			<div id='eval_snippet' style='background: #eee; padding: 3px; border: 1px solid #000'>select a profile to display its guide and a command line snippet needed to use it</div>
+		</div>
+		<div id="guide_div">
+			<iframe src="ssg-rhel7-guide-anssi_nt28_enhanced.html" name="guide" width="100%" height="100%">
+			</iframe>
+		</div>
+	</body>
+</html>

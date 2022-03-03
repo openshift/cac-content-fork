@@ -1,0 +1,9 @@
+enable_dracut_fips_module
+grub2_uefi_password
+partition_for_home
+partition_for_var
+partition_for_var_log
+partition_for_var_log_audit
+partition_for_var_tmp
+rsyslog_remote_tls
+rsyslog_remote_tls_cacert

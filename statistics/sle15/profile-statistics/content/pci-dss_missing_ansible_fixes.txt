@@ -1,0 +1,9 @@
+account_unique_name
+accounts_password_all_shadowed
+file_ownership_var_log_audit
+file_permissions_var_log_audit
+gid_passwd_group_same
+install_hids
+rsyslog_files_groupownership
+rsyslog_files_ownership
+rsyslog_files_permissions

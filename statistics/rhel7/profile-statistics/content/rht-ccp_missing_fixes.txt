@@ -1,0 +1,4 @@
+accounts_password_all_shadowed
+grub2_password
+no_shelllogin_for_systemaccounts
+set_firewalld_default_zone

@@ -1,0 +1,5 @@
+bios_disable_usb_boot
+partition_for_var_log
+partition_for_var_log_audit
+sshd_limit_user_access
+wireless_disable_in_bios

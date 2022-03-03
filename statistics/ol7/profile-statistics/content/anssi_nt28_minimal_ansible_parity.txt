@@ -1,0 +1,2 @@
+ensure_oracle_gpgkey_installed
+set_password_hashing_algorithm_systemauth

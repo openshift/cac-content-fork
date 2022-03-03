@@ -1,0 +1,4 @@
+accounts_password_all_shadowed
+file_permissions_unauthorized_sgid
+file_permissions_unauthorized_suid
+root_path_no_dot

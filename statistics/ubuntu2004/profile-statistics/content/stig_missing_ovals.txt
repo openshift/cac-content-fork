@@ -1,0 +1,7 @@
+account_temp_expire_date
+auditd_audispd_configure_sufficiently_large_partition
+encrypt_partitions
+ensure_sudo_group_restricted
+only_allow_dod_certs
+policy_temp_passwords_immediate_change
+prevent_direct_root_logins

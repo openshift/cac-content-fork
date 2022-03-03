@@ -1,0 +1,2 @@
+java_jre_clean_previous_version
+java_jre_updated

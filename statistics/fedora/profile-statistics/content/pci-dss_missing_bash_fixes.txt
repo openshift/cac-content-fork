@@ -1,0 +1,7 @@
+account_unique_name
+accounts_password_all_shadowed
+gid_passwd_group_same
+install_hids
+rsyslog_files_groupownership
+rsyslog_files_ownership
+security_patches_up_to_date

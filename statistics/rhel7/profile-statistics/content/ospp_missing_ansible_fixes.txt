@@ -1,0 +1,2 @@
+audit_rules_for_ospp
+grub2_uefi_password

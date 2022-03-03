@@ -1,0 +1,4 @@
+file_ownership_var_log_audit
+file_permissions_var_log_audit
+set_password_hashing_algorithm_systemauth
+sysctl_kernel_exec_shield

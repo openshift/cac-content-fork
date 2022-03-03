@@ -1,0 +1,7 @@
+accounts_maximum_age_login_defs
+accounts_password_minlen_login_defs
+package_rsyslog_installed
+package_sendmail_removed
+service_rsyslog_enabled
+sudo_remove_no_authenticate
+sudo_remove_nopasswd

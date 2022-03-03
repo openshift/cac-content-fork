@@ -1,0 +1,5 @@
+accounts_no_uid_except_zero
+audit_rules_login_events
+audit_rules_usergroup_modification
+file_permissions_unauthorized_world_writable
+sysctl_kernel_exec_shield

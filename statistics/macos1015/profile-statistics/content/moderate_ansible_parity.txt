@@ -1,0 +1,2 @@
+audit_failure_halt
+service_com_apple_auditd_enabled

@@ -1,0 +1,6 @@
+audit_rules_file_deletion_events
+audit_rules_unsuccessful_file_modification
+audit_rules_usergroup_modification
+configure_bind_crypto_policy
+ensure_oracle_gpgkey_installed
+file_permissions_unauthorized_world_writable

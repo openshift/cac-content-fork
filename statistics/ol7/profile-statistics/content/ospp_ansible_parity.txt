@@ -1,0 +1,2 @@
+audit_rules_for_ospp
+ensure_oracle_gpgkey_installed

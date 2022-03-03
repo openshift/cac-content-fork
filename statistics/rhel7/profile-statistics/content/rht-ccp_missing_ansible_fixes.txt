@@ -1,0 +1,10 @@
+accounts_password_all_shadowed
+file_permissions_var_log_audit
+grub2_password
+no_shelllogin_for_systemaccounts
+partition_for_tmp
+partition_for_var
+partition_for_var_log
+partition_for_var_log_audit
+set_firewalld_default_zone
+set_password_hashing_algorithm_systemauth

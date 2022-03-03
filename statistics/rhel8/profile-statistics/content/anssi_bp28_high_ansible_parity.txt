@@ -1,0 +1,6 @@
+aide_verify_acls
+aide_verify_ext_attributes
+file_permissions_unauthorized_world_writable
+rsyslog_files_permissions
+set_password_hashing_algorithm_systemauth
+sysctl_kernel_exec_shield

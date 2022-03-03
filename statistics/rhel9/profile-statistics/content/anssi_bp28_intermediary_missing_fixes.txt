@@ -1,0 +1,11 @@
+bios_enable_execution_restrictions
+file_permissions_unauthorized_sgid
+file_permissions_unauthorized_suid
+prefer_64bit_os
+rsyslog_files_groupownership
+rsyslog_files_ownership
+rsyslog_remote_tls
+rsyslog_remote_tls_cacert
+sudoers_explicit_command_args
+sudoers_no_command_negation
+sudoers_no_root_target

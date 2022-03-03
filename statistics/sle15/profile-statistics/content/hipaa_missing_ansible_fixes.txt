@@ -1,0 +1,12 @@
+encrypt_partitions
+grub2_password
+grub2_uefi_password
+libreswan_approved_tunnels
+no_direct_root_logins
+no_rsh_trust_files
+restrict_serial_port_logins
+securetty_root_login_console_only
+selinux_confinement_of_daemons
+selinux_policytype
+selinux_state
+sshd_allow_only_protocol2

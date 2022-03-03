@@ -1,0 +1,6 @@
+apt_conf_disallow_unauthenticated
+apt_sources_list_official
+package_rsyslog_installed
+package_syslogng_installed
+service_rsyslog_enabled
+service_syslogng_enabled

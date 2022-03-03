@@ -1,0 +1,10 @@
+file_groupowner_etc_group
+file_groupowner_etc_gshadow
+file_groupowner_etc_passwd
+file_groupowner_etc_shadow
+file_owner_etc_group
+file_owner_etc_passwd
+package_nis_removed
+package_ntpdate_removed
+service_auditd_enabled
+sshd_set_keepalive_0

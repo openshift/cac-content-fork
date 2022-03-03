@@ -1,0 +1,11 @@
+account_unique_id
+account_unique_name
+accounts_root_gid_zero
+file_permissions_ungroupowned
+grub2_password
+grub2_uefi_password
+no_files_unowned_by_user
+no_netrc_files
+no_shelllogin_for_systemaccounts
+root_path_no_dot
+set_firewalld_default_zone

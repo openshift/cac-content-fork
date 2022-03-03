@@ -1,0 +1,6 @@
+rbac_limit_cluster_admin
+rbac_pod_creation_access
+rbac_wildcard_use
+scc_limit_privilege_escalation
+scc_limit_privileged_containers
+scc_limit_root_containers

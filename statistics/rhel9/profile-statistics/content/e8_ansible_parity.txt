@@ -1,0 +1,8 @@
+accounts_no_uid_except_zero
+audit_rules_login_events
+audit_rules_usergroup_modification
+dnf-automatic_security_updates_only
+file_permissions_unauthorized_world_writable
+rpm_verify_hashes
+sshd_use_directory_configuration
+sysctl_kernel_exec_shield

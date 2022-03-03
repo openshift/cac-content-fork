@@ -1,0 +1,8 @@
+account_unique_name
+accounts_password_all_shadowed
+audit_rules_file_deletion_events
+audit_rules_unsuccessful_file_modification
+audit_rules_usergroup_modification
+gid_passwd_group_same
+no_netrc_files
+set_firewalld_default_zone

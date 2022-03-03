@@ -1,0 +1,5 @@
+accounts_password_all_shadowed
+accounts_root_path_dirs_no_write
+file_permissions_home_dirs
+no_netrc_files
+root_path_no_dot

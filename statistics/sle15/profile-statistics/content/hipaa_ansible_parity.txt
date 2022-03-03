@@ -1,0 +1,3 @@
+no_direct_root_logins
+restrict_serial_port_logins
+securetty_root_login_console_only

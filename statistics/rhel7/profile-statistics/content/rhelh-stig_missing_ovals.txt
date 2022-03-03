@@ -1,0 +1,7 @@
+accounts_user_home_paths_only
+auditd_audispd_disk_full_action
+auditd_audispd_network_failure_action
+encrypt_partitions
+file_permission_user_init_files
+libreswan_approved_tunnels
+selinux_user_login_roles

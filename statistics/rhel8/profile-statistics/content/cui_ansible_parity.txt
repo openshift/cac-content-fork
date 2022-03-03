@@ -1,0 +1,8 @@
+chronyd_client_only
+chronyd_no_chronyc_network
+configure_bashrc_exec_tmux
+configure_bind_crypto_policy
+configure_usbguard_auditbackend
+kerberos_disable_no_keytab
+no_tmux_in_shells
+usbguard_allow_hid_and_hub

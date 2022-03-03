@@ -1,0 +1,959 @@
+<html xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cdf="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ANSSI-BP-028 (minimal)</title>
+</head>
+<body>
+	<br><br><div style="text-align: center; font-size: x-large; font-weight:bold">ANSSI-BP-028 (minimal)</div>
+<br><br><style type="text/css">
+		table
+		{
+			border-collapse:collapse;
+		}
+		table, th, td
+		{
+			border: 2px solid #dcdcdc;
+			border-left: none;
+			border-right: none;
+			vertical-align: top;
+			padding: 2px;
+			font-family: verdana,arial,sans-serif;
+			font-size:11px;
+		}
+		pre { 
+			white-space: pre-wrap;
+			white-space: -moz-pre-wrap !important;
+			word-wrap:break-word; 
+		}
+		table tr:nth-child(2n+2) { background-color: #f4f4f4; }
+		thead
+		{
+			display: table-header-group;
+			font-weight: bold;
+			background-color: #dedede;
+		}
+	</style>
+
+<table>
+<thead>
+  <td>Mapping</td>
+  <td>CCE</td>
+  <td>Rule Title</td>
+  <td>Description</td>
+  <td>Rationale</td>
+  <td>Variable Setting</td>
+</thead>
+<tr>
+  <td>BP28(R1)</td>
+  <td>CCE-83385-5</td>
+  <td>Uninstall DHCP Server Package</td>
+  <td xml:lang="en-US">
+If the system does not need to act as a DHCP server,
+the dhcp package can be uninstalled.
+
+The <code>dhcp-server</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase dhcp-server</pre>
+  </td>
+  <td xml:lang="en-US">
+Removing the DHCP server ensures that it cannot be easily or
+accidentally reactivated and disrupt network operation.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R1)</td>
+  <td>CCE-82184-3</td>
+  <td>Uninstall rsh-server Package</td>
+  <td xml:lang="en-US">
+The <code>rsh-server</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase rsh-server</pre>
+  </td>
+  <td xml:lang="en-US">
+The <tt>rsh-server</tt> service provides unencrypted remote access service which does not
+provide for the confidentiality and integrity of user passwords or the remote session and has very weak
+authentication. If a privileged user were to login using this service, the privileged user password
+could be compromised. The <tt>rsh-server</tt> package provides several obsolete and insecure
+network services. Removing it decreases the risk of those services' accidental (or intentional)
+activation.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R1)</td>
+  <td>CCE-82183-5</td>
+  <td>Uninstall rsh Package</td>
+  <td xml:lang="en-US">
+
+The <tt>rsh</tt> package contains the client commands
+
+for the rsh services
+  </td>
+  <td xml:lang="en-US">
+These legacy clients contain numerous security exposures and have
+been replaced with the more secure SSH package. Even if the server is removed,
+it is best to ensure the clients are also removed to prevent users from
+inadvertently attempting to use these commands and therefore exposing
+
+their credentials. Note that removing the <tt>rsh</tt> package removes
+
+the clients for <tt>rsh</tt>,<tt>rcp</tt>, and <tt>rlogin</tt>.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R1)</td>
+  <td>CCE-81039-0</td>
+  <td>Uninstall Sendmail Package</td>
+  <td xml:lang="en-US">
+Sendmail is not the default mail transfer agent and is
+not installed by default.
+The <code>sendmail</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase sendmail</pre>
+  </td>
+  <td xml:lang="en-US">
+The sendmail software was not developed with security in mind and
+its design prevents it from being effectively contained by SELinux.  Postfix
+should be used instead.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R1)</td>
+  <td>CCE-82180-1</td>
+  <td>Uninstall talk-server Package</td>
+  <td xml:lang="en-US">
+The <code>talk-server</code> package can be removed with the following command: <pre> $ sudo yum erase talk-server</pre>
+  </td>
+  <td xml:lang="en-US">
+The talk software presents a security risk as it uses unencrypted protocols
+for communications. Removing the <tt>talk-server</tt> package decreases the
+risk of the accidental (or intentional) activation of talk services.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R1)</td>
+  <td>CCE-80848-5</td>
+  <td>Uninstall talk Package</td>
+  <td xml:lang="en-US">
+The <tt>talk</tt> package contains the client program for the
+Internet talk protocol, which allows the user to chat with other users on
+different systems. Talk is a communication program which copies lines from one
+terminal to the terminal of another user.
+The <code>talk</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase talk</pre>
+  </td>
+  <td xml:lang="en-US">
+The talk software presents a security risk as it uses unencrypted protocols
+for communications. Removing the <tt>talk</tt> package decreases the
+risk of the accidental (or intentional) activation of talk client program.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R1)</td>
+  <td>CCE-82182-7</td>
+  <td>Uninstall telnet-server Package</td>
+  <td xml:lang="en-US">
+The <code>telnet-server</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase telnet-server</pre>
+  </td>
+  <td xml:lang="en-US">
+It is detrimental for operating systems to provide, or install by default,
+functionality exceeding requirements or mission objectives. These
+unnecessary capabilities are often overlooked and therefore may remain
+unsecure. They increase the risk to the platform by providing additional
+attack vectors.
+<br />
+The telnet service provides an unencrypted remote access service which does
+not provide for the confidentiality and integrity of user passwords or the
+remote session. If a privileged user were to login using this service, the
+privileged user password could be compromised.
+<br />
+Removing the <tt>telnet-server</tt> package decreases the risk of the
+telnet service's accidental (or intentional) activation.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R1)</td>
+  <td>CCE-80849-3</td>
+  <td>Remove telnet Clients</td>
+  <td xml:lang="en-US">
+The telnet client allows users to start connections to other systems via
+the telnet protocol.
+  </td>
+  <td xml:lang="en-US">
+The <tt>telnet</tt> protocol is insecure and unencrypted. The use
+of an unencrypted transmission medium could allow an unauthorized user
+to steal credentials. The <tt>ssh</tt> package provides an
+encrypted session and stronger security and is included in Red Hat Enterprise Linux 8.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R1)</td>
+  <td>CCE-82436-7</td>
+  <td>Uninstall tftp-server Package</td>
+  <td xml:lang="en-US">
+The <code>tftp-server</code> package can be removed with the following command: <pre> $ sudo yum erase tftp-server</pre>
+  </td>
+  <td xml:lang="en-US">
+Removing the <tt>tftp-server</tt> package decreases the risk of the accidental
+(or intentional) activation of tftp services.
+<br /><br />
+If TFTP is required for operational support (such as transmission of router
+configurations), its use must be documented with the Information Systems
+Securty Manager (ISSM), restricted to only authorized personnel, and have
+access control rules established.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R1)</td>
+  <td>CCE-83590-0</td>
+  <td>Remove tftp Daemon</td>
+  <td xml:lang="en-US">
+Trivial File Transfer Protocol (TFTP) is a simple file transfer protocol,
+typically used to automatically transfer configuration or boot files between systems.
+TFTP does not support authentication and can be easily hacked. The package
+<tt>tftp</tt> is a client program that allows for connections to a <tt>tftp</tt> server.
+  </td>
+  <td xml:lang="en-US">
+It is recommended that TFTP be removed, unless there is a specific need
+for TFTP (such as a boot server). In that case, use extreme caution when configuring
+the services.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R1)</td>
+  <td>CCE-80850-1</td>
+  <td>Uninstall xinetd Package</td>
+  <td xml:lang="en-US">
+The <code>xinetd</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase xinetd</pre>
+  </td>
+  <td xml:lang="en-US">
+Removing the <tt>xinetd</tt> package decreases the risk of the
+xinetd service's accidental (or intentional) activation.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R1)</td>
+  <td>CCE-82181-9</td>
+  <td>Remove NIS Client</td>
+  <td xml:lang="en-US">
+The Network Information Service (NIS), formerly known as Yellow Pages,
+is a client-server directory service protocol used to distribute system configuration
+files. The NIS client (<tt>ypbind</tt>) was used to bind a system to an NIS server
+and receive the distributed configuration files.
+  </td>
+  <td xml:lang="en-US">
+The NIS service is inherently an insecure system that has been vulnerable
+to DOS attacks, buffer overflows and has poor authentication for querying
+NIS maps. NIS generally has been replaced by such protocols as Lightweight
+Directory Access Protocol (LDAP). It is recommended that the service be
+removed.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R1)</td>
+  <td>CCE-82432-6</td>
+  <td>Uninstall ypserv Package</td>
+  <td xml:lang="en-US">
+The <code>ypserv</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase ypserv</pre>
+  </td>
+  <td xml:lang="en-US">
+The NIS service provides an unencrypted authentication service which does
+not provide for the confidentiality and integrity of user passwords or the
+remote session.
+
+Removing the <tt>ypserv</tt> package decreases the risk of the accidental
+(or intentional) activation of NIS or NIS+ services.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R5)<br/>NT28(R46)</td>
+  <td>CCE-80847-7</td>
+  <td>Ensure rsyslog is Installed</td>
+  <td xml:lang="en-US">
+Rsyslog is installed by default. The <code>rsyslog</code> package can be installed with the following command: <pre> $ sudo yum install rsyslog</pre>
+  </td>
+  <td xml:lang="en-US">
+The rsyslog package provides the rsyslog daemon, which provides
+system logging services.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R5)<br/>NT28(R46)</td>
+  <td>CCE-80886-5</td>
+  <td>Enable rsyslog Service</td>
+  <td xml:lang="en-US">
+The <tt>rsyslog</tt> service provides syslog-style logging by default on Red Hat Enterprise Linux 8.
+
+The <code>rsyslog</code> service can be enabled with the following command:
+<pre>$ sudo systemctl enable rsyslog.service</pre>
+  </td>
+  <td xml:lang="en-US">
+The <tt>rsyslog</tt> service must be running in order to provide
+logging services, which are essential to system administration.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R5)<br/>BP28(R59)</td>
+  <td>CCE-82202-3</td>
+  <td>Ensure Users Re-Authenticate for Privilege Escalation - sudo !authenticate</td>
+  <td xml:lang="en-US">
+The sudo <tt>!authenticate</tt> option, when specified, allows a user to execute commands using
+sudo without having to authenticate. This should be disabled by making sure that the
+<tt>!authenticate</tt> option does not exist in <tt>/etc/sudoers</tt> configuration file or
+any sudo configuration snippets in <tt>/etc/sudoers.d/</tt>.
+  </td>
+  <td xml:lang="en-US">
+Without re-authentication, users may access resources or perform tasks for which they
+do not have authorization.
+<br /><br />
+When operating systems provide the capability to escalate a functional capability, it
+is critical that the user re-authenticate.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R5)<br/>BP28(R59)</td>
+  <td>CCE-82197-5</td>
+  <td>Ensure Users Re-Authenticate for Privilege Escalation - sudo NOPASSWD</td>
+  <td xml:lang="en-US">
+The sudo <tt>NOPASSWD</tt> tag, when specified, allows a user to execute
+commands using sudo without having to authenticate. This should be disabled
+by making sure that the <tt>NOPASSWD</tt> tag does not exist in
+<tt>/etc/sudoers</tt> configuration file or any sudo configuration snippets
+in <tt>/etc/sudoers.d/</tt>.
+  </td>
+  <td xml:lang="en-US">
+Without re-authentication, users may access resources or perform tasks for which they
+do not have authorization.
+<br /><br />
+When operating systems provide the capability to escalate a functional capability, it
+is critical that the user re-authenticate.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R8)</td>
+  <td>CCE-82494-6</td>
+  <td>Configure dnf-automatic to Install Available Updates Automatically</td>
+  <td xml:lang="en-US">
+To ensure that the packages comprising the available updates will be automatically installed by <tt>dnf-automatic</tt>, set <tt>apply_updates</tt> to <tt>yes</tt> under <tt>[commands]</tt> section in <tt>/etc/dnf/automatic.conf</tt>.
+  </td>
+  <td xml:lang="en-US">
+Installing software updates is a fundamental mitigation against
+the exploitation of publicly-known vulnerabilities. If the most
+recent security patches and updates are not installed, unauthorized
+users may take advantage of weaknesses in the unpatched software. The
+lack of prompt attention to patching could result in a system compromise.
+The automated installation of updates ensures that recent security patches
+are applied in a timely manner.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R8)</td>
+  <td>CCE-82267-6</td>
+  <td>Configure dnf-automatic to Install Only Security Updates</td>
+  <td xml:lang="en-US">
+To configure <tt>dnf-automatic</tt> to install only security updates
+automatically, set <tt>upgrade_type</tt> to <tt>security</tt> under
+<tt>[commands]</tt> section in <tt>/etc/dnf/automatic.conf</tt>.
+  </td>
+  <td xml:lang="en-US">
+By default, <tt>dnf-automatic</tt> installs all available updates.
+Reducing the amount of updated packages only to updates that were
+issued as a part of a security advisory increases the system stability.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R8)</td>
+  <td>CCE-82985-3</td>
+  <td>Install dnf-automatic Package</td>
+  <td xml:lang="en-US">
+The <code>dnf-automatic</code> package can be installed with the following command:
+<pre>
+$ sudo yum install dnf-automatic</pre>
+  </td>
+  <td xml:lang="en-US">
+<tt>dnf-automatic</tt> is an alternative command line interface (CLI)
+to <tt>dnf upgrade</tt> suitable for automatic, regular execution.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R08)</td>
+  <td>CCE-80865-9</td>
+  <td>Ensure Software Patches Installed</td>
+  <td xml:lang="en-US">
+
+If the system is joined to the Red Hat Network, a Red Hat Satellite Server,
+or a yum server, run the following command to install updates:
+<pre>$ sudo yum update</pre>
+If the system is not configured to use one of these sources, updates (in the form of RPM packages)
+can be manually downloaded from the Red Hat Network and installed using <tt>rpm</tt>.
+
+<br /><br />
+NOTE: U.S. Defense systems are required to be patched within 30 days or sooner as local policy
+dictates.
+  </td>
+  <td xml:lang="en-US">
+Installing software updates is a fundamental mitigation against
+the exploitation of publicly-known vulnerabilities. If the most
+recent security patches and updates are not installed, unauthorized
+users may take advantage of weaknesses in the unpatched software. The
+lack of prompt attention to patching could result in a system compromise.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R8)</td>
+  <td>CCE-82360-9</td>
+  <td>Enable dnf-automatic Timer</td>
+  <td xml:lang="en-US">
+
+The <code>dnf-automatic</code> timer can be enabled with the following command:
+<pre>$ sudo systemctl enable dnf-automatic.timer</pre>
+  </td>
+  <td xml:lang="en-US">
+The <tt>dnf-automatic</tt> is an alternative command line interface (CLI) to <tt>dnf upgrade</tt> with specific facilities to make it suitable to be executed automatically and regularly from systemd timers, cron jobs and similar.
+The tool is controlled by <tt>dnf-automatic.timer</tt> SystemD timer.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R15)</td>
+  <td>CCE-80790-9</td>
+  <td>Ensure gpgcheck Enabled In Main yum Configuration</td>
+  <td xml:lang="en-US">
+The <tt>gpgcheck</tt> option controls whether
+RPM packages' signatures are always checked prior to installation.
+To configure yum to check package signatures before installing
+them, ensure the following line appears in <tt>/etc/yum.conf</tt> in
+the <tt>[main]</tt> section:
+<pre>gpgcheck=1</pre>
+  </td>
+  <td xml:lang="en-US">
+Changes to any software components can have significant effects on the
+overall security of the operating system. This requirement ensures the
+software has not been tampered with and that it has been provided by a
+trusted vendor.
+<br />
+Accordingly, patches, service packs, device drivers, or operating system
+components must be signed with a certificate recognized and approved by the
+organization.
+<br />Verifying the authenticity of the software prior to installation
+validates the integrity of the patch or upgrade received from a vendor.
+This ensures the software has not been tampered with and that it has been
+provided by a trusted vendor. Self-signed certificates are disallowed by
+this requirement. Certificates used to verify the software must be from an
+approved Certificate Authority (CA).
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R15)</td>
+  <td>CCE-80791-7</td>
+  <td>Ensure gpgcheck Enabled for Local Packages</td>
+  <td xml:lang="en-US">
+<tt>yum</tt> should be configured to verify the signature(s) of local packages
+prior to installation. To configure <tt>yum</tt> to verify signatures of local
+packages, set the <tt>localpkg_gpgcheck</tt> to <tt>1</tt> in <tt>/etc/yum.conf</tt>.
+  </td>
+  <td xml:lang="en-US">
+Changes to any software components can have significant effects to the overall security
+of the operating system. This requirement ensures the software has not been tampered and
+has been provided by a trusted vendor.
+<br /><br />
+Accordingly, patches, service packs, device drivers, or operating system components must
+be signed with a certificate recognized and approved by the organization.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R15)</td>
+  <td>CCE-80792-5</td>
+  <td>Ensure gpgcheck Enabled for All yum Package Repositories</td>
+  <td xml:lang="en-US">
+To ensure signature checking is not disabled for
+any repos, remove any lines from files in <tt>/etc/yum.repos.d</tt> of the form:
+<pre>gpgcheck=0</pre>
+  </td>
+  <td xml:lang="en-US">
+Verifying the authenticity of the software prior to installation validates
+the integrity of the patch or upgrade received from a vendor. This ensures
+the software has not been tampered with and that it has been provided by a
+trusted vendor. Self-signed certificates are disallowed by this
+requirement. Certificates used to verify the software must be from an
+approved Certificate Authority (CA)."
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R15)</td>
+  <td>CCE-80795-8</td>
+  <td>Ensure Red Hat GPG Key Installed</td>
+  <td xml:lang="en-US">
+To ensure the system can cryptographically verify base software packages
+come from Red Hat (and to connect to the Red Hat Network to receive them),
+the Red Hat GPG key must properly be installed. To install the Red Hat GPG
+key, run:
+<pre>$ sudo subscription-manager register</pre>
+
+If the system is not connected to the Internet or an RHN Satellite, then
+install the Red Hat GPG key from trusted media such as the Red Hat
+installation CD-ROM or DVD. Assuming the disc is mounted in
+<tt>/media/cdrom</tt>, use the following command as the root user to import
+it into the keyring:
+<pre>$ sudo rpm --import /media/cdrom/RPM-GPG-KEY</pre>
+
+Alternatively, the key may be pre-loaded during the RHEL installation. In
+such cases, the key can be installed by running the following command:
+<pre>sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release</pre>
+  </td>
+  <td xml:lang="en-US">
+Changes to software components can have significant effects on the overall
+security of the operating system. This requirement ensures the software has
+not been tampered with and that it has been provided by a trusted vendor.
+The Red Hat GPG key is necessary to cryptographically verify packages are
+from Red Hat.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R18)</td>
+  <td>CCE-80647-1</td>
+  <td>Set Password Maximum Age</td>
+  <td xml:lang="en-US">
+To specify password maximum age for new accounts,
+edit the file <tt>/etc/login.defs</tt>
+and add or correct the following line:
+<pre>PASS_MAX_DAYS <tt>90</tt></pre>
+A value of 180 days is sufficient for many environments.
+The DoD requirement is 60.
+The profile requirement is <tt><tt>90</tt></tt>.
+  </td>
+  <td xml:lang="en-US">
+Any password, no matter how complex, can eventually be cracked. Therefore, passwords
+need to be changed periodically. If the operating system does not limit the lifetime
+of passwords and force users to change their passwords, there is the risk that the
+operating system passwords could be compromised.
+<br /><br />
+Setting the password maximum age ensures users are required to
+periodically change their passwords. Requiring shorter password lifetimes
+increases the risk of users writing down the password in a convenient
+location subject to physical compromise.
+  </td>
+  <td>var_accounts_maximum_age_login_defs=90</td>
+</tr>
+<tr>
+  <td>BP28(R18)</td>
+  <td>CCE-80652-1</td>
+  <td>Set Password Minimum Length in login.defs</td>
+  <td xml:lang="en-US">
+To specify password length requirements for new accounts, edit the file
+<tt>/etc/login.defs</tt> and add or correct the following line:
+<pre>PASS_MIN_LEN <tt>18</tt></pre>
+<br /><br />
+The DoD requirement is <tt>15</tt>.
+The FISMA requirement is <tt>12</tt>.
+The profile requirement is
+<tt><tt>18</tt></tt>.
+If a program consults <tt>/etc/login.defs</tt> and also another PAM module
+(such as <tt>pam_pwquality</tt>) during a password change operation, then
+the most restrictive must be satisfied. See PAM section for more
+information about enforcing password quality requirements.
+  </td>
+  <td xml:lang="en-US">
+Requiring a minimum password length makes password
+cracking attacks more difficult by ensuring a larger
+search space. However, any security benefit from an onerous requirement
+must be carefully weighed against usability problems, support costs, or counterproductive
+behavior that may result.
+  </td>
+  <td>var_accounts_password_minlen_login_defs=18</td>
+</tr>
+<tr>
+  <td>BP28(R18)</td>
+  <td>CCE-80653-9</td>
+  <td>Ensure PAM Enforces Password Requirements - Minimum Digit Characters</td>
+  <td xml:lang="en-US">
+The pam_pwquality module's <tt>dcredit</tt> parameter controls requirements for
+usage of digits in a password. When set to a negative number, any password will be required to
+contain that many digits. When set to a positive number, pam_pwquality will grant +1 additional
+length credit for each digit. Modify the <tt>dcredit</tt> setting in
+<tt>/etc/security/pwquality.conf</tt> to require the use of a digit in passwords.
+  </td>
+  <td xml:lang="en-US">
+Use of a complex password helps to increase the time and resources required
+to compromise the password. Password complexity, or strength, is a measure of
+the effectiveness of a password in resisting attempts at guessing and brute-force
+attacks.
+<br /><br />
+Password complexity is one factor of several that determines how long it takes
+to crack a password. The more complex the password, the greater the number of
+possible combinations that need to be tested before the password is compromised.
+Requiring digits makes password guessing attacks more difficult by ensuring a larger
+search space.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R18)</td>
+  <td>CCE-80655-4</td>
+  <td>Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters</td>
+  <td xml:lang="en-US">
+The pam_pwquality module's <tt>lcredit</tt> parameter controls requirements for
+usage of lowercase letters in a password. When set to a negative number, any password will be required to
+contain that many lowercase characters. When set to a positive number, pam_pwquality will grant +1 additional
+length credit for each lowercase character. Modify the <tt>lcredit</tt> setting in
+<tt>/etc/security/pwquality.conf</tt> to require the use of a lowercase character in passwords.
+  </td>
+  <td xml:lang="en-US">
+Use of a complex password helps to increase the time and resources required
+to compromise the password. Password complexity, or strength, is a measure of
+the effectiveness of a password in resisting attempts at guessing and brute-force
+attacks.
+<br /><br />
+Password complexity is one factor of several that determines how long it takes
+to crack a password. The more complex the password, the greater the number of
+possble combinations that need to be tested before the password is compromised.
+Requiring a minimum number of lowercase characters makes password guessing attacks
+more difficult by ensuring a larger search space.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R18)</td>
+  <td>CCE-80656-2</td>
+  <td>Ensure PAM Enforces Password Requirements - Minimum Length</td>
+  <td xml:lang="en-US">
+The pam_pwquality module's <tt>minlen</tt> parameter controls requirements for
+minimum characters required in a password. Add <tt>minlen=<tt>18</tt></tt>
+after pam_pwquality to set minimum password length requirements.
+  </td>
+  <td xml:lang="en-US">
+The shorter the password, the lower the number of possible combinations
+that need to be tested before the password is compromised.
+<br />
+Password complexity, or strength, is a measure of the effectiveness of a
+password in resisting attempts at guessing and brute-force attacks.
+Password length is one factor of several that helps to determine strength
+and how long it takes to crack a password. Use of more characters in a password
+helps to exponentially increase the time and/or resources required to
+compromose the password.
+  </td>
+  <td>var_password_pam_minlen=18</td>
+</tr>
+<tr>
+  <td>BP28(R18)</td>
+  <td>CCE-80663-8</td>
+  <td>Ensure PAM Enforces Password Requirements - Minimum Special Characters</td>
+  <td xml:lang="en-US">
+The pam_pwquality module's <tt>ocredit=</tt> parameter controls requirements for
+usage of special (or "other") characters in a password. When set to a negative number,
+any password will be required to contain that many special characters.
+When set to a positive number, pam_pwquality will grant +1
+additional length credit for each special character. Modify the <tt>ocredit</tt> setting
+in <tt>/etc/security/pwquality.conf</tt> to equal <tt>1</tt>
+to require use of a special character in passwords.
+  </td>
+  <td xml:lang="en-US">
+Use of a complex password helps to increase the time and resources required
+to compromise the password. Password complexity, or strength, is a measure of
+the effectiveness of a password in resisting attempts at guessing and brute-force
+attacks.
+<br /><br />
+Password complexity is one factor of several that determines how long it takes
+to crack a password. The more complex the password, the greater the number of
+possble combinations that need to be tested before the password is compromised.
+Requiring a minimum number of special characters makes password guessing attacks
+more difficult by ensuring a larger search space.
+  </td>
+  <td>var_password_pam_ocredit=1</td>
+</tr>
+<tr>
+  <td>BP28(R18)</td>
+  <td>CCE-80665-3</td>
+  <td>Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters</td>
+  <td xml:lang="en-US">
+The pam_pwquality module's <tt>ucredit=</tt> parameter controls requirements for
+usage of uppercase letters in a password. When set to a negative number, any password will be required to
+contain that many uppercase characters. When set to a positive number, pam_pwquality will grant +1 additional
+length credit for each uppercase character. Modify the <tt>ucredit</tt> setting in
+<tt>/etc/security/pwquality.conf</tt> to require the use of an uppercase character in passwords.
+  </td>
+  <td xml:lang="en-US">
+Use of a complex password helps to increase the time and resources reuiqred to compromise the password.
+Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts
+at guessing and brute-force attacks.
+<br /><br />
+Password complexity is one factor of several that determines how long it takes to crack a password. The more
+complex the password, the greater the number of possible combinations that need to be tested before
+the password is compromised.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R18)</td>
+  <td>CCE-80666-1</td>
+  <td>Limit Password Reuse</td>
+  <td xml:lang="en-US">
+Do not allow users to reuse recent passwords. This can be
+accomplished by using the <tt>remember</tt> option for the <tt>pam_unix</tt>
+or <tt>pam_pwhistory</tt> PAM modules.
+<br /><br />
+In the file <tt>/etc/pam.d/system-auth</tt>, append <tt>remember=<tt>2</tt></tt>
+to the line which refers to the <tt>pam_unix.so</tt> or <tt>pam_pwhistory.so</tt>module, as shown below:
+<ul>
+<li>for the <tt>pam_unix.so</tt> case:
+<pre>password sufficient pam_unix.so <i>...existing_options...</i> remember=<tt>2</tt></pre>
+</li>
+<li>for the <tt>pam_pwhistory.so</tt> case:
+<pre>password requisite pam_pwhistory.so <i>...existing_options...</i> remember=<tt>2</tt></pre>
+</li>
+</ul>
+The DoD STIG requirement is 5 passwords.
+  </td>
+  <td xml:lang="en-US">
+Preventing re-use of previous passwords helps ensure that a compromised password is not re-used by a user.
+  </td>
+  <td>var_password_pam_unix_remember=2</td>
+</tr>
+<tr>
+  <td>BP28(R18)</td>
+  <td>CCE-80667-9</td>
+  <td>Lock Accounts After Failed Password Attempts</td>
+  <td xml:lang="en-US">
+This rule configures the system to lock out accounts after a number of incorrect login attempts
+using <tt>pam_faillock.so</tt>.
+
+pam_faillock.so module requires multiple entries in pam files. These entries must be carefully
+defined to work as expected. In order to avoid any errors when manually editing these files,
+it is recommended to use the appropriate tools, such as <tt>authselect</tt> or <tt>authconfig</tt>,
+depending on the OS version.
+  </td>
+  <td xml:lang="en-US">
+Locking out user accounts after a number of incorrect attempts prevents direct password
+guessing attacks. In combination with the <tt>silent</tt> option, user enumeration attacks
+are also mitigated.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R18)</td>
+  <td>CCE-80668-7</td>
+  <td>Configure the root Account for Failed Password Attempts</td>
+  <td xml:lang="en-US">
+This rule configures the system to lock out the <tt>root</tt> account after a number of
+incorrect login attempts using <tt>pam_faillock.so</tt>.
+
+pam_faillock.so module requires multiple entries in pam files. These entries must be carefully
+defined to work as expected. In order to avoid any errors when manually editing these files,
+it is recommended to use the appropriate tools, such as <tt>authselect</tt> or <tt>authconfig</tt>,
+depending on the OS version.
+  </td>
+  <td xml:lang="en-US">
+By limiting the number of failed logon attempts, the risk of unauthorized system access via
+user password guessing, also known as brute-forcing, is reduced. Limits are imposed by locking
+the account.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R18)</td>
+  <td>CCE-80669-5</td>
+  <td>Set Interval For Counting Failed Password Attempts</td>
+  <td xml:lang="en-US">
+Utilizing <tt>pam_faillock.so</tt>, the <tt>fail_interval</tt> directive configures the system
+to lock out an account after a number of incorrect login attempts within a specified time
+period. First make sure the feature is enabled using the following command:
+<br /><br />
+
+<ul>
+<li><pre>authselect enable-feature with-faillock</pre></li>
+</ul>
+<br />
+Then edit the <tt>/etc/security/faillock.conf</tt> file as follows:
+<br /><br />
+<ul>
+<li> add, uncomment or edit the following line:
+<pre>fail_interval = <tt>900</tt></pre></li>
+<li> add or uncomment the following line:
+<pre>silent</pre></li>
+</ul>
+  </td>
+  <td xml:lang="en-US">
+By limiting the number of failed logon attempts the risk of unauthorized system
+access via user password guessing, otherwise known as brute-forcing, is reduced.
+Limits are imposed by locking the account.
+  </td>
+  <td>var_accounts_passwords_pam_faillock_fail_interval=900</td>
+</tr>
+<tr>
+  <td>BP28(R18)</td>
+  <td>CCE-80670-3</td>
+  <td>Set Lockout Time for Failed Password Attempts</td>
+  <td xml:lang="en-US">
+This rule configures the system to lock out accounts during a specified time period after a
+number of incorrect login attempts using <tt>pam_faillock.so</tt>.
+
+pam_faillock.so module requires multiple entries in pam files. These entries must be carefully
+defined to work as expected. In order to avoid any errors when manually editing these files,
+it is recommended to use the appropriate tools, such as <tt>authselect</tt> or <tt>authconfig</tt>,
+depending on the OS version.
+  </td>
+  <td xml:lang="en-US">
+Locking out user accounts after a number of incorrect attempts prevents direct password
+guessing attacks. Ensuring that an administrator is involved in unlocking locked accounts
+draws appropriate attention to such situations.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R32)</td>
+  <td>CCE-83403-6</td>
+  <td>Set number of Password Hashing Rounds - password-auth</td>
+  <td xml:lang="en-US">
+Configure the number or rounds for the password hashing algorithm. This can be
+accomplished by using the <tt>rounds</tt> option for the <tt>pam_unix</tt> PAM module.
+<br /><br />
+In file <tt>/etc/pam.d/password-auth</tt> append <tt>rounds=<tt>65536</tt></tt>
+to the <tt>pam_unix.so</tt> file, as shown below:
+<pre>password sufficient pam_unix.so <i>...existing_options...</i> rounds=<tt>65536</tt></pre>
+The system's default number of rounds is 5000.
+  </td>
+  <td xml:lang="en-US">
+Using a higher number of rounds makes password cracking attacks more difficult.
+  </td>
+  <td>var_password_pam_unix_rounds=65536</td>
+</tr>
+<tr>
+  <td>BP28(R32)</td>
+  <td>CCE-83386-3</td>
+  <td>Set number of Password Hashing Rounds - system-auth</td>
+  <td xml:lang="en-US">
+Configure the number or rounds for the password hashing algorithm. This can be
+accomplished by using the <tt>rounds</tt> option for the <tt>pam_unix</tt> PAM module.
+<br /><br />
+In file <tt>/etc/pam.d/system-auth</tt> append <tt>rounds=<tt>65536</tt></tt>
+to the <tt>pam_unix.so</tt> file, as shown below:
+<pre>password sufficient pam_unix.so <i>...existing_options...</i> rounds=<tt>65536</tt></pre>
+The system's default number of rounds is 5000.
+  </td>
+  <td xml:lang="en-US">
+Using a higher number of rounds makes password cracking attacks more difficult.
+  </td>
+  <td>var_password_pam_unix_rounds=65536</td>
+</tr>
+<tr>
+  <td>BP28(R32)</td>
+  <td>CCE-80893-1</td>
+  <td>Set PAM's Password Hashing Algorithm</td>
+  <td xml:lang="en-US">
+The PAM system service can be configured to only store encrypted
+representations of passwords. In
+
+<tt>/etc/pam.d/system-auth</tt>,
+
+the
+<tt>password</tt> section of the file controls which PAM modules execute
+during a password change. Set the <tt>pam_unix.so</tt> module in the
+<tt>password</tt> section to include the argument <tt>sha512</tt>, as shown
+below:
+<br />
+
+<pre>password    sufficient    pam_unix.so sha512 <i>other arguments...</i></pre>
+
+<br />
+This will help ensure when local users change their passwords, hashes for
+the new passwords will be generated using the SHA-512 algorithm. This is
+the default.
+  </td>
+  <td xml:lang="en-US">
+Passwords need to be protected at all times, and encryption is the standard
+method for protecting passwords. If passwords are not encrypted, they can
+be plainly read (i.e., clear text) and easily compromised. Passwords that
+are encrypted with a weak algorithm are no more protected than if they are
+kepy in plain text.
+<br /><br />
+This setting ensures user and group account administration utilities are
+configured to store only encrypted representations of passwords.
+Additionally, the <tt>crypt_style</tt> configuration option ensures the use
+of a strong hashing algorithm that makes password cracking attacks more
+difficult.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R37)<br/>BP28(R38)</td>
+  <td>CCE-80816-2</td>
+  <td>Ensure All SGID Executables Are Authorized</td>
+  <td xml:lang="en-US">
+The SGID (set group id) bit should be set only on files that were
+installed via authorized means. A straightforward means of identifying
+unauthorized SGID files is determine if any were not installed as part of an
+RPM package, which is cryptographically verified. Investigate the origin
+of any unpackaged SGID files.
+This configuration check considers authorized SGID files which were installed via RPM.
+It is assumed that when an individual has sudo access to install an RPM
+and all packages are signed with an organizationally-recognized GPG key,
+the software should be considered an approved package on the system.
+Any SGID file not deployed through an RPM will be flagged for further review.
+  </td>
+  <td xml:lang="en-US">
+Executable files with the SGID permission run with the privileges of
+the owner of the file. SGID files of uncertain provenance could allow for
+unprivileged users to elevate privileges. The presence of these files should be
+strictly controlled on the system.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td>BP28(R37)<br/>BP28(R38)</td>
+  <td>CCE-80817-0</td>
+  <td>Ensure All SUID Executables Are Authorized</td>
+  <td xml:lang="en-US">
+The SUID (set user id) bit should be set only on files that were
+installed via authorized means. A straightforward means of identifying
+unauthorized SUID files is determine if any were not installed as part of an
+RPM package, which is cryptographically verified. Investigate the origin
+of any unpackaged SUID files.
+This configuration check considers authorized SUID files which were installed via RPM.
+It is assumed that when an individual has sudo access to install an RPM
+and all packages are signed with an organizationally-recognized GPG key,
+the software should be considered an approved package on the system.
+Any SUID file not deployed through an RPM will be flagged for further review.
+  </td>
+  <td xml:lang="en-US">
+Executable files with the SUID permission run with the privileges of
+the owner of the file. SUID files of uncertain provenance could allow for
+unprivileged users to elevate privileges. The presence of these files should be
+strictly controlled on the system.
+  </td>
+  <td></td>
+</tr>
+</table>
+
+</body>
+</html>

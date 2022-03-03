@@ -1,0 +1,3 @@
+file_permissions_unauthorized_sgid
+file_permissions_unauthorized_suid
+network_sniffer_disabled

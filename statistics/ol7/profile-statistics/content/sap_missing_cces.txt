@@ -1,0 +1,9 @@
+accounts_authorized_local_users_sidadm_orasid
+file_permissions_etc_shadow
+no_rsh_trust_files
+package_glibc_installed
+package_uuidd_installed
+package_ypbind_removed
+package_ypserv_removed
+service_rlogin_disabled
+service_rsh_disabled

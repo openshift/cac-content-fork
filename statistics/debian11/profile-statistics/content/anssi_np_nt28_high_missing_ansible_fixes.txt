@@ -1,0 +1,14 @@
+apt_conf_disallow_unauthenticated
+apt_sources_list_official
+file_permissions_systemmap
+grub2_enable_iommu_force
+partition_for_home
+partition_for_tmp
+partition_for_var
+partition_for_var_log
+partition_for_var_log_audit
+rsyslog_files_groupownership
+rsyslog_files_ownership
+rsyslog_files_permissions
+sshd_allow_only_protocol2
+sshd_set_idle_timeout

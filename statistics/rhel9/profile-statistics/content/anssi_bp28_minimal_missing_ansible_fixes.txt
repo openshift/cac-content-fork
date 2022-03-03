@@ -1,0 +1,5 @@
+dnf-automatic_apply_updates
+dnf-automatic_security_updates_only
+file_permissions_unauthorized_sgid
+file_permissions_unauthorized_suid
+set_password_hashing_algorithm_systemauth

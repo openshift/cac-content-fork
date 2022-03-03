@@ -1,0 +1,6 @@
+accounts_polyinstantiated_tmp
+accounts_polyinstantiated_var_tmp
+ensure_oracle_gpgkey_installed
+file_permissions_unauthorized_world_writable
+rsyslog_files_permissions
+set_password_hashing_algorithm_systemauth

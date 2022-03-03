@@ -1,0 +1,7 @@
+accounts_password_all_shadowed
+accounts_root_path_dirs_no_write
+file_permissions_unauthorized_sgid
+file_permissions_unauthorized_suid
+partition_for_var_log
+partition_for_var_log_audit
+root_path_no_dot

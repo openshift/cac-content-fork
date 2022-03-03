@@ -1,0 +1,12 @@
+accounts_password_all_shadowed
+file_permissions_unauthorized_sgid
+file_permissions_unauthorized_suid
+network_sniffer_disabled
+no_shelllogin_for_systemaccounts
+rsyslog_files_groupownership
+rsyslog_files_ownership
+rsyslog_nolisten
+rsyslog_remote_tls
+rsyslog_remote_tls_cacert
+set_firewalld_default_zone
+snmpd_use_newer_protocol

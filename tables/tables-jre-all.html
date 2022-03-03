@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 7px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+} 
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 2;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<h2>References for product jre</h2>
+
+<ul>
+<li class="collapsible">disa</li>
+  <ul class="content">
+  <li class="collapsible">CCI-000185</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_validation_ocsp<span class="tooltiptext">Enable Online Certificate Validation</span></div></li>
+    <li><div class="tooltip">java_jre_validation_ocsp_locked<span class="tooltiptext">Disable User Access to Online Certificate Validation Setting</span></div></li>
+    </ul>
+  <li class="collapsible">CCI-000366</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_deployment_config_exists<span class="tooltiptext">The Java deployment.config File Exists</span></div></li>
+    <li><div class="tooltip">java_jre_deployment_config_mandatory<span class="tooltiptext">Configure The Java Deployment Mandatory Setting</span></div></li>
+    <li><div class="tooltip">java_jre_deployment_config_properties<span class="tooltiptext">Configure the Path to the deployment.properties File</span></div></li>
+    <li><div class="tooltip">java_jre_deployment_properties_exists<span class="tooltiptext">The Java deployment.properties File Exists</span></div></li>
+    <li><div class="tooltip">java_jre_enable_jws<span class="tooltiptext">Enable Java Web Start Applications to Run</span></div></li>
+    <li><div class="tooltip">java_jre_enable_jws_locked<span class="tooltiptext">Disable User Access to Java Web Start Application Setting</span></div></li>
+    <li><div class="tooltip">java_jre_unsigned_applications<span class="tooltiptext">Disable Execution of Unsigned Applications</span></div></li>
+    <li><div class="tooltip">java_jre_unsigned_applications_locked<span class="tooltiptext">Disable User Access to Unsigned Applications Setting</span></div></li>
+    </ul>
+  <li class="collapsible">CCI-001169</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_blacklist_check<span class="tooltiptext">Prevent the Download of Prohibited Mobile Code</span></div></li>
+    <li><div class="tooltip">java_jre_blacklist_check_locked<span class="tooltiptext">Disable User Access to Prohibited Mobile Code Setting</span></div></li>
+    </ul>
+  <li class="collapsible">CCI-001695</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_disable_untrusted_sources<span class="tooltiptext">Disable Execution of Signed Java Applets From Untrusted Sources Setting</span></div></li>
+    <li><div class="tooltip">java_jre_disable_untrusted_sources_locked<span class="tooltiptext">Disable User Access to Disabling Untrusted Sources Setting</span></div></li>
+    <li><div class="tooltip">java_jre_lock_untrusted_sources<span class="tooltiptext">Lock Execution of Signed Java Applets From Untrusted Sources Setting</span></div></li>
+    <li><div class="tooltip">java_jre_lock_untrusted_sources_locked<span class="tooltiptext">Disable User Access to Locking Untrusted Sources Setting</span></div></li>
+    </ul>
+  <li class="collapsible">CCI-001774</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_accepted_sites_exists<span class="tooltiptext">The Java exception.sites File Exists</span></div></li>
+    <li><div class="tooltip">java_jre_accepted_sites_properties<span class="tooltiptext">Configure the Path to the exception.sites File</span></div></li>
+    </ul>
+  <li class="collapsible">CCI-001991</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_security_revocation_check<span class="tooltiptext">Enable Revocation Checks for Publisher Certificates</span></div></li>
+    <li><div class="tooltip">java_jre_security_revocation_check_locked<span class="tooltiptext">Disable User Access to Revocation Check Settings</span></div></li>
+    <li><div class="tooltip">java_jre_validation_crl<span class="tooltiptext">Enable Use of Certificate Revocation Lists</span></div></li>
+    <li><div class="tooltip">java_jre_validation_crl_locked<span class="tooltiptext">Disable User Access to Certificate Revocation List Settings</span></div></li>
+    </ul>
+  <li class="collapsible">CCI-002460</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_insecure_prompt<span class="tooltiptext">Prompt User Prior to Executing Mobile Code</span></div></li>
+    <li><div class="tooltip">java_jre_insecure_prompt_locked<span class="tooltiptext">Disable User Access to Insecure Prompt of Mobile Code Setting</span></div></li>
+    </ul>
+  <li class="collapsible">CCI-002605</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_updated<span class="tooltiptext">Ensure Java Patches Installed</span></div></li>
+    </ul>
+  <li class="collapsible">CCI-002617</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_clean_previous_version<span class="tooltiptext">Ensure yum Removes Previous Package Versions</span></div></li>
+    </ul>
+  </ul>
+<li class="collapsible">nist</li>
+  <ul class="content">
+  <li class="collapsible">CM-6(b)</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_deployment_config_exists<span class="tooltiptext">The Java deployment.config File Exists</span></div></li>
+    <li><div class="tooltip">java_jre_deployment_config_mandatory<span class="tooltiptext">Configure The Java Deployment Mandatory Setting</span></div></li>
+    <li><div class="tooltip">java_jre_deployment_config_properties<span class="tooltiptext">Configure the Path to the deployment.properties File</span></div></li>
+    <li><div class="tooltip">java_jre_deployment_properties_exists<span class="tooltiptext">The Java deployment.properties File Exists</span></div></li>
+    <li><div class="tooltip">java_jre_enable_jws<span class="tooltiptext">Enable Java Web Start Applications to Run</span></div></li>
+    <li><div class="tooltip">java_jre_enable_jws_locked<span class="tooltiptext">Disable User Access to Java Web Start Application Setting</span></div></li>
+    <li><div class="tooltip">java_jre_unsigned_applications<span class="tooltiptext">Disable Execution of Unsigned Applications</span></div></li>
+    <li><div class="tooltip">java_jre_unsigned_applications_locked<span class="tooltiptext">Disable User Access to Unsigned Applications Setting</span></div></li>
+    </ul>
+  <li class="collapsible">CM-7(5)(b)</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_accepted_sites_exists<span class="tooltiptext">The Java exception.sites File Exists</span></div></li>
+    <li><div class="tooltip">java_jre_accepted_sites_properties<span class="tooltiptext">Configure the Path to the exception.sites File</span></div></li>
+    </ul>
+  <li class="collapsible">IA-5(2)(a)</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_validation_ocsp<span class="tooltiptext">Enable Online Certificate Validation</span></div></li>
+    <li><div class="tooltip">java_jre_validation_ocsp_locked<span class="tooltiptext">Disable User Access to Online Certificate Validation Setting</span></div></li>
+    </ul>
+  <li class="collapsible">IA-5(2)(d)</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_security_revocation_check<span class="tooltiptext">Enable Revocation Checks for Publisher Certificates</span></div></li>
+    <li><div class="tooltip">java_jre_security_revocation_check_locked<span class="tooltiptext">Disable User Access to Revocation Check Settings</span></div></li>
+    <li><div class="tooltip">java_jre_validation_crl<span class="tooltiptext">Enable Use of Certificate Revocation Lists</span></div></li>
+    <li><div class="tooltip">java_jre_validation_crl_locked<span class="tooltiptext">Disable User Access to Certificate Revocation List Settings</span></div></li>
+    </ul>
+  <li class="collapsible">SC-18 (3)</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_disable_untrusted_sources<span class="tooltiptext">Disable Execution of Signed Java Applets From Untrusted Sources Setting</span></div></li>
+    <li><div class="tooltip">java_jre_disable_untrusted_sources_locked<span class="tooltiptext">Disable User Access to Disabling Untrusted Sources Setting</span></div></li>
+    <li><div class="tooltip">java_jre_lock_untrusted_sources<span class="tooltiptext">Lock Execution of Signed Java Applets From Untrusted Sources Setting</span></div></li>
+    <li><div class="tooltip">java_jre_lock_untrusted_sources_locked<span class="tooltiptext">Disable User Access to Locking Untrusted Sources Setting</span></div></li>
+    </ul>
+  <li class="collapsible">SC-18(3)</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_blacklist_check<span class="tooltiptext">Prevent the Download of Prohibited Mobile Code</span></div></li>
+    <li><div class="tooltip">java_jre_blacklist_check_locked<span class="tooltiptext">Disable User Access to Prohibited Mobile Code Setting</span></div></li>
+    </ul>
+  <li class="collapsible">SC-18(4)</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_insecure_prompt<span class="tooltiptext">Prompt User Prior to Executing Mobile Code</span></div></li>
+    <li><div class="tooltip">java_jre_insecure_prompt_locked<span class="tooltiptext">Disable User Access to Insecure Prompt of Mobile Code Setting</span></div></li>
+    </ul>
+  <li class="collapsible">SI-2(6)</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_clean_previous_version<span class="tooltiptext">Ensure yum Removes Previous Package Versions</span></div></li>
+    </ul>
+  <li class="collapsible">SI-2(c)</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_updated<span class="tooltiptext">Ensure Java Patches Installed</span></div></li>
+    </ul>
+  </ul>
+<li class="collapsible">srg</li>
+  <ul class="content">
+  <li class="collapsible">SRG-APP-000112</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_disable_untrusted_sources<span class="tooltiptext">Disable Execution of Signed Java Applets From Untrusted Sources Setting</span></div></li>
+    <li><div class="tooltip">java_jre_disable_untrusted_sources_locked<span class="tooltiptext">Disable User Access to Disabling Untrusted Sources Setting</span></div></li>
+    <li><div class="tooltip">java_jre_lock_untrusted_sources<span class="tooltiptext">Lock Execution of Signed Java Applets From Untrusted Sources Setting</span></div></li>
+    <li><div class="tooltip">java_jre_lock_untrusted_sources_locked<span class="tooltiptext">Disable User Access to Locking Untrusted Sources Setting</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000175</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_validation_ocsp<span class="tooltiptext">Enable Online Certificate Validation</span></div></li>
+    <li><div class="tooltip">java_jre_validation_ocsp_locked<span class="tooltiptext">Disable User Access to Online Certificate Validation Setting</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000209</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_blacklist_check<span class="tooltiptext">Prevent the Download of Prohibited Mobile Code</span></div></li>
+    <li><div class="tooltip">java_jre_blacklist_check_locked<span class="tooltiptext">Disable User Access to Prohibited Mobile Code Setting</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000386</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_accepted_sites_exists<span class="tooltiptext">The Java exception.sites File Exists</span></div></li>
+    <li><div class="tooltip">java_jre_accepted_sites_properties<span class="tooltiptext">Configure the Path to the exception.sites File</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000401</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_security_revocation_check<span class="tooltiptext">Enable Revocation Checks for Publisher Certificates</span></div></li>
+    <li><div class="tooltip">java_jre_security_revocation_check_locked<span class="tooltiptext">Disable User Access to Revocation Check Settings</span></div></li>
+    <li><div class="tooltip">java_jre_validation_crl<span class="tooltiptext">Enable Use of Certificate Revocation Lists</span></div></li>
+    <li><div class="tooltip">java_jre_validation_crl_locked<span class="tooltiptext">Disable User Access to Certificate Revocation List Settings</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000454</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_clean_previous_version<span class="tooltiptext">Ensure yum Removes Previous Package Versions</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000456</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_updated<span class="tooltiptext">Ensure Java Patches Installed</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000488</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_insecure_prompt<span class="tooltiptext">Prompt User Prior to Executing Mobile Code</span></div></li>
+    <li><div class="tooltip">java_jre_insecure_prompt_locked<span class="tooltiptext">Disable User Access to Insecure Prompt of Mobile Code Setting</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000516</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_deployment_config_exists<span class="tooltiptext">The Java deployment.config File Exists</span></div></li>
+    <li><div class="tooltip">java_jre_deployment_config_mandatory<span class="tooltiptext">Configure The Java Deployment Mandatory Setting</span></div></li>
+    <li><div class="tooltip">java_jre_deployment_config_properties<span class="tooltiptext">Configure the Path to the deployment.properties File</span></div></li>
+    <li><div class="tooltip">java_jre_deployment_properties_exists<span class="tooltiptext">The Java deployment.properties File Exists</span></div></li>
+    <li><div class="tooltip">java_jre_enable_jws<span class="tooltiptext">Enable Java Web Start Applications to Run</span></div></li>
+    <li><div class="tooltip">java_jre_enable_jws_locked<span class="tooltiptext">Disable User Access to Java Web Start Application Setting</span></div></li>
+    <li><div class="tooltip">java_jre_unsigned_applications<span class="tooltiptext">Disable Execution of Unsigned Applications</span></div></li>
+    <li><div class="tooltip">java_jre_unsigned_applications_locked<span class="tooltiptext">Disable User Access to Unsigned Applications Setting</span></div></li>
+    </ul>
+  </ul>
+<li class="collapsible">stigid</li>
+  <ul class="content">
+  <li class="collapsible">JRE8-UX-000010</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_deployment_config_exists<span class="tooltiptext">The Java deployment.config File Exists</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000020</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_deployment_config_mandatory<span class="tooltiptext">Configure The Java Deployment Mandatory Setting</span></div></li>
+    <li><div class="tooltip">java_jre_deployment_config_properties<span class="tooltiptext">Configure the Path to the deployment.properties File</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000030</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_deployment_properties_exists<span class="tooltiptext">The Java deployment.properties File Exists</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000060</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_unsigned_applications<span class="tooltiptext">Disable Execution of Unsigned Applications</span></div></li>
+    <li><div class="tooltip">java_jre_unsigned_applications_locked<span class="tooltiptext">Disable User Access to Unsigned Applications Setting</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000070</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_enable_jws<span class="tooltiptext">Enable Java Web Start Applications to Run</span></div></li>
+    <li><div class="tooltip">java_jre_enable_jws_locked<span class="tooltiptext">Disable User Access to Java Web Start Application Setting</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000080</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_disable_untrusted_sources<span class="tooltiptext">Disable Execution of Signed Java Applets From Untrusted Sources Setting</span></div></li>
+    <li><div class="tooltip">java_jre_disable_untrusted_sources_locked<span class="tooltiptext">Disable User Access to Disabling Untrusted Sources Setting</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000090</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_lock_untrusted_sources<span class="tooltiptext">Lock Execution of Signed Java Applets From Untrusted Sources Setting</span></div></li>
+    <li><div class="tooltip">java_jre_lock_untrusted_sources_locked<span class="tooltiptext">Disable User Access to Locking Untrusted Sources Setting</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000100</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_validation_ocsp<span class="tooltiptext">Enable Online Certificate Validation</span></div></li>
+    <li><div class="tooltip">java_jre_validation_ocsp_locked<span class="tooltiptext">Disable User Access to Online Certificate Validation Setting</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000110</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_blacklist_check<span class="tooltiptext">Prevent the Download of Prohibited Mobile Code</span></div></li>
+    <li><div class="tooltip">java_jre_blacklist_check_locked<span class="tooltiptext">Disable User Access to Prohibited Mobile Code Setting</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000120</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_accepted_sites_properties<span class="tooltiptext">Configure the Path to the exception.sites File</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000130</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_accepted_sites_exists<span class="tooltiptext">The Java exception.sites File Exists</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000150</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_validation_crl<span class="tooltiptext">Enable Use of Certificate Revocation Lists</span></div></li>
+    <li><div class="tooltip">java_jre_validation_crl_locked<span class="tooltiptext">Disable User Access to Certificate Revocation List Settings</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000160</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_security_revocation_check<span class="tooltiptext">Enable Revocation Checks for Publisher Certificates</span></div></li>
+    <li><div class="tooltip">java_jre_security_revocation_check_locked<span class="tooltiptext">Disable User Access to Revocation Check Settings</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000170</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_insecure_prompt<span class="tooltiptext">Prompt User Prior to Executing Mobile Code</span></div></li>
+    <li><div class="tooltip">java_jre_insecure_prompt_locked<span class="tooltiptext">Disable User Access to Insecure Prompt of Mobile Code Setting</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000180</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_updated<span class="tooltiptext">Ensure Java Patches Installed</span></div></li>
+    </ul>
+  <li class="collapsible">JRE8-UX-000190</li>
+    <ul class="content">
+    <li><div class="tooltip">java_jre_clean_previous_version<span class="tooltiptext">Ensure yum Removes Previous Package Versions</span></div></li>
+    </ul>
+  </ul>
+</ul>  
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+} 
+</script>
+</body>
+</html>

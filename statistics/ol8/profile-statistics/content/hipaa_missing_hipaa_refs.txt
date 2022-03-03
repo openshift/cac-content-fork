@@ -1,0 +1,4 @@
+ensure_oracle_gpgkey_installed
+file_groupowner_efi_grub2_cfg
+file_owner_efi_grub2_cfg
+file_permissions_efi_grub2_cfg

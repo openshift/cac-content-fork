@@ -1,0 +1,9 @@
+accounts_password_all_shadowed
+firewalld_sshd_port_enabled
+grub2_password
+no_shelllogin_for_systemaccounts
+partition_for_tmp
+partition_for_var
+partition_for_var_log
+partition_for_var_log_audit
+set_firewalld_default_zone

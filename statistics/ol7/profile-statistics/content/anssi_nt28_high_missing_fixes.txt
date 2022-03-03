@@ -1,0 +1,13 @@
+bios_enable_execution_restrictions
+file_permissions_unauthorized_sgid
+file_permissions_unauthorized_suid
+grub2_password
+grub2_uefi_password
+install_PAE_kernel_on_x86-32
+prefer_64bit_os
+rsyslog_files_groupownership
+rsyslog_files_ownership
+sudo_dedicated_group
+sudoers_explicit_command_args
+sudoers_no_command_negation
+sudoers_no_root_target

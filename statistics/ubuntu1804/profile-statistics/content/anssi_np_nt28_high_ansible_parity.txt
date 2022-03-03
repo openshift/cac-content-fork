@@ -1,0 +1,2 @@
+grub2_enable_iommu_force
+sshd_set_idle_timeout

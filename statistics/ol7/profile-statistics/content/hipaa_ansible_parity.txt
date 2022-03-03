@@ -1,0 +1,2 @@
+dconf_db_up_to_date
+ensure_oracle_gpgkey_installed

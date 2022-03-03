@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 7px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+} 
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 2;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<h2>References for product eks</h2>
+
+<ul>
+<li class="collapsible">cis</li>
+  <ul class="content">
+  <li class="collapsible">2.1.1</li>
+    <ul class="content">
+    <li><div class="tooltip">audit_logging<span class="tooltiptext">Ensure Audit Logging is Enabled</span></div></li>
+    </ul>
+  <li class="collapsible">3.1.1</li>
+    <ul class="content">
+    <li><div class="tooltip">file_permissions_worker_kubeconfig<span class="tooltiptext">Verify Permissions on the Worker Kubeconfig File</span></div></li>
+    </ul>
+  <li class="collapsible">3.1.2</li>
+    <ul class="content">
+    <li><div class="tooltip">file_owner_worker_kubeconfig<span class="tooltiptext">Verify User Who Owns The Worker Kubeconfig File</span></div></li>
+    </ul>
+  <li class="collapsible">3.1.3</li>
+    <ul class="content">
+    <li><div class="tooltip">file_permissions_kubelet_conf<span class="tooltiptext">Verify Permissions on The Kubelet Configuration File</span></div></li>
+    </ul>
+  <li class="collapsible">3.1.4</li>
+    <ul class="content">
+    <li><div class="tooltip">file_groupowner_kubelet_conf<span class="tooltiptext">Verify Group Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_owner_kubelet_conf<span class="tooltiptext">Verify User Who Owns The Kubelet Configuration File</span></div></li>
+    </ul>
+  <li class="collapsible">3.2.1</li>
+    <ul class="content">
+    <li><div class="tooltip">kubelet_anonymous_auth<span class="tooltiptext">Disable Anonymous Authentication to the Kubelet</span></div></li>
+    </ul>
+  <li class="collapsible">3.2.10</li>
+    <ul class="content">
+    <li><div class="tooltip">kubelet_enable_cert_rotation<span class="tooltiptext">kubelet - Enable Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_client_cert_rotation<span class="tooltiptext">kubelet - Enable Client Certificate Rotation</span></div></li>
+    </ul>
+  <li class="collapsible">3.2.11</li>
+    <ul class="content">
+    <li><div class="tooltip">kubelet_enable_server_cert_rotation<span class="tooltiptext">kubelet - Enable Server Certificate Rotation</span></div></li>
+    </ul>
+  <li class="collapsible">3.2.2</li>
+    <ul class="content">
+    <li><div class="tooltip">kubelet_authorization_mode<span class="tooltiptext">Ensure authorization is set to Webhook</span></div></li>
+    </ul>
+  <li class="collapsible">3.2.3</li>
+    <ul class="content">
+    <li><div class="tooltip">kubelet_configure_client_ca<span class="tooltiptext">kubelet - Configure the Client CA Certificate</span></div></li>
+    </ul>
+  <li class="collapsible">3.2.4</li>
+    <ul class="content">
+    <li><div class="tooltip">kubelet_read_only_port_secured<span class="tooltiptext">kubelet - Ensure that the --read-only-port is secured</span></div></li>
+    </ul>
+  <li class="collapsible">3.2.5</li>
+    <ul class="content">
+    <li><div class="tooltip">kubelet_enable_streaming_connections<span class="tooltiptext">kubelet - Do Not Disable Streaming Timeouts</span></div></li>
+    </ul>
+  <li class="collapsible">3.2.6</li>
+    <ul class="content">
+    <li><div class="tooltip">kubelet_enable_protect_kernel_defaults<span class="tooltiptext">kubelet - Enable Protect Kernel Defaults</span></div></li>
+    </ul>
+  <li class="collapsible">3.2.7</li>
+    <ul class="content">
+    <li><div class="tooltip">kubelet_enable_iptables_util_chains<span class="tooltiptext">kubelet - Allow Automatic Firewall Configuration</span></div></li>
+    </ul>
+  <li class="collapsible">3.2.8</li>
+    <ul class="content">
+    <li><div class="tooltip">kubelet_disable_hostname_override<span class="tooltiptext">kubelet - Hostname Override handling</span></div></li>
+    </ul>
+  <li class="collapsible">4.3.2</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">5.1.1</li>
+    <ul class="content">
+    <li><div class="tooltip">image_scanning<span class="tooltiptext">Ensure Image Vulnerability Scanning</span></div></li>
+    </ul>
+  <li class="collapsible">5.1.2</li>
+    <ul class="content">
+    <li><div class="tooltip">registry_access<span class="tooltiptext">Minimize user access to Amazon ECR</span></div></li>
+    </ul>
+  <li class="collapsible">5.1.3</li>
+    <ul class="content">
+    <li><div class="tooltip">read_only_registry_access<span class="tooltiptext">Ensure Cluster Service Account with read-only access to Amazon ECR</span></div></li>
+    </ul>
+  <li class="collapsible">5.1.4</li>
+    <ul class="content">
+    <li><div class="tooltip">approved_registries<span class="tooltiptext">Only use approved container registries</span></div></li>
+    </ul>
+  <li class="collapsible">5.2.1</li>
+    <ul class="content">
+    <li><div class="tooltip">dedicated_service_accounts<span class="tooltiptext">Use Dedicated Service Accounts</span></div></li>
+    </ul>
+  <li class="collapsible">5.3.1</li>
+    <ul class="content">
+    <li><div class="tooltip">secret_encryption<span class="tooltiptext">Ensure Kubernetes Secrets are Encrypted</span></div></li>
+    </ul>
+  <li class="collapsible">5.4.1</li>
+    <ul class="content">
+    <li><div class="tooltip">control_plane_access<span class="tooltiptext">Restrict Access to the Control Plane Endpoint</span></div></li>
+    </ul>
+  <li class="collapsible">5.4.2</li>
+    <ul class="content">
+    <li><div class="tooltip">endpoint_configuration<span class="tooltiptext">Ensure Private Endpoint Access</span></div></li>
+    </ul>
+  <li class="collapsible">5.4.3</li>
+    <ul class="content">
+    <li><div class="tooltip">private_nodes<span class="tooltiptext">Ensure Cluster Private Nodes</span></div></li>
+    </ul>
+  <li class="collapsible">5.4.4</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policy<span class="tooltiptext">Ensure Network Policy is Enabled</span></div></li>
+    </ul>
+  <li class="collapsible">5.4.5</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_tls<span class="tooltiptext">Encrypt Traffic to Load Balancers and Workloads</span></div></li>
+    </ul>
+  <li class="collapsible">5.5.1</li>
+    <ul class="content">
+    <li><div class="tooltip">iam_integration<span class="tooltiptext">Manage Users with AWS IAM</span></div></li>
+    </ul>
+  <li class="collapsible">5.6.1</li>
+    <ul class="content">
+    <li><div class="tooltip">fargate<span class="tooltiptext">Consider Fargate for Untrusted Workloads</span></div></li>
+    </ul>
+  </ul>
+<li class="collapsible">nerc-cip</li>
+  <ul class="content">
+  <li class="collapsible">CIP-003-3 R6</li>
+    <ul class="content">
+    <li><div class="tooltip">kubelet_disable_hostname_override<span class="tooltiptext">kubelet - Hostname Override handling</span></div></li>
+    </ul>
+  <li class="collapsible">CIP-003-8 R4</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">CIP-003-8 R4.2</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">CIP-003-8 R5</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">CIP-003-8 R6</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    <li><div class="tooltip">file_groupowner_kubelet_conf<span class="tooltiptext">Verify Group Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_groupowner_worker_kubeconfig<span class="tooltiptext">Verify Group Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_owner_kubelet_conf<span class="tooltiptext">Verify User Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_owner_worker_kubeconfig<span class="tooltiptext">Verify User Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_permissions_kubelet_conf<span class="tooltiptext">Verify Permissions on The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_permissions_worker_kubeconfig<span class="tooltiptext">Verify Permissions on the Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">kubelet_anonymous_auth<span class="tooltiptext">Disable Anonymous Authentication to the Kubelet</span></div></li>
+    <li><div class="tooltip">kubelet_authorization_mode<span class="tooltiptext">Ensure authorization is set to Webhook</span></div></li>
+    <li><div class="tooltip">kubelet_configure_client_ca<span class="tooltiptext">kubelet - Configure the Client CA Certificate</span></div></li>
+    <li><div class="tooltip">kubelet_enable_cert_rotation<span class="tooltiptext">kubelet - Enable Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_client_cert_rotation<span class="tooltiptext">kubelet - Enable Client Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_iptables_util_chains<span class="tooltiptext">kubelet - Allow Automatic Firewall Configuration</span></div></li>
+    <li><div class="tooltip">kubelet_enable_protect_kernel_defaults<span class="tooltiptext">kubelet - Enable Protect Kernel Defaults</span></div></li>
+    <li><div class="tooltip">kubelet_enable_server_cert_rotation<span class="tooltiptext">kubelet - Enable Server Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_streaming_connections<span class="tooltiptext">kubelet - Do Not Disable Streaming Timeouts</span></div></li>
+    <li><div class="tooltip">kubelet_read_only_port_secured<span class="tooltiptext">kubelet - Ensure that the --read-only-port is secured</span></div></li>
+    </ul>
+  <li class="collapsible">CIP-004-3 R3</li>
+    <ul class="content">
+    <li><div class="tooltip">kubelet_disable_hostname_override<span class="tooltiptext">kubelet - Hostname Override handling</span></div></li>
+    </ul>
+  <li class="collapsible">CIP-004-6 R2.2.4</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">CIP-004-6 R3</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    <li><div class="tooltip">file_groupowner_kubelet_conf<span class="tooltiptext">Verify Group Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_groupowner_worker_kubeconfig<span class="tooltiptext">Verify Group Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_owner_kubelet_conf<span class="tooltiptext">Verify User Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_owner_worker_kubeconfig<span class="tooltiptext">Verify User Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_permissions_kubelet_conf<span class="tooltiptext">Verify Permissions on The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_permissions_worker_kubeconfig<span class="tooltiptext">Verify Permissions on the Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">kubelet_anonymous_auth<span class="tooltiptext">Disable Anonymous Authentication to the Kubelet</span></div></li>
+    <li><div class="tooltip">kubelet_authorization_mode<span class="tooltiptext">Ensure authorization is set to Webhook</span></div></li>
+    <li><div class="tooltip">kubelet_configure_client_ca<span class="tooltiptext">kubelet - Configure the Client CA Certificate</span></div></li>
+    <li><div class="tooltip">kubelet_enable_cert_rotation<span class="tooltiptext">kubelet - Enable Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_client_cert_rotation<span class="tooltiptext">kubelet - Enable Client Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_iptables_util_chains<span class="tooltiptext">kubelet - Allow Automatic Firewall Configuration</span></div></li>
+    <li><div class="tooltip">kubelet_enable_protect_kernel_defaults<span class="tooltiptext">kubelet - Enable Protect Kernel Defaults</span></div></li>
+    <li><div class="tooltip">kubelet_enable_server_cert_rotation<span class="tooltiptext">kubelet - Enable Server Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_streaming_connections<span class="tooltiptext">kubelet - Do Not Disable Streaming Timeouts</span></div></li>
+    <li><div class="tooltip">kubelet_read_only_port_secured<span class="tooltiptext">kubelet - Ensure that the --read-only-port is secured</span></div></li>
+    </ul>
+  <li class="collapsible">CIP-007-3 R2</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">CIP-007-3 R2.1</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">CIP-007-3 R2.2</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">CIP-007-3 R2.3</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">CIP-007-3 R5.1</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">CIP-007-3 R6.1</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    <li><div class="tooltip">file_groupowner_kubelet_conf<span class="tooltiptext">Verify Group Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_groupowner_worker_kubeconfig<span class="tooltiptext">Verify Group Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_owner_kubelet_conf<span class="tooltiptext">Verify User Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_owner_worker_kubeconfig<span class="tooltiptext">Verify User Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_permissions_kubelet_conf<span class="tooltiptext">Verify Permissions on The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_permissions_worker_kubeconfig<span class="tooltiptext">Verify Permissions on the Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">kubelet_anonymous_auth<span class="tooltiptext">Disable Anonymous Authentication to the Kubelet</span></div></li>
+    <li><div class="tooltip">kubelet_authorization_mode<span class="tooltiptext">Ensure authorization is set to Webhook</span></div></li>
+    <li><div class="tooltip">kubelet_configure_client_ca<span class="tooltiptext">kubelet - Configure the Client CA Certificate</span></div></li>
+    <li><div class="tooltip">kubelet_disable_hostname_override<span class="tooltiptext">kubelet - Hostname Override handling</span></div></li>
+    <li><div class="tooltip">kubelet_enable_cert_rotation<span class="tooltiptext">kubelet - Enable Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_client_cert_rotation<span class="tooltiptext">kubelet - Enable Client Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_iptables_util_chains<span class="tooltiptext">kubelet - Allow Automatic Firewall Configuration</span></div></li>
+    <li><div class="tooltip">kubelet_enable_protect_kernel_defaults<span class="tooltiptext">kubelet - Enable Protect Kernel Defaults</span></div></li>
+    <li><div class="tooltip">kubelet_enable_server_cert_rotation<span class="tooltiptext">kubelet - Enable Server Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_streaming_connections<span class="tooltiptext">kubelet - Do Not Disable Streaming Timeouts</span></div></li>
+    <li><div class="tooltip">kubelet_read_only_port_secured<span class="tooltiptext">kubelet - Ensure that the --read-only-port is secured</span></div></li>
+    </ul>
+  </ul>
+<li class="collapsible">nist</li>
+  <ul class="content">
+  <li class="collapsible">AC-4</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">AC-4(21)</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">CA-3(5)</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">CM-6</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    <li><div class="tooltip">file_groupowner_kubelet_conf<span class="tooltiptext">Verify Group Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_groupowner_worker_kubeconfig<span class="tooltiptext">Verify Group Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_owner_kubelet_conf<span class="tooltiptext">Verify User Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_owner_worker_kubeconfig<span class="tooltiptext">Verify User Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_permissions_kubelet_conf<span class="tooltiptext">Verify Permissions on The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_permissions_worker_kubeconfig<span class="tooltiptext">Verify Permissions on the Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">kubelet_anonymous_auth<span class="tooltiptext">Disable Anonymous Authentication to the Kubelet</span></div></li>
+    <li><div class="tooltip">kubelet_authorization_mode<span class="tooltiptext">Ensure authorization is set to Webhook</span></div></li>
+    <li><div class="tooltip">kubelet_configure_client_ca<span class="tooltiptext">kubelet - Configure the Client CA Certificate</span></div></li>
+    <li><div class="tooltip">kubelet_disable_hostname_override<span class="tooltiptext">kubelet - Hostname Override handling</span></div></li>
+    <li><div class="tooltip">kubelet_enable_cert_rotation<span class="tooltiptext">kubelet - Enable Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_client_cert_rotation<span class="tooltiptext">kubelet - Enable Client Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_iptables_util_chains<span class="tooltiptext">kubelet - Allow Automatic Firewall Configuration</span></div></li>
+    <li><div class="tooltip">kubelet_enable_protect_kernel_defaults<span class="tooltiptext">kubelet - Enable Protect Kernel Defaults</span></div></li>
+    <li><div class="tooltip">kubelet_enable_server_cert_rotation<span class="tooltiptext">kubelet - Enable Server Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_streaming_connections<span class="tooltiptext">kubelet - Do Not Disable Streaming Timeouts</span></div></li>
+    <li><div class="tooltip">kubelet_read_only_port_secured<span class="tooltiptext">kubelet - Ensure that the --read-only-port is secured</span></div></li>
+    </ul>
+  <li class="collapsible">CM-6(1)</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    <li><div class="tooltip">file_groupowner_kubelet_conf<span class="tooltiptext">Verify Group Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_groupowner_worker_kubeconfig<span class="tooltiptext">Verify Group Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_owner_kubelet_conf<span class="tooltiptext">Verify User Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_owner_worker_kubeconfig<span class="tooltiptext">Verify User Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_permissions_kubelet_conf<span class="tooltiptext">Verify Permissions on The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_permissions_worker_kubeconfig<span class="tooltiptext">Verify Permissions on the Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">kubelet_anonymous_auth<span class="tooltiptext">Disable Anonymous Authentication to the Kubelet</span></div></li>
+    <li><div class="tooltip">kubelet_authorization_mode<span class="tooltiptext">Ensure authorization is set to Webhook</span></div></li>
+    <li><div class="tooltip">kubelet_configure_client_ca<span class="tooltiptext">kubelet - Configure the Client CA Certificate</span></div></li>
+    <li><div class="tooltip">kubelet_disable_hostname_override<span class="tooltiptext">kubelet - Hostname Override handling</span></div></li>
+    <li><div class="tooltip">kubelet_enable_cert_rotation<span class="tooltiptext">kubelet - Enable Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_client_cert_rotation<span class="tooltiptext">kubelet - Enable Client Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_iptables_util_chains<span class="tooltiptext">kubelet - Allow Automatic Firewall Configuration</span></div></li>
+    <li><div class="tooltip">kubelet_enable_protect_kernel_defaults<span class="tooltiptext">kubelet - Enable Protect Kernel Defaults</span></div></li>
+    <li><div class="tooltip">kubelet_enable_server_cert_rotation<span class="tooltiptext">kubelet - Enable Server Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_streaming_connections<span class="tooltiptext">kubelet - Do Not Disable Streaming Timeouts</span></div></li>
+    <li><div class="tooltip">kubelet_read_only_port_secured<span class="tooltiptext">kubelet - Ensure that the --read-only-port is secured</span></div></li>
+    </ul>
+  <li class="collapsible">CM-7</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">CM-7(1)</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">SC-7</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">SC-7(12)</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">SC-7(13)</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">SC-7(18)</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">SC-7(3)</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">SC-7(5)</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">SC-7(8)</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  </ul>
+<li class="collapsible">pcidss</li>
+  <ul class="content">
+  <li class="collapsible">Req-1.1.4</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">Req-1.2</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">Req-1.2.1</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">Req-1.3.1</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">Req-1.3.2</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">Req-2.2</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  </ul>
+<li class="collapsible">srg</li>
+  <ul class="content">
+  <li class="collapsible">SRG-APP-000038-CTR-000105</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000039-CTR-000110</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000141-CTR-000315</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000141-CTR-000320</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000142-CTR-000325</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000142-CTR-000330</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000516-CTR-001325</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    <li><div class="tooltip">file_groupowner_kubelet_conf<span class="tooltiptext">Verify Group Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_groupowner_worker_kubeconfig<span class="tooltiptext">Verify Group Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_owner_kubelet_conf<span class="tooltiptext">Verify User Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_owner_worker_kubeconfig<span class="tooltiptext">Verify User Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_permissions_kubelet_conf<span class="tooltiptext">Verify Permissions on The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_permissions_worker_kubeconfig<span class="tooltiptext">Verify Permissions on the Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">kubelet_anonymous_auth<span class="tooltiptext">Disable Anonymous Authentication to the Kubelet</span></div></li>
+    <li><div class="tooltip">kubelet_authorization_mode<span class="tooltiptext">Ensure authorization is set to Webhook</span></div></li>
+    <li><div class="tooltip">kubelet_configure_client_ca<span class="tooltiptext">kubelet - Configure the Client CA Certificate</span></div></li>
+    <li><div class="tooltip">kubelet_enable_cert_rotation<span class="tooltiptext">kubelet - Enable Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_client_cert_rotation<span class="tooltiptext">kubelet - Enable Client Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_iptables_util_chains<span class="tooltiptext">kubelet - Allow Automatic Firewall Configuration</span></div></li>
+    <li><div class="tooltip">kubelet_enable_protect_kernel_defaults<span class="tooltiptext">kubelet - Enable Protect Kernel Defaults</span></div></li>
+    <li><div class="tooltip">kubelet_enable_server_cert_rotation<span class="tooltiptext">kubelet - Enable Server Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_streaming_connections<span class="tooltiptext">kubelet - Do Not Disable Streaming Timeouts</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000516-CTR-001330</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    <li><div class="tooltip">file_groupowner_kubelet_conf<span class="tooltiptext">Verify Group Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_groupowner_worker_kubeconfig<span class="tooltiptext">Verify Group Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_owner_kubelet_conf<span class="tooltiptext">Verify User Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_owner_worker_kubeconfig<span class="tooltiptext">Verify User Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_permissions_kubelet_conf<span class="tooltiptext">Verify Permissions on The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_permissions_worker_kubeconfig<span class="tooltiptext">Verify Permissions on the Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">kubelet_anonymous_auth<span class="tooltiptext">Disable Anonymous Authentication to the Kubelet</span></div></li>
+    <li><div class="tooltip">kubelet_authorization_mode<span class="tooltiptext">Ensure authorization is set to Webhook</span></div></li>
+    <li><div class="tooltip">kubelet_configure_client_ca<span class="tooltiptext">kubelet - Configure the Client CA Certificate</span></div></li>
+    <li><div class="tooltip">kubelet_enable_cert_rotation<span class="tooltiptext">kubelet - Enable Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_client_cert_rotation<span class="tooltiptext">kubelet - Enable Client Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_iptables_util_chains<span class="tooltiptext">kubelet - Allow Automatic Firewall Configuration</span></div></li>
+    <li><div class="tooltip">kubelet_enable_protect_kernel_defaults<span class="tooltiptext">kubelet - Enable Protect Kernel Defaults</span></div></li>
+    <li><div class="tooltip">kubelet_enable_server_cert_rotation<span class="tooltiptext">kubelet - Enable Server Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_streaming_connections<span class="tooltiptext">kubelet - Do Not Disable Streaming Timeouts</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000516-CTR-001335</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    <li><div class="tooltip">file_groupowner_kubelet_conf<span class="tooltiptext">Verify Group Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_groupowner_worker_kubeconfig<span class="tooltiptext">Verify Group Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_owner_kubelet_conf<span class="tooltiptext">Verify User Who Owns The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_owner_worker_kubeconfig<span class="tooltiptext">Verify User Who Owns The Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">file_permissions_kubelet_conf<span class="tooltiptext">Verify Permissions on The Kubelet Configuration File</span></div></li>
+    <li><div class="tooltip">file_permissions_worker_kubeconfig<span class="tooltiptext">Verify Permissions on the Worker Kubeconfig File</span></div></li>
+    <li><div class="tooltip">kubelet_anonymous_auth<span class="tooltiptext">Disable Anonymous Authentication to the Kubelet</span></div></li>
+    <li><div class="tooltip">kubelet_authorization_mode<span class="tooltiptext">Ensure authorization is set to Webhook</span></div></li>
+    <li><div class="tooltip">kubelet_configure_client_ca<span class="tooltiptext">kubelet - Configure the Client CA Certificate</span></div></li>
+    <li><div class="tooltip">kubelet_enable_cert_rotation<span class="tooltiptext">kubelet - Enable Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_client_cert_rotation<span class="tooltiptext">kubelet - Enable Client Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_iptables_util_chains<span class="tooltiptext">kubelet - Allow Automatic Firewall Configuration</span></div></li>
+    <li><div class="tooltip">kubelet_enable_protect_kernel_defaults<span class="tooltiptext">kubelet - Enable Protect Kernel Defaults</span></div></li>
+    <li><div class="tooltip">kubelet_enable_server_cert_rotation<span class="tooltiptext">kubelet - Enable Server Certificate Rotation</span></div></li>
+    <li><div class="tooltip">kubelet_enable_streaming_connections<span class="tooltiptext">kubelet - Do Not Disable Streaming Timeouts</span></div></li>
+    </ul>
+  <li class="collapsible">SRG-APP-000645-CTR-001410</li>
+    <ul class="content">
+    <li><div class="tooltip">configure_network_policies_namespaces<span class="tooltiptext">Ensure that application Namespaces have Network Policies defined.</span></div></li>
+    </ul>
+  </ul>
+</ul>  
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+} 
+</script>
+</body>
+</html>

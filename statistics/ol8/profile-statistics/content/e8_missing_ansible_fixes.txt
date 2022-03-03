@@ -1,0 +1,7 @@
+accounts_no_uid_except_zero
+audit_rules_usergroup_modification
+ensure_oracle_gpgkey_installed
+file_permissions_unauthorized_sgid
+file_permissions_unauthorized_suid
+file_permissions_unauthorized_world_writable
+network_sniffer_disabled

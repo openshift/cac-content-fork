@@ -1,0 +1,14 @@
+approved_registries
+audit_logging
+configure_network_policy
+configure_tls
+control_plane_access
+dedicated_service_accounts
+endpoint_configuration
+fargate
+iam_integration
+image_scanning
+private_nodes
+read_only_registry_access
+registry_access
+secret_encryption
