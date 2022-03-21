@@ -33,6 +33,7 @@ partition_for_var
 partition_for_var_log
 partition_for_var_log_audit
 partition_for_var_tmp
+set_password_hashing_min_rounds_logindefs
 sssd_enable_certmap
 sudo_restrict_privilege_elevation_to_authorized
 sysctl_crypto_fips_enabled

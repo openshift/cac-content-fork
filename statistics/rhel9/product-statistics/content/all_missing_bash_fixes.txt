@@ -117,6 +117,7 @@ selinux_all_devicefiles_labeled
 selinux_confinement_of_daemons
 selinux_user_login_roles
 set_firewalld_default_zone
+set_password_hashing_min_rounds_logindefs
 snmpd_no_rwusers
 snmpd_use_newer_protocol
 sshd_limit_user_access

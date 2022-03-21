@@ -42,8 +42,10 @@ file_permissions_var_log_messages
 file_permissions_var_log_syslog
 ftp_configure_firewall
 ftp_limit_users
+grub2_mce_argument
 grub2_nosmap_argument_absent
 grub2_nosmep_argument_absent
+grub2_slab_nomerge_argument
 harden_ssh_client_crypto_policy
 harden_sshd_crypto_policy
 httpd_configure_banner_page
@@ -330,3 +332,4 @@ sshd_enable_gssapi_auth
 sshd_enable_pubkey_auth
 sshd_enable_warning_banner_net
 sshd_rekey_limit
+sysctl_kernel_panic_on_oops

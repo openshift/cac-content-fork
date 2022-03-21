@@ -241,13 +241,8 @@ no_files_unowned_by_user
 no_host_based_files
 no_tmux_in_shells
 no_user_host_based_files
-package_abrt-addon-ccpp_removed
-package_abrt-addon-kerneloops_removed
-package_abrt-addon-python_removed
-package_abrt-cli_removed
-package_abrt-plugin-logger_removed
-package_abrt-plugin-rhtsupport_removed
-package_abrt-plugin-sosreport_removed
+package_abrt-libs_removed
+package_abrt-server-info-page_removed
 package_abrt_removed
 package_aide_installed
 package_audit_installed

@@ -98,6 +98,7 @@ file_groupowner_ovs_pid
 file_groupowner_ovs_sys_id_conf
 file_groupowner_ovs_vswitchd_pid
 file_groupowner_ovsdb_server_pid
+file_groupowner_proxy_kubeconfig
 file_groupowner_scheduler_kubeconfig
 file_groupowner_worker_ca
 file_groupowner_worker_kubeconfig
@@ -114,6 +115,7 @@ file_owner_ip_allocations
 file_owner_kube_apiserver
 file_owner_kube_controller_manager
 file_owner_kube_scheduler
+file_owner_kubelet
 file_owner_kubelet_conf
 file_owner_master_admin_kubeconfigs
 file_owner_multus_conf
@@ -127,6 +129,7 @@ file_owner_ovs_pid
 file_owner_ovs_sys_id_conf
 file_owner_ovs_vswitchd_pid
 file_owner_ovsdb_server_pid
+file_owner_proxy_kubeconfig
 file_owner_scheduler_kubeconfig
 file_owner_var_lib_etcd
 file_owner_worker_ca
@@ -144,6 +147,7 @@ file_permissions_etcd_pki_cert_files
 file_permissions_ip_allocations
 file_permissions_kube_apiserver
 file_permissions_kube_controller_manager
+file_permissions_kubelet
 file_permissions_kubelet_conf
 file_permissions_master_admin_kubeconfigs
 file_permissions_multus_conf

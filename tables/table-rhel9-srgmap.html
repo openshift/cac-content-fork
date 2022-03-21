@@ -3158,24 +3158,6 @@ outweighs the need to log all actions, and a different setting should be
 determined. Details regarding all possible values for <i>ACTION</i> are described in the
 <code>auditd.conf</code> man page.</td>
 </tr></table>
-<table><tr>
-<td>Configure auditd max_log_file_action Upon Reaching Maximum Log Size</td>
-<td xml:lang="en-US">The default action to take when the logs reach their maximum size
-is to rotate the log files, discarding the oldest one. To configure the action taken
-by <code>auditd</code>, add or correct the line in <code>/etc/audit/auditd.conf</code>:
-<pre>max_log_file_action = <i>ACTION</i></pre>
-Possible values for <i>ACTION</i> are described in the <code>auditd.conf</code> man
-page. These include:
-<ul>
-<li><code>ignore</code></li>
-<li><code>syslog</code></li>
-<li><code>suspend</code></li>
-<li><code>rotate</code></li>
-<li><code>keep_logs</code></li>
-</ul>
-Set the <code><i>ACTION</i></code> to <code>rotate</code> to ensure log rotation
-occurs. This is the default. The setting is case-insensitive.</td>
-</tr></table>
 </td>
 </tr>
 <tr>
@@ -5350,6 +5332,16 @@ the new passwords will be generated using the SHA-512 algorithm. This is
 the default.</td>
 </tr></table>
 <table><tr>
+<td>Set Password Hashing Rounds in /etc/login.defs</td>
+<td xml:lang="en-US">In <code>/etc/login.defs</code>, ensure <code>SHA_CRYPT_MIN_ROUNDS</code> and
+<code>SHA_CRYPT_MAX_ROUNDS</code> has the minimum value of <code>5000</code>.
+For example:
+<pre>SHA_CRYPT_MIN_ROUNDS 5000
+SHA_CRYPT_MAX_ROUNDS 5000</pre>
+Notice that if neither are set, they already have the default value of 5000.
+If either is set, they must have the minimum value of 5000.</td>
+</tr></table>
+<table><tr>
 <td>Verify All Account Password Hashes are Shadowed with SHA512</td>
 <td xml:lang="en-US">Verify the operating system requires the shadow password suite
 configuration be set to encrypt interactive user passwords using a strong
@@ -5362,26 +5354,6 @@ Password hashes <code>!</code> or <code>*</code> indicate inactive accounts not
 available for logon and are not evaluated.
 If any interactive user password hash does not begin with <code>$6</code>,
 this is a finding.</td>
-</tr></table>
-<table><tr>
-<td>Set number of Password Hashing Rounds - password-auth</td>
-<td xml:lang="en-US">Configure the number or rounds for the password hashing algorithm. This can be
-accomplished by using the <code>rounds</code> option for the <code>pam_unix</code> PAM module.
-<br><br>
-In file <code>/etc/pam.d/password-auth</code> append <code>rounds=<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_password_pam_unix_rounds"></xccdf-1.1:sub></code>
-to the <code>pam_unix.so</code> file, as shown below:
-<pre>password sufficient pam_unix.so <i>...existing_options...</i> rounds=<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_password_pam_unix_rounds"></xccdf-1.1:sub></pre>
-The system's default number of rounds is 5000.</td>
-</tr></table>
-<table><tr>
-<td>Set number of Password Hashing Rounds - system-auth</td>
-<td xml:lang="en-US">Configure the number or rounds for the password hashing algorithm. This can be
-accomplished by using the <code>rounds</code> option for the <code>pam_unix</code> PAM module.
-<br><br>
-In file <code>/etc/pam.d/system-auth</code> append <code>rounds=<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_password_pam_unix_rounds"></xccdf-1.1:sub></code>
-to the <code>pam_unix.so</code> file, as shown below:
-<pre>password sufficient pam_unix.so <i>...existing_options...</i> rounds=<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_password_pam_unix_rounds"></xccdf-1.1:sub></pre>
-The system's default number of rounds is 5000.</td>
 </tr></table>
 </td>
 </tr>
@@ -6133,6 +6105,16 @@ $ sudo dnf erase krb5-workstation</pre>
 </td>
 </tr></table>
 <table><tr>
+<td>Set Password Hashing Rounds in /etc/login.defs</td>
+<td xml:lang="en-US">In <code>/etc/login.defs</code>, ensure <code>SHA_CRYPT_MIN_ROUNDS</code> and
+<code>SHA_CRYPT_MAX_ROUNDS</code> has the minimum value of <code>5000</code>.
+For example:
+<pre>SHA_CRYPT_MIN_ROUNDS 5000
+SHA_CRYPT_MAX_ROUNDS 5000</pre>
+Notice that if neither are set, they already have the default value of 5000.
+If either is set, they must have the minimum value of 5000.</td>
+</tr></table>
+<table><tr>
 <td>Verify All Account Password Hashes are Shadowed with SHA512</td>
 <td xml:lang="en-US">Verify the operating system requires the shadow password suite
 configuration be set to encrypt interactive user passwords using a strong
@@ -6317,8 +6299,8 @@ To make sure that the setting is persistent, add the following line to a file in
 </tr></table>
 <table><tr>
 <td>Restrict Exposed Kernel Pointer Addresses Access</td>
-<td xml:lang="en-US">To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.kptr_restrict=1</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <code>/etc/sysctl.d</code>: <pre>kernel.kptr_restrict = 1</pre>
+<td xml:lang="en-US">To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.kptr_restrict=<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="sysctl_kernel_kptr_restrict_value"></xccdf-1.1:sub></pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <code>/etc/sysctl.d</code>: <pre>kernel.kptr_restrict = <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="sysctl_kernel_kptr_restrict_value"></xccdf-1.1:sub></pre>
 </td>
 </tr></table>
 </td>
@@ -7119,7 +7101,24 @@ Editing the Crypto Policy back-end is not recommended.
 
 Check the crypto-policies(7) man page and choose a policy that configures TLS
 protocol to version 1.2 or higher, for example DEFAULT, FUTURE or FIPS policy.
-Or create and apply a custom policy that restricts minimum TLS version to 1.2.</td>
+Or create and apply a custom policy that restricts minimum TLS version to 1.2.
+
+For example for versions prior to crypto-policies-20210617-1.gitc776d3e.el8.noarch
+this is expected:
+
+<pre>$ sudo grep -i MinProtocol /etc/crypto-policies/back-ends/opensslcnf.config
+
+MinProtocol = TLSv1.2
+</pre>
+
+Or for version crypto-policies-20210617-1.gitc776d3e.el8.noarch and newer this is
+expected:
+
+<pre>$ sudo grep -i MinProtocol /etc/crypto-policies/back-ends/opensslcnf.config
+
+TLS.MinProtocol = TLSv1.2
+DTLS.MinProtocol = DTLSv1.2</pre>
+</td>
 </tr></table>
 <table><tr>
 <td>Configure SSH to use System Crypto Policy</td>
@@ -7723,7 +7722,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-<pre>$ sudo nmcli radio wifi off</pre>
+<pre>$ sudo nmcli radio all off</pre>
 </td>
 </tr></table></td>
 </tr>
@@ -7755,7 +7754,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-<pre>$ sudo nmcli radio wifi off</pre>
+<pre>$ sudo nmcli radio all off</pre>
 </td>
 </tr></table>
 </td>
@@ -8251,10 +8250,12 @@ Some programs and processes are required to operate at a higher privilege level 
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -8271,10 +8272,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -8358,10 +8361,12 @@ This requirement enables organizations to extend or limit auditing as necessary 
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -8607,10 +8612,12 @@ Audit reduction is a technique used to reduce the volume of audit records in ord
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -8637,10 +8644,12 @@ This requirement is specific to operating systems with audit reduction capabilit
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -8665,10 +8674,12 @@ Report generation must be capable of generating on-demand (i.e., customizable, a
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -8693,10 +8704,12 @@ Report generation must be capable of generating on-demand (i.e., customizable, a
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -8721,10 +8734,12 @@ The report generation capability must support after-the-fact investigations of s
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -8751,10 +8766,12 @@ This requirement is specific to operating systems providing audit reduction capa
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -8781,10 +8798,12 @@ This requirement is specific to operating systems providing report generation ca
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -8869,10 +8888,12 @@ Time stamps generated by the operating system include date and time. Granularity
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -8897,10 +8918,12 @@ Time stamps generated by the operating system include date and time. Time is com
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -9049,10 +9072,12 @@ The <code>auditd</code> service can be enabled with the following command:
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -10993,7 +11018,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-<pre>$ sudo nmcli radio wifi off</pre>
+<pre>$ sudo nmcli radio all off</pre>
 </td>
 </tr></table>
 <table><tr>
@@ -11080,8 +11105,8 @@ Examples of attacks are buffer overflow attacks.</td>
 <td>
 <table><tr>
 <td>Restrict Exposed Kernel Pointer Addresses Access</td>
-<td xml:lang="en-US">To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.kptr_restrict=1</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <code>/etc/sysctl.d</code>: <pre>kernel.kptr_restrict = 1</pre>
+<td xml:lang="en-US">To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.kptr_restrict=<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="sysctl_kernel_kptr_restrict_value"></xccdf-1.1:sub></pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <code>/etc/sysctl.d</code>: <pre>kernel.kptr_restrict = <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="sysctl_kernel_kptr_restrict_value"></xccdf-1.1:sub></pre>
 </td>
 </tr></table>
 <table><tr>
@@ -16124,11 +16149,7 @@ into the account without authentication. Remove any instances of the
 
 <code>/etc/pam.d/system-auth</code>
 
-to prevent logins with empty passwords.
-Note that this rule is not applicable for systems running within a
-container. Having user with empty password within a container is not
-considered a risk, because it should not be possible to directly login into
-a container anyway.</td>
+to prevent logins with empty passwords.</td>
 </tr></table>
 <table><tr>
 <td>Verify Only Root Has UID 0</td>
@@ -16331,7 +16352,20 @@ There must be a resolvable DNS CNAME or Alias record set to "<xccdf-1.1:sub xmln
 </tr></table>
 <table><tr>
 <td>Configure Multiple DNS Servers in /etc/resolv.conf</td>
-<td xml:lang="en-US">Multiple Domain Name System (DNS) Servers should be configured
+<td xml:lang="en-US">
+Determine whether the system is using local or DNS name resolution with the
+following command:
+<pre>$ sudo grep hosts /etc/nsswitch.conf
+hosts: files dns</pre>
+If the DNS entry is missing from the host's line in the "/etc/nsswitch.conf"
+file, the "/etc/resolv.conf" file must be empty.
+Verify the "/etc/resolv.conf" file is empty with the following command:
+<pre>$ sudo ls -al /etc/resolv.conf
+-rw-r--r-- 1 root root 0 Aug 19 08:31 resolv.conf</pre>
+If the DNS entry is found on the host's line of the "/etc/nsswitch.conf" file,
+then verify the following:<br>
+
+Multiple Domain Name System (DNS) Servers should be configured
 in <code>/etc/resolv.conf</code>. This provides redundant name resolution services
 in the event that a domain server crashes. To configure the system to contain
 as least <code>2</code> DNS servers, add a corresponding <code>nameserver
@@ -16661,8 +16695,8 @@ can be set to <code>none</code> to disable storing core dumps permanently.</td>
 </tr></table>
 <table><tr>
 <td>Restrict Exposed Kernel Pointer Addresses Access</td>
-<td xml:lang="en-US">To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.kptr_restrict=1</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <code>/etc/sysctl.d</code>: <pre>kernel.kptr_restrict = 1</pre>
+<td xml:lang="en-US">To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.kptr_restrict=<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="sysctl_kernel_kptr_restrict_value"></xccdf-1.1:sub></pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <code>/etc/sysctl.d</code>: <pre>kernel.kptr_restrict = <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="sysctl_kernel_kptr_restrict_value"></xccdf-1.1:sub></pre>
 </td>
 </tr></table>
 <table><tr>
@@ -17082,7 +17116,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-<pre>$ sudo nmcli radio wifi off</pre>
+<pre>$ sudo nmcli radio all off</pre>
 </td>
 </tr></table></td>
 </tr>

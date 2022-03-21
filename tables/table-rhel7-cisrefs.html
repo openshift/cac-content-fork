@@ -649,16 +649,26 @@ desirable for some environments.  However, if the system is being managed by RHN
   <td>Build and Test AIDE Database</td>
   <td xml:lang="en-US">
 Run the following command to generate a new database:
+
 <pre>$ sudo /usr/sbin/aide --init</pre>
-By default, the database will be written to the file <tt>/var/lib/aide/aide.db.new.gz</tt>.
+
+By default, the database will be written to the file
+
+<tt>/var/lib/aide/aide.db.new.gz</tt>.
+
 Storing the database, the configuration file <tt>/etc/aide.conf</tt>, and the binary
-<tt>/usr/sbin/aide</tt> (or hashes of these files), in a secure location (such as on read-only media) provides additional assurance about their integrity.
+
+<tt>/usr/sbin/aide</tt>
+
+(or hashes of these files), in a secure location (such as on read-only media) provides additional assurance about their integrity.
 The newly-generated database can be installed as follows:
 
 <pre>$ sudo cp /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz</pre>
 
 To initiate a manual check, run the following command:
+
 <pre>$ sudo /usr/sbin/aide --check</pre>
+
 If this check produces any unexpected output, investigate.
   </td>
   <td xml:lang="en-US">
@@ -2366,7 +2376,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-<pre>$ sudo nmcli radio wifi off</pre>
+<pre>$ sudo nmcli radio all off</pre>
   </td>
   <td xml:lang="en-US">
 The use of wireless networking can introduce many different attack vectors into

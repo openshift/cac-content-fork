@@ -2781,10 +2781,12 @@ network(s).
 Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <tt>/etc/audit/audit.rules</tt></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.
@@ -2829,10 +2831,6 @@ into the account without authentication. Remove any instances of the
 <tt>/etc/pam.d/system-auth</tt>
 
 to prevent logins with empty passwords.
-Note that this rule is not applicable for systems running within a
-container. Having user with empty password within a container is not
-considered a risk, because it should not be possible to directly login into
-a container anyway.
   </td>
   <td xml:lang="en-US">
 If an account has an empty password, anyone could log in and
@@ -5658,7 +5656,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-<pre>$ sudo nmcli radio wifi off</pre>
+<pre>$ sudo nmcli radio all off</pre>
   </td>
   <td xml:lang="en-US">
 The use of wireless networking can introduce many different attack vectors into
@@ -5676,6 +5674,19 @@ service to valid network resources.
   <td>N/A</td>
   <td>Configure Multiple DNS Servers in /etc/resolv.conf</td>
   <td xml:lang="en-US">
+
+Determine whether the system is using local or DNS name resolution with the
+following command:
+<pre>$ sudo grep hosts /etc/nsswitch.conf
+hosts: files dns</pre>
+If the DNS entry is missing from the host's line in the "/etc/nsswitch.conf"
+file, the "/etc/resolv.conf" file must be empty.
+Verify the "/etc/resolv.conf" file is empty with the following command:
+<pre>$ sudo ls -al /etc/resolv.conf
+-rw-r--r-- 1 root root 0 Aug 19 08:31 resolv.conf</pre>
+If the DNS entry is found on the host's line of the "/etc/nsswitch.conf" file,
+then verify the following:<br/>
+
 Multiple Domain Name System (DNS) Servers should be configured
 in <tt>/etc/resolv.conf</tt>. This provides redundant name resolution services
 in the event that a domain server crashes. To configure the system to contain

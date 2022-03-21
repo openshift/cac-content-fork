@@ -144,10 +144,12 @@ gnome_gdm_disable_xdmcp
 grub2_admin_username
 grub2_enable_fips_mode
 grub2_enable_iommu_force
+grub2_mce_argument
 grub2_no_removeable_media
 grub2_nosmap_argument_absent
 grub2_nosmep_argument_absent
 grub2_password
+grub2_slab_nomerge_argument
 grub2_uefi_admin_username
 grub2_uefi_password
 harden_ssh_client_crypto_policy

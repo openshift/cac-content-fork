@@ -55,6 +55,8 @@ etcd_peer_auto_tls
 etcd_peer_cert_file
 etcd_peer_client_cert_auth
 etcd_peer_key_file
+file_groupowner_proxy_kubeconfig
+file_owner_proxy_kubeconfig
 file_permissions_proxy_kubeconfig
 idp_is_configured
 kubeadmin_removed

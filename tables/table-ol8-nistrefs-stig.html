@@ -1,10 +1,10 @@
 <html xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cdf="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>DRAFT - DISA STIG for Oracle Linux 8</title>
+<title>DISA STIG for Oracle Linux 8</title>
 </head>
 <body>
-	<br><br><div style="text-align: center; font-size: x-large; font-weight:bold">DRAFT - DISA STIG for Oracle Linux 8</div>
+	<br><br><div style="text-align: center; font-size: x-large; font-weight:bold">DISA STIG for Oracle Linux 8</div>
 <br><br><style type="text/css">
 		table
 		{
@@ -2783,10 +2783,12 @@ level of entropy.
 Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <tt>/etc/audit/audit.rules</tt></pre>
 
-<pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
-<pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
-<pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
+<pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -k setuid</pre>
+<pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -k setuid</pre>
+<pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -k setgid</pre>
+<pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.
@@ -2831,10 +2833,6 @@ into the account without authentication. Remove any instances of the
 <tt>/etc/pam.d/system-auth</tt>
 
 to prevent logins with empty passwords.
-Note that this rule is not applicable for systems running within a
-container. Having user with empty password within a container is not
-considered a risk, because it should not be possible to directly login into
-a container anyway.
   </td>
   <td xml:lang="en-US">
 If an account has an empty password, anyone could log in and
@@ -5895,11 +5893,11 @@ in the GNOME Display Manager's login screen can be enabled on the login
 screen by setting <tt>banner-message-enable</tt> to <tt>true</tt>.
 <br /><br />
 To enable, add or edit <tt>banner-message-enable</tt> to
-<tt>/etc/dconf/db/gdm.d/00-security-settings</tt>. For example:
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
 <pre>[org/gnome/login-screen]
 banner-message-enable=true</pre>
 Once the setting has been added, add a lock to
-<tt>/etc/dconf/db/gdm.d/locks/00-security-settings-lock</tt> to prevent user modification.
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent user modification.
 For example:
 <pre>/org/gnome/login-screen/banner-message-enable</pre>
 After the settings have been set, run <tt>dconf update</tt>.
@@ -5927,11 +5925,11 @@ where <i>APPROVED_BANNER</i> is the approved banner for your environment.
 <br /><br />
 To enable, add or edit <tt>banner-message-text</tt> to
 
-<tt>/etc/dconf/db/gdm.d/00-security-settings</tt>. For example:
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
 <pre>[org/gnome/login-screen]
 banner-message-text='<i>APPROVED_BANNER</i>'</pre>
 Once the setting has been added, add a lock to
-<tt>/etc/dconf/db/gdm.d/locks/00-security-settings-lock</tt> to prevent user modification.
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent user modification.
 For example:
 <pre>/org/gnome/login-screen/banner-message-text</pre>
 
@@ -6712,6 +6710,22 @@ Editing the Crypto Policy back-end is not recommended.
 Check the crypto-policies(7) man page and choose a policy that configures TLS
 protocol to version 1.2 or higher, for example DEFAULT, FUTURE or FIPS policy.
 Or create and apply a custom policy that restricts minimum TLS version to 1.2.
+
+For example for versions prior to crypto-policies-20210617-1.gitc776d3e.el8.noarch
+this is expected:
+
+<pre>$ sudo grep -i MinProtocol /etc/crypto-policies/back-ends/opensslcnf.config
+
+MinProtocol = TLSv1.2
+</pre>
+
+Or for version crypto-policies-20210617-1.gitc776d3e.el8.noarch and newer this is
+expected:
+
+<pre>$ sudo grep -i MinProtocol /etc/crypto-policies/back-ends/opensslcnf.config
+
+TLS.MinProtocol = TLSv1.2
+DTLS.MinProtocol = DTLSv1.2</pre>
   </td>
   <td xml:lang="en-US">
 Without cryptographic integrity protections, information can be altered by
@@ -6892,7 +6906,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-<pre>$ sudo nmcli radio wifi off</pre>
+<pre>$ sudo nmcli radio all off</pre>
   </td>
   <td xml:lang="en-US">
 The use of wireless networking can introduce many different attack vectors into
@@ -6910,6 +6924,19 @@ service to valid network resources.
   <td>N/A</td>
   <td>Configure Multiple DNS Servers in /etc/resolv.conf</td>
   <td xml:lang="en-US">
+
+Determine whether the system is using local or DNS name resolution with the
+following command:
+<pre>$ sudo grep hosts /etc/nsswitch.conf
+hosts: files dns</pre>
+If the DNS entry is missing from the host's line in the "/etc/nsswitch.conf"
+file, the "/etc/resolv.conf" file must be empty.
+Verify the "/etc/resolv.conf" file is empty with the following command:
+<pre>$ sudo ls -al /etc/resolv.conf
+-rw-r--r-- 1 root root 0 Aug 19 08:31 resolv.conf</pre>
+If the DNS entry is found on the host's line of the "/etc/nsswitch.conf" file,
+then verify the following:<br/>
+
 Multiple Domain Name System (DNS) Servers should be configured
 in <tt>/etc/resolv.conf</tt>. This provides redundant name resolution services
 in the event that a domain server crashes. To configure the system to contain
@@ -6934,8 +6961,8 @@ time synchronization, centralized authentication, and remote system logging.
   <td>N/A</td>
   <td>Restrict Exposed Kernel Pointer Addresses Access</td>
   <td xml:lang="en-US">
-To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.kptr_restrict=1</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>kernel.kptr_restrict = 1</pre>
+To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.kptr_restrict=<tt>1</tt></pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>kernel.kptr_restrict = <tt>1</tt></pre>
   </td>
   <td xml:lang="en-US">
 Exposing kernel pointers (through procfs or <tt>seq_printf()</tt>) exposes
@@ -6944,7 +6971,7 @@ in the kernel allowing a write access to any of this structure, the kernel can b
 option disallow any program withtout the CAP_SYSLOG capability from getting the kernel pointers addresses,
 replacing them with 0.
   </td>
-  <td></td>
+  <td>sysctl_kernel_kptr_restrict_value=1</td>
 </tr>
 <tr>
   <td>SC-30<br/>SC-30(2)<br/>CM-6(a)</td>
@@ -7345,6 +7372,9 @@ utility to read audit rules during daemon startup, add the following line to
   <td xml:lang="en-US">
 The actions taken by system administrators should be audited to keep a record
 of what was executed on the system, as well as, for accountability purposes.
+Editing the sudoers file may be sign of an attacker trying to
+establish persistent methods to a system, auditing the editing of the sudoers
+files mitigates this risk.
   </td>
   <td></td>
 </tr>
@@ -7367,6 +7397,9 @@ utility to read audit rules during daemon startup, add the following line to
   <td xml:lang="en-US">
 The actions taken by system administrators should be audited to keep a record
 of what was executed on the system, as well as, for accountability purposes.
+Editing the sudoers file may be sign of an attacker trying to
+establish persistent methods to a system, auditing the editing of the sudoers
+files mitigates this risk.
   </td>
   <td></td>
 </tr>
@@ -7416,6 +7449,9 @@ automatic session locking. It should be started from
   <td xml:lang="en-US">
 Unlike <tt>bash</tt> itself, the <tt>tmux</tt> terminal multiplexer
 provides a mechanism to lock sessions after period of inactivity.
+A session lock is a temporary action taken when a user stops work and moves away from the
+immediate physical vicinity of the information system but does not want to
+log out because of the temporary nature of the absence.
   </td>
   <td></td>
 </tr>
@@ -7711,104 +7747,28 @@ or for the use of two-factor authentication.
 <tr>
   <td></td>
   <td>N/A</td>
-  <td>Uninstall abrt-addon-ccpp Package</td>
+  <td>Uninstall abrt-libs Package</td>
   <td xml:lang="en-US">
-The <code>abrt-addon-ccpp</code> package can be removed with the following command:
+The <code>abrt-libs</code> package can be removed with the following command:
 <pre>
-$ sudo yum erase abrt-addon-ccpp</pre>
+$ sudo yum erase abrt-libs</pre>
   </td>
   <td xml:lang="en-US">
-<tt>abrt-addon-ccpp</tt> contains hooks for C/C++ crashed programs and <tt>abrt</tt>'s
-C/C++ analyzer plugin.
+<tt>abrt-libs</tt> provides libraries for the ABRT package.
   </td>
   <td></td>
 </tr>
 <tr>
   <td></td>
   <td>N/A</td>
-  <td>Uninstall abrt-addon-kerneloops Package</td>
+  <td>Uninstall abrt-server-info-page Package</td>
   <td xml:lang="en-US">
-The <code>abrt-addon-kerneloops</code> package can be removed with the following command:
+The <code>abrt-server-info-page</code> package can be removed with the following command:
 <pre>
-$ sudo yum erase abrt-addon-kerneloops</pre>
+$ sudo yum erase abrt-server-info-page</pre>
   </td>
   <td xml:lang="en-US">
-<tt>abrt-addon-kerneloops</tt> contains plugins for collecting kernel crash information and
-reporter plugin which sends this information to a specified server, usually to kerneloops.org.
-  </td>
-  <td></td>
-</tr>
-<tr>
-  <td></td>
-  <td>N/A</td>
-  <td>Uninstall abrt-addon-python Package</td>
-  <td xml:lang="en-US">
-The <code>abrt-addon-python</code> package can be removed with the following command:
-<pre>
-$ sudo yum erase abrt-addon-python</pre>
-  </td>
-  <td xml:lang="en-US">
-<tt>abrt-addon-python</tt> contains python hook and python analyzer
-plugin for handling uncaught exceptions in python programs.
-  </td>
-  <td></td>
-</tr>
-<tr>
-  <td></td>
-  <td>N/A</td>
-  <td>Uninstall abrt-cli Package</td>
-  <td xml:lang="en-US">
-The <code>abrt-cli</code> package can be removed with the following command:
-<pre>
-$ sudo yum erase abrt-cli</pre>
-  </td>
-  <td xml:lang="en-US">
-<tt>abrt-cli</tt> contains a command line client for controlling abrt daemon
-over sockets.
-  </td>
-  <td></td>
-</tr>
-<tr>
-  <td></td>
-  <td>N/A</td>
-  <td>Uninstall abrt-plugin-logger Package</td>
-  <td xml:lang="en-US">
-The <code>abrt-plugin-logger</code> package can be removed with the following command:
-<pre>
-$ sudo yum erase abrt-plugin-logger</pre>
-  </td>
-  <td xml:lang="en-US">
-<tt>abrt-plugin-logger</tt> is an ABRT plugin which writes a report
-to a specified file.
-  </td>
-  <td></td>
-</tr>
-<tr>
-  <td></td>
-  <td>N/A</td>
-  <td>Uninstall abrt-plugin-rhtsupport Package</td>
-  <td xml:lang="en-US">
-The <code>abrt-plugin-rhtsupport</code> package can be removed with the following command:
-<pre>
-$ sudo yum erase abrt-plugin-rhtsupport</pre>
-  </td>
-  <td xml:lang="en-US">
-<tt>abrt-plugin-rhtsupport</tt> is a ABRT plugin to report bugs into the
-Red Hat Support system.
-  </td>
-  <td></td>
-</tr>
-<tr>
-  <td></td>
-  <td>N/A</td>
-  <td>Uninstall abrt-plugin-sosreport Package</td>
-  <td xml:lang="en-US">
-The <code>abrt-plugin-sosreport</code> package can be removed with the following command:
-<pre>
-$ sudo yum erase abrt-plugin-sosreport</pre>
-  </td>
-  <td xml:lang="en-US">
-<tt>abrt-plugin-sosreport</tt> provides a plugin to include an sosreport in an ABRT report.
+<tt>abrt-server-info-page</tt> provides a web page with summary of ABRT services.
   </td>
   <td></td>
 </tr>
@@ -8022,7 +7982,7 @@ By decreasing the limit based on the amount of data and enabling
 time-based limit, effects of potential attacks against
 encryption keys are limited.
   </td>
-  <td>var_rekey_limit_size=1G<br/>var_rekey_limit_time=1hour</td>
+  <td>var_rekey_limit_time=1hour<br/>var_rekey_limit_size=1G</td>
 </tr>
 <tr>
   <td></td>

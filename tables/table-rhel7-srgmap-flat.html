@@ -15041,7 +15041,7 @@ Once the superuser account has been added,
 update the
 grub.cfg file by running:
 grub2-mkconfig -o /boot/grub2/grub.cfg</td>
-<td>low</td>
+<td>medium</td>
 <td></td>
 <td></td>
 <td></td>
@@ -15157,7 +15157,7 @@ Once the superuser account has been added,
 update the
 grub.cfg file by running:
 grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg</td>
-<td>low</td>
+<td>medium</td>
 <td></td>
 <td></td>
 <td></td>
@@ -15979,6 +15979,55 @@ Techniques used to address this include protocols using nonces (e.g., numbers ge
 <td></td>
 <td></td>
 </td>
+</tr>
+<tr>
+<td>SV-71029</td>
+<td>SRG-OS-000114-GPOS-00059</td>
+<td><i>TBD - Assigned by DISA after STIG release</i></td>
+<td>The operating system must uniquely identify peripherals before establishing a connection.</td>
+<td>CCE-80122-5:Disable GNOME3 Automounting</td>
+<td>Without identifying devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity.
+
+Peripherals include, but are not limited to, such devices as flash drives, external storage, and printers.</td>
+<td xml:lang="en-US">The system's default desktop environment, GNOME3, will mount
+devices and removable media (such as DVDs, CDs and USB flash drives) whenever
+they are inserted into the system. To disable automount within GNOME3, add or set
+<code>automount</code> to <code>false</code> in <code>/etc/dconf/db/local.d/00-security-settings</code>.
+For example:
+<pre>[org/gnome/desktop/media-handling]
+automount=false</pre>
+Once the settings have been added, add a lock to
+<code>/etc/dconf/db/local.d/locks/00-security-settings-lock</code> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/media-handling/automount</pre>
+After the settings have been set, run <code>dconf update</code>.</td>
+<td>Applicable - Configurable</td>
+<td>Verify the operating system uniquely identifies peripherals before establishing a connection. If it does not, this is a finding.</td>
+<td>These settings can be verified by running the following:
+$ gsettings get org.gnome.desktop.media-handling automount
+If properly configured, the output for automount should be false.
+To ensure that users cannot enable automount in GNOME3, run the following:
+$ grep 'automount' /etc/dconf/db/local.d/locks/*
+If properly configured, the output for automount should be /org/gnome/desktop/media-handling/automount
+      Is it the case that GNOME automounting is not disabled?
+      </td>
+<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3772r557187_fix">Configure the operating system to uniquely identify peripherals before establishing a connection.</fixtext></td>
+<td>The system's default desktop environment, GNOME3, will mount
+devices and removable media (such as DVDs, CDs and USB flash drives) whenever
+they are inserted into the system. To disable automount within GNOME3, add or set
+automount to false in /etc/dconf/db/local.d/00-security-settings.
+For example:
+[org/gnome/desktop/media-handling]
+automount=false
+Once the settings have been added, add a lock to
+/etc/dconf/db/local.d/locks/00-security-settings-lock to prevent user modification.
+For example:
+/org/gnome/desktop/media-handling/automount
+After the settings have been set, run dconf update.</td>
+<td>medium</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>SV-71029</td>
@@ -16858,7 +16907,7 @@ $ sudo ps -ef | grep -i mfetpd
 <td>Install McAfee Endpoint Security for Linux antivirus software
 which is provided for DoD systems and uses signatures to search for the
 presence of viruses on the filesystem.</td>
-<td>high</td>
+<td>medium</td>
 <td></td>
 <td></td>
 <td></td>
@@ -19505,7 +19554,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-<pre>$ sudo nmcli radio wifi off</pre>
+<pre>$ sudo nmcli radio all off</pre>
 </td>
 <td>Applicable - Configurable</td>
 <td>Verify the operating system protects wireless access to and from the system using encryption. If it does not, this is a finding.</td>
@@ -19524,7 +19573,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-$ sudo nmcli radio wifi off</td>
+$ sudo nmcli radio all off</td>
 <td>medium</td>
 <td></td>
 <td></td>
@@ -19547,7 +19596,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-<pre>$ sudo nmcli radio wifi off</pre>
+<pre>$ sudo nmcli radio all off</pre>
 </td>
 <td>Applicable - Configurable</td>
 <td>Verify the operating system protects wireless access to the system using authentication of users and/or devices. If it does not, this is a finding.</td>
@@ -19566,7 +19615,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-$ sudo nmcli radio wifi off</td>
+$ sudo nmcli radio all off</td>
 <td>medium</td>
 <td></td>
 <td></td>
@@ -20776,10 +20825,12 @@ Some programs and processes are required to operate at a higher privilege level 
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -20787,10 +20838,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>Verify that the operating system prevents all software from executing at higher privilege levels than users executing the software. If it does not, this is a finding.</td>
 <td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 The audit daemon must be restarted for the changes to take effect.
 
@@ -20801,10 +20854,12 @@ The audit daemon must be restarted for the changes to take effect.
 <td>Verify the system generates an audit record when privileged functions are executed.
 # grep -iw execve /etc/audit/audit.rules
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -20823,10 +20878,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -20834,10 +20891,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>Verify that the operating system audits the execution of privileged functions. If it does not, this is a finding.</td>
 <td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 The audit daemon must be restarted for the changes to take effect.
 
@@ -20848,10 +20907,12 @@ The audit daemon must be restarted for the changes to take effect.
 <td>Verify the system generates an audit record when privileged functions are executed.
 # grep -iw execve /etc/audit/audit.rules
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21037,10 +21098,12 @@ This requirement enables organizations to extend or limit auditing as necessary 
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21048,10 +21111,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>Verify the operating system provides the capability for assigned IMOs/ISSOs or designated SAs to change the auditing to be performed on all operating system components, based on all selectable event criteria in near real time. If it does not, this is a finding.</td>
 <td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 The audit daemon must be restarted for the changes to take effect.
 
@@ -21062,10 +21127,12 @@ The audit daemon must be restarted for the changes to take effect.
 <td>Verify the system generates an audit record when privileged functions are executed.
 # grep -iw execve /etc/audit/audit.rules
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21566,10 +21633,12 @@ Audit reduction is a technique used to reduce the volume of audit records in ord
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21577,10 +21646,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>Verify the operating system provides an audit reduction capability that supports on-demand audit review and analysis. If it does not, this is a finding.</td>
 <td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 The audit daemon must be restarted for the changes to take effect.
 
@@ -21591,10 +21662,12 @@ The audit daemon must be restarted for the changes to take effect.
 <td>Verify the system generates an audit record when privileged functions are executed.
 # grep -iw execve /etc/audit/audit.rules
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21617,10 +21690,12 @@ This requirement is specific to operating systems with audit reduction capabilit
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21628,10 +21703,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>Verify the operating system provides an audit reduction capability that supports after-the-fact investigations of security incidents. If it does not, this is a finding.</td>
 <td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 The audit daemon must be restarted for the changes to take effect.
 
@@ -21642,10 +21719,12 @@ The audit daemon must be restarted for the changes to take effect.
 <td>Verify the system generates an audit record when privileged functions are executed.
 # grep -iw execve /etc/audit/audit.rules
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21666,10 +21745,12 @@ Report generation must be capable of generating on-demand (i.e., customizable, a
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21677,10 +21758,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>Verify the operating system provides a report generation capability that supports on-demand audit review and analysis. If it does not, this is a finding.</td>
 <td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 The audit daemon must be restarted for the changes to take effect.
 
@@ -21691,10 +21774,12 @@ The audit daemon must be restarted for the changes to take effect.
 <td>Verify the system generates an audit record when privileged functions are executed.
 # grep -iw execve /etc/audit/audit.rules
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21715,10 +21800,12 @@ Report generation must be capable of generating on-demand (i.e., customizable, a
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21726,10 +21813,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>Verify the operating system provides a report generation capability that supports on-demand reporting requirements. If it does not, this is a finding.</td>
 <td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 The audit daemon must be restarted for the changes to take effect.
 
@@ -21740,10 +21829,12 @@ The audit daemon must be restarted for the changes to take effect.
 <td>Verify the system generates an audit record when privileged functions are executed.
 # grep -iw execve /etc/audit/audit.rules
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21764,10 +21855,12 @@ The report generation capability must support after-the-fact investigations of s
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21775,10 +21868,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>Verify the operating system provides a report generation capability that supports after-the-fact investigations of security incidents. If it does not, this is a finding.</td>
 <td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 The audit daemon must be restarted for the changes to take effect.
 
@@ -21789,10 +21884,12 @@ The audit daemon must be restarted for the changes to take effect.
 <td>Verify the system generates an audit record when privileged functions are executed.
 # grep -iw execve /etc/audit/audit.rules
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21815,10 +21912,12 @@ This requirement is specific to operating systems providing audit reduction capa
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21826,10 +21925,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>Verify the operating system does not alter original content or time ordering of audit records when it provides an audit reduction capability. If it does not, this is a finding.</td>
 <td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 The audit daemon must be restarted for the changes to take effect.
 
@@ -21840,10 +21941,12 @@ The audit daemon must be restarted for the changes to take effect.
 <td>Verify the system generates an audit record when privileged functions are executed.
 # grep -iw execve /etc/audit/audit.rules
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21866,10 +21969,12 @@ This requirement is specific to operating systems providing report generation ca
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -21877,10 +21982,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>Verify the operating system does not alter original content or time ordering of audit records when it provides a report generation capability. If it does not, this is a finding.</td>
 <td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 The audit daemon must be restarted for the changes to take effect.
 
@@ -21891,10 +21998,12 @@ The audit daemon must be restarted for the changes to take effect.
 <td>Verify the system generates an audit record when privileged functions are executed.
 # grep -iw execve /etc/audit/audit.rules
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -22005,10 +22114,12 @@ Time stamps generated by the operating system include date and time. Granularity
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -22016,10 +22127,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>Verify the operating system records time stamps for audit records that meet a minimum granularity of one second for a minimum degree of precision. If it does not, this is a finding.</td>
 <td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 The audit daemon must be restarted for the changes to take effect.
 
@@ -22030,10 +22143,12 @@ The audit daemon must be restarted for the changes to take effect.
 <td>Verify the system generates an audit record when privileged functions are executed.
 # grep -iw execve /etc/audit/audit.rules
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -22054,10 +22169,12 @@ Time stamps generated by the operating system include date and time. Time is com
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -22065,10 +22182,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>Verify the operating system records time stamps for audit records that can be mapped to Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT). If it does not, this is a finding.</td>
 <td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 The audit daemon must be restarted for the changes to take effect.
 
@@ -22079,10 +22198,12 @@ The audit daemon must be restarted for the changes to take effect.
 <td>Verify the system generates an audit record when privileged functions are executed.
 # grep -iw execve /etc/audit/audit.rules
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -22529,10 +22650,12 @@ Enforcement actions are the methods or mechanisms used to prevent unauthorized c
 <td xml:lang="en-US">Verify the system generates an audit record when privileged functions are executed.
 <pre># grep -iw execve <code>/etc/audit/audit.rules</code></pre>
 
+
 <pre>-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid</pre>
 <pre>-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
 <pre>-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid</pre>
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -22540,10 +22663,12 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>Verify the operating system audits the enforcement actions used to restrict access associated with changes to the system. If it does not, this is a finding.</td>
 <td>Add or update the following rules in "/etc/audit/rules.d/audit.rules":
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 The audit daemon must be restarted for the changes to take effect.
 
@@ -22554,10 +22679,12 @@ The audit daemon must be restarted for the changes to take effect.
 <td>Verify the system generates an audit record when privileged functions are executed.
 # grep -iw execve /etc/audit/audit.rules
 
+
 -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k setuid
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k setgid
 -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k setgid
+
 
 If both the "b32" and "b64" audit rules for "SUID" files are not defined, this is a finding.
 If both the "b32" and "b64" audit rules for "SGID" files are not defined, this is a finding.</td>
@@ -22673,7 +22800,7 @@ not exist within temporary directories like /dev/shm.
 Add the nodev option to the fourth column of
 /etc/fstab for the line which controls mounting of
 /dev/shm.</td>
-<td>low</td>
+<td>medium</td>
 <td></td>
 <td></td>
 <td></td>
@@ -22713,7 +22840,7 @@ from world-writable temporary storage directories such as /dev/shm.
 Add the noexec option to the fourth column of
 /etc/fstab for the line which controls mounting of
 /dev/shm.</td>
-<td>low</td>
+<td>medium</td>
 <td></td>
 <td></td>
 <td></td>
@@ -22751,7 +22878,7 @@ be required in these world-writable directories.
 Add the nosuid option to the fourth column of
 /etc/fstab for the line which controls mounting of
 /dev/shm.</td>
-<td>low</td>
+<td>medium</td>
 <td></td>
 <td></td>
 <td></td>
@@ -23632,6 +23759,55 @@ to services under the [sssd] section in
 [sssd]
 services = sudo, autofs, pam
 </td>
+<td>medium</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>V-56809</td>
+<td>SRG-OS-000378-GPOS-00163</td>
+<td><i>TBD - Assigned by DISA after STIG release</i></td>
+<td>The operating system must authenticate peripherals before establishing a connection.</td>
+<td>CCE-80122-5:Disable GNOME3 Automounting</td>
+<td>Without authenticating devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity.
+
+Peripherals include, but are not limited to, such devices as flash drives, external storage, and printers.</td>
+<td xml:lang="en-US">The system's default desktop environment, GNOME3, will mount
+devices and removable media (such as DVDs, CDs and USB flash drives) whenever
+they are inserted into the system. To disable automount within GNOME3, add or set
+<code>automount</code> to <code>false</code> in <code>/etc/dconf/db/local.d/00-security-settings</code>.
+For example:
+<pre>[org/gnome/desktop/media-handling]
+automount=false</pre>
+Once the settings have been added, add a lock to
+<code>/etc/dconf/db/local.d/locks/00-security-settings-lock</code> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/media-handling/automount</pre>
+After the settings have been set, run <code>dconf update</code>.</td>
+<td>Applicable - Configurable</td>
+<td>Verify the operating system authenticates peripherals before establishing a connection. If it does not, this is a finding.</td>
+<td>These settings can be verified by running the following:
+$ gsettings get org.gnome.desktop.media-handling automount
+If properly configured, the output for automount should be false.
+To ensure that users cannot enable automount in GNOME3, run the following:
+$ grep 'automount' /etc/dconf/db/local.d/locks/*
+If properly configured, the output for automount should be /org/gnome/desktop/media-handling/automount
+      Is it the case that GNOME automounting is not disabled?
+      </td>
+<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3855r375198_fix">Configure the operating system to authenticate peripherals before establishing a connection.</fixtext></td>
+<td>The system's default desktop environment, GNOME3, will mount
+devices and removable media (such as DVDs, CDs and USB flash drives) whenever
+they are inserted into the system. To disable automount within GNOME3, add or set
+automount to false in /etc/dconf/db/local.d/00-security-settings.
+For example:
+[org/gnome/desktop/media-handling]
+automount=false
+Once the settings have been added, add a lock to
+/etc/dconf/db/local.d/locks/00-security-settings-lock to prevent user modification.
+For example:
+/org/gnome/desktop/media-handling/automount
+After the settings have been set, run dconf update.</td>
 <td>medium</td>
 <td></td>
 <td></td>
@@ -27522,7 +27698,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-<pre>$ sudo nmcli radio wifi off</pre>
+<pre>$ sudo nmcli radio all off</pre>
 </td>
 <td>Applicable - Configurable</td>
 <td>Verify the operating system implements cryptographic mechanisms to prevent unauthorized disclosure of information and/or detect changes to information during transmission unless otherwise protected by alternative physical safeguards, such as, at a minimum, a Protected Distribution System (PDS). 
@@ -27543,7 +27719,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-$ sudo nmcli radio wifi off</td>
+$ sudo nmcli radio all off</td>
 <td>medium</td>
 <td></td>
 <td></td>
@@ -40220,6 +40396,55 @@ in the following directories:
 <td>SRG-OS-000480-GPOS-00227</td>
 <td><i>TBD - Assigned by DISA after STIG release</i></td>
 <td>The operating system must be configured in accordance with the security configuration settings based on DoD security configuration or implementation guidance, including STIGs, NSA configuration guides, CTOs, and DTMs.</td>
+<td>CCE-80122-5:Disable GNOME3 Automounting</td>
+<td>Configuring the operating system to implement organization-wide security implementation guides and security checklists ensures compliance with federal standards and establishes a common security baseline across DoD that reflects the most restrictive security posture consistent with operational requirements.
+
+Configuration settings are the set of parameters that can be changed in hardware, software, or firmware components of the system that affect the security posture and/or functionality of the system. Security-related parameters are those parameters impacting the security state of the system, including the parameters required to satisfy other security control requirements. Security-related parameters include, for example: registry settings; account, file, directory permission settings; and settings for functions, ports, protocols, services, and remote connections.</td>
+<td xml:lang="en-US">The system's default desktop environment, GNOME3, will mount
+devices and removable media (such as DVDs, CDs and USB flash drives) whenever
+they are inserted into the system. To disable automount within GNOME3, add or set
+<code>automount</code> to <code>false</code> in <code>/etc/dconf/db/local.d/00-security-settings</code>.
+For example:
+<pre>[org/gnome/desktop/media-handling]
+automount=false</pre>
+Once the settings have been added, add a lock to
+<code>/etc/dconf/db/local.d/locks/00-security-settings-lock</code> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/media-handling/automount</pre>
+After the settings have been set, run <code>dconf update</code>.</td>
+<td>Applicable - Configurable</td>
+<td>Verify the operating system is configured in accordance with the security configuration settings based on DoD security configuration or implementation guidance, including STIGs, NSA configuration guides, CTOs, and DTMs. If it is not, this is a finding.</td>
+<td>These settings can be verified by running the following:
+$ gsettings get org.gnome.desktop.media-handling automount
+If properly configured, the output for automount should be false.
+To ensure that users cannot enable automount in GNOME3, run the following:
+$ grep 'automount' /etc/dconf/db/local.d/locks/*
+If properly configured, the output for automount should be /org/gnome/desktop/media-handling/automount
+      Is it the case that GNOME automounting is not disabled?
+      </td>
+<td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3905r375732_fix">Configure the operating system in accordance with the security configuration settings based on DoD security configuration or implementation guidance, including STIGs, NSA configuration guides, CTOs, and DTMs.</fixtext></td>
+<td>The system's default desktop environment, GNOME3, will mount
+devices and removable media (such as DVDs, CDs and USB flash drives) whenever
+they are inserted into the system. To disable automount within GNOME3, add or set
+automount to false in /etc/dconf/db/local.d/00-security-settings.
+For example:
+[org/gnome/desktop/media-handling]
+automount=false
+Once the settings have been added, add a lock to
+/etc/dconf/db/local.d/locks/00-security-settings-lock to prevent user modification.
+For example:
+/org/gnome/desktop/media-handling/automount
+After the settings have been set, run dconf update.</td>
+<td>medium</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SV-70851</td>
+<td>SRG-OS-000480-GPOS-00227</td>
+<td><i>TBD - Assigned by DISA after STIG release</i></td>
+<td>The operating system must be configured in accordance with the security configuration settings based on DoD security configuration or implementation guidance, including STIGs, NSA configuration guides, CTOs, and DTMs.</td>
 <td>CCE-83692-4:Disable GNOME3 Automount Opening</td>
 <td>Configuring the operating system to implement organization-wide security implementation guides and security checklists ensures compliance with federal standards and establishes a common security baseline across DoD that reflects the most restrictive security posture consistent with operational requirements.
 
@@ -40518,7 +40743,7 @@ can be manually downloaded from the Red Hat Network and installed using rpm.
 
 NOTE: U.S. Defense systems are required to be patched within 30 days or sooner as local policy
 dictates.</td>
-<td>high</td>
+<td>medium</td>
 <td></td>
 <td></td>
 <td></td>
@@ -40674,11 +40899,7 @@ into the account without authentication. Remove any instances of the
 
 <code>/etc/pam.d/system-auth</code>
 
-to prevent logins with empty passwords.
-Note that this rule is not applicable for systems running within a
-container. Having user with empty password within a container is not
-considered a risk, because it should not be possible to directly login into
-a container anyway.</td>
+to prevent logins with empty passwords.</td>
 <td>Applicable - Configurable</td>
 <td>Verify the operating system is configured in accordance with the security configuration settings based on DoD security configuration or implementation guidance, including STIGs, NSA configuration guides, CTOs, and DTMs. If it is not, this is a finding.</td>
 <td>To verify that null passwords cannot be used, run the following command:
@@ -40698,11 +40919,7 @@ nullok in
 
 /etc/pam.d/system-auth
 
-to prevent logins with empty passwords.
-Note that this rule is not applicable for systems running within a
-container. Having user with empty password within a container is not
-considered a risk, because it should not be possible to directly login into
-a container anyway.</td>
+to prevent logins with empty passwords.</td>
 <td>high</td>
 <td></td>
 <td></td>
@@ -41423,7 +41640,20 @@ There must be a resolvable DNS CNAME or Alias record set to "" for logs to be se
 <td>Configuring the operating system to implement organization-wide security implementation guides and security checklists ensures compliance with federal standards and establishes a common security baseline across DoD that reflects the most restrictive security posture consistent with operational requirements.
 
 Configuration settings are the set of parameters that can be changed in hardware, software, or firmware components of the system that affect the security posture and/or functionality of the system. Security-related parameters are those parameters impacting the security state of the system, including the parameters required to satisfy other security control requirements. Security-related parameters include, for example: registry settings; account, file, directory permission settings; and settings for functions, ports, protocols, services, and remote connections.</td>
-<td xml:lang="en-US">Multiple Domain Name System (DNS) Servers should be configured
+<td xml:lang="en-US">
+Determine whether the system is using local or DNS name resolution with the
+following command:
+<pre>$ sudo grep hosts /etc/nsswitch.conf
+hosts: files dns</pre>
+If the DNS entry is missing from the host's line in the "/etc/nsswitch.conf"
+file, the "/etc/resolv.conf" file must be empty.
+Verify the "/etc/resolv.conf" file is empty with the following command:
+<pre>$ sudo ls -al /etc/resolv.conf
+-rw-r--r-- 1 root root 0 Aug 19 08:31 resolv.conf</pre>
+If the DNS entry is found on the host's line of the "/etc/nsswitch.conf" file,
+then verify the following:<br>
+
+Multiple Domain Name System (DNS) Servers should be configured
 in <code>/etc/resolv.conf</code>. This provides redundant name resolution services
 in the event that a domain server crashes. To configure the system to contain
 as least <code>2</code> DNS servers, add a corresponding <code>nameserver
@@ -41442,7 +41672,20 @@ The output should return more than one nameserver entry.
       Is it the case that it does not exist or is not properly configured or less than 2 'nameserver' entries exist?
       </td>
 <td><fixtext xmlns="http://checklists.nist.gov/xccdf/1.1" fixref="F-3905r375732_fix">Configure the operating system in accordance with the security configuration settings based on DoD security configuration or implementation guidance, including STIGs, NSA configuration guides, CTOs, and DTMs.</fixtext></td>
-<td>Multiple Domain Name System (DNS) Servers should be configured
+<td>
+Determine whether the system is using local or DNS name resolution with the
+following command:
+$ sudo grep hosts /etc/nsswitch.conf
+hosts: files dns
+If the DNS entry is missing from the host's line in the "/etc/nsswitch.conf"
+file, the "/etc/resolv.conf" file must be empty.
+Verify the "/etc/resolv.conf" file is empty with the following command:
+$ sudo ls -al /etc/resolv.conf
+-rw-r--r-- 1 root root 0 Aug 19 08:31 resolv.conf
+If the DNS entry is found on the host's line of the "/etc/nsswitch.conf" file,
+then verify the following:
+
+Multiple Domain Name System (DNS) Servers should be configured
 in /etc/resolv.conf. This provides redundant name resolution services
 in the event that a domain server crashes. To configure the system to contain
 as least 2 DNS servers, add a corresponding nameserver
@@ -41452,7 +41695,7 @@ For example:
 search example.com
 nameserver 192.168.0.1
 nameserver 192.168.0.2</td>
-<td>low</td>
+<td>medium</td>
 <td></td>
 <td></td>
 <td></td>
@@ -43999,7 +44242,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-<pre>$ sudo nmcli radio wifi off</pre>
+<pre>$ sudo nmcli radio all off</pre>
 </td>
 <td>Applicable - Configurable</td>
 <td>Verify the operating system protects the confidentiality and integrity of communications with wireless peripherals. If it does not, this is a finding.</td>
@@ -44018,7 +44261,7 @@ normal usage of the wireless capability.
 
 Configure the system to disable all wireless network interfaces with the
 following command:
-$ sudo nmcli radio wifi off</td>
+$ sudo nmcli radio all off</td>
 <td>medium</td>
 <td></td>
 <td></td>

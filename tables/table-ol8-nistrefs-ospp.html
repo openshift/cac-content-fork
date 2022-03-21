@@ -1121,10 +1121,6 @@ into the account without authentication. Remove any instances of the
 <tt>/etc/pam.d/system-auth</tt>
 
 to prevent logins with empty passwords.
-Note that this rule is not applicable for systems running within a
-container. Having user with empty password within a container is not
-considered a risk, because it should not be possible to directly login into
-a container anyway.
   </td>
   <td xml:lang="en-US">
 If an account has an empty password, anyone could log in and
@@ -3486,8 +3482,8 @@ flaws in its implementation.
   <td>N/A</td>
   <td>Restrict Exposed Kernel Pointer Addresses Access</td>
   <td xml:lang="en-US">
-To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.kptr_restrict=1</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>kernel.kptr_restrict = 1</pre>
+To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.kptr_restrict=<tt>1</tt></pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>kernel.kptr_restrict = <tt>1</tt></pre>
   </td>
   <td xml:lang="en-US">
 Exposing kernel pointers (through procfs or <tt>seq_printf()</tt>) exposes
@@ -3496,7 +3492,7 @@ in the kernel allowing a write access to any of this structure, the kernel can b
 option disallow any program withtout the CAP_SYSLOG capability from getting the kernel pointers addresses,
 replacing them with 0.
   </td>
-  <td></td>
+  <td>sysctl_kernel_kptr_restrict_value=1</td>
 </tr>
 <tr>
   <td>SC-39<br/>CM-6(a)</td>
@@ -3531,6 +3527,9 @@ automatic session locking. It should be started from
   <td xml:lang="en-US">
 Unlike <tt>bash</tt> itself, the <tt>tmux</tt> terminal multiplexer
 provides a mechanism to lock sessions after period of inactivity.
+A session lock is a temporary action taken when a user stops work and moves away from the
+immediate physical vicinity of the information system but does not want to
+log out because of the temporary nature of the absence.
   </td>
   <td></td>
 </tr>
@@ -3771,21 +3770,6 @@ $ sudo yum erase abrt-cli</pre>
   <td xml:lang="en-US">
 <tt>abrt-cli</tt> contains a command line client for controlling abrt daemon
 over sockets.
-  </td>
-  <td></td>
-</tr>
-<tr>
-  <td></td>
-  <td>N/A</td>
-  <td>Uninstall abrt-plugin-logger Package</td>
-  <td xml:lang="en-US">
-The <code>abrt-plugin-logger</code> package can be removed with the following command:
-<pre>
-$ sudo yum erase abrt-plugin-logger</pre>
-  </td>
-  <td xml:lang="en-US">
-<tt>abrt-plugin-logger</tt> is an ABRT plugin which writes a report
-to a specified file.
   </td>
   <td></td>
 </tr>
@@ -4205,7 +4189,7 @@ By decreasing the limit based on the amount of data and enabling
 time-based limit, effects of potential attacks against
 encryption keys are limited.
   </td>
-  <td>var_rekey_limit_size=1G<br/>var_rekey_limit_time=1hour</td>
+  <td>var_rekey_limit_time=1hour<br/>var_rekey_limit_size=1G</td>
 </tr>
 <tr>
   <td></td>

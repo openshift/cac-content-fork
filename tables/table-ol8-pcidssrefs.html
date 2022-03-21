@@ -633,10 +633,6 @@ into the account without authentication. Remove any instances of the
 <tt>/etc/pam.d/system-auth</tt>
 
 to prevent logins with empty passwords.
-Note that this rule is not applicable for systems running within a
-container. Having user with empty password within a container is not
-considered a risk, because it should not be possible to directly login into
-a container anyway.
   </td>
   <td xml:lang="en-US">
 If an account has an empty password, anyone could log in and
@@ -830,11 +826,11 @@ can be enabled on the login screen by setting <tt>enable-smartcard-authenticatio
 to <tt>true</tt>.
 <br /><br />
 To enable, add or edit <tt>enable-smartcard-authentication</tt> to
-<tt>/etc/dconf/db/gdm.d/00-security-settings</tt>. For example:
+<tt>/etc/dconf/db/local.d/00-security-settings</tt>. For example:
 <pre>[org/gnome/login-screen]
 enable-smartcard-authentication=true</pre>
 Once the setting has been added, add a lock to
-<tt>/etc/dconf/db/gdm.d/locks/00-security-settings-lock</tt> to prevent user modification.
+<tt>/etc/dconf/db/local.d/locks/00-security-settings-lock</tt> to prevent user modification.
 For example:
 <pre>/org/gnome/login-screen/enable-smartcard-authentication</pre>
 After the settings have been set, run <tt>dconf update</tt>.
@@ -3501,16 +3497,26 @@ intrusion attempts.
   <td>Build and Test AIDE Database</td>
   <td xml:lang="en-US">
 Run the following command to generate a new database:
+
 <pre>$ sudo /usr/sbin/aide --init</pre>
-By default, the database will be written to the file <tt>/var/lib/aide/aide.db.new.gz</tt>.
+
+By default, the database will be written to the file
+
+<tt>/var/lib/aide/aide.db.new.gz</tt>.
+
 Storing the database, the configuration file <tt>/etc/aide.conf</tt>, and the binary
-<tt>/usr/sbin/aide</tt> (or hashes of these files), in a secure location (such as on read-only media) provides additional assurance about their integrity.
+
+<tt>/usr/sbin/aide</tt>
+
+(or hashes of these files), in a secure location (such as on read-only media) provides additional assurance about their integrity.
 The newly-generated database can be installed as follows:
 
 <pre>$ sudo cp /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz</pre>
 
 To initiate a manual check, run the following command:
+
 <pre>$ sudo /usr/sbin/aide --check</pre>
+
 If this check produces any unexpected output, investigate.
   </td>
   <td xml:lang="en-US">

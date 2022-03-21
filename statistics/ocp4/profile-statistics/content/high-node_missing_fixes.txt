@@ -38,6 +38,7 @@ file_owner_ip_allocations
 file_owner_kube_apiserver
 file_owner_kube_controller_manager
 file_owner_kube_scheduler
+file_owner_kubelet
 file_owner_kubelet_conf
 file_owner_master_admin_kubeconfigs
 file_owner_multus_conf
@@ -66,6 +67,7 @@ file_permissions_etcd_pki_cert_files
 file_permissions_ip_allocations
 file_permissions_kube_apiserver
 file_permissions_kube_controller_manager
+file_permissions_kubelet
 file_permissions_kubelet_conf
 file_permissions_master_admin_kubeconfigs
 file_permissions_multus_conf

@@ -69,8 +69,10 @@ ftp_limit_users
 gid_passwd_group_same
 gnome_gdm_disable_xdmcp
 grub2_enable_iommu_force
+grub2_mce_argument
 grub2_nosmap_argument_absent
 grub2_nosmep_argument_absent
+grub2_slab_nomerge_argument
 harden_ssh_client_crypto_policy
 installed_OS_is_FIPS_certified
 iptables_sshd_disabled

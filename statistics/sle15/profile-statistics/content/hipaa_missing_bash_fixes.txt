@@ -10,7 +10,6 @@ grub2_password
 grub2_uefi_password
 libreswan_approved_tunnels
 no_rsh_trust_files
-require_singleuser_auth
 rpm_verify_hashes
 rpm_verify_permissions
 selinux_confinement_of_daemons

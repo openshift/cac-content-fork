@@ -2047,8 +2047,8 @@ address information.
   <td>CCE-80915-2</td>
   <td>Restrict Exposed Kernel Pointer Addresses Access</td>
   <td xml:lang="en-US">
-To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.kptr_restrict=1</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>kernel.kptr_restrict = 1</pre>
+To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w kernel.kptr_restrict=<tt>1</tt></pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>kernel.kptr_restrict = <tt>1</tt></pre>
   </td>
   <td xml:lang="en-US">
 Exposing kernel pointers (through procfs or <tt>seq_printf()</tt>) exposes
@@ -2057,7 +2057,7 @@ in the kernel allowing a write access to any of this structure, the kernel can b
 option disallow any program withtout the CAP_SYSLOG capability from getting the kernel pointers addresses,
 replacing them with 0.
   </td>
-  <td></td>
+  <td>sysctl_kernel_kptr_restrict_value=1</td>
 </tr>
 <tr>
   <td>BP28(R23)</td>
@@ -2788,16 +2788,26 @@ be forwarded to at least one monitored email address.
   <td>Build and Test AIDE Database</td>
   <td xml:lang="en-US">
 Run the following command to generate a new database:
+
 <pre>$ sudo /usr/sbin/aide --init</pre>
-By default, the database will be written to the file <tt>/var/lib/aide/aide.db.new.gz</tt>.
+
+By default, the database will be written to the file
+
+<tt>/var/lib/aide/aide.db.new.gz</tt>.
+
 Storing the database, the configuration file <tt>/etc/aide.conf</tt>, and the binary
-<tt>/usr/sbin/aide</tt> (or hashes of these files), in a secure location (such as on read-only media) provides additional assurance about their integrity.
+
+<tt>/usr/sbin/aide</tt>
+
+(or hashes of these files), in a secure location (such as on read-only media) provides additional assurance about their integrity.
 The newly-generated database can be installed as follows:
 
 <pre>$ sudo cp /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz</pre>
 
 To initiate a manual check, run the following command:
+
 <pre>$ sudo /usr/sbin/aide --check</pre>
+
 If this check produces any unexpected output, investigate.
   </td>
   <td xml:lang="en-US">
