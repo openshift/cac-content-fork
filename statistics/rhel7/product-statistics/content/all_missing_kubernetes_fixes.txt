@@ -431,6 +431,7 @@ grub2_enable_fips_mode
 grub2_enable_iommu_force
 grub2_enable_selinux
 grub2_ipv6_disable_argument
+grub2_l1tf_argument
 grub2_mce_argument
 grub2_no_removeable_media
 grub2_nosmap_argument_absent
@@ -438,8 +439,11 @@ grub2_nosmep_argument_absent
 grub2_nousb_argument
 grub2_page_poison_argument
 grub2_password
+grub2_rng_core_default_quality_argument
 grub2_slab_nomerge_argument
 grub2_slub_debug_argument
+grub2_spec_store_bypass_disable_argument
+grub2_spectre_v2_argument
 grub2_uefi_admin_username
 grub2_uefi_password
 grub2_vsyscall_argument
@@ -512,9 +516,7 @@ journald_forward_to_syslog
 journald_storage
 kerberos_disable_no_keytab
 kernel_disable_entropy_contribution_for_solid_state_drives
-kernel_module_dccp_disabled
 kernel_module_ipv6_option_disabled
-kernel_module_rds_disabled
 ldap_client_start_tls
 ldap_client_tls_cacertpath
 libreswan_approved_tunnels
@@ -629,6 +631,8 @@ package_iptables_installed
 package_krb5-server_removed
 package_krb5-workstation_removed
 package_libcap-ng-utils_installed
+package_libreport-plugin-logger_removed
+package_libreport-plugin-rhtsupport_removed
 package_libreswan_installed
 package_libselinux_installed
 package_mcafeetp_installed

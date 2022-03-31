@@ -28,7 +28,6 @@ grub2_page_poison_argument
 grub2_slub_debug_argument
 grub2_uefi_password
 grub2_vsyscall_argument
-kernel_module_dccp_disabled
 mount_option_dev_shm_nodev
 mount_option_dev_shm_noexec
 mount_option_dev_shm_nosuid

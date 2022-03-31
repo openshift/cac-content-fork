@@ -38,7 +38,6 @@ file_permissions_library_dirs
 file_permissions_var_log_audit
 firewalld_sshd_port_enabled
 grub2_password
-kernel_module_dccp_disabled
 no_shelllogin_for_systemaccounts
 package_aide_installed
 package_telnet-server_removed

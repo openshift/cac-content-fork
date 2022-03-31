@@ -32,4 +32,3 @@ selinux_all_devicefiles_labeled
 selinux_confinement_of_daemons
 set_firewalld_default_zone
 set_password_hashing_algorithm_systemauth
-sysctl_kernel_exec_shield

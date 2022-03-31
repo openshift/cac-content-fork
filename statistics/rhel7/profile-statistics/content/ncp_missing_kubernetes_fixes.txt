@@ -161,7 +161,6 @@ install_PAE_kernel_on_x86-32
 install_antivirus
 install_hids
 installed_OS_is_vendor_supported
-kernel_module_dccp_disabled
 ldap_client_start_tls
 libreswan_approved_tunnels
 mount_option_dev_shm_nodev

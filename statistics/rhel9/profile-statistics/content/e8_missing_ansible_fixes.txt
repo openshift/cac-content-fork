@@ -8,4 +8,3 @@ file_permissions_unauthorized_world_writable
 network_sniffer_disabled
 rpm_verify_hashes
 sshd_use_directory_configuration
-sysctl_kernel_exec_shield

@@ -6,4 +6,3 @@ file_permissions_unauthorized_world_writable
 network_sniffer_disabled
 sshd_use_strong_ciphers
 sshd_use_strong_macs
-sysctl_kernel_exec_shield

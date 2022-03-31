@@ -134,8 +134,6 @@ grub2_uefi_password
 journald_compress
 journald_forward_to_syslog
 journald_storage
-kernel_module_dccp_disabled
-kernel_module_rds_disabled
 mount_option_dev_shm_nodev
 mount_option_dev_shm_noexec
 mount_option_dev_shm_nosuid

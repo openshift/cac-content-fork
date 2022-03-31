@@ -101,7 +101,6 @@ selinux_policytype
 selinux_state
 set_firewalld_default_zone
 set_password_hashing_algorithm_libuserconf
-set_password_hashing_algorithm_systemauth
 set_password_hashing_min_rounds_logindefs
 smartcard_pam_enabled
 sshd_allow_only_protocol2

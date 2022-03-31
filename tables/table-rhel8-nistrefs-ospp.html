@@ -1657,7 +1657,14 @@ The <code>firewalld</code> package can be installed with the following command:
 $ sudo yum install firewalld</pre>
   </td>
   <td xml:lang="en-US">
-The firewalld package should be installed to provide access control methods.
+"Firewalld" provides an easy and effective way to block/limit remote access to the system via ports, services, and protocols.
+
+Remote access services, such as those providing remote access to network devices and information systems, which lack automated control capabilities, increase risk and make remote user access management difficult at best.
+
+Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
+
+Red Hat Enterprise Linux 8 functionality (e.g., SSH) must be capable of taking enforcement action if the audit reveals unauthorized activity.
+Automated control of remote access sessions allows organizations to ensure ongoing compliance with remote access policies by enforcing connection rules of remote access applications on a variety of information system components (e.g., servers, workstations, notebook computers, smartphones, and tablets)."
   </td>
   <td></td>
 </tr>
@@ -3506,11 +3513,11 @@ To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parame
 To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>kernel.kptr_restrict = <tt>1</tt></pre>
   </td>
   <td xml:lang="en-US">
-Exposing kernel pointers (through procfs or <tt>seq_printf()</tt>) exposes
-kernel writeable structures that can contain functions pointers. If a write vulnereability occurs
-in the kernel allowing a write access to any of this structure, the kernel can be compromise. This
-option disallow any program withtout the CAP_SYSLOG capability from getting the kernel pointers addresses,
-replacing them with 0.
+Exposing kernel pointers (through procfs or <tt>seq_printf()</tt>) exposes kernel
+writeable structures which may contain functions pointers. If a write vulnerability
+occurs in the kernel, allowing write access to any of this structure, the kernel can
+be compromised. This option disallow any program without the CAP_SYSLOG capability
+to get the addresses of kernel pointers by replacing them with 0.
   </td>
   <td>sysctl_kernel_kptr_restrict_value=1</td>
 </tr>
@@ -3964,6 +3971,36 @@ nor is it permitted in many regulatory environments such as HIPAA.
 </tr>
 <tr>
   <td></td>
+  <td>CCE-89201-8</td>
+  <td>Uninstall libreport-plugin-logger Package</td>
+  <td xml:lang="en-US">
+The <code>libreport-plugin-logger</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase libreport-plugin-logger</pre>
+  </td>
+  <td xml:lang="en-US">
+<tt>libreport-plugin-logger</tt> is a ABRT plugin to report bugs into the
+Red Hat Support system.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
+  <td>CCE-88955-0</td>
+  <td>Uninstall libreport-plugin-rhtsupport Package</td>
+  <td xml:lang="en-US">
+The <code>libreport-plugin-rhtsupport</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase libreport-plugin-rhtsupport</pre>
+  </td>
+  <td xml:lang="en-US">
+<tt>libreport-plugin-rhtsupport</tt> is a ABRT plugin to report bugs into the
+Red Hat Support system.
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td></td>
   <td>CCE-82932-5</td>
   <td>Uninstall nfs-utils Package</td>
   <td xml:lang="en-US">
@@ -4180,7 +4217,7 @@ By decreasing the limit based on the amount of data and enabling
 time-based limit, effects of potential attacks against
 encryption keys are limited.
   </td>
-  <td>var_ssh_client_rekey_limit_size=1G<br/>var_ssh_client_rekey_limit_time=1hour</td>
+  <td>var_ssh_client_rekey_limit_time=1hour<br/>var_ssh_client_rekey_limit_size=1G</td>
 </tr>
 <tr>
   <td></td>

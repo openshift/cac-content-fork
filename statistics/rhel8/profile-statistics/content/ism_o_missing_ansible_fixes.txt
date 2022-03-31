@@ -18,5 +18,4 @@ rsyslog_remote_tls
 rsyslog_remote_tls_cacert
 set_firewalld_default_zone
 snmpd_use_newer_protocol
-sysctl_kernel_exec_shield
 usbguard_allow_hid_and_hub

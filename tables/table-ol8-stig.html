@@ -17,10 +17,10 @@
 </tr></thead>
 <tbody><tr>
 <td>389</td>
-<td>46</td>
-<td>343</td>
-<td>88.17%</td>
-<td>OL08-00-010090OL08-00-010100OL08-00-010159OL08-00-010163OL08-00-010180OL08-00-010424OL08-00-010560OL08-00-010572OL08-00-010710OL08-00-010731OL08-00-010741OL08-00-020011OL08-00-020013OL08-00-020015OL08-00-020016OL08-00-020017OL08-00-020018OL08-00-020019OL08-00-020020OL08-00-020021OL08-00-020023OL08-00-020025OL08-00-020026OL08-00-020027OL08-00-020028OL08-00-020031OL08-00-020032OL08-00-020043OL08-00-020080OL08-00-020081OL08-00-020082OL08-00-020261OL08-00-020262OL08-00-020263OL08-00-020264OL08-00-020332OL08-00-030590OL08-00-030620OL08-00-030630OL08-00-030640OL08-00-040020OL08-00-040081OL08-00-040090OL08-00-040137OL08-00-040150OL08-00-040400</td>
+<td>43</td>
+<td>346</td>
+<td>88.95%</td>
+<td>OL08-00-010090OL08-00-010100OL08-00-010159OL08-00-010163OL08-00-010180OL08-00-010424OL08-00-010560OL08-00-010572OL08-00-010731OL08-00-010741OL08-00-020011OL08-00-020013OL08-00-020015OL08-00-020016OL08-00-020017OL08-00-020018OL08-00-020019OL08-00-020020OL08-00-020021OL08-00-020023OL08-00-020025OL08-00-020026OL08-00-020027OL08-00-020028OL08-00-020032OL08-00-020080OL08-00-020081OL08-00-020082OL08-00-020261OL08-00-020262OL08-00-020263OL08-00-020264OL08-00-020332OL08-00-030590OL08-00-030620OL08-00-030630OL08-00-030640OL08-00-040020OL08-00-040081OL08-00-040090OL08-00-040137OL08-00-040150OL08-00-040400</td>
 </tr></tbody>
 </table></div>
 <style type="text/css">
@@ -830,8 +830,12 @@ $ sudo yum erase krb5-workstation</pre></pre></td>
 potentially compromised processes to the security policy, which is designed to
 prevent them from causing damage to the system or further elevating their
 privileges.</pre></td>
-<td><pre>Check the file /etc/selinux/config and ensure the following line appears:
-SELINUX=
+<td><pre>Ensure that Oracle Linux 8 verifies correct operation of security functions.
+
+Check if "SELinux" is active and in "" mode with the following command:
+
+$ sudo getenforce
+
       Is it the case that SELINUX is not set to enforcing?
       </pre></td>
 <td><pre>The SELinux state should be set to <code><xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_selinux_state"></xccdf-1.1:sub></code> at
@@ -892,7 +896,7 @@ repositories. The setting is normally reserved for directories used by the
 system, by users for temporary file storage (such as <code>/tmp</code>), and
 for directories requiring global read/write access.</pre></td>
 <td><pre>To find world-writable directories that lack the sticky bit, run the following command:
-$ sudo find / -xdev -type d -perm 002 ! -perm 1000
+$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
       Is it the case that any world-writable directories are missing the sticky bit?
       </pre></td>
 <td><pre>When the so-called 'sticky bit' is set on a directory,
@@ -2110,7 +2114,7 @@ Run the following command to update command line for already installed kernels:<
 <td>OL 8 must implement address space layout randomization (ASLR) to protect its memory from unauthorized code execution.</td>
 <td><pre>Address space layout randomization (ASLR) makes it more difficult for an
 attacker to predict the location of attack code they have introduced into a
-process's address space during an attempt at exploitation.  Additionally,
+process's address space during an attempt at exploitation. Additionally,
 ASLR makes it more difficult for an attacker to know the location of
 existing code in order to re-purpose it using return oriented programming
 (ROP) techniques.</pre></td>
@@ -2148,7 +2152,9 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>YUM must remove all software components after updated versions have been installed on OL 8.</td>
 <td><pre>Previous versions of software components that are not removed from the information
 system after updates have been installed may be exploited by some adversaries.</pre></td>
-<td><pre>
+<td><pre>Verify Oracle Linux 8 removes all software components after updated versions have been installed.
+
+
 To verify that clean_requirements_on_remove is configured properly, run the
 following command:
 $ grep clean_requirements_on_remove /etc/yum.conf
@@ -2181,9 +2187,11 @@ temporarily place non-production systems in <code>permissive</code> mode. In suc
 temporary cases, SELinux policies should be developed, and once work
 is completed, the system should be reconfigured to
 <code><xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_selinux_policy_name"></xccdf-1.1:sub></code>.</pre></td>
-<td><pre>Check the file /etc/selinux/config and ensure the following line appears:
+<td><pre>Ensure that Oracle Linux 8 verifies correct operation of security functions.
+
+Check the file /etc/selinux/config and ensure the following line appears:
 SELINUXTYPE=
-      Is it the case that it does not?
+      Is it the case that SELINUXTYPE is set to the wrong value?
       </pre></td>
 <td><pre>The SELinux <code>targeted</code> policy is appropriate for
 general-purpose desktops and servers, as well as systems in many other roles.
@@ -3166,14 +3174,27 @@ appropriate owner.</pre></td>
 </tr>
 <tr>
 <td>V-248637</td>
-<td></td>
+<td>366</td>
 <td>medium</td>
 <td>All OL 8 world-writable directories must be group-owned by root, sys, bin, or an application group.</td>
-<td><pre></pre></td>
-<td><pre></pre></td>
-<td><pre></pre></td>
+<td><pre>Allowing a user account to group own a world-writable directory is
+undesirable because it allows the owner of that directory to remove
+or replace any files that may be placed in the directory by other
+users.</pre></td>
+<td><pre>The following command will discover and print world-writable directories that
+are not group owned by a system account, given the assumption that only system
+accounts have a gid lower than 1000.  Run it once for each local partition PART:
+$ sudo find PART -xdev -type d -perm -0002 -gid +999 -print
+      Is it the case that there is output?
+      </pre></td>
+<td><pre>All directories in local partitions which are
+world-writable should be group owned by root or another
+system account. If any world-writable directories are not
+group owned by a system account, this should be investigated.
+Following this, the files should be deleted or assigned to an
+appropriate group.</pre></td>
 <td>OL08-00-010710</td>
-<td>Missing Rule</td>
+<td>dir_perms_world_writable_system_owned_group</td>
 </tr>
 <tr>
 <td>V-248638</td>
@@ -3825,14 +3846,33 @@ After the settings have been set, run <code>dconf update</code>.</pre></td>
 </tr>
 <tr>
 <td>V-248672</td>
-<td></td>
+<td>60</td>
 <td>medium</td>
 <td>OL 8 must initiate a session lock for graphical user interfaces when the screensaver is activated.</td>
-<td><pre></pre></td>
-<td><pre></pre></td>
-<td><pre></pre></td>
+<td><pre>A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity
+of the information system but does not want to logout because of the temporary nature of the absense.</pre></td>
+<td><pre>To check that the screen locks immediately when activated, run the following command:
+$ gsettings get org.gnome.desktop.screensaver lock-delay
+If properly configured, the output should be 'uint32 '.
+
+To ensure that users cannot change how long until the the screensaver locks, run the following:
+$ grep lock-delay /etc/dconf/db/local.d/locks/*
+If properly configured, the output for lock-delay should be /org/gnome/desktop/screensaver/lock-delay
+      Is it the case that the screensaver lock delay is missing, or is set to a value greater than 5?
+      </pre></td>
+<td><pre>To activate the locking delay of the screensaver in the GNOME3 desktop when
+the screensaver is activated, add or set <code>lock-delay</code> to <code>uint32 <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_screensaver_lock_delay"></xccdf-1.1:sub></code> in
+<code>/etc/dconf/db/local.d/00-security-settings</code>. For example:
+<pre>[org/gnome/desktop/screensaver]
+lock-delay=uint32 <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_screensaver_lock_delay"></xccdf-1.1:sub>
+</pre>
+Once the setting has been added, add a lock to
+<code>/etc/dconf/db/local.d/locks/00-security-settings-lock</code> to prevent user modification.
+For example:
+<pre>/org/gnome/desktop/screensaver/lock-delay</pre>
+After the settings have been set, run <code>dconf update</code>.</pre></td>
 <td>OL08-00-020031</td>
-<td>Missing Rule</td>
+<td>dconf_gnome_screensaver_lock_delay</td>
 </tr>
 <tr>
 <td>V-248673</td>
@@ -3944,14 +3984,34 @@ automatic session locking. It should not be listed in
 </tr>
 <tr>
 <td>V-248678</td>
-<td></td>
+<td>58</td>
 <td>medium</td>
 <td>OL 8 must enable a user session lock until that user reestablishes access using established identification and authentication procedures for command line sessions.</td>
-<td><pre></pre></td>
-<td><pre></pre></td>
-<td><pre></pre></td>
+<td><pre>A session lock is a temporary action taken when a user stops work and
+moves away from the immediate physical vicinity of the information
+system but does not want to log out because of the temporary nature of
+the absence.
+
+The session lock is implemented at the point where session activity can
+be determined.
+
+Regardless of where the session lock is determined and implemented,
+once invoked, the session lock must remain in place until the user
+reauthenticates. No other activity aside from reauthentication must
+unlock the system.</pre></td>
+<td><pre>
+Run the following command to determine if the kbd package is installed:
+$ rpm -q kbd
+      Is it the case that the package is not installed?
+      </pre></td>
+<td><pre>The Oracle Linux 8 operating system must have vlock installed to allow for session locking.
+
+
+The <code>kbd</code> package can be installed with the following command:
+<pre>
+$ sudo yum install kbd</pre></pre></td>
 <td>OL08-00-020043</td>
-<td>Missing Rule</td>
+<td>vlock_installed</td>
 </tr>
 <tr>
 <td>V-248679</td>
@@ -4415,8 +4475,7 @@ increases the risk of users writing down the password in a convenient
 location subject to physical compromise.</pre></td>
 <td><pre>To check the maximum password age, run the command:
 $ grep PASS_MAX_DAYS /etc/login.defs
-The DoD and FISMA requirement is 60.
-A value of 180 days is sufficient for many environments.
+The profile requirement is .
       Is it the case that PASS_MAX_DAYS is not set equal to or greater than the required value?
       </pre></td>
 <td><pre>To specify password maximum age for new accounts,
@@ -4439,16 +4498,16 @@ passwords need to be changed periodically. If the operating system does
 not limit the lifetime of passwords and force users to change their
 passwords, there is the risk that the operating system passwords could be
 compromised.</pre></td>
-<td><pre>Check whether the maximum time period for existing passwords is restricted
-to 60 days by running the following command for each user:
-$ sudo chage -l USER | grep Maximum
-The output for each user should return something similary to the following:
-Maximum number of days between password change\t\t: 60
-      Is it the case that existing passwords are not configured correctly?
+<td><pre>Check whether the maximum time period for existing passwords is restricted to  days with the following commands:
+
+$ sudo awk -F: '$5 &gt; 60 {print $1 "" "" $5}' /etc/shadow
+
+$ sudo awk -F: '$5 &lt;= 0 {print $1 "" "" $5}' /etc/shadow
+      Is it the case that any results are returned that are not associated with a system account?
       </pre></td>
-<td><pre>Configure non-compliant accounts to enforce a 60-day maximum password lifetime
+<td><pre>Configure non-compliant accounts to enforce a <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_accounts_maximum_age_login_defs"></xccdf-1.1:sub>-day maximum password lifetime
 restriction by running the following command:
-<pre>$ sudo chage -M 60 <i>USER</i></pre></pre></td>
+<pre>$ sudo chage -M <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_accounts_maximum_age_login_defs"></xccdf-1.1:sub> <i>USER</i></pre></pre></td>
 <td>OL08-00-020210</td>
 <td>accounts_password_set_max_life_existing</td>
 </tr>
@@ -4589,16 +4648,16 @@ pam_cert_auth = true
 <td>795</td>
 <td>medium</td>
 <td>The OL 8 system-auth file must disable access to the system for account identifiers (individuals, groups, roles, and devices) with 35 days of inactivity.</td>
-<td><pre>Disabling inactive accounts ensures that accounts which may not
-have been responsibly removed are not available to attackers
-who may have compromised their credentials.</pre></td>
+<td><pre>Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system.
+Disabling inactive accounts ensures that accounts which may not have been responsibly removed are not available to attackers who may have compromised their credentials.
+Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained.</pre></td>
 <td><pre>To verify the INACTIVE setting, run the following command:
 $ grep "INACTIVE" /etc/default/useradd
 The output should indicate the INACTIVE configuration option is set
 to an appropriate integer as shown in the example below:
 $ grep "INACTIVE" /etc/default/useradd
 INACTIVE=
-      Is it the case that the value of INACTIVE is greater than the expected value?
+      Is it the case that the value of INACTIVE is greater than the expected value or is -1?
       </pre></td>
 <td><pre>To specify the number of days after a password expires (which
 signifies inactivity) until an account is permanently disabled, add or correct
@@ -7703,7 +7762,13 @@ events. Misconfigured audits may degrade the system's performance by overwhelmin
 the audit log. Misconfigured audits may also make it more difficult to establish,
 correlate, and investigate the events relating to an incident or identify
 those responsible for one.</pre></td>
-<td><pre></pre></td>
+<td><pre>To check the permissions of /etc/audit/rules.d/*.rules,
+run the command:
+$ ls -l /etc/audit/rules.d/*.rules
+If properly configured, the output should indicate the following permissions:
+-rw-r-----
+      Is it the case that /etc/audit/rules.d/*.rules has unix mode -rw-r-----?
+      </pre></td>
 <td><pre>
 To properly set the permissions of <code>/etc/audit/rules.d/*.rules</code>, run the command:
 <pre>$ sudo chmod 0640 /etc/audit/rules.d/*.rules</pre></pre></td>
@@ -8555,7 +8620,14 @@ module, but will not prevent an administrator (or another program) from using th
 <td>2314</td>
 <td>medium</td>
 <td>A firewall must be installed on OL 8.</td>
-<td><pre>The firewalld package should be installed to provide access control methods.</pre></td>
+<td><pre>"Firewalld" provides an easy and effective way to block/limit remote access to the system via ports, services, and protocols.
+
+Remote access services, such as those providing remote access to network devices and information systems, which lack automated control capabilities, increase risk and make remote user access management difficult at best.
+
+Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
+
+Oracle Linux 8 functionality (e.g., SSH) must be capable of taking enforcement action if the audit reveals unauthorized activity.
+Automated control of remote access sessions allows organizations to ensure ongoing compliance with remote access policies by enforcing connection rules of remote access applications on a variety of information system components (e.g., servers, workstations, notebook computers, smartphones, and tablets)."</pre></td>
 <td><pre>Run the following command to determine if the firewalld package is installed: $ rpm -q firewalld
       Is it the case that the package is not installed?
       </pre></td>
@@ -8579,7 +8651,7 @@ Run the following command to determine the current status of the
 firewalld service:
 $ systemctl is-active firewalld
 If the service is running, it should return the following: active
-      Is it the case that ?
+      Is it the case that the service is not enabled?
       </pre></td>
 <td><pre>
 The <code>firewalld</code> service can be enabled with the following command:
@@ -9975,11 +10047,11 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>OL 8 must restrict exposed kernel pointer addresses access.</td>
-<td><pre>Exposing kernel pointers (through procfs or <code>seq_printf()</code>) exposes
-kernel writeable structures that can contain functions pointers. If a write vulnereability occurs
-in the kernel allowing a write access to any of this structure, the kernel can be compromise. This
-option disallow any program withtout the CAP_SYSLOG capability from getting the kernel pointers addresses,
-replacing them with 0.</pre></td>
+<td><pre>Exposing kernel pointers (through procfs or <code>seq_printf()</code>) exposes kernel
+writeable structures which may contain functions pointers. If a write vulnerability
+occurs in the kernel, allowing write access to any of this structure, the kernel can
+be compromised. This option disallow any program without the CAP_SYSLOG capability
+to get the addresses of kernel pointers by replacing them with 0.</pre></td>
 <td><pre>The runtime status of the kernel.kptr_restrict kernel parameter can be queried
 by running the following command:
 $ sysctl kernel.kptr_restrict

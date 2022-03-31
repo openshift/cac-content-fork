@@ -3,4 +3,3 @@ disable_ctrlaltdel_burstaction
 disable_ctrlaltdel_reboot
 rpm_verify_hashes
 sshd_use_directory_configuration
-sysctl_kernel_exec_shield

@@ -11,5 +11,4 @@ rpm_verify_hashes
 rsyslog_cron_logging
 rsyslog_files_permissions
 sshd_use_directory_configuration
-sysctl_kernel_exec_shield
 usbguard_allow_hid_and_hub

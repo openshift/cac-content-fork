@@ -55,7 +55,6 @@ file_permissions_var_log_audit
 firewalld_sshd_port_enabled
 gid_passwd_group_same
 grub2_audit_argument
-kernel_module_dccp_disabled
 package_aide_installed
 rpm_verify_hashes
 rpm_verify_permissions

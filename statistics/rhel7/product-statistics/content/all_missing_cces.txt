@@ -42,10 +42,14 @@ file_permissions_var_log_messages
 file_permissions_var_log_syslog
 ftp_configure_firewall
 ftp_limit_users
+grub2_l1tf_argument
 grub2_mce_argument
 grub2_nosmap_argument_absent
 grub2_nosmep_argument_absent
+grub2_rng_core_default_quality_argument
 grub2_slab_nomerge_argument
+grub2_spec_store_bypass_disable_argument
+grub2_spectre_v2_argument
 harden_ssh_client_crypto_policy
 harden_sshd_crypto_policy
 httpd_configure_banner_page
@@ -76,6 +80,8 @@ package_dracut-fips-aesni_installed
 package_gnutls-utils_installed
 package_inetutils-telnetd_removed
 package_krb5-server_removed
+package_libreport-plugin-logger_removed
+package_libreport-plugin-rhtsupport_removed
 package_nis_removed
 package_nss-tools_installed
 package_ntp_installed

@@ -2092,9 +2092,9 @@ elapse until the account would be automatically disabled. See the
 <tt>useradd</tt> man page for more information.
   </td>
   <td xml:lang="en-US">
-Disabling inactive accounts ensures that accounts which may not
-have been responsibly removed are not available to attackers
-who may have compromised their credentials.
+Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system.
+Disabling inactive accounts ensures that accounts which may not have been responsibly removed are not available to attackers who may have compromised their credentials.
+Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained.
   </td>
   <td>var_account_disable_post_pw_expiration=35</td>
 </tr>
@@ -2496,9 +2496,9 @@ the password is compromised.
   <td>N/A</td>
   <td>Set Existing Passwords Maximum Age</td>
   <td xml:lang="en-US">
-Configure non-compliant accounts to enforce a 60-day maximum password lifetime
+Configure non-compliant accounts to enforce a <tt>60</tt>-day maximum password lifetime
 restriction by running the following command:
-<pre>$ sudo chage -M 60 <i>USER</i></pre>
+<pre>$ sudo chage -M <tt>60</tt> <i>USER</i></pre>
   </td>
   <td xml:lang="en-US">
 Any password, no matter how complex, can eventually be cracked. Therefore,
@@ -2507,7 +2507,7 @@ not limit the lifetime of passwords and force users to change their
 passwords, there is the risk that the operating system passwords could be
 compromised.
   </td>
-  <td></td>
+  <td>var_accounts_maximum_age_login_defs=60</td>
 </tr>
 <tr>
   <td>IA-5(f)<br/>IA-5(1)(d)<br/>CM-6(a)</td>
@@ -5738,7 +5738,7 @@ To make sure that the setting is persistent, add the following line to a file in
   <td xml:lang="en-US">
 Address space layout randomization (ASLR) makes it more difficult for an
 attacker to predict the location of attack code they have introduced into a
-process's address space during an attempt at exploitation.  Additionally,
+process's address space during an attempt at exploitation. Additionally,
 ASLR makes it more difficult for an attacker to know the location of
 existing code in order to re-purpose it using return oriented programming
 (ROP) techniques.

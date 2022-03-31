@@ -8,4 +8,3 @@ libreswan_approved_tunnels
 rpm_verify_hashes
 selinux_confinement_of_daemons
 sshd_use_directory_configuration
-sysctl_kernel_exec_shield

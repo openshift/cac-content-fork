@@ -962,8 +962,7 @@ increases the risk of users writing down the password in a convenient
 location subject to physical compromise.</pre></td>
 <td><pre>To check the maximum password age, run the command:
 $ grep PASS_MAX_DAYS /etc/login.defs
-The DoD and FISMA requirement is 60.
-A value of 180 days is sufficient for many environments.
+The profile requirement is .
       Is it the case that PASS_MAX_DAYS is not set equal to or greater than the required value?
       </pre></td>
 <td><pre>To specify password maximum age for new accounts,
@@ -986,16 +985,16 @@ passwords need to be changed periodically. If the operating system does
 not limit the lifetime of passwords and force users to change their
 passwords, there is the risk that the operating system passwords could be
 compromised.</pre></td>
-<td><pre>Check whether the maximum time period for existing passwords is restricted
-to 60 days by running the following command for each user:
-$ sudo chage -l USER | grep Maximum
-The output for each user should return something similary to the following:
-Maximum number of days between password change\t\t: 60
-      Is it the case that existing passwords are not configured correctly?
+<td><pre>Check whether the maximum time period for existing passwords is restricted to  days with the following commands:
+
+$ sudo awk -F: '$5 &gt; 60 {print $1 "" "" $5}' /etc/shadow
+
+$ sudo awk -F: '$5 &lt;= 0 {print $1 "" "" $5}' /etc/shadow
+      Is it the case that any results are returned that are not associated with a system account?
       </pre></td>
-<td><pre>Configure non-compliant accounts to enforce a 60-day maximum password lifetime
+<td><pre>Configure non-compliant accounts to enforce a <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_accounts_maximum_age_login_defs"></xccdf-1.1:sub>-day maximum password lifetime
 restriction by running the following command:
-<pre>$ sudo chage -M 60 <i>USER</i></pre></pre></td>
+<pre>$ sudo chage -M <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_accounts_maximum_age_login_defs"></xccdf-1.1:sub> <i>USER</i></pre></pre></td>
 <td>OL07-00-010260</td>
 <td>accounts_password_set_max_life_existing</td>
 </tr>
@@ -1151,16 +1150,16 @@ should prevent users from being able to assign themselves empty passwords.</pre>
 <td>795</td>
 <td>medium</td>
 <td>The Oracle Linux operating system must disable account identifiers (individuals, groups, roles, and devices) if the password expires.</td>
-<td><pre>Disabling inactive accounts ensures that accounts which may not
-have been responsibly removed are not available to attackers
-who may have compromised their credentials.</pre></td>
+<td><pre>Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system.
+Disabling inactive accounts ensures that accounts which may not have been responsibly removed are not available to attackers who may have compromised their credentials.
+Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained.</pre></td>
 <td><pre>To verify the INACTIVE setting, run the following command:
 $ grep "INACTIVE" /etc/default/useradd
 The output should indicate the INACTIVE configuration option is set
 to an appropriate integer as shown in the example below:
 $ grep "INACTIVE" /etc/default/useradd
 INACTIVE=
-      Is it the case that the value of INACTIVE is greater than the expected value?
+      Is it the case that the value of INACTIVE is greater than the expected value or is -1?
       </pre></td>
 <td><pre>To specify the number of days after a password expires (which
 signifies inactivity) until an account is permanently disabled, add or correct
@@ -2208,7 +2207,9 @@ The <code>autofs</code> service can be disabled with the following command:
 <td>The Oracle Linux operating system must remove all software components after updated versions have been installed.</td>
 <td><pre>Previous versions of software components that are not removed from the information
 system after updates have been installed may be exploited by some adversaries.</pre></td>
-<td><pre>
+<td><pre>Verify Oracle Linux 7 removes all software components after updated versions have been installed.
+
+
 To verify that clean_requirements_on_remove is configured properly, run the
 following command:
 $ grep clean_requirements_on_remove /etc/yum.conf
@@ -2236,8 +2237,12 @@ to <code>1</code> in <code>/etc/yum.conf</code>.</pre></td>
 potentially compromised processes to the security policy, which is designed to
 prevent them from causing damage to the system or further elevating their
 privileges.</pre></td>
-<td><pre>Check the file /etc/selinux/config and ensure the following line appears:
-SELINUX=
+<td><pre>Ensure that Oracle Linux 7 verifies correct operation of security functions.
+
+Check if "SELinux" is active and in "" mode with the following command:
+
+$ sudo getenforce
+
       Is it the case that SELINUX is not set to enforcing?
       </pre></td>
 <td><pre>The SELinux state should be set to <code><xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_selinux_state"></xccdf-1.1:sub></code> at
@@ -2261,9 +2266,11 @@ temporarily place non-production systems in <code>permissive</code> mode. In suc
 temporary cases, SELinux policies should be developed, and once work
 is completed, the system should be reconfigured to
 <code><xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_selinux_policy_name"></xccdf-1.1:sub></code>.</pre></td>
-<td><pre>Check the file /etc/selinux/config and ensure the following line appears:
+<td><pre>Ensure that Oracle Linux 7 verifies correct operation of security functions.
+
+Check the file /etc/selinux/config and ensure the following line appears:
 SELINUXTYPE=
-      Is it the case that it does not?
+      Is it the case that SELINUXTYPE is set to the wrong value?
       </pre></td>
 <td><pre>The SELinux <code>targeted</code> policy is appropriate for
 general-purpose desktops and servers, as well as systems in many other roles.
@@ -5279,7 +5286,7 @@ to point to the path for the X.509 certificates used for peer authentication.
 <td>The Oracle Linux operating system must implement virtual address space randomization.</td>
 <td><pre>Address space layout randomization (ASLR) makes it more difficult for an
 attacker to predict the location of attack code they have introduced into a
-process's address space during an attempt at exploitation.  Additionally,
+process's address space during an attempt at exploitation. Additionally,
 ASLR makes it more difficult for an attacker to know the location of
 existing code in order to re-purpose it using return oriented programming
 (ROP) techniques.</pre></td>
@@ -5425,14 +5432,14 @@ following line in <code>/etc/ssh/sshd_config</code>:
 <td><pre>This ensures a user login will be terminated as soon as the <code>ClientAliveInterval</code>
 is reached.</pre></td>
 <td><pre>To ensure ClientAliveInterval is set correctly, run the following command:
-
 $ sudo grep ClientAliveCountMax /etc/ssh/sshd_config
-
 If properly configured, the output should be:
-ClientAliveCountMax 0
-
-In this case, the SSH idle timeout occurs precisely when
-the ClientAliveInterval is set.
+ClientAliveCountMax 
+For SSH earlier than v8.2, a ClientAliveCountMax value of 0 causes an idle timeout precisely when
+the ClientAliveInterval is set.  Starting with v8.2, a value of 0 disables the timeout
+functionality completely.
+If the option is set to a number greater than 0, then the idle session will be disconnected after
+ClientAliveInterval * ClientAliveCountMax seconds.
       Is it the case that it is commented out or not configured properly?
       </pre></td>
 <td><pre>The SSH server sends at most <code>ClientAliveCountMax</code> messages
@@ -5441,15 +5448,14 @@ The option <code>ClientAliveInterval</code> configures timeout after
 each <code>ClientAliveCountMax</code> message. If the SSH server does not
 receive a response from the client, then the connection is considered idle
 and terminated.
-
-To ensure the SSH idle timeout occurs precisely when the
-<code>ClientAliveInterval</code> is set, set the <code>ClientAliveCountMax</code> to
-value of <code>0</code> in
-
-
-<code>/etc/ssh/sshd_config</code>:</pre></td>
+For SSH earlier than v8.2, a <code>ClientAliveCountMax</code> value of <code>0</code>
+causes an idle timeout precisely when the <code>ClientAliveInterval</code> is set.
+Starting with v8.2, a value of <code>0</code> disables the timeout functionality
+completely. If the option is set to a number greater than <code>0</code>, then
+the idle session will be disconnected after
+<code>ClientAliveInterval * ClientAliveCountMax</code> seconds.</pre></td>
 <td>OL07-00-040340</td>
-<td>sshd_set_keepalive_0</td>
+<td>sshd_set_keepalive</td>
 </tr>
 <tr>
 <td>V-221852</td>
@@ -5880,7 +5886,7 @@ Run the following command to determine the current status of the
 firewalld service:
 $ systemctl is-active firewalld
 If the service is running, it should return the following: active
-      Is it the case that ?
+      Is it the case that the service is not enabled?
       </pre></td>
 <td><pre>
 The <code>firewalld</code> service can be enabled with the following command:

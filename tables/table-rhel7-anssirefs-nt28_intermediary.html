@@ -479,8 +479,8 @@ PAE kernel is required to enable either Execute Disable (XD) or No Execute (NX) 
   <td xml:lang="en-US">
 By default on Red Hat Enterprise Linux 7 64-bit systems, ExecShield is
 enabled and can only be disabled if the hardware does not support
-ExecShield or is disabled in <tt>/etc/default/grub</tt>. For Red Hat
-Enterprise Linux 7 32-bit systems, <tt>sysctl</tt> can be used to enable
+ExecShield or is disabled in <tt>/etc/default/grub</tt>. For
+Red Hat Enterprise Linux 7  32-bit systems, <tt>sysctl</tt> can be used to enable
 ExecShield.
   </td>
   <td xml:lang="en-US">
@@ -1305,7 +1305,7 @@ By limiting the number of failed logon attempts the risk of unauthorized system
 access via user password guessing, otherwise known as brute-forcing, is reduced.
 Limits are imposed by locking the account.
   </td>
-  <td>var_accounts_passwords_pam_faillock_unlock_time=900<br/>var_accounts_passwords_pam_faillock_fail_interval=900<br/>var_accounts_passwords_pam_faillock_deny=3</td>
+  <td>var_accounts_passwords_pam_faillock_deny=3<br/>var_accounts_passwords_pam_faillock_fail_interval=900<br/>var_accounts_passwords_pam_faillock_unlock_time=900</td>
 </tr>
 <tr>
   <td>BP28(R18)</td>
@@ -1990,11 +1990,11 @@ To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parame
 To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>kernel.kptr_restrict = <tt>1</tt></pre>
   </td>
   <td xml:lang="en-US">
-Exposing kernel pointers (through procfs or <tt>seq_printf()</tt>) exposes
-kernel writeable structures that can contain functions pointers. If a write vulnereability occurs
-in the kernel allowing a write access to any of this structure, the kernel can be compromise. This
-option disallow any program withtout the CAP_SYSLOG capability from getting the kernel pointers addresses,
-replacing them with 0.
+Exposing kernel pointers (through procfs or <tt>seq_printf()</tt>) exposes kernel
+writeable structures which may contain functions pointers. If a write vulnerability
+occurs in the kernel, allowing write access to any of this structure, the kernel can
+be compromised. This option disallow any program without the CAP_SYSLOG capability
+to get the addresses of kernel pointers by replacing them with 0.
   </td>
   <td>sysctl_kernel_kptr_restrict_value=1</td>
 </tr>
@@ -2069,7 +2069,7 @@ To make sure that the setting is persistent, add the following line to a file in
   <td xml:lang="en-US">
 Address space layout randomization (ASLR) makes it more difficult for an
 attacker to predict the location of attack code they have introduced into a
-process's address space during an attempt at exploitation.  Additionally,
+process's address space during an attempt at exploitation. Additionally,
 ASLR makes it more difficult for an attacker to know the location of
 existing code in order to re-purpose it using return oriented programming
 (ROP) techniques.

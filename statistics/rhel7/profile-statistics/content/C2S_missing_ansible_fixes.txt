@@ -19,4 +19,3 @@ rsyslog_accept_remote_messages_udp
 rsyslog_files_permissions
 selinux_confinement_of_daemons
 set_password_hashing_algorithm_systemauth
-sysctl_kernel_exec_shield

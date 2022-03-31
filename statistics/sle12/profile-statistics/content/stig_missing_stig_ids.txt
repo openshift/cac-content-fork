@@ -12,3 +12,4 @@ installed_OS_is_FIPS_certified
 no_empty_passwords_etc_shadow
 policy_temp_passwords_immediate_change
 run_chkstat
+sudoers_default_includedir

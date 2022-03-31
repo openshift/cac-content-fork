@@ -1521,9 +1521,9 @@ elapse until the account would be automatically disabled. See the
 <tt>useradd</tt> man page for more information.
   </td>
   <td xml:lang="en-US">
-Disabling inactive accounts ensures that accounts which may not
-have been responsibly removed are not available to attackers
-who may have compromised their credentials.
+Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system.
+Disabling inactive accounts ensures that accounts which may not have been responsibly removed are not available to attackers who may have compromised their credentials.
+Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained.
   </td>
   <td>var_account_disable_post_pw_expiration=30</td>
 </tr>
@@ -4742,7 +4742,7 @@ To make sure that the setting is persistent, add the following line to a file in
   <td xml:lang="en-US">
 Address space layout randomization (ASLR) makes it more difficult for an
 attacker to predict the location of attack code they have introduced into a
-process's address space during an attempt at exploitation.  Additionally,
+process's address space during an attempt at exploitation. Additionally,
 ASLR makes it more difficult for an attacker to know the location of
 existing code in order to re-purpose it using return oriented programming
 (ROP) techniques.
@@ -4756,8 +4756,8 @@ existing code in order to re-purpose it using return oriented programming
   <td xml:lang="en-US">
 By default on Red Hat Enterprise Linux 7 64-bit systems, ExecShield is
 enabled and can only be disabled if the hardware does not support
-ExecShield or is disabled in <tt>/etc/default/grub</tt>. For Red Hat
-Enterprise Linux 7 32-bit systems, <tt>sysctl</tt> can be used to enable
+ExecShield or is disabled in <tt>/etc/default/grub</tt>. For
+Red Hat Enterprise Linux 7  32-bit systems, <tt>sysctl</tt> can be used to enable
 ExecShield.
   </td>
   <td xml:lang="en-US">

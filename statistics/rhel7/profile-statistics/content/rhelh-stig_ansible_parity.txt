@@ -16,4 +16,3 @@ no_user_host_based_files
 rsyslog_cron_logging
 set_password_hashing_algorithm_systemauth
 sssd_enable_pam_services
-sysctl_kernel_exec_shield

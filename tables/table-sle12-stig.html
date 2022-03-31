@@ -17,10 +17,10 @@
 </tr></thead>
 <tbody><tr>
 <td>221</td>
-<td>13</td>
-<td>208</td>
-<td>94.12%</td>
-<td>SLES-12-010599SLES-12-010611SLES-12-010879SLES-12-010881SLES-12-020470SLES-12-020480SLES-12-020500SLES-12-020510SLES-12-020520SLES-12-020530SLES-12-020540SLES-12-030365SLES-12-030611</td>
+<td>21</td>
+<td>200</td>
+<td>90.50%</td>
+<td>SLES-12-010599SLES-12-010611SLES-12-010879SLES-12-010881SLES-12-020380SLES-12-020390SLES-12-020400SLES-12-020410SLES-12-020430SLES-12-020440SLES-12-020450SLES-12-020470SLES-12-020480SLES-12-020500SLES-12-020510SLES-12-020520SLES-12-020530SLES-12-020540SLES-12-020750SLES-12-030365SLES-12-030611</td>
 </tr></tbody>
 </table></div>
 <style type="text/css">
@@ -1055,8 +1055,7 @@ increases the risk of users writing down the password in a convenient
 location subject to physical compromise.</pre></td>
 <td><pre>To check the maximum password age, run the command:
 $ grep PASS_MAX_DAYS /etc/login.defs
-The DoD and FISMA requirement is 60.
-A value of 180 days is sufficient for many environments.
+The profile requirement is .
       Is it the case that PASS_MAX_DAYS is not set equal to or greater than the required value?
       </pre></td>
 <td><pre>To specify password maximum age for new accounts,
@@ -1079,16 +1078,16 @@ passwords need to be changed periodically. If the operating system does
 not limit the lifetime of passwords and force users to change their
 passwords, there is the risk that the operating system passwords could be
 compromised.</pre></td>
-<td><pre>Check whether the maximum time period for existing passwords is restricted
-to 60 days by running the following command for each user:
-$ sudo chage -l USER | grep Maximum
-The output for each user should return something similary to the following:
-Maximum number of days between password change\t\t: 60
-      Is it the case that existing passwords are not configured correctly?
+<td><pre>Check whether the maximum time period for existing passwords is restricted to  days with the following commands:
+
+$ sudo awk -F: '$5 &gt; 60 {print $1 "" "" $5}' /etc/shadow
+
+$ sudo awk -F: '$5 &lt;= 0 {print $1 "" "" $5}' /etc/shadow
+      Is it the case that any results are returned that are not associated with a system account?
       </pre></td>
-<td><pre>Configure non-compliant accounts to enforce a 60-day maximum password lifetime
+<td><pre>Configure non-compliant accounts to enforce a <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_accounts_maximum_age_login_defs"></xccdf-1.1:sub>-day maximum password lifetime
 restriction by running the following command:
-<pre>$ sudo chage -M 60 <i>USER</i></pre></pre></td>
+<pre>$ sudo chage -M <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_accounts_maximum_age_login_defs"></xccdf-1.1:sub> <i>USER</i></pre></pre></td>
 <td>SLES-12-010290</td>
 <td>accounts_password_set_max_life_existing</td>
 </tr>
@@ -1225,16 +1224,16 @@ If <code>Password expires</code> or <code>Account expires</code> is set to anyth
 <td>795</td>
 <td>medium</td>
 <td>The SUSE operating system must disable account identifiers (individuals, groups, roles, and devices) after 35 days of inactivity after password expiration.</td>
-<td><pre>Disabling inactive accounts ensures that accounts which may not
-have been responsibly removed are not available to attackers
-who may have compromised their credentials.</pre></td>
+<td><pre>Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system.
+Disabling inactive accounts ensures that accounts which may not have been responsibly removed are not available to attackers who may have compromised their credentials.
+Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained.</pre></td>
 <td><pre>To verify the INACTIVE setting, run the following command:
 $ grep "INACTIVE" /etc/default/useradd
 The output should indicate the INACTIVE configuration option is set
 to an appropriate integer as shown in the example below:
 $ grep "INACTIVE" /etc/default/useradd
 INACTIVE=
-      Is it the case that the value of INACTIVE is greater than the expected value?
+      Is it the case that the value of INACTIVE is greater than the expected value or is -1?
       </pre></td>
 <td><pre>To specify the number of days after a password expires (which
 signifies inactivity) until an account is permanently disabled, add or correct
@@ -1586,7 +1585,7 @@ repositories. The setting is normally reserved for directories used by the
 system, by users for temporary file storage (such as <code>/tmp</code>), and
 for directories requiring global read/write access.</pre></td>
 <td><pre>To find world-writable directories that lack the sticky bit, run the following command:
-$ sudo find / -xdev -type d -perm 002 ! -perm 1000
+$ sudo find / -type d \( -perm -0002 -a ! -perm -1000 \) -print 2&gt;/dev/null
       Is it the case that any world-writable directories are missing the sticky bit?
       </pre></td>
 <td><pre>When the so-called 'sticky bit' is set on a directory,
@@ -1796,7 +1795,9 @@ the <code>[main]</code> section:
 <td>The SUSE operating system must remove all outdated software components after updated versions have been installed.</td>
 <td><pre>Previous versions of software components that are not removed from the information
 system after updates have been installed may be exploited by some adversaries.</pre></td>
-<td><pre>
+<td><pre>Verify SUSE Linux Enterprise 12 removes all software components after updated versions have been installed.
+
+
 To verify that solver.upgradeRemoveDroppedPackages is configured properly, run the
 following command:
 $ grep -i upgradeRemoveDroppedPackages /etc/zypp/zypp.conf
@@ -4035,224 +4036,53 @@ If the system is 64 bit then also add the following line:
 </tr>
 <tr>
 <td>V-217219</td>
-<td>2884</td>
+<td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the fsetxattr command.</td>
-<td><pre>The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.</pre></td>
-<td><pre>To determine if the system is configured to audit calls to the
-fsetxattr system call, run the following command:
-$ sudo grep "fsetxattr" /etc/audit/audit.*
-If the system is configured to audit this activity, it will return a line.
-
-      Is it the case that no line is returned?
-      </pre></td>
-<td><pre>At a minimum, the audit system should collect file permission
-changes for all users and root. If the <code>auditd</code> daemon is configured
-to use the <code>augenrules</code> program to read audit rules during daemon
-startup (the default), add the following line to a file with suffix
-<code>.rules</code> in the directory <code>/etc/audit/rules.d</code>:
-<pre>-a always,exit -F arch=b32 -S fsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code>
-utility to read audit rules during daemon startup, add the following line to
-<code>/etc/audit/audit.rules</code> file:
-<pre>-a always,exit -F arch=b32 -S fsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre></pre></td>
+<td><pre></pre></td>
+<td><pre></pre></td>
+<td><pre></pre></td>
 <td>SLES-12-020380</td>
-<td>audit_rules_dac_modification_fsetxattr</td>
+<td>Missing Rule</td>
 </tr>
 <tr>
 <td>V-217220</td>
-<td>2884</td>
+<td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the removexattr command.</td>
-<td><pre>The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.</pre></td>
-<td><pre>To determine if the system is configured to audit calls to the
-removexattr system call, run the following command:
-$ sudo grep "removexattr" /etc/audit/audit.*
-If the system is configured to audit this activity, it will return a line.
-
-      Is it the case that no line is returned?
-      </pre></td>
-<td><pre>At a minimum, the audit system should collect file permission
-changes for all users and root.
-<br><br>
-If the <code>auditd</code> daemon is configured to use the <code>augenrules</code>
-program to read audit rules during daemon startup (the default), add the
-following line to a file with suffix <code>.rules</code> in the directory <code>/etc/audit/rules.d</code>:
-<pre>-a always,exit -F arch=b32 -S removexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-<br><br>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S removexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-<br><br>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code>
-utility to read audit rules during daemon startup, add the following line to
-<code>/etc/audit/audit.rules</code> file:
-<pre>-a always,exit -F arch=b32 -S removexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-<br><br>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S removexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre></pre></td>
+<td><pre></pre></td>
+<td><pre></pre></td>
+<td><pre></pre></td>
 <td>SLES-12-020390</td>
-<td>audit_rules_dac_modification_removexattr</td>
+<td>Missing Rule</td>
 </tr>
 <tr>
 <td>V-217221</td>
-<td>2884</td>
+<td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the lremovexattr command.</td>
-<td><pre>The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.</pre></td>
-<td><pre>To determine if the system is configured to audit calls to the
-lremovexattr system call, run the following command:
-$ sudo grep "lremovexattr" /etc/audit/audit.*
-If the system is configured to audit this activity, it will return a line.
-
-      Is it the case that no line is returned?
-      </pre></td>
-<td><pre>At a minimum, the audit system should collect file permission
-changes for all users and root.
-<br><br>
-If the <code>auditd</code> daemon is configured
-to use the <code>augenrules</code> program to read audit rules during daemon
-startup (the default), add the following line to a file with suffix
-<code>.rules</code> in the directory <code>/etc/audit/rules.d</code>:
-<pre>-a always,exit -F arch=b32 -S lremovexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-<br><br>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S lremovexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-<br><br>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code>
-utility to read audit rules during daemon startup, add the following line to
-<code>/etc/audit/audit.rules</code> file:
-<pre>-a always,exit -F arch=b32 -S lremovexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-<br><br>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S lremovexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre></pre></td>
+<td><pre></pre></td>
+<td><pre></pre></td>
+<td><pre></pre></td>
 <td>SLES-12-020400</td>
-<td>audit_rules_dac_modification_lremovexattr</td>
+<td>Missing Rule</td>
 </tr>
 <tr>
 <td>V-217222</td>
-<td>2884</td>
+<td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the fremovexattr command.</td>
-<td><pre>The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.</pre></td>
-<td><pre>To determine if the system is configured to audit calls to the
-fremovexattr system call, run the following command:
-$ sudo grep "fremovexattr" /etc/audit/audit.*
-If the system is configured to audit this activity, it will return a line.
-
-      Is it the case that no line is returned?
-      </pre></td>
-<td><pre>At a minimum, the audit system should collect file permission
-changes for all users and root.
-<br><br>
-If the <code>auditd</code> daemon is configured
-to use the <code>augenrules</code> program to read audit rules during daemon
-startup (the default), add the following line to a file with suffix
-<code>.rules</code> in the directory <code>/etc/audit/rules.d</code>:
-<pre>-a always,exit -F arch=b32 -S fremovexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-<br><br>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fremovexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-<br><br>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code>
-utility to read audit rules during daemon startup, add the following line to
-<code>/etc/audit/audit.rules</code> file:
-<pre>-a always,exit -F arch=b32 -S fremovexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-<br><br>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fremovexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre></pre></td>
+<td><pre></pre></td>
+<td><pre></pre></td>
+<td><pre></pre></td>
 <td>SLES-12-020410</td>
-<td>audit_rules_dac_modification_fremovexattr</td>
+<td>Missing Rule</td>
 </tr>
 <tr>
 <td>V-217223</td>
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the chown command.</td>
-<td><pre>The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.</pre></td>
-<td><pre>To determine if the system is configured to audit calls to the
-chown system call, run the following command:
-$ sudo grep "chown" /etc/audit/audit.*
-If the system is configured to audit this activity, it will return a line.
-
-      Is it the case that no line is returned?
-      </pre></td>
-<td><pre>At a minimum, the audit system should collect file permission
-changes for all users and root. If the <code>auditd</code> daemon is configured to
-use the <code>augenrules</code> program to read audit rules during daemon startup
-(the default), add the following line to a file with suffix <code>.rules</code> in
-the directory <code>/etc/audit/rules.d</code>:
-<pre>-a always,exit -F arch=b32 -S chown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S chown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code>
-utility to read audit rules during daemon startup, add the following line to
-<code>/etc/audit/audit.rules</code> file:
-<pre>-a always,exit -F arch=b32 -S chown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S chown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre></pre></td>
-<td>SLES-12-020420</td>
-<td>audit_rules_dac_modification_chown</td>
-</tr>
-<tr>
-<td>V-217224</td>
-<td>2884</td>
-<td>medium</td>
-<td>The SUSE operating system must generate audit records for all uses of the fchown command.</td>
-<td><pre>The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.</pre></td>
-<td><pre>To determine if the system is configured to audit calls to the
-fchown system call, run the following command:
-$ sudo grep "fchown" /etc/audit/audit.*
-If the system is configured to audit this activity, it will return a line.
-
-      Is it the case that no line is returned?
-      </pre></td>
-<td><pre>At a minimum, the audit system should collect file permission
-changes for all users and root. If the <code>auditd</code> daemon is configured
-to use the <code>augenrules</code> program to read audit rules during daemon
-startup (the default), add the following line to a file with suffix
-<code>.rules</code> in the directory <code>/etc/audit/rules.d</code>:
-<pre>-a always,exit -F arch=b32 -S fchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code>
-utility to read audit rules during daemon startup, add the following line to
-<code>/etc/audit/audit.rules</code> file:
-<pre>-a always,exit -F arch=b32 -S fchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre></pre></td>
-<td>SLES-12-020430</td>
-<td>audit_rules_dac_modification_fchown</td>
-</tr>
-<tr>
-<td>V-217225</td>
-<td>2884</td>
-<td>medium</td>
-<td>The SUSE operating system must generate audit records for all uses of the lchown command.</td>
 <td><pre>The changing of file permissions could indicate that a user is attempting to
 gain access to information that would otherwise be disallowed. Auditing DAC modifications
 can facilitate the identification of patterns of abuse among both authorized and
@@ -4278,41 +4108,41 @@ utility to read audit rules during daemon startup, add the following line to
 <pre>-a always,exit -F arch=b32 -S lchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
 If the system is 64 bit then also add the following line:
 <pre>-a always,exit -F arch=b64 -S lchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre></pre></td>
-<td>SLES-12-020440</td>
+<td>SLES-12-020420</td>
 <td>audit_rules_dac_modification_lchown</td>
 </tr>
 <tr>
+<td>V-217224</td>
+<td></td>
+<td>medium</td>
+<td>The SUSE operating system must generate audit records for all uses of the fchown command.</td>
+<td><pre></pre></td>
+<td><pre></pre></td>
+<td><pre></pre></td>
+<td>SLES-12-020430</td>
+<td>Missing Rule</td>
+</tr>
+<tr>
+<td>V-217225</td>
+<td></td>
+<td>medium</td>
+<td>The SUSE operating system must generate audit records for all uses of the lchown command.</td>
+<td><pre></pre></td>
+<td><pre></pre></td>
+<td><pre></pre></td>
+<td>SLES-12-020440</td>
+<td>Missing Rule</td>
+</tr>
+<tr>
 <td>V-217226</td>
-<td>2884</td>
+<td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the fchownat command.</td>
-<td><pre>The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.</pre></td>
-<td><pre>To determine if the system is configured to audit calls to the
-fchownat system call, run the following command:
-$ sudo grep "fchownat" /etc/audit/audit.*
-If the system is configured to audit this activity, it will return a line.
-
-      Is it the case that no line is returned?
-      </pre></td>
-<td><pre>At a minimum, the audit system should collect file permission
-changes for all users and root. If the <code>auditd</code> daemon is configured
-to use the <code>augenrules</code> program to read audit rules during daemon
-startup (the default), add the following line to a file with suffix
-<code>.rules</code> in the directory <code>/etc/audit/rules.d</code>:
-<pre>-a always,exit -F arch=b32 -S fchownat -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fchownat -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code>
-utility to read audit rules during daemon startup, add the following line to
-<code>/etc/audit/audit.rules</code> file:
-<pre>-a always,exit -F arch=b32 -S fchownat -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fchownat -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre></pre></td>
+<td><pre></pre></td>
+<td><pre></pre></td>
+<td><pre></pre></td>
 <td>SLES-12-020450</td>
-<td>audit_rules_dac_modification_fchownat</td>
+<td>Missing Rule</td>
 </tr>
 <tr>
 <td>V-217227</td>
@@ -5090,34 +4920,6 @@ add the line to file <code>/etc/audit/audit.rules</code>.</pre></td>
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the finit_module command.</td>
-<td><pre>The addition/removal of kernel modules can be used to alter the behavior of
-the kernel and potentially introduce malicious code into kernel space. It is important
-to have an audit trail of modules that have been introduced into the kernel.</pre></td>
-<td><pre>To determine if the system is configured to audit calls to the
-finit_module system call, run the following command:
-$ sudo grep "finit_module" /etc/audit/audit.*
-If the system is configured to audit this activity, it will return a line.
-
-      Is it the case that no line is returned?
-      </pre></td>
-<td><pre>If the <code>auditd</code> daemon is configured to use the <code>augenrules</code> program
-to read audit rules during daemon startup (the default), add the following lines to a file
-with suffix <code>.rules</code> in the directory <code>/etc/audit/rules.d</code> to capture kernel module
-loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
-rules during daemon startup, add the following lines to <code>/etc/audit/audit.rules</code> file
-in order to capture kernel module loading and unloading events, setting ARCH to either b32 or
-b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre></pre></td>
-<td>SLES-12-020740</td>
-<td>audit_rules_kernel_module_loading_finit</td>
-</tr>
-<tr>
-<td>V-217256</td>
-<td>2884</td>
-<td>medium</td>
-<td>The SUSE operating system must generate audit records for all uses of the init_module command.</td>
 <td><pre>The addition of kernel modules can be used to alter the behavior of
 the kernel and potentially introduce malicious code into kernel space. It is important
 to have an audit trail of modules that have been introduced into the kernel.</pre></td>
@@ -5138,8 +4940,19 @@ to use the <code>augenrules</code> program (the default), add the line to a file
 
 If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility,
 add the line to file <code>/etc/audit/audit.rules</code>.</pre></td>
-<td>SLES-12-020750</td>
+<td>SLES-12-020740</td>
 <td>audit_rules_kernel_module_loading_init</td>
+</tr>
+<tr>
+<td>V-217256</td>
+<td></td>
+<td>medium</td>
+<td>The SUSE operating system must generate audit records for all uses of the init_module command.</td>
+<td><pre></pre></td>
+<td><pre></pre></td>
+<td><pre></pre></td>
+<td>SLES-12-020750</td>
+<td>Missing Rule</td>
 </tr>
 <tr>
 <td>V-217257</td>
@@ -5696,14 +5509,14 @@ some processes may stop SSH  from correctly detecting that the user is idle.</pr
 <td><pre>This ensures a user login will be terminated as soon as the <code>ClientAliveInterval</code>
 is reached.</pre></td>
 <td><pre>To ensure ClientAliveInterval is set correctly, run the following command:
-
 $ sudo grep ClientAliveCountMax /etc/ssh/sshd_config
-
 If properly configured, the output should be:
-ClientAliveCountMax 0
-
-In this case, the SSH idle timeout occurs precisely when
-the ClientAliveInterval is set.
+ClientAliveCountMax 
+For SSH earlier than v8.2, a ClientAliveCountMax value of 0 causes an idle timeout precisely when
+the ClientAliveInterval is set.  Starting with v8.2, a value of 0 disables the timeout
+functionality completely.
+If the option is set to a number greater than 0, then the idle session will be disconnected after
+ClientAliveInterval * ClientAliveCountMax seconds.
       Is it the case that it is commented out or not configured properly?
       </pre></td>
 <td><pre>The SSH server sends at most <code>ClientAliveCountMax</code> messages
@@ -5712,15 +5525,14 @@ The option <code>ClientAliveInterval</code> configures timeout after
 each <code>ClientAliveCountMax</code> message. If the SSH server does not
 receive a response from the client, then the connection is considered idle
 and terminated.
-
-To ensure the SSH idle timeout occurs precisely when the
-<code>ClientAliveInterval</code> is set, set the <code>ClientAliveCountMax</code> to
-value of <code>0</code> in
-
-
-<code>/etc/ssh/sshd_config</code>:</pre></td>
+For SSH earlier than v8.2, a <code>ClientAliveCountMax</code> value of <code>0</code>
+causes an idle timeout precisely when the <code>ClientAliveInterval</code> is set.
+Starting with v8.2, a value of <code>0</code> disables the timeout functionality
+completely. If the option is set to a number greater than <code>0</code>, then
+the idle session will be disconnected after
+<code>ClientAliveInterval * ClientAliveCountMax</code> seconds.</pre></td>
 <td>SLES-12-030191</td>
-<td>sshd_set_keepalive_0</td>
+<td>sshd_set_keepalive</td>
 </tr>
 <tr>
 <td>V-217274</td>
@@ -5988,11 +5800,11 @@ To configure the system time zone to use UTC or GMT, run the following command, 
 <td>2824</td>
 <td>medium</td>
 <td>The SUSE operating system must implement kptr-restrict to prevent the leaking of internal kernel addresses.</td>
-<td><pre>Exposing kernel pointers (through procfs or <code>seq_printf()</code>) exposes
-kernel writeable structures that can contain functions pointers. If a write vulnereability occurs
-in the kernel allowing a write access to any of this structure, the kernel can be compromise. This
-option disallow any program withtout the CAP_SYSLOG capability from getting the kernel pointers addresses,
-replacing them with 0.</pre></td>
+<td><pre>Exposing kernel pointers (through procfs or <code>seq_printf()</code>) exposes kernel
+writeable structures which may contain functions pointers. If a write vulnerability
+occurs in the kernel, allowing write access to any of this structure, the kernel can
+be compromised. This option disallow any program without the CAP_SYSLOG capability
+to get the addresses of kernel pointers by replacing them with 0.</pre></td>
 <td><pre>The runtime status of the kernel.kptr_restrict kernel parameter can be queried
 by running the following command:
 $ sysctl kernel.kptr_restrict
@@ -6027,7 +5839,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>Address space layout randomization (ASLR) must be implemented by the SUSE operating system to protect memory from unauthorized code execution.</td>
 <td><pre>Address space layout randomization (ASLR) makes it more difficult for an
 attacker to predict the location of attack code they have introduced into a
-process's address space during an attempt at exploitation.  Additionally,
+process's address space during an attempt at exploitation. Additionally,
 ASLR makes it more difficult for an attacker to know the location of
 existing code in order to re-purpose it using return oriented programming
 (ROP) techniques.</pre></td>

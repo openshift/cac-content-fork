@@ -148,7 +148,6 @@ grub2_uefi_password
 install_antivirus
 install_smartcard_packages
 installed_OS_is_vendor_supported
-kernel_module_dccp_disabled
 libreswan_approved_tunnels
 mount_option_dev_shm_nodev
 mount_option_dev_shm_noexec

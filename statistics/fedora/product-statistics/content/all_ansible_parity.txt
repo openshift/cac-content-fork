@@ -31,7 +31,6 @@ set_password_hashing_algorithm_systemauth
 snmpd_no_rwusers
 sshd_use_directory_configuration
 sssd_run_as_sssd_user
-sysctl_kernel_exec_shield
 usbguard_allow_hid
 usbguard_allow_hid_and_hub
 usbguard_allow_hub

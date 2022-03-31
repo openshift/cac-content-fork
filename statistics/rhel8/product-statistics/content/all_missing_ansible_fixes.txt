@@ -294,7 +294,6 @@ sudoers_no_command_negation
 sudoers_no_root_target
 sysconfig_networking_bootproto_ifcfg
 sysctl_crypto_fips_enabled
-sysctl_kernel_exec_shield
 uefi_no_removeable_media
 umask_for_daemons
 usbguard_allow_hid

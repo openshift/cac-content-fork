@@ -43,5 +43,4 @@ sshd_use_strong_ciphers
 sshd_use_strong_macs
 sssd_enable_pam_services
 sysconfig_networking_bootproto_ifcfg
-sysctl_kernel_exec_shield
 umask_for_daemons

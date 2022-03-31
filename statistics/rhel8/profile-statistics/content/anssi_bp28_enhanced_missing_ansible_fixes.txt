@@ -26,4 +26,3 @@ sudo_dedicated_group
 sudoers_explicit_command_args
 sudoers_no_command_negation
 sudoers_no_root_target
-sysctl_kernel_exec_shield

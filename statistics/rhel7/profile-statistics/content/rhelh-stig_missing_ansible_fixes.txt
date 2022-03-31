@@ -47,4 +47,3 @@ set_firewalld_default_zone
 set_password_hashing_algorithm_systemauth
 sssd_enable_pam_services
 sudo_vdsm_nopasswd
-sysctl_kernel_exec_shield

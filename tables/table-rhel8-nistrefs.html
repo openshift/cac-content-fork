@@ -4585,9 +4585,9 @@ elapse until the account would be automatically disabled. See the
 <tt>useradd</tt> man page for more information.
   </td>
   <td xml:lang="en-US">
-Disabling inactive accounts ensures that accounts which may not
-have been responsibly removed are not available to attackers
-who may have compromised their credentials.
+Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system.
+Disabling inactive accounts ensures that accounts which may not have been responsibly removed are not available to attackers who may have compromised their credentials.
+Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained.
   </td>
 </tr>
 <tr>
@@ -4868,9 +4868,9 @@ Passwords with excessive repeating characters may be more vulnerable to password
   <td>IA-5(f)<br/>IA-5(1)(d)<br/>CM-6(a)</td>
   <td>Set Existing Passwords Maximum Age</td>
   <td xml:lang="en-US">
-Configure non-compliant accounts to enforce a 60-day maximum password lifetime
+Configure non-compliant accounts to enforce a <abbr title="$var_accounts_maximum_age_login_defs"><tt>60</tt></abbr>-day maximum password lifetime
 restriction by running the following command:
-<pre>$ sudo chage -M 60 <i>USER</i></pre>
+<pre>$ sudo chage -M <abbr title="$var_accounts_maximum_age_login_defs"><tt>60</tt></abbr> <i>USER</i></pre>
   </td>
   <td xml:lang="en-US">
 Any password, no matter how complex, can eventually be cracked. Therefore,
@@ -6133,7 +6133,14 @@ The <code>firewalld</code> package can be installed with the following command:
 $ sudo yum install firewalld</pre>
   </td>
   <td xml:lang="en-US">
-The firewalld package should be installed to provide access control methods.
+"Firewalld" provides an easy and effective way to block/limit remote access to the system via ports, services, and protocols.
+
+Remote access services, such as those providing remote access to network devices and information systems, which lack automated control capabilities, increase risk and make remote user access management difficult at best.
+
+Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
+
+Red Hat Enterprise Linux 8 functionality (e.g., SSH) must be capable of taking enforcement action if the audit reveals unauthorized activity.
+Automated control of remote access sessions allows organizations to ensure ongoing compliance with remote access policies by enforcing connection rules of remote access applications on a variety of information system components (e.g., servers, workstations, notebook computers, smartphones, and tablets)."
   </td>
 </tr>
 <tr>
@@ -13935,6 +13942,21 @@ flaws in its implementation.
   </td>
 </tr>
 <tr>
+  <td>AC-18(a)<br/>AC-18(3)<br/>CM-7(a)<br/>CM-7(b)<br/>CM-6(a)<br/>MP-7<br/>AC-18(4)</td>
+  <td>Disable Kernel iwlmvm Module</td>
+  <td xml:lang="en-US">
+
+To configure the system to prevent the <code>iwlmvm</code>
+kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+<pre>install iwlmvm /bin/true</pre>
+  </td>
+  <td xml:lang="en-US">
+If Wireless functionality must be disabled, preventing the kernel
+from loading the kernel module provides an additional safeguard against its
+activation.
+  </td>
+</tr>
+<tr>
   <td>AC-18(a)<br/>AC-18(3)<br/>CM-7(a)<br/>CM-7(b)<br/>CM-6(a)<br/>MP-7</td>
   <td>Disable Bluetooth Service</td>
   <td xml:lang="en-US">
@@ -13966,6 +13988,36 @@ to reboot the system first.
   </td>
 </tr>
 <tr>
+  <td>AC-18(a)<br/>AC-18(3)<br/>CM-7(a)<br/>CM-7(b)<br/>CM-6(a)<br/>MP-7<br/>AC-18(4)</td>
+  <td>Disable Kernel mac80211 Module</td>
+  <td xml:lang="en-US">
+
+To configure the system to prevent the <code>mac80211</code>
+kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+<pre>install mac80211 /bin/true</pre>
+  </td>
+  <td xml:lang="en-US">
+If Wireless functionality must be disabled, preventing the kernel
+from loading the kernel module provides an additional safeguard against its
+activation.
+  </td>
+</tr>
+<tr>
+  <td>AC-18(a)<br/>AC-18(3)<br/>CM-7(a)<br/>CM-7(b)<br/>CM-6(a)<br/>MP-7<br/>AC-18(4)</td>
+  <td>Disable Kernel iwlwifi Module</td>
+  <td xml:lang="en-US">
+
+To configure the system to prevent the <code>iwlwifi</code>
+kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+<pre>install iwlwifi /bin/true</pre>
+  </td>
+  <td xml:lang="en-US">
+If Wireless functionality must be disabled, preventing the kernel
+from loading the kernel module provides an additional safeguard against its
+activation.
+  </td>
+</tr>
+<tr>
   <td>AC-18</td>
   <td>Disable IEEE 1394 (FireWire) Support</td>
   <td xml:lang="en-US">
@@ -13979,6 +14031,21 @@ kernel module from being loaded, add the following line to a file in the directo
   <td xml:lang="en-US">
 Disabling FireWire protects the system against exploitation of any
 flaws in its implementation.
+  </td>
+</tr>
+<tr>
+  <td>AC-18(a)<br/>AC-18(3)<br/>CM-7(a)<br/>CM-7(b)<br/>CM-6(a)<br/>MP-7<br/>AC-18(4)</td>
+  <td>Disable Kernel cfg80211 Module</td>
+  <td xml:lang="en-US">
+
+To configure the system to prevent the <code>cfg80211</code>
+kernel module from being loaded, add the following line to a file in the directory <code>/etc/modprobe.d</code>:
+<pre>install cfg80211 /bin/true</pre>
+  </td>
+  <td xml:lang="en-US">
+If Wireless functionality must be disabled, preventing the kernel
+from loading the kernel module provides an additional safeguard against its
+activation.
   </td>
 </tr>
 <tr>
@@ -14068,7 +14135,7 @@ To make sure that the setting is persistent, add the following line to a file in
   <td xml:lang="en-US">
 Address space layout randomization (ASLR) makes it more difficult for an
 attacker to predict the location of attack code they have introduced into a
-process's address space during an attempt at exploitation.  Additionally,
+process's address space during an attempt at exploitation. Additionally,
 ASLR makes it more difficult for an attacker to know the location of
 existing code in order to re-purpose it using return oriented programming
 (ROP) techniques.
@@ -14082,21 +14149,21 @@ To set the runtime status of the <code>kernel.kptr_restrict</code> kernel parame
 To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>kernel.kptr_restrict = <abbr title="$sysctl_kernel_kptr_restrict_value"><tt>1</tt></abbr></pre>
   </td>
   <td xml:lang="en-US">
-Exposing kernel pointers (through procfs or <tt>seq_printf()</tt>) exposes
-kernel writeable structures that can contain functions pointers. If a write vulnereability occurs
-in the kernel allowing a write access to any of this structure, the kernel can be compromise. This
-option disallow any program withtout the CAP_SYSLOG capability from getting the kernel pointers addresses,
-replacing them with 0.
+Exposing kernel pointers (through procfs or <tt>seq_printf()</tt>) exposes kernel
+writeable structures which may contain functions pointers. If a write vulnerability
+occurs in the kernel, allowing write access to any of this structure, the kernel can
+be compromised. This option disallow any program without the CAP_SYSLOG capability
+to get the addresses of kernel pointers by replacing them with 0.
   </td>
 </tr>
 <tr>
   <td>SC-39<br/>CM-6(a)</td>
   <td>Enable ExecShield via sysctl</td>
   <td xml:lang="en-US">
-By default on Red Hat Enterprise Linux 7 64-bit systems, ExecShield is
+By default on Red Hat Enterprise Linux 8 64-bit systems, ExecShield is
 enabled and can only be disabled if the hardware does not support
-ExecShield or is disabled in <tt>/etc/default/grub</tt>. For Red Hat
-Enterprise Linux 7 32-bit systems, <tt>sysctl</tt> can be used to enable
+ExecShield or is disabled in <tt>/etc/default/grub</tt>. For
+Red Hat Enterprise Linux 8  32-bit systems, <tt>sysctl</tt> can be used to enable
 ExecShield.
   </td>
   <td xml:lang="en-US">

@@ -52,7 +52,6 @@ snmpd_no_rwusers
 sssd_enable_pam_services
 sssd_run_as_sssd_user
 sysconfig_networking_bootproto_ifcfg
-sysctl_kernel_exec_shield
 umask_for_daemons
 usbguard_allow_hid
 usbguard_allow_hid_and_hub

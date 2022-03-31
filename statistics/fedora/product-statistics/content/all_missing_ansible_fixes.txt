@@ -181,7 +181,6 @@ sudoers_explicit_command_args
 sudoers_no_command_negation
 sudoers_no_root_target
 sysctl_crypto_fips_enabled
-sysctl_kernel_exec_shield
 umask_for_daemons
 usbguard_allow_hid
 usbguard_allow_hid_and_hub

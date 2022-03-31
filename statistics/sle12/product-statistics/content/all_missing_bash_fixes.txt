@@ -85,7 +85,6 @@ rsyslog_files_groupownership
 rsyslog_files_ownership
 run_chkstat
 selinux_state
-set_password_hashing_algorithm_systemauth
 set_password_hashing_min_rounds_logindefs
 smartcard_configure_ca
 smartcard_pam_enabled

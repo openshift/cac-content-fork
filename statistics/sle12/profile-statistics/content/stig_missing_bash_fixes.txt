@@ -26,7 +26,6 @@ partition_for_var_log_audit
 permissions_local_var_log_audit
 policy_temp_passwords_immediate_change
 run_chkstat
-set_password_hashing_algorithm_systemauth
 set_password_hashing_min_rounds_logindefs
 smartcard_configure_ca
 smartcard_pam_enabled
