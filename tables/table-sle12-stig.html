@@ -57,6 +57,7 @@
 <td>CCI</td>
 <td>CAT</td>
 <td>Title</td>
+<td>SRG</td>
 <td>Description</td>
 <td>Check Procedures</td>
 <td>Fixtext</td>
@@ -68,6 +69,7 @@
 <td>1230</td>
 <td>high</td>
 <td>The SUSE operating system must be a vendor-supported release.</td>
+<td>SRG-OS-ID</td>
 <td><pre>An operating system is considered "supported" if the vendor continues to
 provide security patches for the product.  With an unsupported release, it
 will not be possible to resolve any security issue discovered in the system
@@ -93,6 +95,7 @@ vendor, SUSE is responsible for providing security patches.</pre></td>
 <td>1227</td>
 <td>medium</td>
 <td>Vendor-packaged SUSE operating system security patches and updates must be installed and up to date.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Installing software updates is a fundamental mitigation against
 the exploitation of publicly-known vulnerabilities. If the most
 recent security patches and updates are not installed, unauthorized
@@ -115,6 +118,7 @@ dictates.</pre></td>
 <td>50</td>
 <td>medium</td>
 <td>The SUSE operating system must display the Standard Mandatory DoD Notice and Consent Banner until users acknowledge the usage conditions and take explicit actions to log on for further access to the local graphical user interface.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Display of a standardized and approved use notification before granting access to the operating system
 ensures privacy and security notification verbiage used is consistent with applicable federal laws,
 Executive Orders, directives, policies, regulations, standards, and guidance.
@@ -187,6 +191,7 @@ fi</pre></pre></td>
 <td>48</td>
 <td>medium</td>
 <td>The SUSE operating system must display the Standard Mandatory DoD Notice and Consent Banner before granting access via local console.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Display of a standardized and approved use notification before granting
 access to the operating system ensures privacy and security notification
 verbiage used is consistent with applicable federal laws, Executive Orders,
@@ -240,6 +245,7 @@ OR:
 <td>1388</td>
 <td>medium</td>
 <td>The SUSE operating system must display a banner before granting local or remote access to the system via a graphical user logon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Display of a standardized and approved use notification before granting access to the operating system
 ensures privacy and security notification verbiage used is consistent with applicable federal laws,
 Executive Orders, directives, policies, regulations, standards, and guidance.
@@ -276,6 +282,7 @@ The banner text must also be set.</pre></td>
 <td>1388</td>
 <td>medium</td>
 <td>The SUSE operating system must display the approved Standard Mandatory DoD Notice before granting local or remote access to the system via a graphical user logon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>An appropriate warning message reinforces policy awareness during the logon
 process and facilitates possible legal action against attackers.</pre></td>
 <td><pre>
@@ -313,6 +320,7 @@ to begin and end the string with <code>'</code> and use <code>\n</code> for new 
 <td>60</td>
 <td>medium</td>
 <td>The SUSE operating system must be able to lock the graphical user interface (GUI).</td>
+<td>SRG-OS-ID</td>
 <td><pre>A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity
 of the information system but does not want to logout because of the temporary nature of the absense.</pre></td>
 <td><pre>To check the status of the idle screen lock activation, run the following command:
@@ -338,6 +346,7 @@ Validate that <code>disable-lock-screen</code> has been set to <code>false</code
 <td>60</td>
 <td>low</td>
 <td>The SUSE operating system must utilize vlock to allow for session locking.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A session lock is a temporary action taken when a user stops work and
 moves away from the immediate physical vicinity of the information
 system but does not want to log out because of the temporary nature of
@@ -369,6 +378,7 @@ $ sudo zypper install kbd</pre></pre></td>
 <td>57</td>
 <td>medium</td>
 <td>The SUSE operating system must initiate a session lock after a 15-minute period of inactivity for the graphical user interface.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A session time-out lock is a temporary action taken when a user stops work and moves away from
 the immediate physical vicinity of the information system but does not logout because of the
 temporary nature of the absence. Rather than relying on the user to manually lock their operating
@@ -403,6 +413,7 @@ After the settings have been set, run <code>dconf update</code>.</pre></td>
 <td>57</td>
 <td>medium</td>
 <td>The SUSE operating system must initiate a session lock after a 15-minute period of inactivity.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Terminating an idle session within a short time period reduces
 the window of opportunity for unauthorized personnel to take control of a
 management session enabled on the console or console port that has been
@@ -434,6 +445,7 @@ export TMOUT</pre></td>
 <td>60</td>
 <td>low</td>
 <td>The SUSE operating system must conceal, via the session lock, information previously visible on the display with a publicly viewable image in the graphical user interface.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Setting the screensaver mode to blank-only conceals the
 contents of the display from passersby.</pre></td>
 <td><pre>To ensure the screensaver is configured to be blank, run the following command:
@@ -480,6 +492,7 @@ After the settings have been set, run <code>dconf update</code>.</pre></td>
 <td>2038</td>
 <td>high</td>
 <td>The SUSE operating system must reauthenticate users when changing authenticators, roles, or escalating privileges.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without re-authentication, users may access resources or perform tasks for which they
 do not have authorization.
 <br><br>
@@ -503,6 +516,7 @@ in <code>/etc/sudoers.d/</code>.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must restrict privilege elevation to authorized personnel.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If the "sudoers" file is not configured correctly, any user defined
 on the system can initiate privileged actions on the target system.</pre></td>
 <td><pre>To determine if "sudoers" file, restricts sudo access, run the following commands:
@@ -526,6 +540,7 @@ Restrict privileged actions by removing the following entries from the sudoers f
 <td>2227</td>
 <td>medium</td>
 <td>The SUSE operating system must use the invoking user's password for privilege escalation when using "sudo".</td>
+<td>SRG-OS-ID</td>
 <td><pre>If the rootpw, targetpw, or runaspw flags are defined and not disabled, by default the operating system will prompt
 the invoking user for the "root" user password.</pre></td>
 <td><pre>Run the following command to Verify that the sudoers security policy is configured to use the invoking user's password for privilege escalation:
@@ -552,6 +567,7 @@ The expected output for:
 <td>2038</td>
 <td>medium</td>
 <td>The SUSE operating system must require re-authentication when using the "sudo" command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without re-authentication, users may access resources or perform tasks for which they
 do not have authorization.
 <br><br>
@@ -581,6 +597,7 @@ and the user will not have to re-authenticate for privileged actions until the u
 <td>54</td>
 <td>low</td>
 <td>The SUSE operating system must limit the number of concurrent sessions to 10 for all accounts and/or account types.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Limiting simultaneous user logins can insulate the system from denial of service
 problems caused by excessive logins. Automated login processes operating improperly or
 maliciously may result in an exceptional number of simultaneous login sessions.</pre></td>
@@ -605,6 +622,7 @@ a file under <code>/etc/security/limits.d/</code>:
 <td>44</td>
 <td>medium</td>
 <td>The SUSE operating system must lock an account after three consecutive invalid access attempts.</td>
+<td>SRG-OS-ID</td>
 <td><pre>By limiting the number of failed logon attempts, the risk of unauthorized
 system access via user password guessing, otherwise known as brute-force
 attacks, is reduced. Limits are imposed by locking the account.
@@ -654,6 +672,7 @@ consecutive invalid access attempts.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must enforce a delay of at least four (4) seconds between logon prompts following a failed logon attempt.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Increasing the time between a failed authentication attempt and re-prompting to
 enter credentials helps to slow a single-threaded brute force attack.</pre></td>
 <td><pre>Verify the FAIL_DELAY setting is configured correctly in the /etc/login.defs file by
@@ -675,6 +694,7 @@ add or correct the <code>FAIL_DELAY</code> setting in <code>/etc/login.defs</cod
 <td>192</td>
 <td>medium</td>
 <td>The SUSE operating system must enforce passwords that contain at least one upper-case character.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Requiring a minimum number of uppercase characters makes password guessing
 attacks more difficult by ensuring a larger search space.</pre></td>
 <td><pre>To check how many uppercase characters are required in a password, run the
@@ -702,6 +722,7 @@ case character in passwords.</pre></td>
 <td>193</td>
 <td>medium</td>
 <td>The SUSE operating system must enforce passwords that contain at least one lower-case character.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Requiring a minimum number of lowercase characters makes password guessing
 attacks more difficult by ensuring a larger search space.</pre></td>
 <td><pre>Check that the operating system enforces password complexity by requiring
@@ -734,6 +755,7 @@ lowercase character in passwords.</pre></td>
 <td>194</td>
 <td>medium</td>
 <td>The SUSE operating system must enforce passwords that contain at least one numeric character.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Requiring digits makes password guessing attacks more difficult by ensuring
 a larger search space.</pre></td>
 <td><pre>To check how many digits are required in a password, run the following
@@ -760,6 +782,7 @@ a digit in passwords.</pre></td>
 <td>1619</td>
 <td>medium</td>
 <td>The SUSE operating system must enforce passwords that contain at least one special character.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Requiring a minimum number of special characters makes password guessing
 attacks more difficult by ensuring a larger search space.</pre></td>
 <td><pre>To check how many special characters are required in a password, run the
@@ -787,6 +810,7 @@ set to less than or equal to <code><xccdf-1.1:sub xmlns:xccdf-1.1="http://checkl
 <td>195</td>
 <td>medium</td>
 <td>The SUSE operating system must require the change of at least eight (8) of the total number of characters when passwords are changed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Requiring a minimum number of different characters during password changes
 ensures that newly changed passwords should not resemble previously
 compromised ones. Note that passwords which are changed on compromised
@@ -816,6 +840,7 @@ configured to greater than or equal to <code><xccdf-1.1:sub xmlns:xccdf-1.1="htt
 <td>803</td>
 <td>medium</td>
 <td>The SUSE operating system must employ FIPS 140-2 approved cryptographic hashing algorithm for system authentication (login.defs).</td>
+<td>SRG-OS-ID</td>
 <td><pre>Passwords need to be protected at all times, and encryption is the standard method for protecting passwords.
 If passwords are not encrypted, they can be plainly read (i.e., clear text) and easily compromised. Passwords
 that are encrypted with a weak algorithm are no more protected than if they are kept in plain text.
@@ -836,6 +861,7 @@ the system will use SHA-512 as the hashing algorithm:
 <td>803</td>
 <td>medium</td>
 <td>The SUSE operating system must employ FIPS 140-2-approved cryptographic hashing algorithms for all stored passwords.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The system must use a strong hashing algorithm to store the password. The
 system must use a sufficient number of hashing rounds to ensure the required
 level of entropy.</pre></td>
@@ -872,6 +898,7 @@ this is a finding.</pre></td>
 <td>803</td>
 <td>medium</td>
 <td>The SUSE operating system must configure the Linux Pluggable Authentication Modules (PAM) to only store encrypted representations of passwords.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Passwords need to be protected at all times, and encryption is the standard
 method for protecting passwords. If passwords are not encrypted, they can
 be plainly read (i.e., clear text) and easily compromised. Passwords that
@@ -918,6 +945,7 @@ the default.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not be configured to allow blank or null passwords.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If an account has an empty password, anyone could log in and
 run commands with the privileges of that account. Accounts with
 empty passwords should never be used in operational environments.</pre></td>
@@ -946,6 +974,7 @@ to prevent logins with empty passwords.</pre></td>
 <td>803</td>
 <td>medium</td>
 <td>The SUSE operating system must employ FIPS 140-2-approved cryptographic hashing algorithms for all stored passwords.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Passwords need to be protected at all times, and encryption is the standard
 method for protecting passwords. If passwords are not encrypted, they can
 be plainly read (i.e., clear text) and easily compromised. Passwords
@@ -973,6 +1002,7 @@ If either is set, they must have the minimum value of 5000.</pre></td>
 <td>205</td>
 <td>medium</td>
 <td>The SUSE operating system must employ passwords with a minimum of 15 characters.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Password length is one factor of several that helps to determine
 strength and how long it takes to crack a password. Use of more characters in
 a password helps to exponentially increase the time and/or resources
@@ -993,6 +1023,7 @@ minimum characters required in a password. Add <code>minlen=<xccdf-1.1:sub xmlns
 <td>198</td>
 <td>medium</td>
 <td>The SUSE operating system must be configured to create or update passwords with a minimum lifetime of 24 hours (one day).</td>
+<td>SRG-OS-ID</td>
 <td><pre>Enforcing a minimum password lifetime helps to prevent repeated password
 changes to defeat the password reuse or history enforcement requirement. If
 users are allowed to immediately and continually change their password,
@@ -1020,6 +1051,7 @@ The profile requirement is <code><xccdf-1.1:sub xmlns:xccdf-1.1="http://checklis
 <td>198</td>
 <td>medium</td>
 <td>The SUSE operating system must employ user passwords with a minimum lifetime of 24 hours (one day).</td>
+<td>SRG-OS-ID</td>
 <td><pre>Enforcing a minimum password lifetime helps to prevent repeated password
 changes to defeat the password reuse or history enforcement requirement. If
 users are allowed to immediately and continually change their password, the
@@ -1044,6 +1076,7 @@ lifetime by running the following command:
 <td>199</td>
 <td>medium</td>
 <td>The SUSE operating system must be configured to create or update passwords with a maximum lifetime of 60 days.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Any password, no matter how complex, can eventually be cracked. Therefore, passwords
 need to be changed periodically. If the operating system does not limit the lifetime
 of passwords and force users to change their passwords, there is the risk that the
@@ -1073,6 +1106,7 @@ The profile requirement is <code><xccdf-1.1:sub xmlns:xccdf-1.1="http://checklis
 <td>199</td>
 <td>medium</td>
 <td>The SUSE operating system must employ user passwords with a maximum lifetime of 60 days.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Any password, no matter how complex, can eventually be cracked. Therefore,
 passwords need to be changed periodically. If the operating system does
 not limit the lifetime of passwords and force users to change their
@@ -1096,6 +1130,7 @@ restriction by running the following command:
 <td>200</td>
 <td>medium</td>
 <td>The SUSE operating system must employ a password history file.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>/etc/security/opasswd</code> file stores old passwords to prevent
 password reuse. Protection of this file is critical for system security.</pre></td>
 <td><pre>To check the ownership of /etc/security/opasswd,
@@ -1126,6 +1161,7 @@ To properly set the permissions of <code>/etc/security/opasswd</code>, run the c
 <td>200</td>
 <td>medium</td>
 <td>The SUSE operating system must not allow passwords to be reused for a minimum of five (5) generations.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Preventing re-use of previous passwords helps ensure that a compromised password is not re-used by a user.</pre></td>
 <td><pre>Check that the SUSE operating system prohibits the reuse of a password for
 a minimum of  generations with the following command:
@@ -1155,6 +1191,7 @@ The DoD STIG requirement is 5 passwords.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must prevent the use of dictionary words for passwords.</td>
+<td>SRG-OS-ID</td>
 <td><pre>To reduce opportunities for successful guesses and brute-force attacks.</pre></td>
 <td><pre>Check the password retry limit with the following command:
 
@@ -1180,6 +1217,7 @@ with error. Make sure it is configured with a value that is no more than
 <td>1682</td>
 <td>medium</td>
 <td>The SUSE operating system must never automatically remove or disable emergency administrator accounts.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Emergency accounts are different from infrequently used accounts (i.e.,
 local logon accounts used by the organization's system administrators when
 network or normal logon/access is not available). Infrequently used
@@ -1224,6 +1262,7 @@ If <code>Password expires</code> or <code>Account expires</code> is set to anyth
 <td>795</td>
 <td>medium</td>
 <td>The SUSE operating system must disable account identifiers (individuals, groups, roles, and devices) after 35 days of inactivity after password expiration.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system.
 Disabling inactive accounts ensures that accounts which may not have been responsibly removed are not available to attackers who may have compromised their credentials.
 Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained.</pre></td>
@@ -1254,6 +1293,7 @@ elapse until the account would be automatically disabled. See the
 <td>16</td>
 <td>medium</td>
 <td>The SUSE operating system must provision temporary accounts with an expiration date for 72 hours.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If temporary user accounts remain active when no longer needed or for
 an excessive period, these accounts may be used to gain unauthorized access.
 To mitigate this risk, automated termination of all temporary accounts
@@ -1285,6 +1325,7 @@ period of 72 hours.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must enforce a delay of at least four seconds between logon prompts following a failed logon attempt.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Limiting the number of logon attempts over a certain time interval reduces
 the chances that an unauthorized user may gain access to an account.</pre></td>
 <td><pre>Verify that the SUSE Linux Enterprise 12 operating system enforces a minimum delay betweeen
@@ -1312,6 +1353,7 @@ is at least <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1
 <td>366</td>
 <td>high</td>
 <td>The SUSE operating system must not allow unattended or automatic logon via the graphical user interface.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Failure to restrict system access to authenticated users negatively impacts operating
 system security.</pre></td>
 <td><pre>To verify that automatic or unattended logins are disabled, run the following command:
@@ -1337,6 +1379,7 @@ DISPLAYMANAGER_PASSWORD_LESS_LOGIN="no"</pre></pre></td>
 <td>366</td>
 <td>low</td>
 <td>The SUSE operating system must display the date and time of the last successful account logon upon logon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Users need to be aware of activity that occurs regarding
 their account. Providing users with information regarding the number
 of unsuccessful attempts that were made to login to their account
@@ -1363,6 +1406,7 @@ And make sure that the <code>silent</code> option is not set.</pre></td>
 <td>366</td>
 <td>high</td>
 <td>There must be no .shosts files on the SUSE operating system.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The .shosts files are used to configure host-based authentication for
 individual users or the system via SSH. Host-based authentication is not
 sufficient for preventing unauthorized access to the system, as it does not
@@ -1387,6 +1431,7 @@ to delete them from any location:
 <td>366</td>
 <td>high</td>
 <td>There must be no shosts.equiv files on the SUSE operating system.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The shosts.equiv files are used to configure host-based authentication for the
 system via SSH. Host-based authentication is not sufficient for preventing
 unauthorized access to the system, as it does not require interactive
@@ -1411,6 +1456,7 @@ location:
 <td>2450</td>
 <td>medium</td>
 <td>FIPS 140-2 mode must be enabled on the SUSE operating system.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to
 protect data. The operating system must implement cryptographic modules adhering to the higher
 standards approved by the federal government since this provides assurance they have been tested
@@ -1432,6 +1478,7 @@ To verify FIPS mode, run the following command:
 <td>213</td>
 <td>medium</td>
 <td>SUSE operating systems with a basic input/output system (BIOS) must require authentication upon booting into single-user and maintenance modes.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Password protection on the boot loader configuration ensures
 users with physical access cannot trivially alter
 important bootloader settings. These include which kernel to use,
@@ -1483,6 +1530,7 @@ update the
 <td>213</td>
 <td>medium</td>
 <td>SUSE operating systems with Unified Extensible Firmware Interface (UEFI) implemented must require authentication upon booting into single-user mode and maintenance.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Password protection on the boot loader configuration ensures
 users with physical access cannot trivially alter
 important bootloader settings. These include which kernel to use,
@@ -1536,6 +1584,7 @@ update the
 <td>2475</td>
 <td>medium</td>
 <td>All SUSE operating system persistent disk partitions must implement cryptographic mechanisms to prevent unauthorized disclosure or modification of all information that requires at rest protection.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The risk of a system's physical compromise, particularly mobile systems such as
 laptops, places its data at risk of compromise.  Encrypting this data mitigates
 the risk of its loss if the system is lost.</pre></td>
@@ -1576,6 +1625,7 @@ the SUSE Linux Enterprise 12 Documentation web site:<br>
 <td>1090</td>
 <td>medium</td>
 <td>The sticky bit must be set on all SUSE operating system world-writable directories.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Failing to set the sticky bit on public directories allows unauthorized
 users to delete files in the directory structure.
 <br><br>
@@ -1610,6 +1660,7 @@ following command:
 <td>2699</td>
 <td>medium</td>
 <td>Advanced Intrusion Detection Environment (AIDE) must verify the baseline SUSE operating system configuration at least weekly.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The AIDE package must be installed if it is to be available for integrity checking.</pre></td>
 <td><pre>Run the following command to determine if the aide package is installed: $ rpm -q aide
       Is it the case that the package is not installed?
@@ -1625,6 +1676,7 @@ $ sudo zypper install aide</pre></pre></td>
 <td>2702</td>
 <td>medium</td>
 <td>The SUSE operating system must notify the System Administrator (SA) when AIDE discovers anomalies in the operation of any security functions.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unauthorized changes to the baseline configuration could make the system vulnerable
 to various attacks or allow unauthorized access to the operating system. Changes to
 operating system configurations can have unintended side effects, some of which may
@@ -1658,6 +1710,7 @@ AIDE can be executed periodically through other means; this is merely one exampl
 <td>366</td>
 <td>low</td>
 <td>The SUSE operating system file integrity tool must be configured to verify Access Control Lists (ACLs).</td>
+<td>SRG-OS-ID</td>
 <td><pre>ACLs can provide permissions beyond those permitted through the file mode and must be
 verified by the file integrity tools.</pre></td>
 <td><pre>To determine that AIDE is verifying ACLs, run the following command:
@@ -1683,6 +1736,7 @@ The remediation provided with this rule adds <code>acl</code> to all rule sets a
 <td>366</td>
 <td>low</td>
 <td>The SUSE operating system file integrity tool must be configured to verify extended attributes.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Extended attributes in file systems are used to contain arbitrary data and file metadata
 with security implications.</pre></td>
 <td><pre>To determine that AIDE is verifying extended file attributes, run the following command:
@@ -1708,6 +1762,7 @@ The remediation provided with this rule adds <code>xattrs</code> to all rule set
 <td>1496</td>
 <td>medium</td>
 <td>The SUSE operating system file integrity tool must be configured to protect the integrity of the audit tools.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Protecting the integrity of the tools used for auditing purposes is a
 critical step toward ensuring the integrity of audit information. Audit
 information includes all information (e.g., audit records, audit settings,
@@ -1756,6 +1811,7 @@ If one or more lines are missing, this is a finding.
 <td>1749</td>
 <td>medium</td>
 <td>The SUSE operating system tool zypper must have gpgcheck enabled.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Changes to any software components can have significant effects on the
 overall security of the operating system. This requirement ensures the
 software has not been tampered with and that it has been provided by a
@@ -1793,6 +1849,7 @@ the <code>[main]</code> section:
 <td>2617</td>
 <td>medium</td>
 <td>The SUSE operating system must remove all outdated software components after updated versions have been installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Previous versions of software components that are not removed from the information
 system after updates have been installed may be exploited by some adversaries.</pre></td>
 <td><pre>Verify SUSE Linux Enterprise 12 removes all software components after updated versions have been installed.
@@ -1821,6 +1878,7 @@ to <code>1</code> in <code>/etc/zypp/zypp.conf</code>.</pre></td>
 <td>1958</td>
 <td>medium</td>
 <td>The SUSE operating system must disable the USB mass storage kernel module.</td>
+<td>SRG-OS-ID</td>
 <td><pre>USB storage devices such as thumb drives can be used to introduce
 malicious software.</pre></td>
 <td><pre>
@@ -1848,6 +1906,7 @@ module, but will not prevent an administrator (or another program) from using th
 <td>1958</td>
 <td>medium</td>
 <td>The SUSE operating system must disable the file system automounter unless required.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Disabling the automounter permits the administrator to
 statically control filesystem mounting through <code>/etc/fstab</code>.
 <br><br>
@@ -1896,6 +1955,7 @@ The <code>autofs</code> service can be disabled with the following command:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must implement the Endpoint Security for Linux Threat Prevention tool.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -1907,6 +1967,7 @@ The <code>autofs</code> service can be disabled with the following command:
 <td>2235</td>
 <td>medium</td>
 <td>The SUSE operating system Apparmor tool must be configured to control whitelisted applications and user home directory access control.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Using a whitelist provides a configuration management method for allowing
 the execution of only authorized software. Using only authorized software
 decreases risk by limiting the number of potential vulnerabilities.<br><br>
@@ -1949,6 +2010,7 @@ The <code>apparmor</code> service can be enabled with the following command:
 <td>366</td>
 <td>high</td>
 <td>The SUSE operating system must disable the x86 Ctrl-Alt-Delete key sequence.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A locally logged-in user who presses Ctrl-Alt-Del, when at the console,
 can reboot the system. If accidentally pressed, as could happen in
 the case of mixed OS environment, this can create the risk of short-term
@@ -1984,6 +2046,7 @@ as this file may be restored during future system updates.</pre></td>
 <td></td>
 <td>high</td>
 <td>The SUSE operating system must disable the x86 Ctrl-Alt-Delete key sequence for Graphical User Interfaces.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -1995,6 +2058,7 @@ as this file may be restored during future system updates.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system default permissions must be defined in such a way that all authenticated users can only read and modify their own files.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The umask value influences the permissions assigned to files when they are created.
 A misconfigured umask value could result in files with excessive permissions that can be read and
 written to by unauthorized users.</pre></td>
@@ -2017,6 +2081,7 @@ add or correct the <code>UMASK</code> setting in <code>/etc/login.defs</code> to
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not have unnecessary accounts.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Accounts providing no operational purpose provide additional opportunities for
 system compromise. Unnecessary accounts include user accounts for individuals not
 requiring access to the system and application accounts for applications not installed
@@ -2047,6 +2112,7 @@ To remove unauthorized system accounts, use the following command:
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not have unnecessary account capabilities.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Ensuring shells are not given to system accounts upon login makes it more
 difficult for attackers to make use of system accounts.</pre></td>
 <td><pre>To obtain a listing of all users, their UIDs, and their shells, run the
@@ -2077,6 +2143,7 @@ command: <pre>$ sudo usermod -s /sbin/nologin <i>SYSACCT</i></pre></pre></td>
 <td>804</td>
 <td>medium</td>
 <td>The SUSE operating system must not have duplicate User IDs (UIDs) for interactive users.</td>
+<td>SRG-OS-ID</td>
 <td><pre>To assure accountability and prevent unauthenticated access, interactive users must be identified and authenticated to prevent potential misuse and compromise of the system.</pre></td>
 <td><pre>Run the following command to check for duplicate account names:
 Check that the operating system contains no duplicate UIDs for interactive users by running the following command:
@@ -2095,6 +2162,7 @@ Edit the file "/etc/passwd" and provide each interactive user account that has a
 <td>366</td>
 <td>high</td>
 <td>The SUSE operating system root account must be the only account having unrestricted access to the system.</td>
+<td>SRG-OS-ID</td>
 <td><pre>An account has root authority if it has a UID of 0. Multiple accounts
 with a UID of 0 afford more opportunity for potential intruders to
 guess a password for a privileged account. Proper configuration of
@@ -2128,6 +2196,7 @@ assigned.</pre></td>
 <td>2007</td>
 <td>medium</td>
 <td>If Network Security Services (NSS) is being used by the SUSE operating system it must prohibit the use of cached authentications after one day.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If cached authentication information is out-of-date, the validity of the
 authentication information may be questionable.</pre></td>
 <td><pre>To verify that SSSD's in-memory cache expires after a day, run the following command:
@@ -2153,6 +2222,7 @@ memcache_timeout = <xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xc
 <td>2007</td>
 <td>medium</td>
 <td>The SUSE operating system must configure the Linux Pluggable Authentication Modules (PAM) to prohibit the use of cached offline authentications after one day.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If cached authentication information is out-of-date, the validity of the
 authentication information may be questionable.</pre></td>
 <td><pre>To verify that SSSD expires offline credentials, run the following command:
@@ -2176,6 +2246,7 @@ offline_credentials_expiration = 1
 <td>2165</td>
 <td>medium</td>
 <td>All SUSE operating system files and directories must have a valid owner.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unowned files do not directly imply a security problem, but they are generally
 a sign that something is amiss. They may
 be caused by an intruder, by incorrect software installation or
@@ -2210,6 +2281,7 @@ filesystems the following command can be run manually for each partition:
 <td>2165</td>
 <td>medium</td>
 <td>All SUSE operating system files and directories must have a valid group owner.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unowned files do not directly imply a security problem, but they are generally
 a sign that something is amiss. They may
 be caused by an intruder, by incorrect software installation or
@@ -2243,6 +2315,7 @@ filesystems the following command can be run manually for each partition:
 <td>366</td>
 <td>medium</td>
 <td>All SUSE operating system local interactive users must have a home directory assigned in the /etc/passwd file.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If local interactive users are not assigned a valid home directory, there is no
 place for the storage and control of files they should own.</pre></td>
 <td><pre>To verify interactive users on the system have a home directory assigned,
@@ -2267,6 +2340,7 @@ Therefore, this rule will report a finding for home directories like <code>/user
 <td>366</td>
 <td>medium</td>
 <td>All SUSE operating system local interactive user accounts, upon creation, must be assigned a home directory.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If local interactive users are not assigned a valid home directory, there is no place
 for the storage and control of files they should own.</pre></td>
 <td><pre>Check if the system is configured to create home directories for local interactive users with the following command:
@@ -2289,6 +2363,7 @@ parameter in <code>/etc/login.defs</code> to <code>yes</code> as follows:
 <td>366</td>
 <td>medium</td>
 <td>All SUSE operating system local interactive user home directories defined in the /etc/passwd file must exist.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If a local interactive user has a home directory defined that does not exist,
 the user may be given access to the / directory as the current working directory
 upon logon. This could create a Denial of Service because the user would not be
@@ -2312,6 +2387,7 @@ home directory assigned in <code>/etc/passwd</code>:
 <td>366</td>
 <td>medium</td>
 <td>All SUSE operating system local interactive user home directories must have mode 0750 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Excessive permissions on local interactive user home directories may allow
 unauthorized access to user files by other users.</pre></td>
 <td><pre>To verify the assigned home directory of all interactive user home directories
@@ -2332,6 +2408,7 @@ following command:
 <td>366</td>
 <td>medium</td>
 <td>All SUSE operating system local interactive user home directories must be group-owned by the home directory owners primary group.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If the Group Identifier (GID) of a local interactive users home directory is
 not the same as the primary GID of the user, this would allow unauthorized
 access to the users files, and users that share the same group may not be
@@ -2357,6 +2434,7 @@ are group-owners of one and only one home directory.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>All SUSE operating system local initialization files must have mode 0740 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Local initialization files are used to configure the user's shell environment
 upon logon. Malicious modification of these files could compromise accounts upon
 logon.</pre></td>
@@ -2377,6 +2455,7 @@ following command:
 <td>366</td>
 <td>medium</td>
 <td>All SUSE operating system local interactive user initialization files executable search paths must contain only paths that resolve to the users home directory.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The executable search path (typically the PATH environment variable) contains a
 list of directories for the shell to search to find executables. If this path
 includes the current working directory (other than the users home directory),
@@ -2404,6 +2483,7 @@ directory other than the users home directory.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>All SUSE operating system local initialization files must not execute world-writable programs.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If user start-up files execute world-writable programs, especially in
 unprotected directories, they could be maliciously modified to destroy user
 files or otherwise compromise the system at the user level. If the system is
@@ -2426,6 +2506,7 @@ following command:
 <td>366</td>
 <td>medium</td>
 <td>SUSE operating system file systems that contain user home directories must be mounted to prevent files with the setuid and setgid bit set from being executed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The presence of SUID and SGID executables should be tightly controlled. Users
 should not be able to execute SUID or SGID binaries from user home directory partitions.</pre></td>
 <td><pre>To verify the nosuid option is configured for the /home mount point,
@@ -2449,6 +2530,7 @@ Add the <code>nosuid</code> option to the fourth column of
 <td>366</td>
 <td>medium</td>
 <td>SUSE operating system file systems that are used with removable media must be mounted to prevent files with the setuid and setgid bit set from being executed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The presence of SUID and SGID executables should be tightly controlled. Allowing
 users to introduce SUID or SGID binaries from partitions mounted off of
 removable media would allow them to introduce their own highly-privileged programs.</pre></td>
@@ -2470,6 +2552,7 @@ Add the <code>nosuid</code> option to the fourth column of
 <td>366</td>
 <td>medium</td>
 <td>SUSE operating system file systems that are being imported via Network File System (NFS) must be mounted to prevent files with the setuid and setgid bit set from being executed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>NFS mounts should not present suid binaries to users. Only vendor-supplied suid executables
 should be installed to their default location on the local filesystem.</pre></td>
 <td><pre>To verify the nosuid option is configured for all NFS mounts, run
@@ -2489,6 +2572,7 @@ any NFS mounts.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>SUSE operating system file systems that are being imported via Network File System (NFS) must be mounted to prevent binary files from being executed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The noexec mount option causes the system not to execute binary files. This option must be used
 for mounting any file system not containing approved binary files as they may be incompatible. Executing
 files from untrusted file systems increases the opportunity for unprivileged users to attain unauthorized
@@ -2509,6 +2593,7 @@ any NFS mounts.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>All SUSE operating system world-writable directories must be group-owned by root, sys, bin, or an application group.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Allowing a user account to group own a world-writable directory is
 undesirable because it allows the owner of that directory to remove
 or replace any files that may be placed in the directory by other
@@ -2533,6 +2618,7 @@ appropriate group.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>SUSE operating system kernel core dumps must be disabled unless needed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Kernel core dumps may contain the full contents of system memory at the
 time of the crash. Kernel core dumps consume a considerable amount of disk
 space and may result in denial of service by exhausting the available space
@@ -2576,6 +2662,7 @@ The <code>kdump</code> service can be disabled with the following command:
 <td>366</td>
 <td>low</td>
 <td>A separate file system must be used for SUSE operating system user home directories (such as /home or an equivalent).</td>
+<td>SRG-OS-ID</td>
 <td><pre>Ensuring that <code>/home</code> is mounted on its own partition enables the
 setting of more restrictive mount options, and also helps ensure that
 users cannot trivially fill partitions used for log or audit data storage.</pre></td>
@@ -2599,6 +2686,7 @@ mountpoint can instead be configured later.</pre></td>
 <td>366</td>
 <td>low</td>
 <td>The SUSE operating system must use a separate file system for /var.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Ensuring that <code>/var</code> is mounted on its own partition enables the
 setting of more restrictive mount options. This helps protect
 system services such as daemons or other programs which use it.
@@ -2622,6 +2710,7 @@ or logical volume at installation time, or migrate it using LVM.</pre></td>
 <td>366</td>
 <td>low</td>
 <td>The SUSE operating system must use a separate file system for the system audit data path.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Placing <code>/var/log/audit</code> in its own partition
 enables better separation between audit files
 and other files, and helps ensure that
@@ -2648,6 +2737,7 @@ audit logs that will be created by the auditing daemon.</pre></td>
 <td>1499</td>
 <td>medium</td>
 <td>The SUSE operating system library files must have mode 0755 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Files from shared library directories are loaded into the address
 space of processes (including privileged ones) or of the kernel itself at
 runtime. Restrictive permissions are necessary to protect the integrity of the system.</pre></td>
@@ -2684,6 +2774,7 @@ its permission with the following command:
 <td>1499</td>
 <td>medium</td>
 <td>The SUSE operating system library directories must have mode 0755 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If the operating system were to allow any user to make changes to software libraries,
 then those changes might be implemented without undergoing the appropriate testing
 and approvals that are part of a robust change management process.
@@ -2726,6 +2817,7 @@ its permission with the following command:
 <td>1499</td>
 <td>medium</td>
 <td>The SUSE operating system library files must be owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Files from shared library directories are loaded into the address
 space of processes (including privileged ones) or of the kernel itself at
 runtime. Proper ownership is necessary to protect the integrity of the system.</pre></td>
@@ -2761,6 +2853,7 @@ ownership with the following command:
 <td>1499</td>
 <td>medium</td>
 <td>The SUSE operating system library directories must be owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Files from shared library directories are loaded into the address
 space of processes (including privileged ones) or of the kernel itself at
 runtime. Proper ownership of library directories is necessary to protect
@@ -2797,6 +2890,7 @@ ownership with the following command:
 <td>1499</td>
 <td>medium</td>
 <td>The SUSE operating system library files must be group-owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If the operating system were to allow any user to make changes to software libraries,
 then those changes might be implemented without undergoing the appropriate testing and
 approvals that are part of a robust change management process.
@@ -2836,6 +2930,7 @@ the following command:
 <td>1499</td>
 <td>medium</td>
 <td>The SUSE operating system library directories must be group-owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Files from shared library directories are loaded into the address
 space of processes (including privileged ones) or of the kernel itself at
 runtime. Proper ownership of library directories is necessary to protect
@@ -2872,6 +2967,7 @@ ownership with the following command:
 <td>1499</td>
 <td>medium</td>
 <td>The SUSE operating system must have system commands set to a mode of 0755 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>System binaries are executed by privileged users, as well as system services,
 and restrictive permissions are necessary to ensure execution of these programs
 cannot be co-opted.</pre></td>
@@ -2907,6 +3003,7 @@ following command:
 <td>1499</td>
 <td>medium</td>
 <td>The SUSE operating system must have directories that contain system commands set to a mode of 0755 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>System binaries are executed by privileged users, as well as system services,
 and restrictive permissions are necessary to ensure execution of these programs
 cannot be co-opted.</pre></td>
@@ -2944,6 +3041,7 @@ following command:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must have system commands owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -2955,6 +3053,7 @@ following command:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must have directories that contain system commands owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -2966,6 +3065,7 @@ following command:
 <td>1499</td>
 <td>medium</td>
 <td>The SUSE operating system must have system commands group-owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If the operating system allows any user to make changes to software
 libraries, then those changes might be implemented without undergoing the
 appropriate testing and approvals that are part of a robust change management
@@ -3008,6 +3108,7 @@ by a group other than root correct its ownership with the following command:
 <td>1499</td>
 <td>medium</td>
 <td>The SUSE operating system must have directories that contain system commands group-owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If the operating system were to allow any user to make changes to 
 software libraries, then those changes might be implemented without 
 undergoing the appropriate testing and approvals that are part of a 
@@ -3052,6 +3153,7 @@ correct its ownership with the following command:
 <td>1314</td>
 <td>medium</td>
 <td>The SUSE operating system must prevent unauthorized users from accessing system error messages.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>/var/log/messages</code> file contains system error messages. Only
 authorized personnel should be aware of errors and the details of the
 errors. Error messages are an indicator of an organization's operational
@@ -3097,6 +3199,7 @@ Check that "permissions.local" file contains the correct permissions rules with 
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must be configured to not overwrite Pluggable Authentication Modules (PAM) configuration on package changes.</td>
+<td>SRG-OS-ID</td>
 <td><pre><code>pam-config</code> is a command line utility that automatically generates
 a system PAM configuration as packages are installed, updated or removed
 from the system. <code>pam-config</code> removes configurations for PAM modules
@@ -3119,6 +3222,7 @@ Authentication Modules (PAM) configuration on package changes.</pre></td>
 <td>1914</td>
 <td>medium</td>
 <td>The SUSE operating system must have the auditing package installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The auditd service is an access monitoring and accounting daemon, watching system calls to audit any access, in comparison with potential local access control policy such as SELinux policy.</pre></td>
 <td><pre>Run the following command to determine if the audit package is installed: $ rpm -q audit
       Is it the case that the package is not installed?
@@ -3132,6 +3236,7 @@ Authentication Modules (PAM) configuration on package changes.</pre></td>
 <td>2884</td>
 <td>medium</td>
 <td>SUSE operating system audit records must contain information to establish what type of events occurred, the source of events, where events occurred, and the outcome of events.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without establishing what type of events occurred, it would be difficult
 to establish, correlate, and investigate the events leading up to an outage or attack.
 Ensuring the <code>auditd</code> service is active ensures audit records
@@ -3146,7 +3251,7 @@ Run the following command to determine the current status of the
 auditd service:
 $ systemctl is-active auditd
 If the service is running, it should return the following: active
-      Is it the case that ?
+      Is it the case that the auditd service is not running?
       </pre></td>
 <td><pre>The <code>auditd</code> service is an essential userspace component of
 the Linux Auditing System, as it is responsible for writing audit records to
@@ -3162,6 +3267,7 @@ The <code>auditd</code> service can be enabled with the following command:
 <td>1849</td>
 <td>medium</td>
 <td>The SUSE operating system must allocate audit record storage capacity to store at least one weeks worth of audit records when audit records are not immediately sent to a central audit record storage facility.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Information stored in one location is vulnerable to accidental or incidental
 deletion or alteration.Off-loading is a common process in information
 systems with limited audit storage capacity.</pre></td>
@@ -3216,6 +3322,7 @@ following command:
 <td>1855</td>
 <td>medium</td>
 <td>The SUSE operating system auditd service must notify the System Administrator (SA) and Information System Security Officer (ISSO) immediately when audit storage capacity is 75 percent full.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Notifying administrators of an impending disk space problem may allow them to
 take corrective action prior to any disruption.</pre></td>
 <td><pre>Inspect /etc/audit/auditd.conf and locate the following line to
@@ -3238,6 +3345,7 @@ notify the user of an issue.</pre></td>
 <td>139</td>
 <td>medium</td>
 <td>The Information System Security Officer (ISSO) and System Administrator (SA), at a minimum, must be alerted of a SUSE operating system audit processing failure event.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Email sent to the root account is typically aliased to the
 administrators of the system, who can take appropriate action.</pre></td>
 <td><pre>Inspect /etc/audit/auditd.conf and locate the following line to
@@ -3259,6 +3367,7 @@ via email for those situations:
 <td>139</td>
 <td>medium</td>
 <td>The Information System Security Officer (ISSO) and System Administrator (SA), at a minimum, must have mail aliases to be notified of a SUSE operating system audit processing failure.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A number of system services utilize email messages sent to the root user to
 notify system administrators of active or impending issues.  These messages must
 be forwarded to at least one monitored email address.</pre></td>
@@ -3284,6 +3393,7 @@ $ sudo newaliases</pre></pre></td>
 <td>140</td>
 <td>medium</td>
 <td>The SUSE operating system audit system must take appropriate action when the audit storage volume is full.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Taking appropriate action in case of a filled audit storage volume will minimize
 the possibility of losing audit records.</pre></td>
 <td><pre>Inspect /etc/audit/auditd.conf and locate the following line to
@@ -3313,6 +3423,7 @@ determined. Details regarding all possible values for <i>ACTION</i> are describe
 <td>1851</td>
 <td>medium</td>
 <td>The audit-audispd-plugins must be installed on the SUSE operating system.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Information stored in one location is vulnerable to accidental or incidental deletion or alteration. Off-loading is a common process in information systems with limited audit storage capacity.</pre></td>
 <td><pre>
       Is it the case that the package is not installed?
@@ -3326,6 +3437,7 @@ determined. Details regarding all possible values for <i>ACTION</i> are describe
 <td>1851</td>
 <td>low</td>
 <td>The SUSE operating system audit event multiplexor must be configured to use Kerberos.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Information stored in one location is vulnerable to accidental or incidental deletion
 or alteration. Off-loading is a common process in information systems with limited
 audit storage capacity.</pre></td>
@@ -3351,6 +3463,7 @@ and set it with the following line:
 <td>1851</td>
 <td>low</td>
 <td>Audispd must off-load audit records onto a different system or media from the SUSE operating system being audited.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Information stored in one location is vulnerable to accidental or incidental
 deletion or alteration.Off-loading is a common process in information systems
 with limited audit storage capacity.</pre></td>
@@ -3379,6 +3492,7 @@ send audit records to. For example
 <td>1851</td>
 <td>medium</td>
 <td>The audit system must take appropriate action when the network cannot be used to off-load audit records.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Taking appropriate action when there is an error sending audit records to a
 remote system will minimize the possibility of losing audit records.</pre></td>
 <td><pre>Inspect /etc/audisp/audisp-remote.conf and locate the following line to
@@ -3406,6 +3520,7 @@ This profile configures the <i>action</i> to be <code><xccdf-1.1:sub xmlns:xccdf
 <td>1851</td>
 <td>medium</td>
 <td>Audispd must take appropriate action when the SUSE operating system audit storage is full.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Taking appropriate action in case of a filled audit storage volume will
 minimize the possibility of losing audit records.</pre></td>
 <td><pre>Inspect /etc/audisp/audisp-remote.conf and locate the following line to
@@ -3435,6 +3550,7 @@ determined.</pre></td>
 <td>164</td>
 <td>medium</td>
 <td>The SUSE operating system must protect audit rules from unauthorized modification.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without the capability to restrict which roles and individuals can select
 which events are audited, unauthorized personnel may be able to prevent the
 auditing of critical events. Misconfigured audits may degrade the system's
@@ -3480,6 +3596,7 @@ Check that "permissions.local" file contains the correct permissions rules with 
 <td>1495</td>
 <td>medium</td>
 <td>The SUSE operating system audit tools must have the proper permissions configured to protect against unauthorized access.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Protecting audit information also includes identifying and protecting the
 tools used to view and manipulate log data. Therefore, protecting audit
 tools is necessary to prevent unauthorized operation on audit information.
@@ -3540,6 +3657,7 @@ generators.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not disable syscall auditing.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Audit rules for syscalls do not take effect unless this line is removed.</pre></td>
 <td><pre>To check for the offending line, run the following command:
 $ grep task,never /etc/audit/{rules.d,.}/audit.rules
@@ -3562,6 +3680,7 @@ To make sure that syscall auditing works, this line must be removed from
 <td>2132</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/passwd.</td>
+<td>SRG-OS-ID</td>
 <td><pre>In addition to auditing new user and group accounts, these watches
 will alert the system administrator(s) to any modifications. Any unexpected
 users, groups, or modifications should be investigated for legitimacy.</pre></td>
@@ -3596,6 +3715,7 @@ account changes:
 <td>2132</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/group.</td>
+<td>SRG-OS-ID</td>
 <td><pre>In addition to auditing new user and group accounts, these watches
 will alert the system administrator(s) to any modifications. Any unexpected
 users, groups, or modifications should be investigated for legitimacy.</pre></td>
@@ -3630,6 +3750,7 @@ account changes:
 <td>2132</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/shadow.</td>
+<td>SRG-OS-ID</td>
 <td><pre>In addition to auditing new user and group accounts, these watches
 will alert the system administrator(s) to any modifications. Any unexpected
 users, groups, or modifications should be investigated for legitimacy.</pre></td>
@@ -3664,6 +3785,7 @@ account changes:
 <td>2132</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/opasswd.</td>
+<td>SRG-OS-ID</td>
 <td><pre>In addition to auditing new user and group accounts, these watches
 will alert the system administrator(s) to any modifications. Any unexpected
 users, groups, or modifications should be investigated for legitimacy.</pre></td>
@@ -3698,6 +3820,7 @@ account changes:
 <td>2234</td>
 <td>low</td>
 <td>The SUSE operating system must generate audit records for all uses of the privileged functions.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have
 compromised information system accounts, is a serious and ongoing concern
@@ -3738,6 +3861,7 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the su command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -3772,6 +3896,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>low</td>
 <td>The SUSE operating system must generate audit records for all uses of the sudo command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -3806,6 +3931,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>low</td>
 <td>The SUSE operating system must generate audit records for all uses of the chfn command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without generating audit records that are specific to the security and
 mission needs of the organization, it would be difficult to establish,
 correlate, and investigate the events relating to an incident or identify
@@ -3837,6 +3963,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>low</td>
 <td>The SUSE operating system must generate audit records for all uses of the mount command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -3871,6 +3998,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>low</td>
 <td>The SUSE operating system must generate audit records for all uses of the umount command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -3905,6 +4033,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>low</td>
 <td>The SUSE operating system must generate audit records for all uses of the ssh-agent command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without generating audit records that are specific to the security and
 mission needs of the organization, it would be difficult to establish,
 correlate, and investigate the events relating to an incident or identify
@@ -3936,6 +4065,7 @@ utility to read audit rules during daemon startup, add the following lines to
 <td>2884</td>
 <td>low</td>
 <td>The SUSE operating system must generate audit records for all uses of the ssh-keysign command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -3970,6 +4100,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the kmod command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without generating audit records that are specific to the security and
 mission needs of the organization, it would be difficult to establish,
 correlate, and investigate the events relating to an incident or identify
@@ -4006,6 +4137,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the setxattr command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The changing of file permissions could indicate that a user is attempting to
 gain access to information that would otherwise be disallowed. Auditing DAC modifications
 can facilitate the identification of patterns of abuse among both authorized and
@@ -4039,6 +4171,7 @@ If the system is 64 bit then also add the following line:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the fsetxattr command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4050,6 +4183,7 @@ If the system is 64 bit then also add the following line:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the removexattr command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4061,6 +4195,7 @@ If the system is 64 bit then also add the following line:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the lremovexattr command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4072,6 +4207,7 @@ If the system is 64 bit then also add the following line:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the fremovexattr command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4083,6 +4219,7 @@ If the system is 64 bit then also add the following line:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the chown command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The changing of file permissions could indicate that a user is attempting to
 gain access to information that would otherwise be disallowed. Auditing DAC modifications
 can facilitate the identification of patterns of abuse among both authorized and
@@ -4116,6 +4253,7 @@ If the system is 64 bit then also add the following line:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the fchown command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4127,6 +4265,7 @@ If the system is 64 bit then also add the following line:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the lchown command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4138,6 +4277,7 @@ If the system is 64 bit then also add the following line:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the fchownat command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4149,6 +4289,7 @@ If the system is 64 bit then also add the following line:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the chmod command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The changing of file permissions could indicate that a user is attempting to
 gain access to information that would otherwise be disallowed. Auditing DAC modifications
 can facilitate the identification of patterns of abuse among both authorized and
@@ -4182,6 +4323,7 @@ If the system is 64 bit then also add the following line:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the fchmod command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4193,6 +4335,7 @@ If the system is 64 bit then also add the following line:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the fchmodat command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4204,6 +4347,7 @@ If the system is 64 bit then also add the following line:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the open command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unsuccessful attempts to access files could be an indicator of malicious activity on a system. Auditing
 these events could serve as evidence of potential system compromise.</pre></td>
 <td><pre>To determine if the system is configured to audit calls to the
@@ -4244,6 +4388,7 @@ If the system is 64 bit then also add the following lines:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the truncate command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4255,6 +4400,7 @@ If the system is 64 bit then also add the following lines:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the ftruncate command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4266,6 +4412,7 @@ If the system is 64 bit then also add the following lines:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the creat command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4277,6 +4424,7 @@ If the system is 64 bit then also add the following lines:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the openat command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4288,6 +4436,7 @@ If the system is 64 bit then also add the following lines:
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the open_by_handle_at command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4299,6 +4448,7 @@ If the system is 64 bit then also add the following lines:
 <td>2884</td>
 <td>low</td>
 <td>The SUSE operating system must generate audit records for all uses of the passwd command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -4333,6 +4483,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>low</td>
 <td>The SUSE operating system must generate audit records for all uses of the gpasswd command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -4367,6 +4518,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>low</td>
 <td>The SUSE operating system must generate audit records for all uses of the newgrp command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -4401,6 +4553,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>low</td>
 <td>The SUSE operating system must generate audit records for a uses of the chsh command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -4435,6 +4588,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2130</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/gshadow.</td>
+<td>SRG-OS-ID</td>
 <td><pre>In addition to auditing new user and group accounts, these watches
 will alert the system administrator(s) to any modifications. Any unexpected
 users, groups, or modifications should be investigated for legitimacy.</pre></td>
@@ -4469,6 +4623,7 @@ account changes:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the chmod command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without generating audit records that are specific to the security and
 mission needs of the organization, it would be difficult to establish,
 correlate, and investigate the events relating to an incident or identify
@@ -4500,6 +4655,7 @@ utility to read audit rules during daemon startup, add the following lines to
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the setfacl command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without generating audit records that are specific to the security and
 mission needs of the organization, it would be difficult to establish,
 correlate, and investigate the events relating to an incident or identify
@@ -4536,6 +4692,7 @@ utility to read audit rules during daemon startup, add the following lines to
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the chacl command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without generating audit records that are specific to the security and
 mission needs of the organization, it would be difficult to establish,
 correlate, and investigate the events relating to an incident or identify
@@ -4569,6 +4726,7 @@ utility to read audit rules during daemon startup, add the following lines to
 <td>2884</td>
 <td>medium</td>
 <td>Successful/unsuccessful attempts to modify categories of information (e.g., classification levels) must generate audit records.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -4603,6 +4761,7 @@ utility to read audit rules during daemon startup, add the following lines to
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the rm command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without generating audit records that are specific to the security and
 mission needs of the organization, it would be difficult to establish,
 correlate, and investigate the events relating to an incident or identify
@@ -4634,6 +4793,7 @@ utility to read audit rules during daemon startup, add the following lines to
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all modifications to the tallylog file must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Manual editing of these files may indicate nefarious activity, such
 as an attacker attempting to remove evidence of an intrusion.</pre></td>
 <td><pre>To verify that auditing is configured for system administrator actions, run the following command:
@@ -4660,6 +4820,7 @@ edits of files involved in storing logon events:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all modifications to the lastlog file.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Manual editing of these files may indicate nefarious activity, such
 as an attacker attempting to remove evidence of an intrusion.</pre></td>
 <td><pre>To verify that auditing is configured for system administrator actions, run the following command:
@@ -4686,6 +4847,7 @@ edits of files involved in storing logon events:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the passmass command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -4720,6 +4882,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the unix_chkpwd command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -4754,6 +4917,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the chage command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -4788,6 +4952,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the usermod command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -4822,6 +4987,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the crontab command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -4856,6 +5022,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the pam_timestamp_check command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -4892,6 +5059,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the delete_module command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The removal of kernel modules can be used to alter the behavior of
 the kernel and potentially introduce malicious code into kernel space. It is important
 to have an audit trail of modules that have been introduced into the kernel.</pre></td>
@@ -4904,7 +5072,9 @@ If the system is configured to audit this activity, it will return a line.
       </pre></td>
 <td><pre>To capture kernel module unloading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
+
 <pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -4920,6 +5090,7 @@ add the line to file <code>/etc/audit/audit.rules</code>.</pre></td>
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the finit_module command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The addition of kernel modules can be used to alter the behavior of
 the kernel and potentially introduce malicious code into kernel space. It is important
 to have an audit trail of modules that have been introduced into the kernel.</pre></td>
@@ -4932,7 +5103,9 @@ If the system is configured to audit this activity, it will return a line.
       </pre></td>
 <td><pre>To capture kernel module loading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
+
 <pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -4948,6 +5121,7 @@ add the line to file <code>/etc/audit/audit.rules</code>.</pre></td>
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all uses of the init_module command.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4959,6 +5133,7 @@ add the line to file <code>/etc/audit/audit.rules</code>.</pre></td>
 <td>2884</td>
 <td>medium</td>
 <td>The SUSE operating system must generate audit records for all modifications to the faillog file.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Manual editing of these files may indicate nefarious activity, such
 as an attacker attempting to remove evidence of an intrusion.</pre></td>
 <td><pre>To verify that auditing is configured for system administrator actions, run the following command:
@@ -4989,6 +5164,7 @@ edits of files involved in storing logon events:
 <td>381</td>
 <td>medium</td>
 <td>The SUSE operating system must not have the telnet-server package installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>It is detrimental for operating systems to provide, or install by default,
 functionality exceeding requirements or mission objectives. These
 unnecessary capabilities are often overlooked and therefore may remain
@@ -5017,6 +5193,7 @@ $ sudo zypper remove telnet-server</pre></pre></td>
 <td>381</td>
 <td>medium</td>
 <td>The SUSE operating system must not have the vsftpd package installed if not required for operational support.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Removing the <code>vsftpd</code> package decreases the risk of its
 accidental activation.</pre></td>
 <td><pre>Run the following command to determine if the vsftpd package is installed:
@@ -5032,6 +5209,7 @@ $ rpm -q vsftpd
 <td>50</td>
 <td>medium</td>
 <td>The SUSE operating system file /etc/gdm/banner must contain the Standard Mandatory DoD Notice and Consent banner text.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Display of a standardized and approved use notification before granting
 access to the operating system ensures privacy and security notification
 verbiage used is consistent with applicable federal laws, Executive Orders,
@@ -5083,6 +5261,7 @@ OR:
 <td>2314</td>
 <td>medium</td>
 <td>The SUSE operating system must be configured to prohibit or restrict the use of functions, ports, protocols, and/or services as defined in the Ports, Protocols, and Services Management (PPSM) Category Assignments List (CAL) and vulnerability assessments.</td>
+<td>SRG-OS-ID</td>
 <td><pre>To prevent unauthorized connection of devices, unauthorized transfer of
 information, or unauthorized tunneling (i.e., embedding of data types
 within data types), organizations must disable or restrict unused or
@@ -5151,6 +5330,7 @@ services allowed by the firewall match the PPSM CLSA. </pre></td>
 <td>2385</td>
 <td>high</td>
 <td>SuSEfirewall2 must protect against or limit the effects of Denial-of-Service (DoS) attacks on the SUSE operating system by implementing rate-limiting measures on impacted network interfaces.</td>
+<td>SRG-OS-ID</td>
 <td><pre>DoS is a condition when a resource is not available for legitimate users.
 When this occurs, the organization either cannot accomplish its mission or
 must operate at degraded capacity.
@@ -5206,6 +5386,7 @@ If the "FW_SERVICES_ACCEPT_EXT" rule does not contain both the
 <td>1388</td>
 <td>medium</td>
 <td>The SUSE operating system must display the Standard Mandatory DoD Notice and Consent Banner before granting access via SSH.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The warning message reinforces policy awareness during the logon process and
 facilitates possible legal action against attackers. Alternatively, systems
 whose ownership should not be obvious should ensure usage of a banner that does
@@ -5236,6 +5417,7 @@ appropriate system-wide warning banner.</pre></td>
 <td>2422</td>
 <td>high</td>
 <td>All networked SUSE operating systems must have and implement SSH to protect the confidentiality and integrity of transmitted and received information, as well as information during preparation for transmission.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without protection of the transmitted information, confidentiality, and
 integrity may be compromised because unprotected communications can be
 intercepted and either read or altered.
@@ -5265,6 +5447,7 @@ The <code>sshd</code> service can be enabled with the following command:
 <td>67</td>
 <td>medium</td>
 <td>The SUSE operating system must log SSH connection attempts and failures to the server.</td>
+<td>SRG-OS-ID</td>
 <td><pre>SSH provides several logging levels with varying amounts of verbosity. <code>DEBUG</code> is specifically
 not recommended other than strictly for debugging SSH communications since it provides
 so much data that it is difficult to identify important security information. <code>INFO</code> or
@@ -5297,6 +5480,7 @@ SSH, add or correct the following line in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must display the date and time of the last successful account logon upon an SSH logon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Providing users feedback on when account accesses last occurred facilitates user
 recognition and reporting of unauthorized account use.</pre></td>
 <td><pre>To determine how the SSH daemon's PrintLastLog option is set, run the following command:
@@ -5326,6 +5510,7 @@ To explicitly enable LastLog in SSH, add or correct the following line in
 <td>770</td>
 <td>medium</td>
 <td>The SUSE operating system must deny direct logons to the root account using remote access via SSH.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Even though the communications channel may be encrypted, an additional layer of
 security is gained by extending the policy of not logging directly on as root.
 In addition, logging in with a user-specific account provides individual
@@ -5356,6 +5541,7 @@ To disable root login via SSH, add or correct the following line in
 <td>366</td>
 <td>high</td>
 <td>The SUSE operating system must not allow automatic logon via SSH.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Configuring this setting for the SSH daemon provides additional assurance
 that remote login via SSH will require a password, even in the event of
 misconfiguration elsewhere.</pre></td>
@@ -5389,6 +5575,7 @@ should prevent users from being able to assign themselves empty passwords.</pre>
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not allow users to override SSH environment variables.</td>
+<td>SRG-OS-ID</td>
 <td><pre>SSH environment options potentially allow users to bypass
 access restriction in some configurations.</pre></td>
 <td><pre>To determine how the SSH daemon's PermitUserEnvironment option is set, run the following command:
@@ -5418,6 +5605,7 @@ To explicitly disable Environment options, add or correct the following
 <td>2890</td>
 <td>medium</td>
 <td>The SUSE operating system must implement DoD-approved encryption to protect the confidentiality of SSH remote connections.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unapproved mechanisms that are used for authentication to the cryptographic module are not verified and therefore
 cannot be relied upon to provide confidentiality or integrity, and system data may be compromised.
 <br>
@@ -5449,6 +5637,7 @@ The rule is parametrized to use the following ciphers: <code><xccdf-1.1:sub xmln
 <td>3123</td>
 <td>medium</td>
 <td>The SUSE operating system SSH daemon must be configured to only use Message Authentication Codes (MACs) employing FIPS 140-2 approved cryptographic hash algorithms.</td>
+<td>SRG-OS-ID</td>
 <td><pre>DoD Information Systems are required to use FIPS-approved cryptographic hash
 functions. The only SSHv2 hash algorithms meeting this requirement is SHA2.</pre></td>
 <td><pre>Only FIPS-approved MACs should be used. To verify that only FIPS-approved
@@ -5476,6 +5665,7 @@ The rule is parametrized to use the following MACs: <code><xccdf-1.1:sub xmlns:x
 <td>2361</td>
 <td>medium</td>
 <td>The SUSE operating system SSH daemon must be configured with a timeout interval.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Terminating an idle ssh session within a short time period reduces the window of
 opportunity for unauthorized personnel to take control of a management session
 enabled on the console or console port that has been let unattended.</pre></td>
@@ -5506,6 +5696,7 @@ some processes may stop SSH  from correctly detecting that the user is idle.</pr
 <td>2361</td>
 <td>medium</td>
 <td>The SUSE operating system for all network connections associated with SSH traffic must immediately terminate at the end of the session or after 10 minutes of inactivity.</td>
+<td>SRG-OS-ID</td>
 <td><pre>This ensures a user login will be terminated as soon as the <code>ClientAliveInterval</code>
 is reached.</pre></td>
 <td><pre>To ensure ClientAliveInterval is set correctly, run the following command:
@@ -5539,6 +5730,7 @@ the idle session will be disconnected after
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system SSH daemon must be configured to not allow authentication using known hosts authentication.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Configuring this setting for the SSH daemon provides additional
 assurance that remote login via SSH will require a password, even
 in the event of misconfiguration elsewhere.</pre></td>
@@ -5568,6 +5760,7 @@ To ensure this behavior is disabled, add or correct the following line in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system SSH daemon public host key files must have mode 0644 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If a public host key file is modified by an unauthorized user, the SSH service
 may be compromised.</pre></td>
 <td><pre>To check the permissions of /etc/ssh/*.pub,
@@ -5586,6 +5779,7 @@ If properly configured, the output should indicate the following permissions:
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system SSH daemon private host key files must have mode 0600 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If an unauthorized user obtains the private SSH host key file, the host could be
 impersonated.</pre></td>
 <td><pre>To check the permissions of /etc/ssh/*_key,
@@ -5606,6 +5800,7 @@ To properly set the permissions of <code>/etc/ssh/*_key</code>, run the command:
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system SSH daemon must perform strict mode checking of home directory configuration files.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If other users have access to modify user-specific SSH configuration files, they
 may be able to log into the system as another user.</pre></td>
 <td><pre>To determine how the SSH daemon's StrictModes option is set, run the following command:
@@ -5637,6 +5832,7 @@ To explicitly enable <code>StrictModes</code> in SSH, add or correct the followi
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system SSH daemon must use privilege separation.</td>
+<td>SRG-OS-ID</td>
 <td><pre>SSH daemon privilege separation causes the SSH process to drop root privileges
 when not needed which would decrease the impact of software vulnerabilities in
 the unprivileged section.</pre></td>
@@ -5658,6 +5854,7 @@ SSH, add or correct the following line in the <code>/etc/ssh/sshd_config</code> 
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system SSH daemon must not allow compression or must only allow compression after successful authentication.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If compression is allowed in an SSH connection prior to authentication,
 vulnerabilities in the compression software could result in compromise of the
 system from an unauthenticated connection, potentially with root privileges.</pre></td>
@@ -5682,6 +5879,7 @@ a user has successfully authenticated, add or correct the following line in the
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system SSH daemon must disable forwarded remote X connections for interactive users, unless to fulfill documented and validated mission requirements.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Non-encrypted X displays allow an attacker to capture keystrokes and to execute commands
 remotely.</pre></td>
 <td><pre>To determine how the SSH daemon's X11Forwarding option is set, run the following command:
@@ -5711,6 +5909,7 @@ To enable X11 Forwarding, add or correct the following line in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system SSH daemon must prevent remote hosts from connecting to the proxy display.</td>
+<td>SRG-OS-ID</td>
 <td><pre>When X11 forwarding is enabled, there may be additional exposure to the
 server and client displays if the sshd proxy display is configured to listen
 on the wildcard address. By default, sshd binds the forwarding server to the
@@ -5745,6 +5944,7 @@ the following line in
 <td>2046</td>
 <td>medium</td>
 <td>The SUSE operating system clock must, for networked systems, be synchronized to an authoritative DoD time source at least every 24 hours.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Inaccurate time stamps make it more difficult to correlate
 events and can lead to an inaccurate analysis. Determining the correct
 time a particular event occurred on a system is critical when conducting
@@ -5774,6 +5974,7 @@ to pass.</pre></td>
 <td>1890</td>
 <td>low</td>
 <td>The SUSE operating system must be configured to use Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT).</td>
+<td>SRG-OS-ID</td>
 <td><pre>If time stamps are not consistently applied and there is no common
 time reference, it is difficult to perform forensic analysis.
 
@@ -5800,6 +6001,7 @@ To configure the system time zone to use UTC or GMT, run the following command, 
 <td>2824</td>
 <td>medium</td>
 <td>The SUSE operating system must implement kptr-restrict to prevent the leaking of internal kernel addresses.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Exposing kernel pointers (through procfs or <code>seq_printf()</code>) exposes kernel
 writeable structures which may contain functions pointers. If a write vulnerability
 occurs in the kernel, allowing write access to any of this structure, the kernel can
@@ -5837,6 +6039,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>2824</td>
 <td>medium</td>
 <td>Address space layout randomization (ASLR) must be implemented by the SUSE operating system to protect memory from unauthorized code execution.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Address space layout randomization (ASLR) makes it more difficult for an
 attacker to predict the location of attack code they have introduced into a
 process's address space during an attempt at exploitation. Additionally,
@@ -5875,6 +6078,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>1851</td>
 <td>medium</td>
 <td>The SUSE operating system must off-load rsyslog messages for networked systems in real time and off-load standalone systems at least weekly.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A log server (loghost) receives syslog messages from one or more
 systems. This data can be used as an additional log source in the event a
 system is compromised and its local logs are suspect. Forwarding log messages
@@ -5920,6 +6124,7 @@ There must be a resolvable DNS CNAME or Alias record set to "<xccdf-1.1:sub xmln
 <td>1095</td>
 <td>medium</td>
 <td>The SUSE operating system must be configured to use TCP syncookies.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A TCP SYN flood attack can cause a denial of service by filling a
 system's TCP connection table with connections in the SYN_RCVD state.
 Syncookies can be used to track a connection when a subsequent ACK is received,
@@ -5958,6 +6163,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not forward Internet Protocol version 4 (IPv4) source-routed packets.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Source-routed packets allow the source of the packet to suggest routers
 forward the packet along a different path than configured on the router,
 which can be used to bypass network security measures. This requirement
@@ -5998,6 +6204,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not forward Internet Protocol version 6 (IPv6) source-routed packets.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Source-routed packets allow the source of the packet to suggest routers
 forward the packet along a different path than configured on the router, which can
 be used to bypass network security measures. This requirement applies only to the
@@ -6038,6 +6245,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not forward Internet Protocol version 6 (IPv6) source-routed packets by default.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Source-routed packets allow the source of the packet to suggest routers
 forward the packet along a different path than configured on the router, which can
 be used to bypass network security measures. This requirement applies only to the
@@ -6078,6 +6286,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must prevent Internet Protocol version 6 (IPv6) Internet Control Message Protocol (ICMP) redirect messages from being accepted.</td>
+<td>SRG-OS-ID</td>
 <td><pre>IP forwarding permits the kernel to forward packets from one network
 interface to another. The ability to forward packets between two networks is
 only appropriate for systems acting as routers.</pre></td>
@@ -6113,6 +6322,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not be performing Internet Protocol version 6 (IPv6) packet forwarding unless the system is a router.</td>
+<td>SRG-OS-ID</td>
 <td><pre>IP forwarding permits the kernel to forward packets from one network
 interface to another. The ability to forward packets between two networks is
 only appropriate for systems acting as routers.</pre></td>
@@ -6148,6 +6358,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td></td>
 <td>medium</td>
 <td>The SUSE operating system must not be performing Internet Protocol version 6 (IPv6) packet forwarding by default unless the system is a router.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -6159,6 +6370,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not forward Internet Protocol version 4 (IPv4) source-routed packets by default.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Source-routed packets allow the source of the packet to suggest routers
 forward the packet along a different path than configured on the router,
 which can be used to bypass network security measures.
@@ -6199,6 +6411,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not respond to Internet Protocol version 4 (IPv4) Internet Control Message Protocol (ICMP) echoes sent to a broadcast address.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Responding to broadcast (ICMP) echoes facilitates network mapping
 and provides a vector for amplification attacks.
 <br>
@@ -6236,6 +6449,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must prevent Internet Protocol version 4 (IPv4) Internet Control Message Protocol (ICMP) redirect messages from being accepted.</td>
+<td>SRG-OS-ID</td>
 <td><pre>ICMP redirect messages are used by routers to inform hosts that a more
 direct route exists for a particular destination. These messages modify the
 host's route table and are unauthenticated. An illicit ICMP redirect
@@ -6275,6 +6489,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not allow interfaces to accept Internet Protocol version 4 (IPv4) Internet Control Message Protocol (ICMP) redirect messages by default.</td>
+<td>SRG-OS-ID</td>
 <td><pre>ICMP redirect messages are used by routers to inform hosts that a more
 direct route exists for a particular destination. These messages modify the
 host's route table and are unauthenticated. An illicit ICMP redirect
@@ -6313,6 +6528,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not allow interfaces to accept Internet Protocol version 6 (IPv6) Internet Control Message Protocol (ICMP) redirect messages by default.</td>
+<td>SRG-OS-ID</td>
 <td><pre>An illicit ICMP redirect message could result in a man-in-the-middle attack.</pre></td>
 <td><pre>The runtime status of the net.ipv6.conf.default.accept_redirects kernel parameter can be queried
 by running the following command:
@@ -6346,6 +6562,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not allow interfaces to send Internet Protocol version 4 (IPv4) Internet Control Message Protocol (ICMP) redirect messages by default.</td>
+<td>SRG-OS-ID</td>
 <td><pre>ICMP redirect messages are used by routers to inform hosts that a more
 direct route exists for a particular destination. These messages contain information
 from the system's route table possibly revealing portions of the network topology.
@@ -6383,6 +6600,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not send Internet Protocol version 4 (IPv4) Internet Control Message Protocol (ICMP) redirects.</td>
+<td>SRG-OS-ID</td>
 <td><pre>ICMP redirect messages are used by routers to inform hosts that a more
 direct route exists for a particular destination. These messages contain information
 from the system's route table possibly revealing portions of the network topology.
@@ -6420,6 +6638,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not be performing Internet Protocol version 4 (IPv4) packet forwarding unless the system is a router.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Routing protocol daemons are typically used on routers to exchange
 network topology information with other routers. If this capability is used when
 not required, system network information may be unnecessarily transmitted across
@@ -6456,6 +6675,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>The SUSE operating system must not have network interfaces in promiscuous mode unless approved and documented.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Network interfaces in promiscuous mode allow for the capture of all network traffic
 visible to the system. If unauthorized individuals can access these applications, it
 may allow them to collect information such as logon IDs, passwords, and key exchanges
@@ -6483,6 +6703,7 @@ Promiscuous mode of an interface can be disabled with the following command:
 <td>2418</td>
 <td>medium</td>
 <td>The SUSE operating system wireless network adapters must be disabled unless approved and documented.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The use of wireless networking can introduce many different attack vectors into
 the organization's network. Common attack vectors such as malicious association
 and ad hoc networks will allow an attacker to spoof a wireless access point
@@ -6536,6 +6757,7 @@ connections.</pre></td>
 <td>1954</td>
 <td>medium</td>
 <td>The SUSE operating system must have the packages required for multifactor authentication to be installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Using an authentication device, such as a CAC or token that is separate from
 the information system, ensures that even if the information system is
 compromised, that compromise will not affect credentials stored on the
@@ -6614,6 +6836,7 @@ $ sudo zypper install coolkey</pre></pre></td>
 <td>1954</td>
 <td>medium</td>
 <td>The SUSE operating system must implement certificate status checking for multifactor authentication.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Using an authentication device, such as a CAC or token that is separate from
 the information system, ensures that even if the information system is
 compromised, that compromise will not affect credentials stored on the
@@ -6645,6 +6868,7 @@ authentication. Modify all of the <code>cert_policy</code> lines in
 <td>1954</td>
 <td>medium</td>
 <td>The SUSE operating system must implement multifactor authentication for access to privileged accounts via pluggable authentication modules (PAM).</td>
+<td>SRG-OS-ID</td>
 <td><pre>Smart card login provides two-factor authentication stronger than
 that provided by a username and password combination. Smart cards leverage PKI
 (public key infrastructure) in order to provide and verify credentials.
@@ -6704,6 +6928,7 @@ the documentation at:
 <td>1991</td>
 <td>medium</td>
 <td>The SUSE operating system, for PKI-based authentication, must validate certificates by constructing a certification path (which includes status information) to an accepted trust anchor.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Using an authentication device, such as a CAC or token that is separate from
 the information system, ensures that even if the information system is
 compromised, that compromise will not affect credentials stored on the
@@ -6735,6 +6960,7 @@ authentication. Modify all of the <code>cert_policy</code> lines in
 <td></td>
 <td>high</td>
 <td>The SUSE operating system must use a virus scan program.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>

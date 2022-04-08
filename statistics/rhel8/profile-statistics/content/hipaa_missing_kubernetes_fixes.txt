@@ -66,7 +66,6 @@ ensure_gpgcheck_never_disabled
 ensure_redhat_gpgkey_installed
 file_groupowner_grub2_cfg
 file_owner_grub2_cfg
-file_permissions_grub2_cfg
 grub2_audit_argument
 grub2_disable_interactive_boot
 grub2_enable_selinux

@@ -159,7 +159,6 @@ package_cron_installed
 package_dovecot_removed
 package_httpd_removed
 package_inetutils-telnetd_removed
-package_krb5-server_removed
 package_net-snmp_removed
 package_nis_removed
 package_ntp_installed

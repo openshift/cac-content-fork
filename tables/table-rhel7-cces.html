@@ -5385,7 +5385,9 @@ add the lines to file <code>/etc/audit/audit.rules</code>.</td>
 <td>Ensure auditd Collects Information on Kernel Module Unloading - delete_module</td>
 <td>To capture kernel module unloading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
+
 <pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -5401,11 +5403,13 @@ add the line to file <code>/etc/audit/audit.rules</code>.</td>
 to read audit rules during daemon startup (the default), add the following lines to a file
 with suffix <code>.rules</code> in the directory <code>/etc/audit/rules.d</code> to capture kernel module
 loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system:
+
 <pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
-If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
+    If the <code>auditd</code> daemon is configured to use the <code>auditctl</code> utility to read audit
 rules during daemon startup, add the following lines to <code>/etc/audit/audit.rules</code> file
 in order to capture kernel module loading and unloading events, setting ARCH to either b32 or
 b64 as appropriate for your system:
+
 <pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
 </td>
 </tr>
@@ -5414,7 +5418,9 @@ b64 as appropriate for your system:
 <td>Ensure auditd Collects Information on Kernel Module Loading - init_module</td>
 <td>To capture kernel module loading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
+
 <pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -6630,6 +6636,638 @@ media which should not exist in the line:
 <td>For each solid-state drive on the system, run:
 <pre> # echo 0 &gt; /sys/block/DRIVE/queue/add_random</pre>
 </td>
+</tr>
+<tr>
+<td>CCE-86776-2</td>
+<td>Do not allow ACPI methods to be inserted/replaced at run time</td>
+<td>This debug facility allows ACPI AML methods to be inserted and/or replaced without rebooting
+the system.
+This configuration is available from kernel 3.0.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_ACPI_CUSTOM_METHOD</code>, run the following command:
+    <code>grep CONFIG_ACPI_CUSTOM_METHOD /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87765-4</td>
+<td>Disable kernel support for MISC binaries</td>
+<td>Enabling <code>CONFIG_BINFMT_MISC</code> makes it possible to plug wrapper-driven binary formats
+into the kernel. This is specially useful for programs that need an interpreter to run like
+Java, Python and DOS emulators. Once you have registered such a binary class with the kernel,
+you can start one of those programs simply by typing in its name at a shell prompt.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_BINFMT_MISC</code>, run the following command:
+    <code>grep CONFIG_BINFMT_MISC /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-86093-2</td>
+<td>Enable support for BUG()</td>
+<td>Disabling this option eliminates support for BUG and WARN, reducing the size of your kernel
+image and potentially quietly ignoring numerous fatal conditions. You should only consider
+disabling this option for embedded systems with no facilities for reporting errors.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_BUG</code>, run the following command:
+    <code>grep CONFIG_BUG /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-88961-8</td>
+<td>Disable compatibility with brk()</td>
+<td>Enabling compatiliby with <code>brk()</code> allows legacy binaries to run (i.e. those linked
+against libc5). But this compatibility comes at the cost of not being able to randomize
+the heap placement (ASLR).
+
+Unless legacy binaries need to run on the system, set <code>CONFIG_COMPAT_BRK</code> to <code>"n"</code>.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_COMPAT_BRK</code>, run the following command:
+    <code>grep CONFIG_COMPAT_BRK /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87255-6</td>
+<td>Disable the 32-bit vDSO</td>
+<td>Certain buggy versions of glibc (2.3.3) will crash if they are presented with a 32-bit vDSO
+that is not mapped at the address indicated in its segment table.
+Setting <code>CONFIG_COMPAT_VDSO</code> to <code>y</code> turns off the 32-bit VDSO and works
+aroud the glibc bug.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_COMPAT_VDSO</code>, run the following command:
+    <code>grep CONFIG_COMPAT_VDSO /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-86655-8</td>
+<td>Enable checks on credential management</td>
+<td>Enable this to turn on some debug checking for credential management. The additional code keeps
+track of the number of pointers from task_structs to any given cred struct, and checks to see
+that this number never exceeds the usage count of the cred struct.
+
+Furthermore, if SELinux is enabled, this also checks that the security pointer in the cred
+struct is never seen to be invalid.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_DEBUG_CREDENTIALS</code>, run the following command:
+    <code>grep CONFIG_DEBUG_CREDENTIALS /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87033-7</td>
+<td>Disable kernel debugfs</td>
+<td>
+<code>debugfs</code> is a virtual file system that kernel developers use to put debugging files
+into. Enable this option to be able to read and write to these files.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_DEBUG_FS</code>, run the following command:
+    <code>grep CONFIG_DEBUG_FS /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-86985-9</td>
+<td>Enable checks on linked list manipulation</td>
+<td>Enable this to turn on extended checks in the linked-list walking routines.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_DEBUG_LIST</code>, run the following command:
+    <code>grep CONFIG_DEBUG_LIST /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-86813-3</td>
+<td>Enable checks on notifier call chains</td>
+<td>Enable this to turn on sanity checking for notifier call chains. This is most useful for kernel
+developers to make sure that modules properly unregister themselves from notifier chains.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_DEBUG_NOTIFIERS</code>, run the following command:
+    <code>grep CONFIG_DEBUG_NOTIFIERS /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87147-5</td>
+<td>Enable checks on scatter-gather (SG) table operations</td>
+<td>Scatter-gather tables are mechanism used for high performance I/O on DMA devices.
+Enable this to turn on checks on scatter-gather tables.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_DEBUG_SG</code>, run the following command:
+    <code>grep CONFIG_DEBUG_SG /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-88159-9</td>
+<td>Configure low address space to protect from user allocation</td>
+<td>This is the portion of low virtual memory which should be protected from userspace allocation.
+This configuration is available from kernel 3.14, but may be available if backported
+by distros.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_DEFAULT_MMAP_MIN_ADDR</code>, run the following command:
+    <code>grep CONFIG_DEFAULT_MMAP_MIN_ADDR /boot/config-*</code>
+    
+    For each kernel installed, a line with value "65536" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-86943-8</td>
+<td>Disable /dev/kmem virtual device support</td>
+<td>Disable support for the /dev/kmem device.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_DEVKMEM</code>, run the following command:
+    <code>grep CONFIG_DEVKMEM /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87299-4</td>
+<td>Harden memory copies between kernel and userspace</td>
+<td>This option checks for obviously wrong memory regions when copying memory to/from the kernel
+(via copy_to_user() and copy_from_user() functions) by rejecting memory ranges that are larger
+than the specified heap object, span multiple separately allocated pages, are not on the
+process stack, or are part of the kernel text.
+This configuration is available from kernel 4.8, and may be available if backported by distros.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_HARDENED_USERCOPY</code>, run the following command:
+    <code>grep CONFIG_HARDENED_USERCOPY /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87607-8</td>
+<td>Disable hibernation</td>
+<td>Enable the suspend to disk (STD) functionality, which is usually called "hibernation" in user
+interfaces. STD checkpoints the system and powers it off; and restores that checkpoint on
+reboot.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_HIBERNATION</code>, run the following command:
+    <code>grep CONFIG_HIBERNATION /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-88745-5</td>
+<td>Disable IA32 emulation</td>
+<td>Disables support for legacy 32-bit programs under a 64-bit kernel.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_IA32_EMULATION</code>, run the following command:
+    <code>grep CONFIG_IA32_EMULATION /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87224-2</td>
+<td>Disable the IPv6 protocol</td>
+<td>Disable support for IP version 6 (IPv6).
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_IPV6</code>, run the following command:
+    <code>grep CONFIG_IPV6 /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87486-7</td>
+<td>Disable kexec system call</td>
+<td>
+<code>kexec</code> is a system call that implements the ability to shutdown your current kernel,
+and to start another kernel. It is like a reboot but it is independent of the system firmware.
+And like a reboot you can start any kernel with it, not just Linux.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_KEXEC</code>, run the following command:
+    <code>grep CONFIG_KEXEC /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87924-7</td>
+<td>Disable legacy (BSD) PTY support</td>
+<td>Disable the Linux traditional BSD-like terminal names /dev/ptyxx for masters and /dev/ttyxx for
+slaves of pseudo terminals, and use only the modern ptys (devpts) interface.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_LEGACY_PTYS</code>, run the following command:
+    <code>grep CONFIG_LEGACY_PTYS /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-89377-6</td>
+<td>Enable module signature verification</td>
+<td>Check modules for valid signatures upon load.
+Note that this option adds the OpenSSL development packages as a kernel build dependency so
+that the signing tool can use its crypto library.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_MODULE_SIG</code>, run the following command:
+    <code>grep CONFIG_MODULE_SIG /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-89614-2</td>
+<td>Enable automatic signing of all modules</td>
+<td>Sign all modules during make modules_install. Without this option, modules must be signed
+manually, using the scripts/sign-file tool.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_MODULE_SIG_ALL</code>, run the following command:
+    <code>grep CONFIG_MODULE_SIG_ALL /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-89458-4</td>
+<td>Require modules to be validly signed</td>
+<td>Reject unsigned modules or signed modules with an unknown key.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_MODULE_SIG_FORCE</code>, run the following command:
+    <code>grep CONFIG_MODULE_SIG_FORCE /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-89842-9</td>
+<td>Specify the hash to use when signing modules</td>
+<td>This configures the kernel to build and sign modules using
+<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_kernel_config_module_sig_hash"></xccdf-1.1:sub> as the hash function.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_MODULE_SIG_HASH</code>, run the following command:
+    <code>grep CONFIG_MODULE_SIG_HASH /boot/config-*</code>
+    
+    For each kernel installed, a line with value "<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_kernel_config_module_sig_hash"></xccdf-1.1:sub>" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-90001-9</td>
+<td>Specify module signing key to use</td>
+<td>Setting this option to something other than its default of <code>certs/signing_key.pem</code> will
+disable the autogeneration of signing keys and allow the kernel modules to be signed with a key
+of your choosing.
+
+The string provided should identify a file containing both a private key and
+its corresponding X.509 certificate in PEM form, or — on systems where the OpenSSL ENGINE_pkcs11
+is functional — a PKCS#11 URI as defined by RFC7512. In the latter case, the PKCS#11 URI should
+reference both a certificate and a private key.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_MODULE_SIG_KEY</code>, run the following command:
+    <code>grep CONFIG_MODULE_SIG_KEY /boot/config-*</code>
+    
+    For each kernel installed, a line with value "<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_kernel_config_module_sig_key"></xccdf-1.1:sub>" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-89693-6</td>
+<td>Sign kernel modules with SHA-512</td>
+<td>This configures the kernel to build and sign modules using SHA512 as the hash function.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_MODULE_SIG_SHA512</code>, run the following command:
+    <code>grep CONFIG_MODULE_SIG_SHA512 /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td></td>
+<td>Enable poison without sanity check</td>
+<td>Skip the sanity checking on alloc, only fill the pages with poison on free. This reduces some
+of the overhead of the poisoning feature.
+This configuration is available from kernel 4.6.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_PAGE_POISONING_NO_SANITY</code>, run the following command:
+    <code>grep CONFIG_PAGE_POISONING_NO_SANITY /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-88807-3</td>
+<td>Use zero for poisoning instead of debugging value</td>
+<td>Instead of using the existing poison value, fill the pages with zeros. This makes it harder to
+detect when errors are occurring due to sanitization but the zeroing at free means that it is
+no longer necessary to write zeros when GFP_ZERO is used on allocation.
+This configuration is available from kernel 4.19.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_PAGE_POISONING_ZERO</code>, run the following command:
+    <code>grep CONFIG_PAGE_POISONING_ZERO /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-88590-5</td>
+<td>Remove the kernel mapping in user mode</td>
+<td>This feature reduces the number of hardware side channels by ensuring that the majority of
+kernel addresses are not mapped into userspace.
+This configuration is available from kernel 4.15, but may be available if backported
+by distros.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_PAGE_TABLE_ISOLATION</code>, run the following command:
+    <code>grep CONFIG_PAGE_TABLE_ISOLATION /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-86175-7</td>
+<td>Kernel panic oops</td>
+<td>Enable the kernel to panic when it oopses.
+This has the same effect as setting oops=panic on the kernel command line.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_PANIC_ON_OOPS</code>, run the following command:
+    <code>grep CONFIG_PANIC_ON_OOPS /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-86348-0</td>
+<td>Kernel panic timeout</td>
+<td>Set the timeout value (in seconds) until a reboot occurs when the kernel panics.
+A timeout of 0 configures the system to wait forever. With a timeout value greater than 0,
+the system will wait the specified amount of seconds before rebooting. While a timeout value
+less than 0 makes the system reboot immediately.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_PANIC_TIMEOUT</code>, run the following command:
+    <code>grep CONFIG_PANIC_TIMEOUT /boot/config-*</code>
+    
+    For each kernel installed, a line with value "<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" idref="var_kernel_config_panic_timeout"></xccdf-1.1:sub>" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87104-6</td>
+<td>Disable support for /proc/kkcore</td>
+<td>Provides a virtual ELF core file of the live kernel.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_PROC_KCORE</code>, run the following command:
+    <code>grep CONFIG_PROC_KCORE /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-88317-3</td>
+<td>Randomize the address of the kernel image (KASLR)</td>
+<td>In support of Kernel Address Space Layout Randomization (KASLR), this randomizes the physical
+address at which the kernel image is decompressed and the virtual address where the kernel
+image is mapped.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_RANDOMIZE_BASE</code>, run the following command:
+    <code>grep CONFIG_RANDOMIZE_BASE /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-88439-5</td>
+<td>Randomize the kernel memory sections</td>
+<td>Randomizes the base virtual address of kernel memory sections (physical memory mapping,
+vmalloc &amp; vmemmap).
+This configuration is available from kernel 4.8, but may be available if backported
+by distros.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_RANDOMIZE_MEMORY</code>, run the following command:
+    <code>grep CONFIG_RANDOMIZE_MEMORY /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-86421-5</td>
+<td>Perform full reference count validation</td>
+<td>Enabling this switches the refcounting infrastructure from a fast unchecked atomic_t
+implementation to a fully state checked implementation, which can have a slight
+impact in performance.
+This configuration is available from kernel 4.13, but may be available if backported
+by distros.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_REFCOUNT_FULL</code>, run the following command:
+    <code>grep CONFIG_REFCOUNT_FULL /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87493-3</td>
+<td>Avoid speculative indirect branches in kernel</td>
+<td>Compile kernel with the retpoline compiler options to guard against kernel-to-user data leaks
+by avoiding speculative indirect branches.
+Requires a compiler with -mindirect-branch=thunk-extern support for full protection.
+The kernel may run slower.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_RETPOLINE</code>, run the following command:
+    <code>grep CONFIG_RETPOLINE /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-86449-6</td>
+<td>Enable seccomp to safely compute untrusted bytecode</td>
+<td>This kernel feature is useful for number crunching applications that may need to compute
+untrusted bytecode during their execution. By using pipes or other transports made available
+to the process as file descriptors supporting the read/write syscalls, it's possible to isolate
+those applications in their own address space using seccomp.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_SECCOMP</code>, run the following command:
+    <code>grep CONFIG_SECCOMP /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-86489-2</td>
+<td>Enable use of Berkeley Packet Filter with seccomp</td>
+<td>Enable tasks to build secure computing environments defined in terms of Berkeley Packet Filter
+programs which implement task-defined system call filtering polices.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_SECCOMP_FILTER</code>, run the following command:
+    <code>grep CONFIG_SECCOMP_FILTER /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-86571-7</td>
+<td>Enable different security models</td>
+<td>This allows you to choose different security modules to be configured into your kernel.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_SECURITY</code>, run the following command:
+    <code>grep CONFIG_SECURITY /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87337-2</td>
+<td>Restrict unprivileged access to the kernel syslog</td>
+<td>Enforce restrictions on unprivileged users reading the kernel syslog via dmesg(8).
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_SECURITY_DMESG_RESTRICT</code>, run the following command:
+    <code>grep CONFIG_SECURITY_DMESG_RESTRICT /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-86883-6</td>
+<td>Disable mutable hooks</td>
+<td>Ensure kernel structures associated with LSMs are always mapped as read-only after system boot.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_SECURITY_WRITABLE_HOOKS</code>, run the following command:
+    <code>grep CONFIG_SECURITY_WRITABLE_HOOKS /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-86715-0</td>
+<td>Enable Yama support</td>
+<td>This enables support for LSM module Yama, which extends DAC support with additional system-wide
+security settings beyond regular Linux discretionary access controls. The module will limit the
+use of the system call <code>ptrace()</code>.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_SECURITY_YAMA</code>, run the following command:
+    <code>grep CONFIG_SECURITY_YAMA /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-88274-6</td>
+<td>Enale SLUB debugging support</td>
+<td>SLUB has extensive debug support features and this allows the allocator validation checking to
+be enabled.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_SLUB_DEBUG</code>, run the following command:
+    <code>grep CONFIG_SLUB_DEBUG /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87329-9</td>
+<td>Enable TCP/IP syncookie support</td>
+<td>Normal TCP/IP networking is open to an attack known as SYN flooding.
+It is denial-of-service attack that prevents legitimate remote users from being able to connect
+to your computer during an ongoing attack.
+
+When enabled the TCP/IP stack will use a cryptographic challenge protocol known as SYN cookies
+to enable legitimate users to continue to connect, even when your machine is under attack.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_SYN_COOKIES</code>, run the following command:
+    <code>grep CONFIG_SYN_COOKIES /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td></td>
+<td>Unmap kernel when running in userspace (aka KAISER)</td>
+<td>Speculation attacks against some high-performance processors can be used to bypass MMU
+permission checks and leak kernel data to userspace. This can be defended against by unmapping
+the kernel when running in userspace, mapping it back in on exception entry via a trampoline
+page in the vector table.
+This configuration is available from kernel 4.16, but may be available if backported
+by distros.
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_UNMAP_KERNEL_AT_EL0</code>, run the following command:
+    <code>grep CONFIG_UNMAP_KERNEL_AT_EL0 /boot/config-*</code>
+    
+    For each kernel installed, a line with value "y" should be returned.
+    </td>
+</tr>
+<tr>
+<td>CCE-87882-7</td>
+<td>Disable x86 vsyscall emulation</td>
+<td>Disabling it is roughly equivalent to booting with vsyscall=none, except that it will also
+disable the helpful warning if a program tries to use a vsyscall. With this option set to N,
+offending programs will just segfault, citing addresses of the form 0xffffffffff600?00.
+This configuration is available from kernel 3.19.
+
+The configuration that was used to build kernel is available at <code>/boot/config-*</code>.
+    To check the configuration value for <code>CONFIG_X86_VSYSCALL_EMULATION</code>, run the following command:
+    <code>grep CONFIG_X86_VSYSCALL_EMULATION /boot/config-*</code>
+    
+    Configs with value 'n' are not explicitly set in the file, so either commented lines or no
+    lines should be returned.
+    </td>
 </tr>
 <tr>
 <td>CCE-86724-2</td>

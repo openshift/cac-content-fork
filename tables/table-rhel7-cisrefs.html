@@ -719,7 +719,7 @@ monitoring system trap when there is an unauthorized modification of a configura
 </tr>
 <tr>
   <td>1.4.1</td>
-  <td>Set the UEFI Boot Loader Password</td>
+  <td>Set Boot Loader Password in grub2</td>
   <td xml:lang="en-US">
 The grub2 boot loader should have a superuser account and password
 protection enabled to protect boot-time settings.
@@ -741,7 +741,7 @@ and whether to enter single-user mode.
 </tr>
 <tr>
   <td>1.4.1</td>
-  <td>Set Boot Loader Password in grub2</td>
+  <td>Set the UEFI Boot Loader Password</td>
   <td xml:lang="en-US">
 The grub2 boot loader should have a superuser account and password
 protection enabled to protect boot-time settings.
@@ -777,22 +777,6 @@ parameters.
 </tr>
 <tr>
   <td>1.4.2</td>
-  <td>Verify /boot/grub2/grub.cfg Group Ownership</td>
-  <td xml:lang="en-US">
-The file <tt>/boot/grub2/grub.cfg</tt> should
-be group-owned by the <tt>root</tt> group to prevent
-destruction or modification of the file.
-
-To properly set the group owner of <code>/boot/grub2/grub.cfg</code>, run the command:
-<pre>$ sudo chgrp root /boot/grub2/grub.cfg</pre>
-  </td>
-  <td xml:lang="en-US">
-The <tt>root</tt> group is a highly-privileged group. Furthermore, the group-owner of this
-file should not have any access privileges anyway.
-  </td>
-</tr>
-<tr>
-  <td>1.4.2</td>
   <td>Verify the UEFI Boot Loader grub.cfg Permissions</td>
   <td xml:lang="en-US">
 File permissions for <tt>/boot/efi/EFI/redhat/grub.cfg</tt> should be set to 700.
@@ -803,6 +787,21 @@ To properly set the permissions of <code>/boot/efi/EFI/redhat/grub.cfg</code>, r
   <td xml:lang="en-US">
 Proper permissions ensure that only the root user can modify important boot
 parameters.
+  </td>
+</tr>
+<tr>
+  <td>1.4.2</td>
+  <td>Verify the UEFI Boot Loader grub.cfg User Ownership</td>
+  <td xml:lang="en-US">
+The file <tt>/boot/efi/EFI/redhat/grub.cfg</tt> should
+be owned by the <tt>root</tt> user to prevent destruction
+or modification of the file.
+
+To properly set the owner of <code>/boot/efi/EFI/redhat/grub.cfg</code>, run the command:
+<pre>$ sudo chown root /boot/efi/EFI/redhat/grub.cfg </pre>
+  </td>
+  <td xml:lang="en-US">
+Only root should be able to modify important boot parameters.
   </td>
 </tr>
 <tr>
@@ -823,6 +822,22 @@ file should not have any access privileges anyway.
 </tr>
 <tr>
   <td>1.4.2</td>
+  <td>Verify /boot/grub2/grub.cfg Group Ownership</td>
+  <td xml:lang="en-US">
+The file <tt>/boot/grub2/grub.cfg</tt> should
+be group-owned by the <tt>root</tt> group to prevent
+destruction or modification of the file.
+
+To properly set the group owner of <code>/boot/grub2/grub.cfg</code>, run the command:
+<pre>$ sudo chgrp root /boot/grub2/grub.cfg</pre>
+  </td>
+  <td xml:lang="en-US">
+The <tt>root</tt> group is a highly-privileged group. Furthermore, the group-owner of this
+file should not have any access privileges anyway.
+  </td>
+</tr>
+<tr>
+  <td>1.4.2</td>
   <td>Verify /boot/grub2/grub.cfg User Ownership</td>
   <td xml:lang="en-US">
 The file <tt>/boot/grub2/grub.cfg</tt> should
@@ -831,21 +846,6 @@ or modification of the file.
 
 To properly set the owner of <code>/boot/grub2/grub.cfg</code>, run the command:
 <pre>$ sudo chown root /boot/grub2/grub.cfg </pre>
-  </td>
-  <td xml:lang="en-US">
-Only root should be able to modify important boot parameters.
-  </td>
-</tr>
-<tr>
-  <td>1.4.2</td>
-  <td>Verify the UEFI Boot Loader grub.cfg User Ownership</td>
-  <td xml:lang="en-US">
-The file <tt>/boot/efi/EFI/redhat/grub.cfg</tt> should
-be owned by the <tt>root</tt> user to prevent destruction
-or modification of the file.
-
-To properly set the owner of <code>/boot/efi/EFI/redhat/grub.cfg</code>, run the command:
-<pre>$ sudo chown root /boot/efi/EFI/redhat/grub.cfg </pre>
   </td>
   <td xml:lang="en-US">
 Only root should be able to modify important boot parameters.
@@ -888,36 +888,6 @@ by configuring the bootloader password.
 </tr>
 <tr>
   <td>1.5.1</td>
-  <td>Disable Core Dumps for SUID programs</td>
-  <td xml:lang="en-US">
-To set the runtime status of the <code>fs.suid_dumpable</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w fs.suid_dumpable=0</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>fs.suid_dumpable = 0</pre>
-  </td>
-  <td xml:lang="en-US">
-The core dump of a setuid program is more likely to contain
-sensitive data, as the program itself runs with greater privileges than the
-user who initiated execution of the program.  Disabling the ability for any
-setuid program to write a core file decreases the risk of unauthorized access
-of such data.
-  </td>
-</tr>
-<tr>
-  <td>1.5.1</td>
-  <td>Disable Core Dumps for All Users</td>
-  <td xml:lang="en-US">
-To disable core dumps for all users, add the following line to
-<tt>/etc/security/limits.conf</tt>, or to a file within the
-<tt>/etc/security/limits.d/</tt> directory:
-<pre>*     hard   core    0</pre>
-  </td>
-  <td xml:lang="en-US">
-A core dump includes a memory image taken at the time the operating system
-terminates an application. The memory image could contain sensitive data and is generally useful
-only for developers trying to debug problems.
-  </td>
-</tr>
-<tr>
-  <td>1.5.1</td>
   <td>Disable core dump backtraces</td>
   <td xml:lang="en-US">
 The <tt>ProcessSizeMax</tt> option in <tt>[Coredump]</tt> section
@@ -940,6 +910,21 @@ should be reviewed through local needs and policy.
 </tr>
 <tr>
   <td>1.5.1</td>
+  <td>Disable Core Dumps for All Users</td>
+  <td xml:lang="en-US">
+To disable core dumps for all users, add the following line to
+<tt>/etc/security/limits.conf</tt>, or to a file within the
+<tt>/etc/security/limits.d/</tt> directory:
+<pre>*     hard   core    0</pre>
+  </td>
+  <td xml:lang="en-US">
+A core dump includes a memory image taken at the time the operating system
+terminates an application. The memory image could contain sensitive data and is generally useful
+only for developers trying to debug problems.
+  </td>
+</tr>
+<tr>
+  <td>1.5.1</td>
   <td>Disable storing core dump</td>
   <td xml:lang="en-US">
 The <tt>Storage</tt> option in <tt>[Coredump]</tt> section
@@ -957,23 +942,18 @@ should be reviewed through local needs and policy.
   </td>
 </tr>
 <tr>
-  <td>1.5.2</td>
-  <td>Enable ExecShield via sysctl</td>
+  <td>1.5.1</td>
+  <td>Disable Core Dumps for SUID programs</td>
   <td xml:lang="en-US">
-By default on Red Hat Enterprise Linux 7 64-bit systems, ExecShield is
-enabled and can only be disabled if the hardware does not support
-ExecShield or is disabled in <tt>/etc/default/grub</tt>. For
-Red Hat Enterprise Linux 7  32-bit systems, <tt>sysctl</tt> can be used to enable
-ExecShield.
+To set the runtime status of the <code>fs.suid_dumpable</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w fs.suid_dumpable=0</pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>fs.suid_dumpable = 0</pre>
   </td>
   <td xml:lang="en-US">
-ExecShield uses the segmentation feature on all x86 systems to prevent
-execution in memory higher than a certain address. It writes an address as
-a limit in the code segment descriptor, to control where code can be
-executed, on a per-process basis. When the kernel places a process's memory
-regions such as the stack and heap higher than this address, the hardware
-prevents execution in that address range. This is enabled by default on the
-latest Red Hat and Fedora systems if supported by the hardware.
+The core dump of a setuid program is more likely to contain
+sensitive data, as the program itself runs with greater privileges than the
+user who initiated execution of the program.  Disabling the ability for any
+setuid program to write a core file decreases the risk of unauthorized access
+of such data.
   </td>
 </tr>
 <tr>
@@ -1010,6 +990,26 @@ on AMD-based systems.
   <td xml:lang="en-US">
 Computers with the ability to prevent this type of code execution frequently put an option in the BIOS that will
 allow users to turn the feature on or off at will.
+  </td>
+</tr>
+<tr>
+  <td>1.5.2</td>
+  <td>Enable ExecShield via sysctl</td>
+  <td xml:lang="en-US">
+By default on Red Hat Enterprise Linux 7 64-bit systems, ExecShield is
+enabled and can only be disabled if the hardware does not support
+ExecShield or is disabled in <tt>/etc/default/grub</tt>. For
+Red Hat Enterprise Linux 7  32-bit systems, <tt>sysctl</tt> can be used to enable
+ExecShield.
+  </td>
+  <td xml:lang="en-US">
+ExecShield uses the segmentation feature on all x86 systems to prevent
+execution in memory higher than a certain address. It writes an address as
+a limit in the code segment descriptor, to control where code can be
+executed, on a per-process basis. When the kernel places a process's memory
+regions such as the stack and heap higher than this address, the hardware
+prevents execution in that address range. This is enabled by default on the
+latest Red Hat and Fedora systems if supported by the hardware.
   </td>
 </tr>
 <tr>
@@ -1214,6 +1214,28 @@ exist.
 </tr>
 <tr>
   <td>1.7.1.4<br/>1.7.1.5<br/>1.7.1.6<br/>6.1.1<br/>6.1.2<br/>6.1.3<br/>6.1.4<br/>6.1.5<br/>6.1.6<br/>6.1.7<br/>6.1.8<br/>6.1.9</td>
+  <td>Verify and Correct Ownership with RPM</td>
+  <td xml:lang="en-US">
+The RPM package management system can check file ownership
+permissions of installed software packages, including many that are
+important to system security. After locating a file with incorrect
+permissions, which can be found with
+<pre>rpm -Va | awk '{ if (substr($0,6,1)=="U" || substr($0,7,1)=="G") print $NF }'</pre>
+run the following command to determine which package owns it:
+<pre>$ rpm -qf <i>FILENAME</i></pre>
+Next, run the following command to reset its permissions to
+the correct values:
+<pre>$ sudo rpm --setugids <i>PACKAGENAME</i></pre>
+  </td>
+  <td xml:lang="en-US">
+Ownership of binaries and configuration files that is incorrect
+could allow an unauthorized user to gain privileges that they should
+not have. The ownership set by the vendor should be maintained. Any
+deviations from this baseline should be investigated.
+  </td>
+</tr>
+<tr>
+  <td>1.7.1.4<br/>1.7.1.5<br/>1.7.1.6<br/>6.1.1<br/>6.1.2<br/>6.1.3<br/>6.1.4<br/>6.1.5<br/>6.1.6<br/>6.1.7<br/>6.1.8<br/>6.1.9</td>
   <td>Verify and Correct File Permissions with RPM</td>
   <td xml:lang="en-US">
 The RPM package management system can check file access permissions
@@ -1237,46 +1259,6 @@ Permissions on system binaries and configuration files that are too generous
 could allow an unauthorized user to gain privileges that they should not have.
 The permissions set by the vendor should be maintained. Any deviations from
 this baseline should be investigated.
-  </td>
-</tr>
-<tr>
-  <td>1.7.1.4<br/>1.7.1.5<br/>1.7.1.6<br/>6.1.1<br/>6.1.2<br/>6.1.3<br/>6.1.4<br/>6.1.5<br/>6.1.6<br/>6.1.7<br/>6.1.8<br/>6.1.9</td>
-  <td>Verify and Correct Ownership with RPM</td>
-  <td xml:lang="en-US">
-The RPM package management system can check file ownership
-permissions of installed software packages, including many that are
-important to system security. After locating a file with incorrect
-permissions, which can be found with
-<pre>rpm -Va | awk '{ if (substr($0,6,1)=="U" || substr($0,7,1)=="G") print $NF }'</pre>
-run the following command to determine which package owns it:
-<pre>$ rpm -qf <i>FILENAME</i></pre>
-Next, run the following command to reset its permissions to
-the correct values:
-<pre>$ sudo rpm --setugids <i>PACKAGENAME</i></pre>
-  </td>
-  <td xml:lang="en-US">
-Ownership of binaries and configuration files that is incorrect
-could allow an unauthorized user to gain privileges that they should
-not have. The ownership set by the vendor should be maintained. Any
-deviations from this baseline should be investigated.
-  </td>
-</tr>
-<tr>
-  <td>1.7.2</td>
-  <td>Make sure that the dconf databases are up-to-date with regards to respective keyfiles</td>
-  <td xml:lang="en-US">
-By default, DConf uses a binary database as a data backend.
-The system-level database is compiled from keyfiles in the /etc/dconf/db/
-directory by the <pre>dconf update</pre> command. More specifically, content present
-in the following directories:
-<pre>/etc/dconf/db/gdm.d</pre>
-<pre>/etc/dconf/db/local.d</pre>
-  </td>
-  <td xml:lang="en-US">
-Unlike text-based keyfiles, the binary database is impossible to check by OVAL.
-Therefore, in order to evaluate dconf configuration, both have to be true at the same time -
-configuration files have to be compliant, and the database needs to be more recent than those keyfiles,
-which gives confidence that it reflects them.
   </td>
 </tr>
 <tr>
@@ -1328,19 +1310,37 @@ exist.
   </td>
 </tr>
 <tr>
+  <td>1.7.2</td>
+  <td>Make sure that the dconf databases are up-to-date with regards to respective keyfiles</td>
+  <td xml:lang="en-US">
+By default, DConf uses a binary database as a data backend.
+The system-level database is compiled from keyfiles in the /etc/dconf/db/
+directory by the <pre>dconf update</pre> command. More specifically, content present
+in the following directories:
+<pre>/etc/dconf/db/gdm.d</pre>
+<pre>/etc/dconf/db/local.d</pre>
+  </td>
+  <td xml:lang="en-US">
+Unlike text-based keyfiles, the binary database is impossible to check by OVAL.
+Therefore, in order to evaluate dconf configuration, both have to be true at the same time -
+configuration files have to be compliant, and the database needs to be more recent than those keyfiles,
+which gives confidence that it reflects them.
+  </td>
+</tr>
+<tr>
   <td>1.7.4</td>
-  <td>Verify Group Ownership of Message of the Day Banner</td>
+  <td>Verify permissions on Message of the Day Banner</td>
   <td xml:lang="en-US">
 
-To properly set the group owner of <code>/etc/motd</code>, run the command:
-<pre>$ sudo chgrp root /etc/motd</pre>
+To properly set the permissions of <code>/etc/motd</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/motd</pre>
   </td>
   <td xml:lang="en-US">
 Display of a standardized and approved use notification before granting
 access to the operating system ensures privacy and security notification
 verbiage used is consistent with applicable federal laws, Executive Orders,
 directives, policies, regulations, standards, and guidance.<br />
-Proper group ownership will ensure that only root user can modify the banner.
+Proper permissions will ensure that only root user can modify the banner.
   </td>
 </tr>
 <tr>
@@ -1361,27 +1361,11 @@ Proper ownership will ensure that only root user can modify the banner.
 </tr>
 <tr>
   <td>1.7.4</td>
-  <td>Verify permissions on Message of the Day Banner</td>
+  <td>Verify Group Ownership of Message of the Day Banner</td>
   <td xml:lang="en-US">
 
-To properly set the permissions of <code>/etc/motd</code>, run the command:
-<pre>$ sudo chmod 0644 /etc/motd</pre>
-  </td>
-  <td xml:lang="en-US">
-Display of a standardized and approved use notification before granting
-access to the operating system ensures privacy and security notification
-verbiage used is consistent with applicable federal laws, Executive Orders,
-directives, policies, regulations, standards, and guidance.<br />
-Proper permissions will ensure that only root user can modify the banner.
-  </td>
-</tr>
-<tr>
-  <td>1.7.5</td>
-  <td>Verify Group Ownership of System Login Banner</td>
-  <td xml:lang="en-US">
-
-To properly set the group owner of <code>/etc/issue</code>, run the command:
-<pre>$ sudo chgrp root /etc/issue</pre>
+To properly set the group owner of <code>/etc/motd</code>, run the command:
+<pre>$ sudo chgrp root /etc/motd</pre>
   </td>
   <td xml:lang="en-US">
 Display of a standardized and approved use notification before granting
@@ -1389,6 +1373,22 @@ access to the operating system ensures privacy and security notification
 verbiage used is consistent with applicable federal laws, Executive Orders,
 directives, policies, regulations, standards, and guidance.<br />
 Proper group ownership will ensure that only root user can modify the banner.
+  </td>
+</tr>
+<tr>
+  <td>1.7.5</td>
+  <td>Verify permissions on System Login Banner</td>
+  <td xml:lang="en-US">
+
+To properly set the permissions of <code>/etc/issue</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/issue</pre>
+  </td>
+  <td xml:lang="en-US">
+Display of a standardized and approved use notification before granting
+access to the operating system ensures privacy and security notification
+verbiage used is consistent with applicable federal laws, Executive Orders,
+directives, policies, regulations, standards, and guidance.<br />
+Proper permissions will ensure that only root user can modify the banner.
   </td>
 </tr>
 <tr>
@@ -1409,18 +1409,18 @@ Proper ownership will ensure that only root user can modify the banner.
 </tr>
 <tr>
   <td>1.7.5</td>
-  <td>Verify permissions on System Login Banner</td>
+  <td>Verify Group Ownership of System Login Banner</td>
   <td xml:lang="en-US">
 
-To properly set the permissions of <code>/etc/issue</code>, run the command:
-<pre>$ sudo chmod 0644 /etc/issue</pre>
+To properly set the group owner of <code>/etc/issue</code>, run the command:
+<pre>$ sudo chgrp root /etc/issue</pre>
   </td>
   <td xml:lang="en-US">
 Display of a standardized and approved use notification before granting
 access to the operating system ensures privacy and security notification
 verbiage used is consistent with applicable federal laws, Executive Orders,
 directives, policies, regulations, standards, and guidance.<br />
-Proper permissions will ensure that only root user can modify the banner.
+Proper group ownership will ensure that only root user can modify the banner.
   </td>
 </tr>
 <tr>
@@ -1444,34 +1444,6 @@ the exploitation of publicly-known vulnerabilities. If the most
 recent security patches and updates are not installed, unauthorized
 users may take advantage of weaknesses in the unpatched software. The
 lack of prompt attention to patching could result in a system compromise.
-  </td>
-</tr>
-<tr>
-  <td>1.8.2</td>
-  <td>Set the GNOME3 Login Warning Banner Text</td>
-  <td xml:lang="en-US">
-In the default graphical environment, configuring the login warning banner text
-in the GNOME Display Manager's login screen can be configured on the login
-screen by setting <tt>banner-message-text</tt> to <tt>'<i>APPROVED_BANNER</i>'</tt>
-where <i>APPROVED_BANNER</i> is the approved banner for your environment.
-<br /><br />
-To enable, add or edit <tt>banner-message-text</tt> to
-
-<tt>/etc/dconf/db/gdm.d/00-security-settings</tt>. For example:
-<pre>[org/gnome/login-screen]
-banner-message-text='<i>APPROVED_BANNER</i>'</pre>
-Once the setting has been added, add a lock to
-<tt>/etc/dconf/db/gdm.d/locks/00-security-settings-lock</tt> to prevent user modification.
-For example:
-<pre>/org/gnome/login-screen/banner-message-text</pre>
-
-After the settings have been set, run <tt>dconf update</tt>.
-When entering a warning banner that spans several lines, remember
-to begin and end the string with <tt>'</tt> and use <tt>\n</tt> for new lines.
-  </td>
-  <td xml:lang="en-US">
-An appropriate warning message reinforces policy awareness during the logon
-process and facilitates possible legal action against attackers.
   </td>
 </tr>
 <tr>
@@ -1500,6 +1472,34 @@ Executive Orders, directives, policies, regulations, standards, and guidance.
 <br /><br />
 For U.S. Government systems, system use notifications are required only for access via login interfaces
 with human users and are not required when such human interfaces do not exist.
+  </td>
+</tr>
+<tr>
+  <td>1.8.2</td>
+  <td>Set the GNOME3 Login Warning Banner Text</td>
+  <td xml:lang="en-US">
+In the default graphical environment, configuring the login warning banner text
+in the GNOME Display Manager's login screen can be configured on the login
+screen by setting <tt>banner-message-text</tt> to <tt>'<i>APPROVED_BANNER</i>'</tt>
+where <i>APPROVED_BANNER</i> is the approved banner for your environment.
+<br /><br />
+To enable, add or edit <tt>banner-message-text</tt> to
+
+<tt>/etc/dconf/db/gdm.d/00-security-settings</tt>. For example:
+<pre>[org/gnome/login-screen]
+banner-message-text='<i>APPROVED_BANNER</i>'</pre>
+Once the setting has been added, add a lock to
+<tt>/etc/dconf/db/gdm.d/locks/00-security-settings-lock</tt> to prevent user modification.
+For example:
+<pre>/org/gnome/login-screen/banner-message-text</pre>
+
+After the settings have been set, run <tt>dconf update</tt>.
+When entering a warning banner that spans several lines, remember
+to begin and end the string with <tt>'</tt> and use <tt>\n</tt> for new lines.
+  </td>
+  <td xml:lang="en-US">
+An appropriate warning message reinforces policy awareness during the logon
+process and facilitates possible legal action against attackers.
   </td>
 </tr>
 <tr>
@@ -1595,26 +1595,6 @@ which aids in forensic investigations.
 </tr>
 <tr>
   <td>2.2.1.2</td>
-  <td>Ensure that chronyd is running under chrony user account</td>
-  <td xml:lang="en-US">
-chrony is a daemon which implements the Network Time Protocol (NTP). It is designed to
-synchronize system clocks across a variety of systems and use a source that is highly
-accurate. More information on chrony can be found at
-
-    <a xmlns='http://www.w3.org/1999/xhtml' href='http://chrony.tuxfamily.org/'>http://chrony.tuxfamily.org/</a>.
-Chrony can be configured to be a client and/or a server.
-To ensure that chronyd is running under chrony user account, Add or edit the
-<tt>OPTIONS</tt> variable in <tt>/etc/sysconfig/chronyd</tt> to include <tt>-u chrony</tt>:
-<pre>OPTIONS="-u chrony"</pre>
-This recommendation only applies if chrony is in use on the system.
-  </td>
-  <td xml:lang="en-US">
-If chrony is in use on the system proper configuration is vital to ensuring time synchronization
-is working properly.
-  </td>
-</tr>
-<tr>
-  <td>2.2.1.2</td>
   <td>A remote time server for Chrony is configured</td>
   <td xml:lang="en-US">
 <tt>Chrony</tt> is a daemon which implements the Network Time Protocol (NTP). It is designed to
@@ -1633,24 +1613,23 @@ synchronization is working properly.
   </td>
 </tr>
 <tr>
-  <td>2.2.1.3</td>
-  <td>Configure ntpd To Run As ntp User</td>
+  <td>2.2.1.2</td>
+  <td>Ensure that chronyd is running under chrony user account</td>
   <td xml:lang="en-US">
-ntp is a daemon which implements the Network Time Protocol (NTP). It is designed to
+chrony is a daemon which implements the Network Time Protocol (NTP). It is designed to
 synchronize system clocks across a variety of systems and use a source that is highly
-accurate. More information on NTP can be found at
+accurate. More information on chrony can be found at
 
-    <a xmlns='http://www.w3.org/1999/xhtml' href='http://www.ntp.org'>http://www.ntp.org</a>.
-ntp can be configured to be a client and/or a server.
-To ensure that ntpd is running as ntp user, Add or edit the
-<tt>OPTIONS</tt> variable in <tt>/etc/sysconfig/ntpd</tt> to include ' -u ntp:ntp ':
-<pre>OPTIONS="-u ntp:ntp"</pre>
-This recommendation only applies if ntp is in use on the system.
+    <a xmlns='http://www.w3.org/1999/xhtml' href='http://chrony.tuxfamily.org/'>http://chrony.tuxfamily.org/</a>.
+Chrony can be configured to be a client and/or a server.
+To ensure that chronyd is running under chrony user account, Add or edit the
+<tt>OPTIONS</tt> variable in <tt>/etc/sysconfig/chronyd</tt> to include <tt>-u chrony</tt>:
+<pre>OPTIONS="-u chrony"</pre>
+This recommendation only applies if chrony is in use on the system.
   </td>
   <td xml:lang="en-US">
-If ntp is in use on the system proper configuration is vital to ensuring time synchronization
-is working properly. Running ntpd under dedicated user accounts limits the attack surface for
-potential attacker exploiting security flaws in the daemon or the protocol.
+If chrony is in use on the system proper configuration is vital to ensuring time synchronization
+is working properly.
   </td>
 </tr>
 <tr>
@@ -1676,23 +1655,6 @@ deprecated.
 </tr>
 <tr>
   <td>2.2.1.3</td>
-  <td>Specify a Remote NTP Server</td>
-  <td xml:lang="en-US">
-To specify a remote NTP server for time synchronization, edit
-the file <tt>/etc/ntp.conf</tt>. Add or correct the following lines,
-substituting the IP or hostname of a remote NTP server for <em>ntpserver</em>:
-<pre>server <i>ntpserver</i></pre>
-This instructs the NTP software to contact that remote server to obtain time
-data.
-  </td>
-  <td xml:lang="en-US">
-Synchronizing with an NTP server makes it possible
-to collate system logs from multiple sources or correlate computer events with
-real time events.
-  </td>
-</tr>
-<tr>
-  <td>2.2.1.3</td>
   <td>Configure server restrictions for ntpd</td>
   <td xml:lang="en-US">
 ntpd is a daemon which implements the Network Time Protocol (NTP). It is designed to
@@ -1709,6 +1671,23 @@ This recommendation only applies if ntp is in use on the system.
   <td xml:lang="en-US">
 If ntp is in use on the system proper configuration is vital to ensuring time synchronization
 is working properly.
+  </td>
+</tr>
+<tr>
+  <td>2.2.1.3</td>
+  <td>Specify a Remote NTP Server</td>
+  <td xml:lang="en-US">
+To specify a remote NTP server for time synchronization, edit
+the file <tt>/etc/ntp.conf</tt>. Add or correct the following lines,
+substituting the IP or hostname of a remote NTP server for <em>ntpserver</em>:
+<pre>server <i>ntpserver</i></pre>
+This instructs the NTP software to contact that remote server to obtain time
+data.
+  </td>
+  <td xml:lang="en-US">
+Synchronizing with an NTP server makes it possible
+to collate system logs from multiple sources or correlate computer events with
+real time events.
   </td>
 </tr>
 <tr>
@@ -1731,22 +1710,24 @@ synchronization is working properly.
   </td>
 </tr>
 <tr>
-  <td>2.2.2</td>
-  <td>Disable graphical user interface</td>
+  <td>2.2.1.3</td>
+  <td>Configure ntpd To Run As ntp User</td>
   <td xml:lang="en-US">
-By removing the following packages,  the system no longer has X Windows installed.
+ntp is a daemon which implements the Network Time Protocol (NTP). It is designed to
+synchronize system clocks across a variety of systems and use a source that is highly
+accurate. More information on NTP can be found at
 
-<tt>xorg-x11-server-Xorg xorg-x11-server-common xorg-x11-server-utils</tt>
-
-If X Windows is not installed then the system cannot boot into graphical user mode.
-This prevents the system from being accidentally or maliciously booted into a <tt>graphical.target</tt>
-mode. To do so, run the following command:
-
-<pre>sudo yum remove xorg-x11-server-Xorg xorg-x11-server-common xorg-x11-server-utils</pre>
+    <a xmlns='http://www.w3.org/1999/xhtml' href='http://www.ntp.org'>http://www.ntp.org</a>.
+ntp can be configured to be a client and/or a server.
+To ensure that ntpd is running as ntp user, Add or edit the
+<tt>OPTIONS</tt> variable in <tt>/etc/sysconfig/ntpd</tt> to include ' -u ntp:ntp ':
+<pre>OPTIONS="-u ntp:ntp"</pre>
+This recommendation only applies if ntp is in use on the system.
   </td>
   <td xml:lang="en-US">
-Unnecessary service packages must not be installed to decrease the attack surface of the system. X windows has a long history of security
-vulnerabilities and should not be installed unless approved and documented.
+If ntp is in use on the system proper configuration is vital to ensuring time synchronization
+is working properly. Running ntpd under dedicated user accounts limits the attack surface for
+potential attacker exploiting security flaws in the daemon or the protocol.
   </td>
 </tr>
 <tr>
@@ -1783,6 +1764,25 @@ Services that are not required for system and application processes
 must not be active to decrease the attack surface of the system. X windows has a
 long history of security vulnerabilities and should not be used unless approved
 and documented.
+  </td>
+</tr>
+<tr>
+  <td>2.2.2</td>
+  <td>Disable graphical user interface</td>
+  <td xml:lang="en-US">
+By removing the following packages,  the system no longer has X Windows installed.
+
+<tt>xorg-x11-server-Xorg xorg-x11-server-common xorg-x11-server-utils</tt>
+
+If X Windows is not installed then the system cannot boot into graphical user mode.
+This prevents the system from being accidentally or maliciously booted into a <tt>graphical.target</tt>
+mode. To do so, run the following command:
+
+<pre>sudo yum remove xorg-x11-server-Xorg xorg-x11-server-common xorg-x11-server-utils</pre>
+  </td>
+  <td xml:lang="en-US">
+Unnecessary service packages must not be installed to decrease the attack surface of the system. X windows has a long history of security
+vulnerabilities and should not be installed unless approved and documented.
   </td>
 </tr>
 <tr>
@@ -1863,6 +1863,20 @@ server, it is not necessary on typical desktop or workstation systems.
 </tr>
 <tr>
   <td>2.2.7</td>
+  <td>Uninstall bind Package</td>
+  <td xml:lang="en-US">
+The <tt>named</tt> service is provided by the <tt>bind</tt> package.
+The <code>bind</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase bind</pre>
+  </td>
+  <td xml:lang="en-US">
+If there is no need to make DNS server software available,
+removing it provides a safeguard against its activation.
+  </td>
+</tr>
+<tr>
+  <td>2.2.7</td>
   <td>Disable Network File System (nfs)</td>
   <td xml:lang="en-US">
 The Network File System (NFS) service allows remote hosts to mount
@@ -1877,17 +1891,14 @@ Unnecessary services should be disabled to decrease the attack surface of the sy
   </td>
 </tr>
 <tr>
-  <td>2.2.7</td>
-  <td>Uninstall bind Package</td>
+  <td>2.2.8</td>
+  <td>Uninstall vsftpd Package</td>
   <td xml:lang="en-US">
-The <tt>named</tt> service is provided by the <tt>bind</tt> package.
-The <code>bind</code> package can be removed with the following command:
-<pre>
-$ sudo yum erase bind</pre>
+The <code>vsftpd</code> package can be removed with the following command: <pre> $ sudo yum erase vsftpd</pre>
   </td>
   <td xml:lang="en-US">
-If there is no need to make DNS server software available,
-removing it provides a safeguard against its activation.
+Removing the <tt>vsftpd</tt> package decreases the risk of its
+accidental activation.
   </td>
 </tr>
 <tr>
@@ -1901,17 +1912,6 @@ The <code>named</code> service can be disabled with the following command:
   <td xml:lang="en-US">
 All network services involve some risk of compromise due to
 implementation flaws and should be disabled if possible.
-  </td>
-</tr>
-<tr>
-  <td>2.2.8</td>
-  <td>Uninstall vsftpd Package</td>
-  <td xml:lang="en-US">
-The <code>vsftpd</code> package can be removed with the following command: <pre> $ sudo yum erase vsftpd</pre>
-  </td>
-  <td xml:lang="en-US">
-Removing the <tt>vsftpd</tt> package decreases the risk of its
-accidental activation.
   </td>
 </tr>
 <tr>
@@ -1972,6 +1972,17 @@ of attack, and should be disabled if not needed.
 </tr>
 <tr>
   <td>2.2.11</td>
+  <td>Uninstall Samba Package</td>
+  <td xml:lang="en-US">
+The <code>samba</code> package can be removed with the following command: <pre> $ sudo yum erase samba</pre>
+  </td>
+  <td xml:lang="en-US">
+If there is no need to make the Samba software available,
+removing it provides a safeguard against its activation.
+  </td>
+</tr>
+<tr>
+  <td>2.2.11</td>
   <td>Disable Dovecot Service</td>
   <td xml:lang="en-US">
 
@@ -1984,13 +1995,13 @@ avenue of attack, and should be disabled if not needed.
   </td>
 </tr>
 <tr>
-  <td>2.2.11</td>
-  <td>Uninstall Samba Package</td>
+  <td>2.2.12</td>
+  <td>Uninstall squid Package</td>
   <td xml:lang="en-US">
-The <code>samba</code> package can be removed with the following command: <pre> $ sudo yum erase samba</pre>
+The <code>squid</code> package can be removed with the following command: <pre> $ sudo yum erase squid</pre>
   </td>
   <td xml:lang="en-US">
-If there is no need to make the Samba software available,
+If there is no need to make the proxy server software available,
 removing it provides a safeguard against its activation.
   </td>
 </tr>
@@ -2005,17 +2016,6 @@ The <code>smb</code> service can be disabled with the following command:
   <td xml:lang="en-US">
 Running a Samba server provides a network-based avenue of attack, and
 should be disabled if not needed.
-  </td>
-</tr>
-<tr>
-  <td>2.2.12</td>
-  <td>Uninstall squid Package</td>
-  <td xml:lang="en-US">
-The <code>squid</code> package can be removed with the following command: <pre> $ sudo yum erase squid</pre>
-  </td>
-  <td xml:lang="en-US">
-If there is no need to make the proxy server software available,
-removing it provides a safeguard against its activation.
   </td>
 </tr>
 <tr>
@@ -2117,17 +2117,18 @@ and not from the network, which protects it from network attack.
 </tr>
 <tr>
   <td>2.2.17</td>
-  <td>Disable rexec Service</td>
+  <td>Disable rsh Service</td>
   <td xml:lang="en-US">
-The <tt>rexec</tt> service, which is available with the <tt>rsh-server</tt> package
-and runs as a service through xinetd or separately as a systemd socket, should be disabled.
-If using xinetd, set <tt>disable</tt> to <tt>yes</tt> in <tt>/etc/xinetd.d/rexec</tt>.
+The <tt>rsh</tt> service, which is available with
+the <tt>rsh-server</tt> package and runs as a service through xinetd or separately
+as a systemd socket, should be disabled.
+If using xinetd, set <tt>disable</tt> to <tt>yes</tt> in <tt>/etc/xinetd.d/rsh</tt>.
 
-The <code>rexec</code> socket can be disabled with the following command:
-<pre>$ sudo systemctl mask --now rexec.socket</pre>
+The <code>rsh</code> socket can be disabled with the following command:
+<pre>$ sudo systemctl mask --now rsh.socket</pre>
   </td>
   <td xml:lang="en-US">
-The rexec service uses unencrypted network communications, which
+The rsh service uses unencrypted network communications, which
 means that data from the login session, including passwords and
 all other information transmitted during the session, can be
 stolen by eavesdroppers on the network.
@@ -2151,18 +2152,17 @@ that host.
 </tr>
 <tr>
   <td>2.2.17</td>
-  <td>Disable rsh Service</td>
+  <td>Disable rexec Service</td>
   <td xml:lang="en-US">
-The <tt>rsh</tt> service, which is available with
-the <tt>rsh-server</tt> package and runs as a service through xinetd or separately
-as a systemd socket, should be disabled.
-If using xinetd, set <tt>disable</tt> to <tt>yes</tt> in <tt>/etc/xinetd.d/rsh</tt>.
+The <tt>rexec</tt> service, which is available with the <tt>rsh-server</tt> package
+and runs as a service through xinetd or separately as a systemd socket, should be disabled.
+If using xinetd, set <tt>disable</tt> to <tt>yes</tt> in <tt>/etc/xinetd.d/rexec</tt>.
 
-The <code>rsh</code> socket can be disabled with the following command:
-<pre>$ sudo systemctl mask --now rsh.socket</pre>
+The <code>rexec</code> socket can be disabled with the following command:
+<pre>$ sudo systemctl mask --now rexec.socket</pre>
   </td>
   <td xml:lang="en-US">
-The rsh service uses unencrypted network communications, which
+The rexec service uses unencrypted network communications, which
 means that data from the login session, including passwords and
 all other information transmitted during the session, can be
 stolen by eavesdroppers on the network.
@@ -2189,18 +2189,6 @@ stolen by eavesdroppers on the network.
 </tr>
 <tr>
   <td>2.2.18</td>
-  <td>Uninstall talk-server Package</td>
-  <td xml:lang="en-US">
-The <code>talk-server</code> package can be removed with the following command: <pre> $ sudo yum erase talk-server</pre>
-  </td>
-  <td xml:lang="en-US">
-The talk software presents a security risk as it uses unencrypted protocols
-for communications. Removing the <tt>talk-server</tt> package decreases the
-risk of the accidental (or intentional) activation of talk services.
-  </td>
-</tr>
-<tr>
-  <td>2.2.18</td>
   <td>Disable rpcbind Service</td>
   <td xml:lang="en-US">
 The rpcbind utility maps RPC services to the ports on which they listen.
@@ -2216,6 +2204,18 @@ The <code>rpcbind</code> service can be disabled with the following command:
   <td xml:lang="en-US">
 If the system does not require rpc based services, it is recommended that
 rpcbind be disabled to reduce the attack surface.
+  </td>
+</tr>
+<tr>
+  <td>2.2.18</td>
+  <td>Uninstall talk-server Package</td>
+  <td xml:lang="en-US">
+The <code>talk-server</code> package can be removed with the following command: <pre> $ sudo yum erase talk-server</pre>
+  </td>
+  <td xml:lang="en-US">
+The talk software presents a security risk as it uses unencrypted protocols
+for communications. Removing the <tt>talk-server</tt> package decreases the
+risk of the accidental (or intentional) activation of talk services.
   </td>
 </tr>
 <tr>
@@ -2390,6 +2390,19 @@ service to valid network resources.
 </tr>
 <tr>
   <td>3.2.1</td>
+  <td>Disable Kernel Parameter for IPv6 Forwarding</td>
+  <td xml:lang="en-US">
+To set the runtime status of the <code>net.ipv6.conf.all.forwarding</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv6.conf.all.forwarding=0</pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv6.conf.all.forwarding = 0</pre>
+  </td>
+  <td xml:lang="en-US">
+IP forwarding permits the kernel to forward packets from one network
+interface to another. The ability to forward packets between two networks is
+only appropriate for systems acting as routers.
+  </td>
+</tr>
+<tr>
+  <td>3.2.1</td>
   <td>Disable Kernel Parameter for IP Forwarding on IPv4 Interfaces</td>
   <td xml:lang="en-US">
 To set the runtime status of the <code>net.ipv4.ip_forward</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv4.ip_forward=0</pre>
@@ -2400,19 +2413,6 @@ Routing protocol daemons are typically used on routers to exchange
 network topology information with other routers. If this capability is used when
 not required, system network information may be unnecessarily transmitted across
 the network.
-  </td>
-</tr>
-<tr>
-  <td>3.2.1</td>
-  <td>Disable Kernel Parameter for IPv6 Forwarding</td>
-  <td xml:lang="en-US">
-To set the runtime status of the <code>net.ipv6.conf.all.forwarding</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv6.conf.all.forwarding=0</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv6.conf.all.forwarding = 0</pre>
-  </td>
-  <td xml:lang="en-US">
-IP forwarding permits the kernel to forward packets from one network
-interface to another. The ability to forward packets between two networks is
-only appropriate for systems acting as routers.
   </td>
 </tr>
 <tr>
@@ -2447,20 +2447,20 @@ The ability to send ICMP redirects is only appropriate for systems acting as rou
 </tr>
 <tr>
   <td>3.3.1</td>
-  <td>Disable Kernel Parameter for Accepting Source-Routed Packets on IPv4 Interfaces by Default</td>
+  <td>Disable Kernel Parameter for Accepting Source-Routed Packets on IPv6 Interfaces by Default</td>
   <td xml:lang="en-US">
-To set the runtime status of the <code>net.ipv4.conf.default.accept_source_route</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv4.conf.default.accept_source_route=0</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv4.conf.default.accept_source_route = 0</pre>
+To set the runtime status of the <code>net.ipv6.conf.default.accept_source_route</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv6.conf.default.accept_source_route=0</pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv6.conf.default.accept_source_route = 0</pre>
   </td>
   <td xml:lang="en-US">
 Source-routed packets allow the source of the packet to suggest routers
-forward the packet along a different path than configured on the router,
-which can be used to bypass network security measures.
-<br />
-Accepting source-routed packets in the IPv4 protocol has few legitimate
-uses. It should be disabled unless it is absolutely required, such as when
-IPv4 forwarding is enabled and the system is legitimately functioning as a
-router.
+forward the packet along a different path than configured on the router, which can
+be used to bypass network security measures. This requirement applies only to the
+forwarding of source-routerd traffic, such as when IPv6 forwarding is enabled and
+the system is functioning as a router.
+
+Accepting source-routed packets in the IPv6 protocol has few legitimate
+uses. It should be disabled unless it is absolutely required.
   </td>
 </tr>
 <tr>
@@ -2483,24 +2483,6 @@ uses. It should be disabled unless it is absolutely required.
 </tr>
 <tr>
   <td>3.3.1</td>
-  <td>Disable Kernel Parameter for Accepting Source-Routed Packets on IPv6 Interfaces by Default</td>
-  <td xml:lang="en-US">
-To set the runtime status of the <code>net.ipv6.conf.default.accept_source_route</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv6.conf.default.accept_source_route=0</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv6.conf.default.accept_source_route = 0</pre>
-  </td>
-  <td xml:lang="en-US">
-Source-routed packets allow the source of the packet to suggest routers
-forward the packet along a different path than configured on the router, which can
-be used to bypass network security measures. This requirement applies only to the
-forwarding of source-routerd traffic, such as when IPv6 forwarding is enabled and
-the system is functioning as a router.
-
-Accepting source-routed packets in the IPv6 protocol has few legitimate
-uses. It should be disabled unless it is absolutely required.
-  </td>
-</tr>
-<tr>
-  <td>3.3.1</td>
   <td>Disable Kernel Parameter for Accepting Source-Routed Packets on all IPv6 Interfaces</td>
   <td xml:lang="en-US">
 To set the runtime status of the <code>net.ipv6.conf.all.accept_source_route</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv6.conf.all.accept_source_route=0</pre>
@@ -2518,36 +2500,21 @@ uses. It should be disabled unless it is absolutely required.
   </td>
 </tr>
 <tr>
-  <td>3.3.2</td>
-  <td>Disable Kernel Parameter for Accepting ICMP Redirects by Default on IPv4 Interfaces</td>
+  <td>3.3.1</td>
+  <td>Disable Kernel Parameter for Accepting Source-Routed Packets on IPv4 Interfaces by Default</td>
   <td xml:lang="en-US">
-To set the runtime status of the <code>net.ipv4.conf.default.accept_redirects</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv4.conf.default.accept_redirects=0</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv4.conf.default.accept_redirects = 0</pre>
+To set the runtime status of the <code>net.ipv4.conf.default.accept_source_route</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv4.conf.default.accept_source_route=0</pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv4.conf.default.accept_source_route = 0</pre>
   </td>
   <td xml:lang="en-US">
-ICMP redirect messages are used by routers to inform hosts that a more
-direct route exists for a particular destination. These messages modify the
-host's route table and are unauthenticated. An illicit ICMP redirect
-message could result in a man-in-the-middle attack.
-<br />This feature of the IPv4 protocol has few legitimate uses. It should
-be disabled unless absolutely required.
-  </td>
-</tr>
-<tr>
-  <td>3.3.2</td>
-  <td>Disable Accepting ICMP Redirects for All IPv4 Interfaces</td>
-  <td xml:lang="en-US">
-To set the runtime status of the <code>net.ipv4.conf.all.accept_redirects</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv4.conf.all.accept_redirects=0</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv4.conf.all.accept_redirects = 0</pre>
-  </td>
-  <td xml:lang="en-US">
-ICMP redirect messages are used by routers to inform hosts that a more
-direct route exists for a particular destination. These messages modify the
-host's route table and are unauthenticated. An illicit ICMP redirect
-message could result in a man-in-the-middle attack.
+Source-routed packets allow the source of the packet to suggest routers
+forward the packet along a different path than configured on the router,
+which can be used to bypass network security measures.
 <br />
-This feature of the IPv4 protocol has few legitimate uses. It should be
-disabled unless absolutely required."
+Accepting source-routed packets in the IPv4 protocol has few legitimate
+uses. It should be disabled unless it is absolutely required, such as when
+IPv4 forwarding is enabled and the system is legitimately functioning as a
+router.
   </td>
 </tr>
 <tr>
@@ -2570,6 +2537,52 @@ To make sure that the setting is persistent, add the following line to a file in
   </td>
   <td xml:lang="en-US">
 An illicit ICMP redirect message could result in a man-in-the-middle attack.
+  </td>
+</tr>
+<tr>
+  <td>3.3.2</td>
+  <td>Disable Accepting ICMP Redirects for All IPv4 Interfaces</td>
+  <td xml:lang="en-US">
+To set the runtime status of the <code>net.ipv4.conf.all.accept_redirects</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv4.conf.all.accept_redirects=0</pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv4.conf.all.accept_redirects = 0</pre>
+  </td>
+  <td xml:lang="en-US">
+ICMP redirect messages are used by routers to inform hosts that a more
+direct route exists for a particular destination. These messages modify the
+host's route table and are unauthenticated. An illicit ICMP redirect
+message could result in a man-in-the-middle attack.
+<br />
+This feature of the IPv4 protocol has few legitimate uses. It should be
+disabled unless absolutely required."
+  </td>
+</tr>
+<tr>
+  <td>3.3.2</td>
+  <td>Disable Kernel Parameter for Accepting ICMP Redirects by Default on IPv4 Interfaces</td>
+  <td xml:lang="en-US">
+To set the runtime status of the <code>net.ipv4.conf.default.accept_redirects</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv4.conf.default.accept_redirects=0</pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv4.conf.default.accept_redirects = 0</pre>
+  </td>
+  <td xml:lang="en-US">
+ICMP redirect messages are used by routers to inform hosts that a more
+direct route exists for a particular destination. These messages modify the
+host's route table and are unauthenticated. An illicit ICMP redirect
+message could result in a man-in-the-middle attack.
+<br />This feature of the IPv4 protocol has few legitimate uses. It should
+be disabled unless absolutely required.
+  </td>
+</tr>
+<tr>
+  <td>3.3.3</td>
+  <td>Configure Kernel Parameter for Accepting Secure Redirects By Default</td>
+  <td xml:lang="en-US">
+To set the runtime status of the <code>net.ipv4.conf.default.secure_redirects</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv4.conf.default.secure_redirects=0</pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv4.conf.default.secure_redirects = 0</pre>
+  </td>
+  <td xml:lang="en-US">
+Accepting "secure" ICMP redirects (from those gateways listed as
+default gateways) has few legitimate uses. It should be disabled unless it is
+absolutely required.
   </td>
 </tr>
 <tr>
@@ -2619,19 +2632,6 @@ depend on it), while disabling support for the IPv6 protocol.
   <td xml:lang="en-US">
 Any unnecessary network stacks - including IPv6 - should be disabled, to reduce
 the vulnerability to exploitation.
-  </td>
-</tr>
-<tr>
-  <td>3.3.3</td>
-  <td>Configure Kernel Parameter for Accepting Secure Redirects By Default</td>
-  <td xml:lang="en-US">
-To set the runtime status of the <code>net.ipv4.conf.default.secure_redirects</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv4.conf.default.secure_redirects=0</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv4.conf.default.secure_redirects = 0</pre>
-  </td>
-  <td xml:lang="en-US">
-Accepting "secure" ICMP redirects (from those gateways listed as
-default gateways) has few legitimate uses. It should be disabled unless it is
-absolutely required.
   </td>
 </tr>
 <tr>
@@ -2737,6 +2737,17 @@ enables the system to continue servicing valid connection requests.
 </tr>
 <tr>
   <td>3.3.9</td>
+  <td>Disable Accepting Router Advertisements on all IPv6 Interfaces by Default</td>
+  <td xml:lang="en-US">
+To set the runtime status of the <code>net.ipv6.conf.default.accept_ra</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv6.conf.default.accept_ra=0</pre>
+To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv6.conf.default.accept_ra = 0</pre>
+  </td>
+  <td xml:lang="en-US">
+An illicit router advertisement message could result in a man-in-the-middle attack.
+  </td>
+</tr>
+<tr>
+  <td>3.3.9</td>
   <td>Configure Accepting Router Advertisements on All IPv6 Interfaces</td>
   <td xml:lang="en-US">
 To set the runtime status of the <code>net.ipv6.conf.all.accept_ra</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv6.conf.all.accept_ra=0</pre>
@@ -2747,14 +2758,19 @@ An illicit router advertisement message could result in a man-in-the-middle atta
   </td>
 </tr>
 <tr>
-  <td>3.3.9</td>
-  <td>Disable Accepting Router Advertisements on all IPv6 Interfaces by Default</td>
+  <td>3.4.1</td>
+  <td>Install tcp_wrappers Package</td>
   <td xml:lang="en-US">
-To set the runtime status of the <code>net.ipv6.conf.default.accept_ra</code> kernel parameter, run the following command: <pre>$ sudo sysctl -w net.ipv6.conf.default.accept_ra=0</pre>
-To make sure that the setting is persistent, add the following line to a file in the directory <tt>/etc/sysctl.d</tt>: <pre>net.ipv6.conf.default.accept_ra = 0</pre>
+When network services are using the <tt>xinetd</tt> service, the
+<tt>tcp_wrappers</tt> package should be installed.
+The <code>tcp_wrappers</code> package can be installed with the following command:
+<pre>
+$ sudo yum install tcp_wrappers</pre>
   </td>
   <td xml:lang="en-US">
-An illicit router advertisement message could result in a man-in-the-middle attack.
+Access control methods provide the ability to enhance system security posture
+by restricting services and known good IP addresses and address ranges. This
+prevents connections from unknown hosts and protocols.
   </td>
 </tr>
 <tr>
@@ -2772,22 +2788,6 @@ kernel module from being loaded, add the following line to a file in the directo
   <td xml:lang="en-US">
 Disabling DCCP protects
 the system against exploitation of any flaws in its implementation.
-  </td>
-</tr>
-<tr>
-  <td>3.4.1</td>
-  <td>Install tcp_wrappers Package</td>
-  <td xml:lang="en-US">
-When network services are using the <tt>xinetd</tt> service, the
-<tt>tcp_wrappers</tt> package should be installed.
-The <code>tcp_wrappers</code> package can be installed with the following command:
-<pre>
-$ sudo yum install tcp_wrappers</pre>
-  </td>
-  <td xml:lang="en-US">
-Access control methods provide the ability to enhance system security posture
-by restricting services and known good IP addresses and address ranges. This
-prevents connections from unknown hosts and protocols.
   </td>
 </tr>
 <tr>
@@ -2827,11 +2827,11 @@ Correct configuration in <tt>/etc/hosts.deny</tt> ensures that no explicitly men
 </tr>
 <tr>
   <td>3.4.4</td>
-  <td>Verify Permissions on /etc/hosts.allow</td>
+  <td>Verify Ownership of /etc/hosts.allow</td>
   <td xml:lang="en-US">
 
-To properly set the permissions of <code>/etc/hosts.allow</code>, run the command:
-<pre>$ sudo chmod 0644 /etc/hosts.allow</pre>
+To properly set the owner of <code>/etc/hosts.allow</code>, run the command:
+<pre>$ sudo chown root /etc/hosts.allow </pre>
   </td>
   <td xml:lang="en-US">
 The <tt>/etc/hosts.allow</tt> file is used to control access of clients to daemons in the
@@ -2855,14 +2855,28 @@ access or no access at all to services in the server.
 </tr>
 <tr>
   <td>3.4.4</td>
-  <td>Verify Ownership of /etc/hosts.allow</td>
+  <td>Verify Permissions on /etc/hosts.allow</td>
   <td xml:lang="en-US">
 
-To properly set the owner of <code>/etc/hosts.allow</code>, run the command:
-<pre>$ sudo chown root /etc/hosts.allow </pre>
+To properly set the permissions of <code>/etc/hosts.allow</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/hosts.allow</pre>
   </td>
   <td xml:lang="en-US">
 The <tt>/etc/hosts.allow</tt> file is used to control access of clients to daemons in the
+server. Insecure groupownership of this file could allow users to grant clients unrestricted
+access or no access at all to services in the server.
+  </td>
+</tr>
+<tr>
+  <td>3.4.5</td>
+  <td>Verify Ownership of /etc/hosts.deny</td>
+  <td xml:lang="en-US">
+
+To properly set the owner of <code>/etc/hosts.deny</code>, run the command:
+<pre>$ sudo chown root /etc/hosts.deny </pre>
+  </td>
+  <td xml:lang="en-US">
+The <tt>/etc/hosts.deny</tt> file is used to control access of clients to daemons in the
 server. Insecure groupownership of this file could allow users to grant clients unrestricted
 access or no access at all to services in the server.
   </td>
@@ -2896,17 +2910,17 @@ access or no access at all to services in the server.
   </td>
 </tr>
 <tr>
-  <td>3.4.5</td>
-  <td>Verify Ownership of /etc/hosts.deny</td>
+  <td>3.5.1.1<br/>3.5.3.1.1</td>
+  <td>Install iptables Package</td>
   <td xml:lang="en-US">
-
-To properly set the owner of <code>/etc/hosts.deny</code>, run the command:
-<pre>$ sudo chown root /etc/hosts.deny </pre>
+The <code>iptables</code> package can be installed with the following command:
+<pre>
+$ sudo yum install iptables</pre>
   </td>
   <td xml:lang="en-US">
-The <tt>/etc/hosts.deny</tt> file is used to control access of clients to daemons in the
-server. Insecure groupownership of this file could allow users to grant clients unrestricted
-access or no access at all to services in the server.
+<tt>iptables</tt> controls the Linux kernel network packet filtering
+code. <tt>iptables</tt> allows system operators to set up firewalls and IP
+masquerading, etc.
   </td>
 </tr>
 <tr>
@@ -2926,20 +2940,6 @@ Remote access is access to DoD nonpublic information systems by an authorized us
 
 Red Hat Enterprise Linux 7 functionality (e.g., SSH) must be capable of taking enforcement action if the audit reveals unauthorized activity.
 Automated control of remote access sessions allows organizations to ensure ongoing compliance with remote access policies by enforcing connection rules of remote access applications on a variety of information system components (e.g., servers, workstations, notebook computers, smartphones, and tablets)."
-  </td>
-</tr>
-<tr>
-  <td>3.5.1.1<br/>3.5.3.1.1</td>
-  <td>Install iptables Package</td>
-  <td xml:lang="en-US">
-The <code>iptables</code> package can be installed with the following command:
-<pre>
-$ sudo yum install iptables</pre>
-  </td>
-  <td xml:lang="en-US">
-<tt>iptables</tt> controls the Linux kernel network packet filtering
-code. <tt>iptables</tt> allows system operators to set up firewalls and IP
-masquerading, etc.
   </td>
 </tr>
 <tr>
@@ -3136,30 +3136,17 @@ log data, or which use external processes to transfer it and reclaim space,
 </tr>
 <tr>
   <td>4.1.2.3</td>
-  <td>Configure auditd space_left Action on Low Disk Space</td>
+  <td>Configure auditd mail_acct Action on Low Disk Space</td>
   <td xml:lang="en-US">
-The <tt>auditd</tt> service can be configured to take an action
-when disk space <i>starts</i> to run low.
-Edit the file <tt>/etc/audit/auditd.conf</tt>. Modify the following line,
-substituting <i>ACTION</i> appropriately:
-<pre>space_left_action = <i>ACTION</i></pre>
-Possible values for <i>ACTION</i> are described in the <tt>auditd.conf</tt> man page.
-These include:
-<ul>
-<li><tt>syslog</tt></li>
-<li><tt>email</tt></li>
-<li><tt>exec</tt></li>
-<li><tt>suspend</tt></li>
-<li><tt>single</tt></li>
-<li><tt>halt</tt></li>
-</ul>
-Set this to <tt>email</tt> (instead of the default,
-which is <tt>suspend</tt>) as it is more likely to get prompt attention. Acceptable values
-also include <tt>suspend</tt>, <tt>single</tt>, and <tt>halt</tt>.
+The <tt>auditd</tt> service can be configured to send email to
+a designated account in certain situations. Add or correct the following line
+in <tt>/etc/audit/auditd.conf</tt> to ensure that administrators are notified
+via email for those situations:
+<pre>action_mail_acct = <abbr title="$var_auditd_action_mail_acct"><tt>root</tt></abbr></pre>
   </td>
   <td xml:lang="en-US">
-Notifying administrators of an impending disk space problem may
-allow them to take corrective action prior to any disruption.
+Email sent to the root account is typically aliased to the
+administrators of the system, who can take appropriate action.
   </td>
 </tr>
 <tr>
@@ -3186,17 +3173,30 @@ is used, running low on space for audit records should never occur.
 </tr>
 <tr>
   <td>4.1.2.3</td>
-  <td>Configure auditd mail_acct Action on Low Disk Space</td>
+  <td>Configure auditd space_left Action on Low Disk Space</td>
   <td xml:lang="en-US">
-The <tt>auditd</tt> service can be configured to send email to
-a designated account in certain situations. Add or correct the following line
-in <tt>/etc/audit/auditd.conf</tt> to ensure that administrators are notified
-via email for those situations:
-<pre>action_mail_acct = <abbr title="$var_auditd_action_mail_acct"><tt>root</tt></abbr></pre>
+The <tt>auditd</tt> service can be configured to take an action
+when disk space <i>starts</i> to run low.
+Edit the file <tt>/etc/audit/auditd.conf</tt>. Modify the following line,
+substituting <i>ACTION</i> appropriately:
+<pre>space_left_action = <i>ACTION</i></pre>
+Possible values for <i>ACTION</i> are described in the <tt>auditd.conf</tt> man page.
+These include:
+<ul>
+<li><tt>syslog</tt></li>
+<li><tt>email</tt></li>
+<li><tt>exec</tt></li>
+<li><tt>suspend</tt></li>
+<li><tt>single</tt></li>
+<li><tt>halt</tt></li>
+</ul>
+Set this to <tt>email</tt> (instead of the default,
+which is <tt>suspend</tt>) as it is more likely to get prompt attention. Acceptable values
+also include <tt>suspend</tt>, <tt>single</tt>, and <tt>halt</tt>.
   </td>
   <td xml:lang="en-US">
-Email sent to the root account is typically aliased to the
-administrators of the system, who can take appropriate action.
+Notifying administrators of an impending disk space problem may
+allow them to take corrective action prior to any disruption.
   </td>
 </tr>
 <tr>
@@ -3252,6 +3252,40 @@ to the system time should be audited.
 </tr>
 <tr>
   <td>4.1.3</td>
+  <td>Record Attempts to Alter Time Through stime</td>
+  <td xml:lang="en-US">
+If the <tt>auditd</tt> daemon is configured to use the
+<tt>augenrules</tt> program to read audit rules during daemon startup (the
+default), add the following line to a file with suffix <tt>.rules</tt> in the
+directory <tt>/etc/audit/rules.d</tt> for both 32 bit and 64 bit systems:
+<pre>-a always,exit -F arch=b32 -S stime -F key=audit_time_rules</pre>
+Since the 64 bit version of the "stime" system call is not defined in the audit
+lookup table, the corresponding "-F arch=b64" form of this rule is not expected
+to be defined on 64 bit systems (the aforementioned "-F arch=b32" stime rule
+form itself is sufficient for both 32 bit and 64 bit systems). If the
+<tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt> utility to
+read audit rules during daemon startup, add the following line to
+<tt>/etc/audit/audit.rules</tt> file for both 32 bit and 64 bit systems:
+<pre>-a always,exit -F arch=b32 -S stime -F key=audit_time_rules</pre>
+Since the 64 bit version of the "stime" system call is not defined in the audit
+lookup table, the corresponding "-F arch=b64" form of this rule is not expected
+to be defined on 64 bit systems (the aforementioned "-F arch=b32" stime rule
+form itself is sufficient for both 32 bit and 64 bit systems). The -k option
+allows for the specification of a key in string form that can be used for
+better reporting capability through ausearch and aureport. Multiple system
+calls can be defined on the same line to save space if desired, but is not
+required. See an example of multiple combined system calls:
+<pre>-a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules</pre>
+  </td>
+  <td xml:lang="en-US">
+Arbitrary changes to the system time can be used to obfuscate
+nefarious activities in log files, as well as to confuse network services that
+are highly dependent upon an accurate system time (such as sshd). All changes
+to the system time should be audited.
+  </td>
+</tr>
+<tr>
+  <td>4.1.3</td>
   <td>Record attempts to alter time through adjtimex</td>
   <td xml:lang="en-US">
 If the <tt>auditd</tt> daemon is configured to use the
@@ -3272,6 +3306,30 @@ used for better reporting capability through ausearch and aureport. Multiple
 system calls can be defined on the same line to save space if desired, but is
 not required. See an example of multiple combined syscalls:
 <pre>-a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules</pre>
+  </td>
+  <td xml:lang="en-US">
+Arbitrary changes to the system time can be used to obfuscate
+nefarious activities in log files, as well as to confuse network services that
+are highly dependent upon an accurate system time (such as sshd). All changes
+to the system time should be audited.
+  </td>
+</tr>
+<tr>
+  <td>4.1.3</td>
+  <td>Record Attempts to Alter the localtime File</td>
+  <td xml:lang="en-US">
+If the <tt>auditd</tt> daemon is configured to use the
+<tt>augenrules</tt> program to read audit rules during daemon startup (the default),
+add the following line to a file with suffix <tt>.rules</tt> in the directory
+<tt>/etc/audit/rules.d</tt>:
+<pre>-w /etc/localtime -p wa -k audit_time_rules</pre>
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following line to
+<tt>/etc/audit/audit.rules</tt> file:
+<pre>-w /etc/localtime -p wa -k audit_time_rules</pre>
+The -k option allows for the specification of a key in string form that can
+be used for better reporting capability through ausearch and aureport and
+should always be used.
   </td>
   <td xml:lang="en-US">
 Arbitrary changes to the system time can be used to obfuscate
@@ -3311,66 +3369,8 @@ to the system time should be audited.
   </td>
 </tr>
 <tr>
-  <td>4.1.3</td>
-  <td>Record Attempts to Alter Time Through stime</td>
-  <td xml:lang="en-US">
-If the <tt>auditd</tt> daemon is configured to use the
-<tt>augenrules</tt> program to read audit rules during daemon startup (the
-default), add the following line to a file with suffix <tt>.rules</tt> in the
-directory <tt>/etc/audit/rules.d</tt> for both 32 bit and 64 bit systems:
-<pre>-a always,exit -F arch=b32 -S stime -F key=audit_time_rules</pre>
-Since the 64 bit version of the "stime" system call is not defined in the audit
-lookup table, the corresponding "-F arch=b64" form of this rule is not expected
-to be defined on 64 bit systems (the aforementioned "-F arch=b32" stime rule
-form itself is sufficient for both 32 bit and 64 bit systems). If the
-<tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt> utility to
-read audit rules during daemon startup, add the following line to
-<tt>/etc/audit/audit.rules</tt> file for both 32 bit and 64 bit systems:
-<pre>-a always,exit -F arch=b32 -S stime -F key=audit_time_rules</pre>
-Since the 64 bit version of the "stime" system call is not defined in the audit
-lookup table, the corresponding "-F arch=b64" form of this rule is not expected
-to be defined on 64 bit systems (the aforementioned "-F arch=b32" stime rule
-form itself is sufficient for both 32 bit and 64 bit systems). The -k option
-allows for the specification of a key in string form that can be used for
-better reporting capability through ausearch and aureport. Multiple system
-calls can be defined on the same line to save space if desired, but is not
-required. See an example of multiple combined system calls:
-<pre>-a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules</pre>
-  </td>
-  <td xml:lang="en-US">
-Arbitrary changes to the system time can be used to obfuscate
-nefarious activities in log files, as well as to confuse network services that
-are highly dependent upon an accurate system time (such as sshd). All changes
-to the system time should be audited.
-  </td>
-</tr>
-<tr>
-  <td>4.1.3</td>
-  <td>Record Attempts to Alter the localtime File</td>
-  <td xml:lang="en-US">
-If the <tt>auditd</tt> daemon is configured to use the
-<tt>augenrules</tt> program to read audit rules during daemon startup (the default),
-add the following line to a file with suffix <tt>.rules</tt> in the directory
-<tt>/etc/audit/rules.d</tt>:
-<pre>-w /etc/localtime -p wa -k audit_time_rules</pre>
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following line to
-<tt>/etc/audit/audit.rules</tt> file:
-<pre>-w /etc/localtime -p wa -k audit_time_rules</pre>
-The -k option allows for the specification of a key in string form that can
-be used for better reporting capability through ausearch and aureport and
-should always be used.
-  </td>
-  <td xml:lang="en-US">
-Arbitrary changes to the system time can be used to obfuscate
-nefarious activities in log files, as well as to confuse network services that
-are highly dependent upon an accurate system time (such as sshd). All changes
-to the system time should be audited.
-  </td>
-</tr>
-<tr>
   <td>4.1.4</td>
-  <td>Record Events that Modify User/Group Information - /etc/group</td>
+  <td>Record Events that Modify User/Group Information - /etc/passwd</td>
   <td xml:lang="en-US">
 If the <tt>auditd</tt> daemon is configured to use the
 <tt>augenrules</tt> program to read audit rules during daemon startup (the
@@ -3378,39 +3378,14 @@ default), add the following lines to a file with suffix <tt>.rules</tt> in the
 directory <tt>/etc/audit/rules.d</tt>, in order to capture events that modify
 account changes:
 <br /><br />
-<pre>-w /etc/group -p wa -k audit_rules_usergroup_modification</pre>
+<pre>-w /etc/passwd -p wa -k audit_rules_usergroup_modification</pre>
 <br /><br />
 If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
 utility to read audit rules during daemon startup, add the following lines to
 <tt>/etc/audit/audit.rules</tt> file, in order to capture events that modify
 account changes:
 <br /><br />
-<pre>-w /etc/group -p wa -k audit_rules_usergroup_modification</pre>
-  </td>
-  <td xml:lang="en-US">
-In addition to auditing new user and group accounts, these watches
-will alert the system administrator(s) to any modifications. Any unexpected
-users, groups, or modifications should be investigated for legitimacy.
-  </td>
-</tr>
-<tr>
-  <td>4.1.4</td>
-  <td>Record Events that Modify User/Group Information - /etc/security/opasswd</td>
-  <td xml:lang="en-US">
-If the <tt>auditd</tt> daemon is configured to use the
-<tt>augenrules</tt> program to read audit rules during daemon startup (the
-default), add the following lines to a file with suffix <tt>.rules</tt> in the
-directory <tt>/etc/audit/rules.d</tt>, in order to capture events that modify
-account changes:
-<br /><br />
-<pre>-w /etc/security/opasswd -p wa -k audit_rules_usergroup_modification</pre>
-<br /><br />
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following lines to
-<tt>/etc/audit/audit.rules</tt> file, in order to capture events that modify
-account changes:
-<br /><br />
-<pre>-w /etc/security/opasswd -p wa -k audit_rules_usergroup_modification</pre>
+<pre>-w /etc/passwd -p wa -k audit_rules_usergroup_modification</pre>
   </td>
   <td xml:lang="en-US">
 In addition to auditing new user and group accounts, these watches
@@ -3445,6 +3420,31 @@ users, groups, or modifications should be investigated for legitimacy.
 </tr>
 <tr>
   <td>4.1.4</td>
+  <td>Record Events that Modify User/Group Information - /etc/group</td>
+  <td xml:lang="en-US">
+If the <tt>auditd</tt> daemon is configured to use the
+<tt>augenrules</tt> program to read audit rules during daemon startup (the
+default), add the following lines to a file with suffix <tt>.rules</tt> in the
+directory <tt>/etc/audit/rules.d</tt>, in order to capture events that modify
+account changes:
+<br /><br />
+<pre>-w /etc/group -p wa -k audit_rules_usergroup_modification</pre>
+<br /><br />
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following lines to
+<tt>/etc/audit/audit.rules</tt> file, in order to capture events that modify
+account changes:
+<br /><br />
+<pre>-w /etc/group -p wa -k audit_rules_usergroup_modification</pre>
+  </td>
+  <td xml:lang="en-US">
+In addition to auditing new user and group accounts, these watches
+will alert the system administrator(s) to any modifications. Any unexpected
+users, groups, or modifications should be investigated for legitimacy.
+  </td>
+</tr>
+<tr>
+  <td>4.1.4</td>
   <td>Record Events that Modify User/Group Information - /etc/gshadow</td>
   <td xml:lang="en-US">
 If the <tt>auditd</tt> daemon is configured to use the
@@ -3470,7 +3470,7 @@ users, groups, or modifications should be investigated for legitimacy.
 </tr>
 <tr>
   <td>4.1.4</td>
-  <td>Record Events that Modify User/Group Information - /etc/passwd</td>
+  <td>Record Events that Modify User/Group Information - /etc/security/opasswd</td>
   <td xml:lang="en-US">
 If the <tt>auditd</tt> daemon is configured to use the
 <tt>augenrules</tt> program to read audit rules during daemon startup (the
@@ -3478,14 +3478,14 @@ default), add the following lines to a file with suffix <tt>.rules</tt> in the
 directory <tt>/etc/audit/rules.d</tt>, in order to capture events that modify
 account changes:
 <br /><br />
-<pre>-w /etc/passwd -p wa -k audit_rules_usergroup_modification</pre>
+<pre>-w /etc/security/opasswd -p wa -k audit_rules_usergroup_modification</pre>
 <br /><br />
 If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
 utility to read audit rules during daemon startup, add the following lines to
 <tt>/etc/audit/audit.rules</tt> file, in order to capture events that modify
 account changes:
 <br /><br />
-<pre>-w /etc/passwd -p wa -k audit_rules_usergroup_modification</pre>
+<pre>-w /etc/security/opasswd -p wa -k audit_rules_usergroup_modification</pre>
   </td>
   <td xml:lang="en-US">
 In addition to auditing new user and group accounts, these watches
@@ -3545,28 +3545,6 @@ MAC policy should be audited.
 </tr>
 <tr>
   <td>4.1.7</td>
-  <td>Record Attempts to Alter Logon and Logout Events - lastlog</td>
-  <td xml:lang="en-US">
-The audit system already collects login information for all users
-and root. If the <tt>auditd</tt> daemon is configured to use the
-<tt>augenrules</tt> program to read audit rules during daemon startup (the
-default), add the following lines to a file with suffix <tt>.rules</tt> in the
-directory <tt>/etc/audit/rules.d</tt> in order to watch for attempted manual
-edits of files involved in storing logon events:
-<pre>-w /var/log/lastlog -p wa -k logins</pre>
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following lines to
-<tt>/etc/audit/audit.rules</tt> file in order to watch for unattempted manual
-edits of files involved in storing logon events:
-<pre>-w /var/log/lastlog -p wa -k logins</pre>
-  </td>
-  <td xml:lang="en-US">
-Manual editing of these files may indicate nefarious activity, such
-as an attacker attempting to remove evidence of an intrusion.
-  </td>
-</tr>
-<tr>
-  <td>4.1.7</td>
   <td>Record Attempts to Alter Logon and Logout Events - faillock</td>
   <td xml:lang="en-US">
 The audit system already collects login information for all users
@@ -3581,6 +3559,28 @@ utility to read audit rules during daemon startup, add the following lines to
 <tt>/etc/audit/audit.rules</tt> file in order to watch for unattempted manual
 edits of files involved in storing logon events:
 <pre>-w /var/run/faillock -p wa -k logins</pre>
+  </td>
+  <td xml:lang="en-US">
+Manual editing of these files may indicate nefarious activity, such
+as an attacker attempting to remove evidence of an intrusion.
+  </td>
+</tr>
+<tr>
+  <td>4.1.7</td>
+  <td>Record Attempts to Alter Logon and Logout Events - lastlog</td>
+  <td xml:lang="en-US">
+The audit system already collects login information for all users
+and root. If the <tt>auditd</tt> daemon is configured to use the
+<tt>augenrules</tt> program to read audit rules during daemon startup (the
+default), add the following lines to a file with suffix <tt>.rules</tt> in the
+directory <tt>/etc/audit/rules.d</tt> in order to watch for attempted manual
+edits of files involved in storing logon events:
+<pre>-w /var/log/lastlog -p wa -k logins</pre>
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following lines to
+<tt>/etc/audit/audit.rules</tt> file in order to watch for unattempted manual
+edits of files involved in storing logon events:
+<pre>-w /var/log/lastlog -p wa -k logins</pre>
   </td>
   <td xml:lang="en-US">
 Manual editing of these files may indicate nefarious activity, such
@@ -3615,140 +3615,6 @@ as an attacker attempting to remove evidence of an intrusion.
 </tr>
 <tr>
   <td>4.1.9</td>
-  <td>Record Events that Modify the System's Discretionary Access Controls - fsetxattr</td>
-  <td xml:lang="en-US">
-At a minimum, the audit system should collect file permission
-changes for all users and root. If the <tt>auditd</tt> daemon is configured
-to use the <tt>augenrules</tt> program to read audit rules during daemon
-startup (the default), add the following line to a file with suffix
-<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
-<pre>-a always,exit -F arch=b32 -S fsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following line to
-<tt>/etc/audit/audit.rules</tt> file:
-<pre>-a always,exit -F arch=b32 -S fsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-  </td>
-  <td xml:lang="en-US">
-The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.
-  </td>
-</tr>
-<tr>
-  <td>4.1.9</td>
-  <td>Record Events that Modify the System's Discretionary Access Controls - lchown</td>
-  <td xml:lang="en-US">
-At a minimum, the audit system should collect file permission
-changes for all users and root. If the <tt>auditd</tt> daemon is configured
-to use the <tt>augenrules</tt> program to read audit rules during daemon
-startup (the default), add the following line to a file with suffix
-<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
-<pre>-a always,exit -F arch=b32 -S lchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S lchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following line to
-<tt>/etc/audit/audit.rules</tt> file:
-<pre>-a always,exit -F arch=b32 -S lchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S lchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-  </td>
-  <td xml:lang="en-US">
-The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.
-  </td>
-</tr>
-<tr>
-  <td>4.1.9</td>
-  <td>Record Events that Modify the System's Discretionary Access Controls - lsetxattr</td>
-  <td xml:lang="en-US">
-At a minimum, the audit system should collect file permission
-changes for all users and root. If the <tt>auditd</tt> daemon is configured
-to use the <tt>augenrules</tt> program to read audit rules during daemon
-startup (the default), add the following line to a file with suffix
-<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
-<pre>-a always,exit -F arch=b32 -S lsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S lsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following line to
-<tt>/etc/audit/audit.rules</tt> file:
-<pre>-a always,exit -F arch=b32 -S lsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S lsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-  </td>
-  <td xml:lang="en-US">
-The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.
-  </td>
-</tr>
-<tr>
-  <td>4.1.9</td>
-  <td>Record Events that Modify the System's Discretionary Access Controls - removexattr</td>
-  <td xml:lang="en-US">
-At a minimum, the audit system should collect file permission
-changes for all users and root.
-<br /><br />
-If the <tt>auditd</tt> daemon is configured to use the <tt>augenrules</tt>
-program to read audit rules during daemon startup (the default), add the
-following line to a file with suffix <tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
-<pre>-a always,exit -F arch=b32 -S removexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-<br /><br />
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S removexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-<br /><br />
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following line to
-<tt>/etc/audit/audit.rules</tt> file:
-<pre>-a always,exit -F arch=b32 -S removexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-<br /><br />
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S removexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-  </td>
-  <td xml:lang="en-US">
-The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.
-  </td>
-</tr>
-<tr>
-  <td>4.1.9</td>
-  <td>Record Events that Modify the System's Discretionary Access Controls - setxattr</td>
-  <td xml:lang="en-US">
-At a minimum, the audit system should collect file permission
-changes for all users and root. If the <tt>auditd</tt> daemon is configured
-to use the <tt>augenrules</tt> program to read audit rules during daemon
-startup (the default), add the following line to a file with suffix
-<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
-<pre>-a always,exit -F arch=b32 -S setxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S setxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following line to
-<tt>/etc/audit/audit.rules</tt> file:
-<pre>-a always,exit -F arch=b32 -S setxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S setxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-  </td>
-  <td xml:lang="en-US">
-The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.
-  </td>
-</tr>
-<tr>
-  <td>4.1.9</td>
   <td>Record Events that Modify the System's Discretionary Access Controls - fremovexattr</td>
   <td xml:lang="en-US">
 At a minimum, the audit system should collect file permission
@@ -3770,87 +3636,6 @@ utility to read audit rules during daemon startup, add the following line to
 <br /><br />
 If the system is 64 bit then also add the following line:
 <pre>-a always,exit -F arch=b64 -S fremovexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-  </td>
-  <td xml:lang="en-US">
-The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.
-  </td>
-</tr>
-<tr>
-  <td>4.1.9</td>
-  <td>Record Events that Modify the System's Discretionary Access Controls - fchown</td>
-  <td xml:lang="en-US">
-At a minimum, the audit system should collect file permission
-changes for all users and root. If the <tt>auditd</tt> daemon is configured
-to use the <tt>augenrules</tt> program to read audit rules during daemon
-startup (the default), add the following line to a file with suffix
-<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
-<pre>-a always,exit -F arch=b32 -S fchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following line to
-<tt>/etc/audit/audit.rules</tt> file:
-<pre>-a always,exit -F arch=b32 -S fchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-  </td>
-  <td xml:lang="en-US">
-The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.
-  </td>
-</tr>
-<tr>
-  <td>4.1.9</td>
-  <td>Record Events that Modify the System's Discretionary Access Controls - chown</td>
-  <td xml:lang="en-US">
-At a minimum, the audit system should collect file permission
-changes for all users and root. If the <tt>auditd</tt> daemon is configured to
-use the <tt>augenrules</tt> program to read audit rules during daemon startup
-(the default), add the following line to a file with suffix <tt>.rules</tt> in
-the directory <tt>/etc/audit/rules.d</tt>:
-<pre>-a always,exit -F arch=b32 -S chown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S chown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following line to
-<tt>/etc/audit/audit.rules</tt> file:
-<pre>-a always,exit -F arch=b32 -S chown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S chown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-  </td>
-  <td xml:lang="en-US">
-The changing of file permissions could indicate that a user is attempting to
-gain access to information that would otherwise be disallowed. Auditing DAC modifications
-can facilitate the identification of patterns of abuse among both authorized and
-unauthorized users.
-  </td>
-</tr>
-<tr>
-  <td>4.1.9</td>
-  <td>Record Events that Modify the System's Discretionary Access Controls - fchmod</td>
-  <td xml:lang="en-US">
-At a minimum, the audit system should collect file permission
-changes for all users and root. If the <tt>auditd</tt> daemon is configured to
-use the <tt>augenrules</tt> program to read audit rules during daemon startup
-(the default), add the following line to a file with suffix <tt>.rules</tt> in
-the directory <tt>/etc/audit/rules.d</tt>:
-<pre>-a always,exit -F arch=b32 -S fchmod -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fchmod -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following line to
-<tt>/etc/audit/audit.rules</tt> file:
-<pre>-a always,exit -F arch=b32 -S fchmod -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
-If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fchmod -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
   </td>
   <td xml:lang="en-US">
 The changing of file permissions could indicate that a user is attempting to
@@ -3887,22 +3672,22 @@ unauthorized users.
 </tr>
 <tr>
   <td>4.1.9</td>
-  <td>Record Events that Modify the System's Discretionary Access Controls - fchmodat</td>
+  <td>Record Events that Modify the System's Discretionary Access Controls - chown</td>
   <td xml:lang="en-US">
 At a minimum, the audit system should collect file permission
 changes for all users and root. If the <tt>auditd</tt> daemon is configured to
 use the <tt>augenrules</tt> program to read audit rules during daemon startup
 (the default), add the following line to a file with suffix <tt>.rules</tt> in
 the directory <tt>/etc/audit/rules.d</tt>:
-<pre>-a always,exit -F arch=b32 -S fchmodat -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+<pre>-a always,exit -F arch=b32 -S chown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
 If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fchmodat -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+<pre>-a always,exit -F arch=b64 -S chown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
 If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
 utility to read audit rules during daemon startup, add the following line to
 <tt>/etc/audit/audit.rules</tt> file:
-<pre>-a always,exit -F arch=b32 -S fchmodat -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+<pre>-a always,exit -F arch=b32 -S chown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
 If the system is 64 bit then also add the following line:
-<pre>-a always,exit -F arch=b64 -S fchmodat -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+<pre>-a always,exit -F arch=b64 -S chown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
   </td>
   <td xml:lang="en-US">
 The changing of file permissions could indicate that a user is attempting to
@@ -3944,6 +3729,143 @@ unauthorized users.
 </tr>
 <tr>
   <td>4.1.9</td>
+  <td>Record Events that Modify the System's Discretionary Access Controls - fsetxattr</td>
+  <td xml:lang="en-US">
+At a minimum, the audit system should collect file permission
+changes for all users and root. If the <tt>auditd</tt> daemon is configured
+to use the <tt>augenrules</tt> program to read audit rules during daemon
+startup (the default), add the following line to a file with suffix
+<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
+<pre>-a always,exit -F arch=b32 -S fsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S fsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following line to
+<tt>/etc/audit/audit.rules</tt> file:
+<pre>-a always,exit -F arch=b32 -S fsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S fsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+  </td>
+  <td xml:lang="en-US">
+The changing of file permissions could indicate that a user is attempting to
+gain access to information that would otherwise be disallowed. Auditing DAC modifications
+can facilitate the identification of patterns of abuse among both authorized and
+unauthorized users.
+  </td>
+</tr>
+<tr>
+  <td>4.1.9</td>
+  <td>Record Events that Modify the System's Discretionary Access Controls - fchmodat</td>
+  <td xml:lang="en-US">
+At a minimum, the audit system should collect file permission
+changes for all users and root. If the <tt>auditd</tt> daemon is configured to
+use the <tt>augenrules</tt> program to read audit rules during daemon startup
+(the default), add the following line to a file with suffix <tt>.rules</tt> in
+the directory <tt>/etc/audit/rules.d</tt>:
+<pre>-a always,exit -F arch=b32 -S fchmodat -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S fchmodat -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following line to
+<tt>/etc/audit/audit.rules</tt> file:
+<pre>-a always,exit -F arch=b32 -S fchmodat -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S fchmodat -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+  </td>
+  <td xml:lang="en-US">
+The changing of file permissions could indicate that a user is attempting to
+gain access to information that would otherwise be disallowed. Auditing DAC modifications
+can facilitate the identification of patterns of abuse among both authorized and
+unauthorized users.
+  </td>
+</tr>
+<tr>
+  <td>4.1.9</td>
+  <td>Record Events that Modify the System's Discretionary Access Controls - removexattr</td>
+  <td xml:lang="en-US">
+At a minimum, the audit system should collect file permission
+changes for all users and root.
+<br /><br />
+If the <tt>auditd</tt> daemon is configured to use the <tt>augenrules</tt>
+program to read audit rules during daemon startup (the default), add the
+following line to a file with suffix <tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
+<pre>-a always,exit -F arch=b32 -S removexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+<br /><br />
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S removexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+<br /><br />
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following line to
+<tt>/etc/audit/audit.rules</tt> file:
+<pre>-a always,exit -F arch=b32 -S removexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+<br /><br />
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S removexattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+  </td>
+  <td xml:lang="en-US">
+The changing of file permissions could indicate that a user is attempting to
+gain access to information that would otherwise be disallowed. Auditing DAC modifications
+can facilitate the identification of patterns of abuse among both authorized and
+unauthorized users.
+  </td>
+</tr>
+<tr>
+  <td>4.1.9</td>
+  <td>Record Events that Modify the System's Discretionary Access Controls - fchown</td>
+  <td xml:lang="en-US">
+At a minimum, the audit system should collect file permission
+changes for all users and root. If the <tt>auditd</tt> daemon is configured
+to use the <tt>augenrules</tt> program to read audit rules during daemon
+startup (the default), add the following line to a file with suffix
+<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
+<pre>-a always,exit -F arch=b32 -S fchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S fchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following line to
+<tt>/etc/audit/audit.rules</tt> file:
+<pre>-a always,exit -F arch=b32 -S fchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S fchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+  </td>
+  <td xml:lang="en-US">
+The changing of file permissions could indicate that a user is attempting to
+gain access to information that would otherwise be disallowed. Auditing DAC modifications
+can facilitate the identification of patterns of abuse among both authorized and
+unauthorized users.
+  </td>
+</tr>
+<tr>
+  <td>4.1.9</td>
+  <td>Record Events that Modify the System's Discretionary Access Controls - fchmod</td>
+  <td xml:lang="en-US">
+At a minimum, the audit system should collect file permission
+changes for all users and root. If the <tt>auditd</tt> daemon is configured to
+use the <tt>augenrules</tt> program to read audit rules during daemon startup
+(the default), add the following line to a file with suffix <tt>.rules</tt> in
+the directory <tt>/etc/audit/rules.d</tt>:
+<pre>-a always,exit -F arch=b32 -S fchmod -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S fchmod -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following line to
+<tt>/etc/audit/audit.rules</tt> file:
+<pre>-a always,exit -F arch=b32 -S fchmod -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S fchmod -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+  </td>
+  <td xml:lang="en-US">
+The changing of file permissions could indicate that a user is attempting to
+gain access to information that would otherwise be disallowed. Auditing DAC modifications
+can facilitate the identification of patterns of abuse among both authorized and
+unauthorized users.
+  </td>
+</tr>
+<tr>
+  <td>4.1.9</td>
   <td>Record Events that Modify the System's Discretionary Access Controls - fchownat</td>
   <td xml:lang="en-US">
 At a minimum, the audit system should collect file permission
@@ -3966,6 +3888,150 @@ The changing of file permissions could indicate that a user is attempting to
 gain access to information that would otherwise be disallowed. Auditing DAC modifications
 can facilitate the identification of patterns of abuse among both authorized and
 unauthorized users.
+  </td>
+</tr>
+<tr>
+  <td>4.1.9</td>
+  <td>Record Events that Modify the System's Discretionary Access Controls - lchown</td>
+  <td xml:lang="en-US">
+At a minimum, the audit system should collect file permission
+changes for all users and root. If the <tt>auditd</tt> daemon is configured
+to use the <tt>augenrules</tt> program to read audit rules during daemon
+startup (the default), add the following line to a file with suffix
+<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
+<pre>-a always,exit -F arch=b32 -S lchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S lchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following line to
+<tt>/etc/audit/audit.rules</tt> file:
+<pre>-a always,exit -F arch=b32 -S lchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S lchown -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+  </td>
+  <td xml:lang="en-US">
+The changing of file permissions could indicate that a user is attempting to
+gain access to information that would otherwise be disallowed. Auditing DAC modifications
+can facilitate the identification of patterns of abuse among both authorized and
+unauthorized users.
+  </td>
+</tr>
+<tr>
+  <td>4.1.9</td>
+  <td>Record Events that Modify the System's Discretionary Access Controls - setxattr</td>
+  <td xml:lang="en-US">
+At a minimum, the audit system should collect file permission
+changes for all users and root. If the <tt>auditd</tt> daemon is configured
+to use the <tt>augenrules</tt> program to read audit rules during daemon
+startup (the default), add the following line to a file with suffix
+<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
+<pre>-a always,exit -F arch=b32 -S setxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S setxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following line to
+<tt>/etc/audit/audit.rules</tt> file:
+<pre>-a always,exit -F arch=b32 -S setxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S setxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+  </td>
+  <td xml:lang="en-US">
+The changing of file permissions could indicate that a user is attempting to
+gain access to information that would otherwise be disallowed. Auditing DAC modifications
+can facilitate the identification of patterns of abuse among both authorized and
+unauthorized users.
+  </td>
+</tr>
+<tr>
+  <td>4.1.9</td>
+  <td>Record Events that Modify the System's Discretionary Access Controls - lsetxattr</td>
+  <td xml:lang="en-US">
+At a minimum, the audit system should collect file permission
+changes for all users and root. If the <tt>auditd</tt> daemon is configured
+to use the <tt>augenrules</tt> program to read audit rules during daemon
+startup (the default), add the following line to a file with suffix
+<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
+<pre>-a always,exit -F arch=b32 -S lsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S lsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following line to
+<tt>/etc/audit/audit.rules</tt> file:
+<pre>-a always,exit -F arch=b32 -S lsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+If the system is 64 bit then also add the following line:
+<pre>-a always,exit -F arch=b64 -S lsetxattr -F auid&gt;=1000 -F auid!=unset -F key=perm_mod</pre>
+  </td>
+  <td xml:lang="en-US">
+The changing of file permissions could indicate that a user is attempting to
+gain access to information that would otherwise be disallowed. Auditing DAC modifications
+can facilitate the identification of patterns of abuse among both authorized and
+unauthorized users.
+  </td>
+</tr>
+<tr>
+  <td>4.1.10</td>
+  <td>Record Unsuccessful Access Attempts to Files - truncate</td>
+  <td xml:lang="en-US">
+At a minimum, the audit system should collect unauthorized file
+accesses for all users and root. If the <tt>auditd</tt> daemon is configured
+to use the <tt>augenrules</tt> program to read audit rules during daemon
+startup (the default), add the following lines to a file with suffix
+<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
+<pre>-a always,exit -F arch=b32 -S truncate -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
+-a always,exit -F arch=b32 -S truncate -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
+
+If the system is 64 bit then also add the following lines:
+<pre>
+-a always,exit -F arch=b64 -S truncate -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
+-a always,exit -F arch=b64 -S truncate -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
+
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following lines to
+<tt>/etc/audit/audit.rules</tt> file:
+<pre>-a always,exit -F arch=b32 -S truncate -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
+-a always,exit -F arch=b32 -S truncate -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
+
+If the system is 64 bit then also add the following lines:
+<pre>
+-a always,exit -F arch=b64 -S truncate -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
+-a always,exit -F arch=b64 -S truncate -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
+  </td>
+  <td xml:lang="en-US">
+Unsuccessful attempts to access files could be an indicator of malicious activity on a system. Auditing
+these events could serve as evidence of potential system compromise.
+  </td>
+</tr>
+<tr>
+  <td>4.1.10</td>
+  <td>Record Unsuccessful Access Attempts to Files - open</td>
+  <td xml:lang="en-US">
+At a minimum, the audit system should collect unauthorized file
+accesses for all users and root. If the <tt>auditd</tt> daemon is configured
+to use the <tt>augenrules</tt> program to read audit rules during daemon
+startup (the default), add the following lines to a file with suffix
+<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
+<pre>-a always,exit -F arch=b32 -S open -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
+-a always,exit -F arch=b32 -S open -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
+
+If the system is 64 bit then also add the following lines:
+<pre>
+-a always,exit -F arch=b64 -S open -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
+-a always,exit -F arch=b64 -S open -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
+
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following lines to
+<tt>/etc/audit/audit.rules</tt> file:
+<pre>-a always,exit -F arch=b32 -S open -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
+-a always,exit -F arch=b32 -S open -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
+
+If the system is 64 bit then also add the following lines:
+<pre>
+-a always,exit -F arch=b64 -S open -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
+-a always,exit -F arch=b64 -S open -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
+  </td>
+  <td xml:lang="en-US">
+Unsuccessful attempts to access files could be an indicator of malicious activity on a system. Auditing
+these events could serve as evidence of potential system compromise.
   </td>
 </tr>
 <tr>
@@ -4033,39 +4099,6 @@ these events could serve as evidence of potential system compromise.
 </tr>
 <tr>
   <td>4.1.10</td>
-  <td>Record Unsuccessful Access Attempts to Files - truncate</td>
-  <td xml:lang="en-US">
-At a minimum, the audit system should collect unauthorized file
-accesses for all users and root. If the <tt>auditd</tt> daemon is configured
-to use the <tt>augenrules</tt> program to read audit rules during daemon
-startup (the default), add the following lines to a file with suffix
-<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
-<pre>-a always,exit -F arch=b32 -S truncate -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
--a always,exit -F arch=b32 -S truncate -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
-
-If the system is 64 bit then also add the following lines:
-<pre>
--a always,exit -F arch=b64 -S truncate -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
--a always,exit -F arch=b64 -S truncate -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
-
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following lines to
-<tt>/etc/audit/audit.rules</tt> file:
-<pre>-a always,exit -F arch=b32 -S truncate -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
--a always,exit -F arch=b32 -S truncate -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
-
-If the system is 64 bit then also add the following lines:
-<pre>
--a always,exit -F arch=b64 -S truncate -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
--a always,exit -F arch=b64 -S truncate -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
-  </td>
-  <td xml:lang="en-US">
-Unsuccessful attempts to access files could be an indicator of malicious activity on a system. Auditing
-these events could serve as evidence of potential system compromise.
-  </td>
-</tr>
-<tr>
-  <td>4.1.10</td>
   <td>Record Unsuccessful Access Attempts to Files - openat</td>
   <td xml:lang="en-US">
 At a minimum, the audit system should collect unauthorized file
@@ -4091,39 +4124,6 @@ If the system is 64 bit then also add the following lines:
 <pre>
 -a always,exit -F arch=b64 -S openat -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
 -a always,exit -F arch=b64 -S openat -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
-  </td>
-  <td xml:lang="en-US">
-Unsuccessful attempts to access files could be an indicator of malicious activity on a system. Auditing
-these events could serve as evidence of potential system compromise.
-  </td>
-</tr>
-<tr>
-  <td>4.1.10</td>
-  <td>Record Unsuccessful Access Attempts to Files - open</td>
-  <td xml:lang="en-US">
-At a minimum, the audit system should collect unauthorized file
-accesses for all users and root. If the <tt>auditd</tt> daemon is configured
-to use the <tt>augenrules</tt> program to read audit rules during daemon
-startup (the default), add the following lines to a file with suffix
-<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
-<pre>-a always,exit -F arch=b32 -S open -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
--a always,exit -F arch=b32 -S open -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
-
-If the system is 64 bit then also add the following lines:
-<pre>
--a always,exit -F arch=b64 -S open -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
--a always,exit -F arch=b64 -S open -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
-
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following lines to
-<tt>/etc/audit/audit.rules</tt> file:
-<pre>-a always,exit -F arch=b32 -S open -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
--a always,exit -F arch=b32 -S open -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
-
-If the system is 64 bit then also add the following lines:
-<pre>
--a always,exit -F arch=b64 -S open -F exit=-EACCES -F auid&gt;=1000 -F auid!=unset -F key=access
--a always,exit -F arch=b64 -S open -F exit=-EPERM -F auid&gt;=1000 -F auid!=unset -F key=access</pre>
   </td>
   <td xml:lang="en-US">
 Unsuccessful attempts to access files could be an indicator of malicious activity on a system. Auditing
@@ -4158,6 +4158,30 @@ If the system is 64 bit then also add the following lines:
   <td xml:lang="en-US">
 Unsuccessful attempts to access files could be an indicator of malicious activity on a system. Auditing
 these events could serve as evidence of potential system compromise.
+  </td>
+</tr>
+<tr>
+  <td>4.1.12</td>
+  <td>Ensure auditd Collects Information on Exporting to Media (successful)</td>
+  <td xml:lang="en-US">
+At a minimum, the audit system should collect media exportation
+events for all users and root. If the <tt>auditd</tt> daemon is configured to
+use the <tt>augenrules</tt> program to read audit rules during daemon startup
+(the default), add the following line to a file with suffix <tt>.rules</tt> in
+the directory <tt>/etc/audit/rules.d</tt>, setting ARCH to either b32 or b64 as
+appropriate for your system:
+<pre>-a always,exit -F arch=ARCH -S mount -F auid&gt;=1000 -F auid!=unset -F key=export</pre>
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
+utility to read audit rules during daemon startup, add the following line to
+<tt>/etc/audit/audit.rules</tt> file, setting ARCH to either b32 or b64 as
+appropriate for your system:
+<pre>-a always,exit -F arch=ARCH -S mount -F auid&gt;=1000 -F auid!=unset -F key=export</pre>
+  </td>
+  <td xml:lang="en-US">
+The unauthorized exportation of data to external media could result in an information leak
+where classified information, Privacy Act information, and intellectual property could be lost. An audit
+trail should be created each time a filesystem is mounted to help identify and guard against information
+loss.
   </td>
 </tr>
 <tr>
@@ -4197,27 +4221,26 @@ unusual activity.
   </td>
 </tr>
 <tr>
-  <td>4.1.12</td>
-  <td>Ensure auditd Collects Information on Exporting to Media (successful)</td>
+  <td>4.1.13</td>
+  <td>Ensure auditd Collects File Deletion Events by User - renameat</td>
   <td xml:lang="en-US">
-At a minimum, the audit system should collect media exportation
-events for all users and root. If the <tt>auditd</tt> daemon is configured to
-use the <tt>augenrules</tt> program to read audit rules during daemon startup
-(the default), add the following line to a file with suffix <tt>.rules</tt> in
-the directory <tt>/etc/audit/rules.d</tt>, setting ARCH to either b32 or b64 as
+At a minimum, the audit system should collect file deletion events
+for all users and root. If the <tt>auditd</tt> daemon is configured to use the
+<tt>augenrules</tt> program to read audit rules during daemon startup (the
+default), add the following line to a file with suffix <tt>.rules</tt> in the
+directory <tt>/etc/audit/rules.d</tt>, setting ARCH to either b32 or b64 as
 appropriate for your system:
-<pre>-a always,exit -F arch=ARCH -S mount -F auid&gt;=1000 -F auid!=unset -F key=export</pre>
+<pre>-a always,exit -F arch=ARCH -S renameat -F auid&gt;=1000 -F auid!=unset -F key=delete</pre>
 If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
 utility to read audit rules during daemon startup, add the following line to
 <tt>/etc/audit/audit.rules</tt> file, setting ARCH to either b32 or b64 as
 appropriate for your system:
-<pre>-a always,exit -F arch=ARCH -S mount -F auid&gt;=1000 -F auid!=unset -F key=export</pre>
+<pre>-a always,exit -F arch=ARCH -S renameat -F auid&gt;=1000 -F auid!=unset -F key=delete</pre>
   </td>
   <td xml:lang="en-US">
-The unauthorized exportation of data to external media could result in an information leak
-where classified information, Privacy Act information, and intellectual property could be lost. An audit
-trail should be created each time a filesystem is mounted to help identify and guard against information
-loss.
+Auditing file deletions will create an audit trail for files that are removed
+from the system. The audit trail could aid in system troubleshooting, as well as, detecting
+malicious processes that attempt to delete log files to conceal their presence.
   </td>
 </tr>
 <tr>
@@ -4236,29 +4259,6 @@ utility to read audit rules during daemon startup, add the following line to
 <tt>/etc/audit/audit.rules</tt> file, setting ARCH to either b32 or b64 as
 appropriate for your system:
 <pre>-a always,exit -F arch=ARCH -S unlink -F auid&gt;=1000 -F auid!=unset -F key=delete</pre>
-  </td>
-  <td xml:lang="en-US">
-Auditing file deletions will create an audit trail for files that are removed
-from the system. The audit trail could aid in system troubleshooting, as well as, detecting
-malicious processes that attempt to delete log files to conceal their presence.
-  </td>
-</tr>
-<tr>
-  <td>4.1.13</td>
-  <td>Ensure auditd Collects File Deletion Events by User - unlinkat</td>
-  <td xml:lang="en-US">
-At a minimum, the audit system should collect file deletion events
-for all users and root. If the <tt>auditd</tt> daemon is configured to use the
-<tt>augenrules</tt> program to read audit rules during daemon startup (the
-default), add the following line to a file with suffix <tt>.rules</tt> in the
-directory <tt>/etc/audit/rules.d</tt>, setting ARCH to either b32 or b64 as
-appropriate for your system:
-<pre>-a always,exit -F arch=ARCH -S unlinkat -F auid&gt;=1000 -F auid!=unset -F key=delete</pre>
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
-utility to read audit rules during daemon startup, add the following line to
-<tt>/etc/audit/audit.rules</tt> file, setting ARCH to either b32 or b64 as
-appropriate for your system:
-<pre>-a always,exit -F arch=ARCH -S unlinkat -F auid&gt;=1000 -F auid!=unset -F key=delete</pre>
   </td>
   <td xml:lang="en-US">
 Auditing file deletions will create an audit trail for files that are removed
@@ -4291,7 +4291,7 @@ malicious processes that attempt to delete log files to conceal their presence.
 </tr>
 <tr>
   <td>4.1.13</td>
-  <td>Ensure auditd Collects File Deletion Events by User - renameat</td>
+  <td>Ensure auditd Collects File Deletion Events by User - unlinkat</td>
   <td xml:lang="en-US">
 At a minimum, the audit system should collect file deletion events
 for all users and root. If the <tt>auditd</tt> daemon is configured to use the
@@ -4299,12 +4299,12 @@ for all users and root. If the <tt>auditd</tt> daemon is configured to use the
 default), add the following line to a file with suffix <tt>.rules</tt> in the
 directory <tt>/etc/audit/rules.d</tt>, setting ARCH to either b32 or b64 as
 appropriate for your system:
-<pre>-a always,exit -F arch=ARCH -S renameat -F auid&gt;=1000 -F auid!=unset -F key=delete</pre>
+<pre>-a always,exit -F arch=ARCH -S unlinkat -F auid&gt;=1000 -F auid!=unset -F key=delete</pre>
 If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt>
 utility to read audit rules during daemon startup, add the following line to
 <tt>/etc/audit/audit.rules</tt> file, setting ARCH to either b32 or b64 as
 appropriate for your system:
-<pre>-a always,exit -F arch=ARCH -S renameat -F auid&gt;=1000 -F auid!=unset -F key=delete</pre>
+<pre>-a always,exit -F arch=ARCH -S unlinkat -F auid&gt;=1000 -F auid!=unset -F key=delete</pre>
   </td>
   <td xml:lang="en-US">
 Auditing file deletions will create an audit trail for files that are removed
@@ -4382,11 +4382,36 @@ malicious processes that attempt to delete log files to conceal their presence.
 </tr>
 <tr>
   <td>4.1.16</td>
+  <td>Ensure auditd Collects Information on Kernel Module Loading - init_module</td>
+  <td xml:lang="en-US">
+To capture kernel module loading events, use following line, setting ARCH to
+either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
+
+
+Place to add the line depends on a way <tt>auditd</tt> daemon is configured. If it is configured
+to use the <tt>augenrules</tt> program (the default), add the line to a file with suffix
+<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>.
+
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt> utility,
+add the line to file <tt>/etc/audit/audit.rules</tt>.
+  </td>
+  <td xml:lang="en-US">
+The addition of kernel modules can be used to alter the behavior of
+the kernel and potentially introduce malicious code into kernel space. It is important
+to have an audit trail of modules that have been introduced into the kernel.
+  </td>
+</tr>
+<tr>
+  <td>4.1.16</td>
   <td>Ensure auditd Collects Information on Kernel Module Unloading - delete_module</td>
   <td xml:lang="en-US">
 To capture kernel module unloading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
+
 <pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F key=modules</pre>
+
 
 Place to add the line depends on a way <tt>auditd</tt> daemon is configured. If it is configured
 to use the <tt>augenrules</tt> program (the default), add the line to a file with suffix
@@ -4399,6 +4424,30 @@ add the line to file <tt>/etc/audit/audit.rules</tt>.
 The removal of kernel modules can be used to alter the behavior of
 the kernel and potentially introduce malicious code into kernel space. It is important
 to have an audit trail of modules that have been introduced into the kernel.
+  </td>
+</tr>
+<tr>
+  <td>4.1.16</td>
+  <td>Ensure auditd Collects Information on the Use of Privileged Commands - insmod</td>
+  <td xml:lang="en-US">
+At a minimum, the audit system should collect the execution of
+privileged commands for all users and root. If the <tt>auditd</tt> daemon is
+configured to use the <tt>augenrules</tt> program to read audit rules during
+daemon startup (the default), add a line of the following form to a file with
+suffix <tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
+<pre>-w /sbin/insmod -p x -k modules</pre>
+  </td>
+  <td xml:lang="en-US">
+Misuse of privileged functions, either intentionally or unintentionally by
+authorized users, or by unauthorized external entities that have compromised system accounts,
+is a serious and ongoing concern and can have significant adverse impacts on organizations.
+Auditing the use of privileged functions is one way to detect such misuse and identify
+the risk from insider and advanced persistent threats.
+<br /><br />
+Privileged programs are subject to escalation-of-privilege attacks,
+which attempt to subvert their normal role of providing some necessary but
+limited capability. As such, motivation exists to monitor these programs for
+unusual activity.
   </td>
 </tr>
 <tr>
@@ -4431,51 +4480,6 @@ unusual activity.
 </tr>
 <tr>
   <td>4.1.16</td>
-  <td>Ensure auditd Collects Information on the Use of Privileged Commands - insmod</td>
-  <td xml:lang="en-US">
-At a minimum, the audit system should collect the execution of
-privileged commands for all users and root. If the <tt>auditd</tt> daemon is
-configured to use the <tt>augenrules</tt> program to read audit rules during
-daemon startup (the default), add a line of the following form to a file with
-suffix <tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>:
-<pre>-w /sbin/insmod -p x -k modules</pre>
-  </td>
-  <td xml:lang="en-US">
-Misuse of privileged functions, either intentionally or unintentionally by
-authorized users, or by unauthorized external entities that have compromised system accounts,
-is a serious and ongoing concern and can have significant adverse impacts on organizations.
-Auditing the use of privileged functions is one way to detect such misuse and identify
-the risk from insider and advanced persistent threats.
-<br /><br />
-Privileged programs are subject to escalation-of-privilege attacks,
-which attempt to subvert their normal role of providing some necessary but
-limited capability. As such, motivation exists to monitor these programs for
-unusual activity.
-  </td>
-</tr>
-<tr>
-  <td>4.1.16</td>
-  <td>Ensure auditd Collects Information on Kernel Module Loading - init_module</td>
-  <td xml:lang="en-US">
-To capture kernel module loading events, use following line, setting ARCH to
-either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
-
-Place to add the line depends on a way <tt>auditd</tt> daemon is configured. If it is configured
-to use the <tt>augenrules</tt> program (the default), add the line to a file with suffix
-<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>.
-
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt> utility,
-add the line to file <tt>/etc/audit/audit.rules</tt>.
-  </td>
-  <td xml:lang="en-US">
-The addition of kernel modules can be used to alter the behavior of
-the kernel and potentially introduce malicious code into kernel space. It is important
-to have an audit trail of modules that have been introduced into the kernel.
-  </td>
-</tr>
-<tr>
-  <td>4.1.16</td>
   <td>Ensure auditd Collects Information on the Use of Privileged Commands - rmmod</td>
   <td xml:lang="en-US">
 At a minimum, the audit system should collect the execution of
@@ -4500,20 +4504,20 @@ unusual activity.
 </tr>
 <tr>
   <td>4.1.17</td>
-  <td>Ensure auditd Collects Information on Kernel Module Loading and Unloading</td>
+  <td>Ensure auditd Collects Information on Kernel Module Loading and Unloading - finit_module</td>
   <td xml:lang="en-US">
-To capture kernel module loading and unloading events, use following lines, setting ARCH to
-either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>
--a always,exit -F arch=<i>ARCH</i> -S init_module,finit_module,delete_module -F key=modules
-</pre>
+If the <tt>auditd</tt> daemon is configured to use the <tt>augenrules</tt> program
+to read audit rules during daemon startup (the default), add the following lines to a file
+with suffix <tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt> to capture kernel module
+loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system:
 
-The place to add the lines depends on a way <tt>auditd</tt> daemon is configured. If it is configured
-to use the <tt>augenrules</tt> program (the default), add the lines to a file with suffix
-<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>.
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
+    If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt> utility to read audit
+rules during daemon startup, add the following lines to <tt>/etc/audit/audit.rules</tt> file
+in order to capture kernel module loading and unloading events, setting ARCH to either b32 or
+b64 as appropriate for your system:
 
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt> utility,
-add the lines to file <tt>/etc/audit/audit.rules</tt>.
+<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
   </td>
   <td xml:lang="en-US">
 The addition/removal of kernel modules can be used to alter the behavior of
@@ -4547,18 +4551,20 @@ operation
 </tr>
 <tr>
   <td>4.1.17</td>
-  <td>Ensure auditd Collects Information on Kernel Module Loading and Unloading - finit_module</td>
+  <td>Ensure auditd Collects Information on Kernel Module Loading and Unloading</td>
   <td xml:lang="en-US">
-If the <tt>auditd</tt> daemon is configured to use the <tt>augenrules</tt> program
-to read audit rules during daemon startup (the default), add the following lines to a file
-with suffix <tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt> to capture kernel module
-loading and unloading events, setting ARCH to either b32 or b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
-If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt> utility to read audit
-rules during daemon startup, add the following lines to <tt>/etc/audit/audit.rules</tt> file
-in order to capture kernel module loading and unloading events, setting ARCH to either b32 or
-b64 as appropriate for your system:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S finit_module -F key=modules</pre>
+To capture kernel module loading and unloading events, use following lines, setting ARCH to
+either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
+<pre>
+-a always,exit -F arch=<i>ARCH</i> -S init_module,finit_module,delete_module -F key=modules
+</pre>
+
+The place to add the lines depends on a way <tt>auditd</tt> daemon is configured. If it is configured
+to use the <tt>augenrules</tt> program (the default), add the lines to a file with suffix
+<tt>.rules</tt> in the directory <tt>/etc/audit/rules.d</tt>.
+
+If the <tt>auditd</tt> daemon is configured to use the <tt>auditctl</tt> utility,
+add the lines to file <tt>/etc/audit/audit.rules</tt>.
   </td>
   <td xml:lang="en-US">
 The addition/removal of kernel modules can be used to alter the behavior of
@@ -4649,23 +4655,6 @@ place to view the status of multiple hosts within the enterprise.
 </tr>
 <tr>
   <td>4.2.1.5</td>
-  <td>Enable rsyslog to Accept Messages via UDP, if Acting As Log Server</td>
-  <td xml:lang="en-US">
-The <tt>rsyslog</tt> daemon should not accept remote messages
-unless the system acts as a log server.
-If the system needs to act as a central log server, add the following lines to
-<tt>/etc/rsyslog.conf</tt> to enable reception of messages over UDP:
-<pre>$ModLoad imudp
-$UDPServerRun 514</pre>
-  </td>
-  <td xml:lang="en-US">
-Many devices, such as switches, routers, and other Unix-like systems, may only support
-the traditional syslog transmission over UDP. If the system must act as a log server,
-this enables it to receive their messages as well.
-  </td>
-</tr>
-<tr>
-  <td>4.2.1.5</td>
   <td>Ensure rsyslog Does Not Accept Remote Messages Unless Acting As Log Server</td>
   <td xml:lang="en-US">
 The <tt>rsyslog</tt> daemon should not accept remote messages
@@ -4683,6 +4672,23 @@ $InputRELPServerRun <i>port</i></pre>
 Any process which receives messages from the network incurs some risk
 of receiving malicious messages. This risk can be eliminated for
 rsyslog by configuring it not to listen on the network.
+  </td>
+</tr>
+<tr>
+  <td>4.2.1.5</td>
+  <td>Enable rsyslog to Accept Messages via UDP, if Acting As Log Server</td>
+  <td xml:lang="en-US">
+The <tt>rsyslog</tt> daemon should not accept remote messages
+unless the system acts as a log server.
+If the system needs to act as a central log server, add the following lines to
+<tt>/etc/rsyslog.conf</tt> to enable reception of messages over UDP:
+<pre>$ModLoad imudp
+$UDPServerRun 514</pre>
+  </td>
+  <td xml:lang="en-US">
+Many devices, such as switches, routers, and other Unix-like systems, may only support
+the traditional syslog transmission over UDP. If the system must act as a log server,
+this enables it to receive their messages as well.
   </td>
 </tr>
 <tr>
@@ -4768,6 +4774,20 @@ enabling the cron daemon is essential.
 </tr>
 <tr>
   <td>5.1.2</td>
+  <td>Verify Owner on crontab</td>
+  <td xml:lang="en-US">
+
+To properly set the owner of <code>/etc/crontab</code>, run the command:
+<pre>$ sudo chown root /etc/crontab </pre>
+  </td>
+  <td xml:lang="en-US">
+Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct user to prevent unauthorized changes.
+  </td>
+</tr>
+<tr>
+  <td>5.1.2</td>
   <td>Verify Group Who Owns Crontab</td>
   <td xml:lang="en-US">
 
@@ -4792,34 +4812,6 @@ To properly set the permissions of <code>/etc/crontab</code>, run the command:
 Service configuration files enable or disable features of their respective services that if configured incorrectly
 can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
 correct access rights to prevent unauthorized changes.
-  </td>
-</tr>
-<tr>
-  <td>5.1.2</td>
-  <td>Verify Owner on crontab</td>
-  <td xml:lang="en-US">
-
-To properly set the owner of <code>/etc/crontab</code>, run the command:
-<pre>$ sudo chown root /etc/crontab </pre>
-  </td>
-  <td xml:lang="en-US">
-Service configuration files enable or disable features of their respective services that if configured incorrectly
-can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
-correct user to prevent unauthorized changes.
-  </td>
-</tr>
-<tr>
-  <td>5.1.3</td>
-  <td>Verify Owner on cron.hourly</td>
-  <td xml:lang="en-US">
-
-To properly set the owner of <code>/etc/cron.hourly</code>, run the command:
-<pre>$ sudo chown root /etc/cron.hourly </pre>
-  </td>
-  <td xml:lang="en-US">
-Service configuration files enable or disable features of their respective services that if configured incorrectly
-can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
-correct user to prevent unauthorized changes.
   </td>
 </tr>
 <tr>
@@ -4851,17 +4843,31 @@ correct group to prevent unauthorized changes.
   </td>
 </tr>
 <tr>
-  <td>5.1.4</td>
-  <td>Verify Owner on cron.daily</td>
+  <td>5.1.3</td>
+  <td>Verify Owner on cron.hourly</td>
   <td xml:lang="en-US">
 
-To properly set the owner of <code>/etc/cron.daily</code>, run the command:
-<pre>$ sudo chown root /etc/cron.daily </pre>
+To properly set the owner of <code>/etc/cron.hourly</code>, run the command:
+<pre>$ sudo chown root /etc/cron.hourly </pre>
   </td>
   <td xml:lang="en-US">
 Service configuration files enable or disable features of their respective services that if configured incorrectly
 can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
 correct user to prevent unauthorized changes.
+  </td>
+</tr>
+<tr>
+  <td>5.1.4</td>
+  <td>Verify Permissions on cron.daily</td>
+  <td xml:lang="en-US">
+
+To properly set the permissions of <code>/etc/cron.daily</code>, run the command:
+<pre>$ sudo chmod 0700 /etc/cron.daily</pre>
+  </td>
+  <td xml:lang="en-US">
+Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
+correct access rights to prevent unauthorized changes.
   </td>
 </tr>
 <tr>
@@ -4880,39 +4886,11 @@ correct group to prevent unauthorized changes.
 </tr>
 <tr>
   <td>5.1.4</td>
-  <td>Verify Permissions on cron.daily</td>
+  <td>Verify Owner on cron.daily</td>
   <td xml:lang="en-US">
 
-To properly set the permissions of <code>/etc/cron.daily</code>, run the command:
-<pre>$ sudo chmod 0700 /etc/cron.daily</pre>
-  </td>
-  <td xml:lang="en-US">
-Service configuration files enable or disable features of their respective services that if configured incorrectly
-can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
-correct access rights to prevent unauthorized changes.
-  </td>
-</tr>
-<tr>
-  <td>5.1.5</td>
-  <td>Verify Group Who Owns cron.weekly</td>
-  <td xml:lang="en-US">
-
-To properly set the group owner of <code>/etc/cron.weekly</code>, run the command:
-<pre>$ sudo chgrp root /etc/cron.weekly</pre>
-  </td>
-  <td xml:lang="en-US">
-Service configuration files enable or disable features of their respective services that if configured incorrectly
-can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
-correct group to prevent unauthorized changes.
-  </td>
-</tr>
-<tr>
-  <td>5.1.5</td>
-  <td>Verify Owner on cron.weekly</td>
-  <td xml:lang="en-US">
-
-To properly set the owner of <code>/etc/cron.weekly</code>, run the command:
-<pre>$ sudo chown root /etc/cron.weekly </pre>
+To properly set the owner of <code>/etc/cron.daily</code>, run the command:
+<pre>$ sudo chown root /etc/cron.daily </pre>
   </td>
   <td xml:lang="en-US">
 Service configuration files enable or disable features of their respective services that if configured incorrectly
@@ -4935,17 +4913,31 @@ correct access rights to prevent unauthorized changes.
   </td>
 </tr>
 <tr>
-  <td>5.1.6</td>
-  <td>Verify Permissions on cron.monthly</td>
+  <td>5.1.5</td>
+  <td>Verify Owner on cron.weekly</td>
   <td xml:lang="en-US">
 
-To properly set the permissions of <code>/etc/cron.monthly</code>, run the command:
-<pre>$ sudo chmod 0700 /etc/cron.monthly</pre>
+To properly set the owner of <code>/etc/cron.weekly</code>, run the command:
+<pre>$ sudo chown root /etc/cron.weekly </pre>
   </td>
   <td xml:lang="en-US">
 Service configuration files enable or disable features of their respective services that if configured incorrectly
-can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
-correct access rights to prevent unauthorized changes.
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct user to prevent unauthorized changes.
+  </td>
+</tr>
+<tr>
+  <td>5.1.5</td>
+  <td>Verify Group Who Owns cron.weekly</td>
+  <td xml:lang="en-US">
+
+To properly set the group owner of <code>/etc/cron.weekly</code>, run the command:
+<pre>$ sudo chgrp root /etc/cron.weekly</pre>
+  </td>
+  <td xml:lang="en-US">
+Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should be owned by the
+correct group to prevent unauthorized changes.
   </td>
 </tr>
 <tr>
@@ -4977,6 +4969,34 @@ correct user to prevent unauthorized changes.
   </td>
 </tr>
 <tr>
+  <td>5.1.6</td>
+  <td>Verify Permissions on cron.monthly</td>
+  <td xml:lang="en-US">
+
+To properly set the permissions of <code>/etc/cron.monthly</code>, run the command:
+<pre>$ sudo chmod 0700 /etc/cron.monthly</pre>
+  </td>
+  <td xml:lang="en-US">
+Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
+correct access rights to prevent unauthorized changes.
+  </td>
+</tr>
+<tr>
+  <td>5.1.7</td>
+  <td>Verify Permissions on cron.d</td>
+  <td xml:lang="en-US">
+
+To properly set the permissions of <code>/etc/cron.d</code>, run the command:
+<pre>$ sudo chmod 0700 /etc/cron.d</pre>
+  </td>
+  <td xml:lang="en-US">
+Service configuration files enable or disable features of their respective services that if configured incorrectly
+can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
+correct access rights to prevent unauthorized changes.
+  </td>
+</tr>
+<tr>
   <td>5.1.7</td>
   <td>Verify Owner on cron.d</td>
   <td xml:lang="en-US">
@@ -5005,17 +5025,17 @@ correct group to prevent unauthorized changes.
   </td>
 </tr>
 <tr>
-  <td>5.1.7</td>
-  <td>Verify Permissions on cron.d</td>
+  <td>5.1.8</td>
+  <td>Verify User Who Owns /etc/cron.allow file</td>
   <td xml:lang="en-US">
+If <tt>/etc/cron.allow</tt> exists, it must be owned by <tt>root</tt>.
 
-To properly set the permissions of <code>/etc/cron.d</code>, run the command:
-<pre>$ sudo chmod 0700 /etc/cron.d</pre>
+To properly set the owner of <code>/etc/cron.allow</code>, run the command:
+<pre>$ sudo chown root /etc/cron.allow </pre>
   </td>
   <td xml:lang="en-US">
-Service configuration files enable or disable features of their respective services that if configured incorrectly
-can lead to insecure and vulnerable configurations. Therefore, service configuration files should have the
-correct access rights to prevent unauthorized changes.
+If the owner of the cron.allow file is not set to root, the possibility exists for an
+unauthorized user to view or edit sensitive information.
   </td>
 </tr>
 <tr>
@@ -5042,20 +5062,6 @@ Use <tt>/etc/cron.allow</tt> instead.
   <td xml:lang="en-US">
 Access to <tt>cron</tt> should be restricted.
 It is easier to manage an allow list than a deny list.
-  </td>
-</tr>
-<tr>
-  <td>5.1.8</td>
-  <td>Verify User Who Owns /etc/cron.allow file</td>
-  <td xml:lang="en-US">
-If <tt>/etc/cron.allow</tt> exists, it must be owned by <tt>root</tt>.
-
-To properly set the owner of <code>/etc/cron.allow</code>, run the command:
-<pre>$ sudo chown root /etc/cron.allow </pre>
-  </td>
-  <td xml:lang="en-US">
-If the owner of the cron.allow file is not set to root, the possibility exists for an
-unauthorized user to view or edit sensitive information.
   </td>
 </tr>
 <tr>
@@ -5252,24 +5258,6 @@ correct group to prevent unauthorized changes.
 </tr>
 <tr>
   <td>5.3.2</td>
-  <td>Lock Accounts After Failed Password Attempts</td>
-  <td xml:lang="en-US">
-This rule configures the system to lock out accounts after a number of incorrect login attempts
-using <tt>pam_faillock.so</tt>.
-
-pam_faillock.so module requires multiple entries in pam files. These entries must be carefully
-defined to work as expected. In order to avoid any errors when manually editing these files,
-it is recommended to use the appropriate tools, such as <tt>authselect</tt> or <tt>authconfig</tt>,
-depending on the OS version.
-  </td>
-  <td xml:lang="en-US">
-Locking out user accounts after a number of incorrect attempts prevents direct password
-guessing attacks. In combination with the <tt>silent</tt> option, user enumeration attacks
-are also mitigated.
-  </td>
-</tr>
-<tr>
-  <td>5.3.2</td>
   <td>Set Lockout Time for Failed Password Attempts</td>
   <td xml:lang="en-US">
 This rule configures the system to lock out accounts during a specified time period after a
@@ -5284,6 +5272,24 @@ depending on the OS version.
 Locking out user accounts after a number of incorrect attempts prevents direct password
 guessing attacks. Ensuring that an administrator is involved in unlocking locked accounts
 draws appropriate attention to such situations.
+  </td>
+</tr>
+<tr>
+  <td>5.3.2</td>
+  <td>Lock Accounts After Failed Password Attempts</td>
+  <td xml:lang="en-US">
+This rule configures the system to lock out accounts after a number of incorrect login attempts
+using <tt>pam_faillock.so</tt>.
+
+pam_faillock.so module requires multiple entries in pam files. These entries must be carefully
+defined to work as expected. In order to avoid any errors when manually editing these files,
+it is recommended to use the appropriate tools, such as <tt>authselect</tt> or <tt>authconfig</tt>,
+depending on the OS version.
+  </td>
+  <td xml:lang="en-US">
+Locking out user accounts after a number of incorrect attempts prevents direct password
+guessing attacks. In combination with the <tt>silent</tt> option, user enumeration attacks
+are also mitigated.
   </td>
 </tr>
 <tr>
@@ -5715,6 +5721,85 @@ of sshd logins and prevent overwhelming the daemon.
 </tr>
 <tr>
   <td>5.4.1</td>
+  <td>Ensure PAM Enforces Password Requirements - Authentication Retry Prompts Permitted Per-Session</td>
+  <td xml:lang="en-US">
+To configure the number of retry prompts that are permitted per-session:
+
+Edit the <tt>pam_pwquality.so</tt> statement in
+
+<tt>/etc/pam.d/system-auth</tt> to show
+
+
+<tt>retry=<abbr title="$var_password_pam_retry"><tt>3</tt></abbr></tt>, or a lower value if site
+policy is more restrictive. The DoD requirement is a maximum of 3 prompts
+per session.
+  </td>
+  <td xml:lang="en-US">
+Setting the password retry prompts that are permitted on a per-session basis to a low value
+requires some software, such as SSH, to re-connect. This can slow down and
+draw additional attention to some types of password-guessing attacks. Note that this
+is different from account lockout, which is provided by the pam_faillock module.
+  </td>
+</tr>
+<tr>
+  <td>5.4.1</td>
+  <td>Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters</td>
+  <td xml:lang="en-US">
+The pam_pwquality module's <tt>lcredit</tt> parameter controls requirements for
+usage of lowercase letters in a password. When set to a negative number, any password will be required to
+contain that many lowercase characters. When set to a positive number, pam_pwquality will grant +1 additional
+length credit for each lowercase character. Modify the <tt>lcredit</tt> setting in
+<tt>/etc/security/pwquality.conf</tt> to require the use of a lowercase character in passwords.
+  </td>
+  <td xml:lang="en-US">
+Use of a complex password helps to increase the time and resources required
+to compromise the password. Password complexity, or strength, is a measure of
+the effectiveness of a password in resisting attempts at guessing and brute-force
+attacks.
+<br /><br />
+Password complexity is one factor of several that determines how long it takes
+to crack a password. The more complex the password, the greater the number of
+possble combinations that need to be tested before the password is compromised.
+Requiring a minimum number of lowercase characters makes password guessing attacks
+more difficult by ensuring a larger search space.
+  </td>
+</tr>
+<tr>
+  <td>5.4.1</td>
+  <td>Ensure PAM Enforces Password Requirements - Minimum Different Categories</td>
+  <td xml:lang="en-US">
+The pam_pwquality module's <tt>minclass</tt> parameter controls
+requirements for usage of different character classes, or types, of character
+that must exist in a password before it is considered valid. For example,
+setting this value to three (3) requires that any password must have characters
+from at least three different categories in order to be approved. The default
+value is zero (0), meaning there are no required classes. There are four
+categories available:
+<pre>
+* Upper-case characters
+* Lower-case characters
+* Digits
+* Special characters (for example, punctuation)
+</pre>
+Modify the <tt>minclass</tt> setting in <tt>/etc/security/pwquality.conf</tt> entry
+to require <abbr title="$var_password_pam_minclass"><tt>3</tt></abbr>
+differing categories of characters when changing passwords.
+  </td>
+  <td xml:lang="en-US">
+Use of a complex password helps to increase the time and resources required to compromise the password.
+Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts
+at guessing and brute-force attacks.
+<br /><br />
+Password complexity is one factor of several that determines how long it takes to crack a password. The
+more complex the password, the greater the number of possible combinations that need to be tested before
+the password is compromised.
+<br /><br />
+Requiring a minimum number of character categories makes password guessing attacks more difficult
+by ensuring a larger search space.
+  </td>
+</tr>
+<tr>
+  <td>5.4.1</td>
   <td>Ensure PAM Enforces Password Requirements - Minimum Length</td>
   <td xml:lang="en-US">
 The pam_pwquality module's <tt>minlen</tt> parameter controls requirements for
@@ -5760,62 +5845,6 @@ more difficult by ensuring a larger search space.
 </tr>
 <tr>
   <td>5.4.1</td>
-  <td>Ensure PAM Enforces Password Requirements - Minimum Different Categories</td>
-  <td xml:lang="en-US">
-The pam_pwquality module's <tt>minclass</tt> parameter controls
-requirements for usage of different character classes, or types, of character
-that must exist in a password before it is considered valid. For example,
-setting this value to three (3) requires that any password must have characters
-from at least three different categories in order to be approved. The default
-value is zero (0), meaning there are no required classes. There are four
-categories available:
-<pre>
-* Upper-case characters
-* Lower-case characters
-* Digits
-* Special characters (for example, punctuation)
-</pre>
-Modify the <tt>minclass</tt> setting in <tt>/etc/security/pwquality.conf</tt> entry
-to require <abbr title="$var_password_pam_minclass"><tt>3</tt></abbr>
-differing categories of characters when changing passwords.
-  </td>
-  <td xml:lang="en-US">
-Use of a complex password helps to increase the time and resources required to compromise the password.
-Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts
-at guessing and brute-force attacks.
-<br /><br />
-Password complexity is one factor of several that determines how long it takes to crack a password. The
-more complex the password, the greater the number of possible combinations that need to be tested before
-the password is compromised.
-<br /><br />
-Requiring a minimum number of character categories makes password guessing attacks more difficult
-by ensuring a larger search space.
-  </td>
-</tr>
-<tr>
-  <td>5.4.1</td>
-  <td>Ensure PAM Enforces Password Requirements - Authentication Retry Prompts Permitted Per-Session</td>
-  <td xml:lang="en-US">
-To configure the number of retry prompts that are permitted per-session:
-
-Edit the <tt>pam_pwquality.so</tt> statement in
-
-<tt>/etc/pam.d/system-auth</tt> to show
-
-
-<tt>retry=<abbr title="$var_password_pam_retry"><tt>3</tt></abbr></tt>, or a lower value if site
-policy is more restrictive. The DoD requirement is a maximum of 3 prompts
-per session.
-  </td>
-  <td xml:lang="en-US">
-Setting the password retry prompts that are permitted on a per-session basis to a low value
-requires some software, such as SSH, to re-connect. This can slow down and
-draw additional attention to some types of password-guessing attacks. Note that this
-is different from account lockout, which is provided by the pam_faillock module.
-  </td>
-</tr>
-<tr>
-  <td>5.4.1</td>
   <td>Ensure PAM Enforces Password Requirements - Minimum Uppercase Characters</td>
   <td xml:lang="en-US">
 The pam_pwquality module's <tt>ucredit=</tt> parameter controls requirements for
@@ -5832,29 +5861,6 @@ at guessing and brute-force attacks.
 Password complexity is one factor of several that determines how long it takes to crack a password. The more
 complex the password, the greater the number of possible combinations that need to be tested before
 the password is compromised.
-  </td>
-</tr>
-<tr>
-  <td>5.4.1</td>
-  <td>Ensure PAM Enforces Password Requirements - Minimum Lowercase Characters</td>
-  <td xml:lang="en-US">
-The pam_pwquality module's <tt>lcredit</tt> parameter controls requirements for
-usage of lowercase letters in a password. When set to a negative number, any password will be required to
-contain that many lowercase characters. When set to a positive number, pam_pwquality will grant +1 additional
-length credit for each lowercase character. Modify the <tt>lcredit</tt> setting in
-<tt>/etc/security/pwquality.conf</tt> to require the use of a lowercase character in passwords.
-  </td>
-  <td xml:lang="en-US">
-Use of a complex password helps to increase the time and resources required
-to compromise the password. Password complexity, or strength, is a measure of
-the effectiveness of a password in resisting attempts at guessing and brute-force
-attacks.
-<br /><br />
-Password complexity is one factor of several that determines how long it takes
-to crack a password. The more complex the password, the greater the number of
-possble combinations that need to be tested before the password is compromised.
-Requiring a minimum number of lowercase characters makes password guessing attacks
-more difficult by ensuring a larger search space.
   </td>
 </tr>
 <tr>
@@ -5952,24 +5958,6 @@ difficult.
 </tr>
 <tr>
   <td>5.4.4</td>
-  <td>Limit Password Reuse: password-auth</td>
-  <td xml:lang="en-US">
-Do not allow users to reuse recent passwords. This can be
-accomplished by using the <tt>remember</tt> option for the
-<tt>pam_pwhistory</tt> PAM modules.
-<br /><br />
-In the file <tt>/etc/pam.d/password-auth</tt>, make sure the parameter
-<tt>remember</tt> is present, and that the value
-for the <tt>remember</tt> parameter is <abbr title="$var_password_pam_remember"><tt>5</tt></abbr> or greater. For example:
-<pre>password <abbr title="$var_password_pam_remember_control_flag"><tt>requisite</tt></abbr> pam_pwhistory.so <i>...existing_options...</i> remember=<abbr title="$var_password_pam_remember"><tt>5</tt></abbr> use_authtok</pre>
-The DoD STIG requirement is 5 passwords.
-  </td>
-  <td xml:lang="en-US">
-Preventing re-use of previous passwords helps ensure that a compromised password is not re-used by a user.
-  </td>
-</tr>
-<tr>
-  <td>5.4.4</td>
   <td>Limit Password Reuse</td>
   <td xml:lang="en-US">
 Do not allow users to reuse recent passwords. This can be
@@ -5986,6 +5974,24 @@ to the line which refers to the <tt>pam_unix.so</tt> or <tt>pam_pwhistory.so</tt
 <pre>password requisite pam_pwhistory.so <i>...existing_options...</i> remember=<abbr title="$var_password_pam_unix_remember"><tt>5</tt></abbr></pre>
 </li>
 </ul>
+The DoD STIG requirement is 5 passwords.
+  </td>
+  <td xml:lang="en-US">
+Preventing re-use of previous passwords helps ensure that a compromised password is not re-used by a user.
+  </td>
+</tr>
+<tr>
+  <td>5.4.4</td>
+  <td>Limit Password Reuse: password-auth</td>
+  <td xml:lang="en-US">
+Do not allow users to reuse recent passwords. This can be
+accomplished by using the <tt>remember</tt> option for the
+<tt>pam_pwhistory</tt> PAM modules.
+<br /><br />
+In the file <tt>/etc/pam.d/password-auth</tt>, make sure the parameter
+<tt>remember</tt> is present, and that the value
+for the <tt>remember</tt> parameter is <abbr title="$var_password_pam_remember"><tt>5</tt></abbr> or greater. For example:
+<pre>password <abbr title="$var_password_pam_remember_control_flag"><tt>requisite</tt></abbr> pam_pwhistory.so <i>...existing_options...</i> remember=<abbr title="$var_password_pam_remember"><tt>5</tt></abbr> use_authtok</pre>
 The DoD STIG requirement is 5 passwords.
   </td>
   <td xml:lang="en-US">
@@ -6263,6 +6269,17 @@ be a sign of nefarious activity on the system.
 </tr>
 <tr>
   <td>6.1.2</td>
+  <td>Verify User Who Owns passwd File</td>
+  <td xml:lang="en-US">
+ To properly set the owner of <code>/etc/passwd</code>, run the command: <pre>$ sudo chown root /etc/passwd </pre>
+  </td>
+  <td xml:lang="en-US">
+The <tt>/etc/passwd</tt> file contains information about the users that are configured on
+the system. Protection of this file is critical for system security.
+  </td>
+</tr>
+<tr>
+  <td>6.1.2</td>
   <td>Verify Permissions on passwd File</td>
   <td xml:lang="en-US">
 
@@ -6274,17 +6291,6 @@ If the <tt>/etc/passwd</tt> file is writable by a group-owner or the
 world the risk of its compromise is increased. The file contains the list of
 accounts on the system and associated information, and protection of this file
 is critical for system security.
-  </td>
-</tr>
-<tr>
-  <td>6.1.2</td>
-  <td>Verify User Who Owns passwd File</td>
-  <td xml:lang="en-US">
- To properly set the owner of <code>/etc/passwd</code>, run the command: <pre>$ sudo chown root /etc/passwd </pre>
-  </td>
-  <td xml:lang="en-US">
-The <tt>/etc/passwd</tt> file contains information about the users that are configured on
-the system. Protection of this file is critical for system security.
   </td>
 </tr>
 <tr>
@@ -6379,18 +6385,6 @@ critical for system security.
 </tr>
 <tr>
   <td>6.1.5</td>
-  <td>Verify Group Who Owns Backup shadow File</td>
-  <td xml:lang="en-US">
- To properly set the owner of <code>/etc/shadow-</code>, run the command: <pre>$ sudo chown root /etc/shadow- </pre>
-  </td>
-  <td xml:lang="en-US">
-The <tt>/etc/shadow-</tt> file is a backup file of <tt>/etc/shadow</tt>, and as such,
-it contains the list of local system accounts and password hashes.
-Protection of this file is critical for system security.
-  </td>
-</tr>
-<tr>
-  <td>6.1.5</td>
   <td>Verify User Who Owns Backup shadow File</td>
   <td xml:lang="en-US">
  To properly set the group owner of <code>/etc/shadow-</code>, run the command: <pre>$ sudo chgrp root /etc/shadow-</pre>
@@ -6408,6 +6402,18 @@ Protection of this file is critical for system security.
 
 To properly set the permissions of <code>/etc/shadow-</code>, run the command:
 <pre>$ sudo chmod 0000 /etc/shadow-</pre>
+  </td>
+  <td xml:lang="en-US">
+The <tt>/etc/shadow-</tt> file is a backup file of <tt>/etc/shadow</tt>, and as such,
+it contains the list of local system accounts and password hashes.
+Protection of this file is critical for system security.
+  </td>
+</tr>
+<tr>
+  <td>6.1.5</td>
+  <td>Verify Group Who Owns Backup shadow File</td>
+  <td xml:lang="en-US">
+ To properly set the owner of <code>/etc/shadow-</code>, run the command: <pre>$ sudo chown root /etc/shadow- </pre>
   </td>
   <td xml:lang="en-US">
 The <tt>/etc/shadow-</tt> file is a backup file of <tt>/etc/shadow</tt>, and as such,
@@ -6452,9 +6458,9 @@ it contains group password hashes. Protection of this file is critical for syste
 </tr>
 <tr>
   <td>6.1.7</td>
-  <td>Verify Group Who Owns gshadow File</td>
+  <td>Verify User Who Owns gshadow File</td>
   <td xml:lang="en-US">
- To properly set the group owner of <code>/etc/gshadow</code>, run the command: <pre>$ sudo chgrp root /etc/gshadow</pre>
+ To properly set the owner of <code>/etc/gshadow</code>, run the command: <pre>$ sudo chown root /etc/gshadow </pre>
   </td>
   <td xml:lang="en-US">
 The <tt>/etc/gshadow</tt> file contains group password hashes. Protection of this file
@@ -6476,9 +6482,9 @@ is critical for system security.
 </tr>
 <tr>
   <td>6.1.7</td>
-  <td>Verify User Who Owns gshadow File</td>
+  <td>Verify Group Who Owns gshadow File</td>
   <td xml:lang="en-US">
- To properly set the owner of <code>/etc/gshadow</code>, run the command: <pre>$ sudo chown root /etc/gshadow </pre>
+ To properly set the group owner of <code>/etc/gshadow</code>, run the command: <pre>$ sudo chgrp root /etc/gshadow</pre>
   </td>
   <td xml:lang="en-US">
 The <tt>/etc/gshadow</tt> file contains group password hashes. Protection of this file
@@ -6487,9 +6493,11 @@ is critical for system security.
 </tr>
 <tr>
   <td>6.1.8</td>
-  <td>Verify Group Who Owns group File</td>
+  <td>Verify Permissions on group File</td>
   <td xml:lang="en-US">
- To properly set the group owner of <code>/etc/group</code>, run the command: <pre>$ sudo chgrp root /etc/group</pre>
+
+To properly set the permissions of <code>/etc/passwd</code>, run the command:
+<pre>$ sudo chmod 0644 /etc/passwd</pre>
   </td>
   <td xml:lang="en-US">
 The <tt>/etc/group</tt> file contains information regarding groups that are configured
@@ -6509,11 +6517,9 @@ on the system. Protection of this file is important for system security.
 </tr>
 <tr>
   <td>6.1.8</td>
-  <td>Verify Permissions on group File</td>
+  <td>Verify Group Who Owns group File</td>
   <td xml:lang="en-US">
-
-To properly set the permissions of <code>/etc/passwd</code>, run the command:
-<pre>$ sudo chmod 0644 /etc/passwd</pre>
+ To properly set the group owner of <code>/etc/group</code>, run the command: <pre>$ sudo chgrp root /etc/group</pre>
   </td>
   <td xml:lang="en-US">
 The <tt>/etc/group</tt> file contains information regarding groups that are configured
@@ -6536,9 +6542,9 @@ Protection of this file is important for system security.
 </tr>
 <tr>
   <td>6.1.9</td>
-  <td>Verify Group Who Owns Backup group File</td>
+  <td>Verify User Who Owns Backup group File</td>
   <td xml:lang="en-US">
- To properly set the group owner of <code>/etc/group-</code>, run the command: <pre>$ sudo chgrp root /etc/group-</pre>
+ To properly set the owner of <code>/etc/group-</code>, run the command: <pre>$ sudo chown root /etc/group- </pre>
   </td>
   <td xml:lang="en-US">
 The <tt>/etc/group-</tt> file is a backup file of <tt>/etc/group</tt>, and as such,
@@ -6548,9 +6554,9 @@ Protection of this file is important for system security.
 </tr>
 <tr>
   <td>6.1.9</td>
-  <td>Verify User Who Owns Backup group File</td>
+  <td>Verify Group Who Owns Backup group File</td>
   <td xml:lang="en-US">
- To properly set the owner of <code>/etc/group-</code>, run the command: <pre>$ sudo chown root /etc/group- </pre>
+ To properly set the group owner of <code>/etc/group-</code>, run the command: <pre>$ sudo chgrp root /etc/group-</pre>
   </td>
   <td xml:lang="en-US">
 The <tt>/etc/group-</tt> file is a backup file of <tt>/etc/group</tt>, and as such,
@@ -6700,6 +6706,18 @@ to gain access to the system.
 </tr>
 <tr>
   <td>6.2.3</td>
+  <td>All GIDs referenced in /etc/passwd must be defined in /etc/group</td>
+  <td xml:lang="en-US">
+Add a group to the system for each GID referenced without a corresponding group.
+  </td>
+  <td xml:lang="en-US">
+If a user is assigned the Group Identifier (GID) of a group not existing on the system, and a group
+with the Group Identifier (GID) is subsequently created, the user may have unintended rights to
+any files associated with the group.
+  </td>
+</tr>
+<tr>
+  <td>6.2.3</td>
   <td>Ensure there are no legacy + NIS entries in /etc/shadow</td>
   <td xml:lang="en-US">
 The <tt>+</tt> character in <tt>/etc/shadow</tt> file marks a place where
@@ -6709,18 +6727,6 @@ entries from a network information service (NIS) should be directly inserted.
 Using this method to include entries into <tt>/etc/shadow</tt> is considered legacy
 and should be avoided. These entries may provide a way for an attacker
 to gain access to the system.
-  </td>
-</tr>
-<tr>
-  <td>6.2.3</td>
-  <td>All GIDs referenced in /etc/passwd must be defined in /etc/group</td>
-  <td xml:lang="en-US">
-Add a group to the system for each GID referenced without a corresponding group.
-  </td>
-  <td xml:lang="en-US">
-If a user is assigned the Group Identifier (GID) of a group not existing on the system, and a group
-with the Group Identifier (GID) is subsequently created, the user may have unintended rights to
-any files associated with the group.
   </td>
 </tr>
 <tr>
@@ -6762,22 +6768,22 @@ To assure accountability and prevent unauthenticated access, groups must be iden
 </tr>
 <tr>
   <td>6.2.7</td>
-  <td>Ensure All Accounts on the System Have Unique User IDs</td>
-  <td xml:lang="en-US">
-Change user IDs (UIDs), or delete accounts, so each has a unique name.
-  </td>
-  <td xml:lang="en-US">
-To assure accountability and prevent unauthenticated access, interactive users must be identified and authenticated to prevent potential misuse and compromise of the system.
-  </td>
-</tr>
-<tr>
-  <td>6.2.7</td>
   <td>Ensure All Groups on the System Have Unique Group ID</td>
   <td xml:lang="en-US">
 Change the group name or delete groups, so each has a unique id.
   </td>
   <td xml:lang="en-US">
 To assure accountability and prevent unauthenticated access, groups must be identified uniquely to prevent potential misuse and compromise of the system.
+  </td>
+</tr>
+<tr>
+  <td>6.2.7</td>
+  <td>Ensure All Accounts on the System Have Unique User IDs</td>
+  <td xml:lang="en-US">
+Change user IDs (UIDs), or delete accounts, so each has a unique name.
+  </td>
+  <td xml:lang="en-US">
+To assure accountability and prevent unauthenticated access, interactive users must be identified and authenticated to prevent potential misuse and compromise of the system.
   </td>
 </tr>
 <tr>

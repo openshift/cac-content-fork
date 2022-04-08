@@ -17,10 +17,10 @@
 </tr></thead>
 <tbody><tr>
 <td>371</td>
-<td>38</td>
-<td>333</td>
-<td>89.76%</td>
-<td>RHEL-08-010090RHEL-08-010100RHEL-08-010121RHEL-08-010163RHEL-08-010385RHEL-08-010572RHEL-08-010731RHEL-08-010741RHEL-08-020011RHEL-08-020013RHEL-08-020014RHEL-08-020015RHEL-08-020017RHEL-08-020018RHEL-08-020019RHEL-08-020020RHEL-08-020021RHEL-08-020023RHEL-08-020025RHEL-08-020026RHEL-08-020027RHEL-08-020028RHEL-08-020032RHEL-08-020080RHEL-08-020081RHEL-08-020082RHEL-08-020102RHEL-08-020103RHEL-08-020332RHEL-08-030590RHEL-08-030620RHEL-08-030630RHEL-08-030640RHEL-08-040020RHEL-08-040090RHEL-08-040137RHEL-08-040150RHEL-08-040259</td>
+<td>37</td>
+<td>334</td>
+<td>90.03%</td>
+<td>RHEL-08-010090RHEL-08-010100RHEL-08-010121RHEL-08-010385RHEL-08-010572RHEL-08-010731RHEL-08-010741RHEL-08-020011RHEL-08-020013RHEL-08-020014RHEL-08-020015RHEL-08-020017RHEL-08-020018RHEL-08-020019RHEL-08-020020RHEL-08-020021RHEL-08-020023RHEL-08-020025RHEL-08-020026RHEL-08-020027RHEL-08-020028RHEL-08-020032RHEL-08-020080RHEL-08-020081RHEL-08-020082RHEL-08-020102RHEL-08-020103RHEL-08-020332RHEL-08-030590RHEL-08-030620RHEL-08-030630RHEL-08-030640RHEL-08-040020RHEL-08-040090RHEL-08-040137RHEL-08-040150RHEL-08-040259</td>
 </tr></tbody>
 </table></div>
 <style type="text/css">
@@ -57,6 +57,7 @@
 <td>CCI</td>
 <td>CAT</td>
 <td>Title</td>
+<td>SRG</td>
 <td>Description</td>
 <td>Check Procedures</td>
 <td>Fixtext</td>
@@ -68,6 +69,7 @@
 <td>366</td>
 <td>high</td>
 <td>RHEL 8 must be a vendor-supported release.</td>
+<td>SRG-OS-ID</td>
 <td><pre>An operating system is considered "supported" if the vendor continues to
 provide security patches for the product.  With an unsupported release, it
 will not be possible to resolve any security issue discovered in the system
@@ -93,6 +95,7 @@ Linux vendor, Red Hat, Inc. is responsible for providing security patches.</pre>
 <td>1233</td>
 <td>medium</td>
 <td>The RHEL 8 operating system must implement the Endpoint Security for Linux Threat Prevention tool.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Virus scanning software can be used to detect if a system has been compromised by
 computer viruses, as well as to limit their spread to other systems.</pre></td>
 <td><pre>To verify that McAfee Endpoint Security for Linux is
@@ -111,6 +114,7 @@ presence of viruses on the filesystem.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 vendor packaged system security patches and updates must be installed and up to date.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Installing software updates is a fundamental mitigation against
 the exploitation of publicly-known vulnerabilities. If the most
 recent security patches and updates are not installed, unauthorized
@@ -135,6 +139,7 @@ dictates.</pre></td>
 <td>68</td>
 <td>high</td>
 <td>RHEL 8 must implement NIST FIPS-validated cryptography for the following: to provision digital signatures, to generate cryptographic hashes, and to protect data requiring data-at-rest protections in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, and standards.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Overriding the system crypto policy makes the behavior of the OpenSSH
 client violate expectations, and makes system configuration more
 fragmented.</pre></td>
@@ -160,6 +165,7 @@ line and is not commented out:
 <td>1199</td>
 <td>medium</td>
 <td>All RHEL 8 local disk partitions must implement cryptographic mechanisms to prevent unauthorized disclosure or modification of all information that requires at rest protection.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The risk of a system's physical compromise, particularly mobile systems such as
 laptops, places its data at risk of compromise.  Encrypting this data mitigates
 the risk of its loss if the system is lost.</pre></td>
@@ -213,6 +219,7 @@ the Red Hat Enterprise Linux 8 Documentation web site:<br>
 <td>48</td>
 <td>medium</td>
 <td>RHEL 8 must display the Standard Mandatory DoD Notice and Consent Banner before granting local or remote access to the system via a ssh logon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The warning message reinforces policy awareness during the logon process and
 facilitates possible legal action against attackers. Alternatively, systems
 whose ownership should not be obvious should ensure usage of a banner that does
@@ -243,6 +250,7 @@ appropriate system-wide warning banner.</pre></td>
 <td>48</td>
 <td>medium</td>
 <td>RHEL 8 must display a banner before granting local or remote access to the system via a graphical user logon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Display of a standardized and approved use notification before granting access to the operating system
 ensures privacy and security notification verbiage used is consistent with applicable federal laws,
 Executive Orders, directives, policies, regulations, standards, and guidance.
@@ -279,6 +287,7 @@ The banner text must also be set.</pre></td>
 <td>48</td>
 <td>medium</td>
 <td>RHEL 8 must display the Standard Mandatory DoD Notice and Consent Banner before granting local or remote access to the system via a graphical user logon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>An appropriate warning message reinforces policy awareness during the logon
 process and facilitates possible legal action against attackers.</pre></td>
 <td><pre>
@@ -316,6 +325,7 @@ to begin and end the string with <code>'</code> and use <code>\n</code> for new 
 <td>48</td>
 <td>medium</td>
 <td>RHEL 8 must display the Standard Mandatory DoD Notice and Consent Banner before granting local or remote access to the system via a command line user logon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Display of a standardized and approved use notification before granting
 access to the operating system ensures privacy and security notification
 verbiage used is consistent with applicable federal laws, Executive Orders,
@@ -369,6 +379,7 @@ OR:
 <td>67</td>
 <td>medium</td>
 <td>All RHEL 8 remote access methods must be monitored.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Logging remote access methods can be used to trace the decrease the risks
 associated with remote user access management. It can also be used to spot
 cyber attacks and ensure ongoing compliance with organizational policies
@@ -397,6 +408,7 @@ not, use the following as an example configuration:
 <td></td>
 <td>medium</td>
 <td>RHEL 8, for PKI-based authentication, must validate certificates by constructing a certification path (which includes status information) to an accepted trust anchor.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -408,6 +420,7 @@ not, use the following as an example configuration:
 <td></td>
 <td>medium</td>
 <td>RHEL 8, for certificate-based authentication, must enforce authorized access to the corresponding private key.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -419,6 +432,7 @@ not, use the following as an example configuration:
 <td>196</td>
 <td>medium</td>
 <td>RHEL 8 must encrypt all stored passwords with a FIPS 140-2 approved cryptographic hashing algorithm.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Passwords need to be protected at all times, and encryption is the standard method for protecting passwords.
 If passwords are not encrypted, they can be plainly read (i.e., clear text) and easily compromised. Passwords
 that are encrypted with a weak algorithm are no more protected than if they are kept in plain text.
@@ -439,6 +453,7 @@ the system will use SHA-512 as the hashing algorithm:
 <td>196</td>
 <td>medium</td>
 <td>RHEL 8 must employ FIPS 140-2 approved cryptographic hashing algorithms for all stored passwords.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The system must use a strong hashing algorithm to store the password. The
 system must use a sufficient number of hashing rounds to ensure the required
 level of entropy.</pre></td>
@@ -475,6 +490,7 @@ this is a finding.</pre></td>
 <td></td>
 <td>high</td>
 <td>The RHEL 8 operating system must not have accounts configured with blank or null passwords.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -486,6 +502,7 @@ this is a finding.</pre></td>
 <td>196</td>
 <td>medium</td>
 <td>The RHEL 8 shadow password suite must be configured to use a sufficient number of hashing rounds.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Passwords need to be protected at all times, and encryption is the standard
 method for protecting passwords. If passwords are not encrypted, they can
 be plainly read (i.e., clear text) and easily compromised. Passwords
@@ -513,6 +530,7 @@ If either is set, they must have the minimum value of 5000.</pre></td>
 <td>213</td>
 <td>high</td>
 <td>RHEL 8 operating systems booted with United Extensible Firmware Interface (UEFI) must require authentication upon booting into single-user mode and maintenance.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Password protection on the boot loader configuration ensures
 users with physical access cannot trivially alter
 important bootloader settings. These include which kernel to use,
@@ -553,6 +571,7 @@ When prompted, enter the password that was selected.
 <td>213</td>
 <td>medium</td>
 <td>RHEL 8 operating systems booted with United Extensible Firmware Interface (UEFI) must require a unique superusers name upon booting into single-user mode and maintenance.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Having a non-default grub superuser username makes password-guessing attacks less effective.</pre></td>
 <td><pre>To verify the boot loader superuser account has been set, run the following
 command:
@@ -588,6 +607,7 @@ update the
 <td>213</td>
 <td>medium</td>
 <td>RHEL 8 operating systems booted with a BIOS must require  a unique superusers name upon booting into single-user and maintenance modes.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Having a non-default grub superuser username makes password-guessing attacks less effective.</pre></td>
 <td><pre>To verify the boot loader superuser account has been set, run the following
 command:
@@ -623,6 +643,7 @@ update the
 <td>213</td>
 <td>high</td>
 <td>RHEL 8 operating systems booted with a BIOS must require authentication upon booting into single-user and maintenance modes.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Password protection on the boot loader configuration ensures
 users with physical access cannot trivially alter
 important bootloader settings. These include which kernel to use,
@@ -663,6 +684,7 @@ When prompted, enter the password that was selected.
 <td>213</td>
 <td>medium</td>
 <td>RHEL 8 operating systems must require authentication upon booting into rescue mode.</td>
+<td>SRG-OS-ID</td>
 <td><pre>This prevents attackers with physical access from trivially bypassing security
 on the machine and gaining root access. Such accesses are further prevented
 by configuring the bootloader password.</pre></td>
@@ -688,6 +710,7 @@ in <code>/usr/lib/systemd/system/rescue.service</code>.</pre></td>
 <td>213</td>
 <td>medium</td>
 <td>RHEL 8 operating systems must require authentication upon booting into emergency mode.</td>
+<td>SRG-OS-ID</td>
 <td><pre>This prevents attackers with physical access from trivially bypassing security
 on the machine and gaining root access. Such accesses are further prevented
 by configuring the bootloader password.</pre></td>
@@ -712,6 +735,7 @@ in <code>/usr/lib/systemd/system/emergency.service</code>.</pre></td>
 <td>803</td>
 <td>medium</td>
 <td>The RHEL 8 pam_unix.so module must be configured in the system-auth file to use a FIPS 140-2 approved cryptographic hashing algorithm for system authentication.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Passwords need to be protected at all times, and encryption is the standard
 method for protecting passwords. If passwords are not encrypted, they can
 be plainly read (i.e., clear text) and easily compromised. Passwords that
@@ -758,6 +782,7 @@ the default.</pre></td>
 <td>803</td>
 <td>medium</td>
 <td>The RHEL 8 pam_unix.so module must be configured in the password-auth file to use a FIPS 140-2 approved cryptographic hashing algorithm for system authentication.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Passwords need to be protected at all times, and encryption is the standard
 method for protecting passwords. If passwords are not encrypted, they can
 be plainly read (i.e., clear text) and easily compromised. Passwords that
@@ -797,6 +822,7 @@ the default.</pre></td>
 <td>803</td>
 <td>medium</td>
 <td>RHEL 8 must prevent system daemons from using Kerberos for authentication.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The key derivation function (KDF) in Kerberos is not FIPS compatible.</pre></td>
 <td><pre>Run the following command to see if there are some keytabs
 that would potentially allow the use of Kerberos by system daemons.
@@ -817,6 +843,7 @@ remove the Kerberos keytab files, especially
 <td>803</td>
 <td>medium</td>
 <td>The krb5-workstation package must not be installed on RHEL 8.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Kerberos is a network authentication system. The <code>krb5-workstation</code> package contains the basic
 Kerberos programs (<code>kinit</code>, <code>klist</code>, <code>kdestroy</code>, <code>kpasswd</code>).
 
@@ -834,20 +861,34 @@ $ sudo yum erase krb5-workstation</pre></pre></td>
 </tr>
 <tr>
 <td>V-237640</td>
-<td></td>
+<td>803</td>
 <td>medium</td>
 <td>The krb5-server package must not be installed on RHEL 8.</td>
-<td><pre></pre></td>
-<td><pre></pre></td>
-<td><pre></pre></td>
+<td>SRG-OS-ID</td>
+<td><pre>Unnecessary packages should not be installed to decrease the attack
+surface of the system.  While this software is clearly essential on an KDC
+server, it is not necessary on typical desktop or workstation systems.</pre></td>
+<td><pre>Run the following command to determine if the krb5-server package is installed: $ rpm -q krb5-server
+      Is it the case that the package is installed?
+      </pre></td>
+<td><pre>The <code>krb5-server</code> package should be removed if not in use.
+Is this system the Kerberos server? If not, remove the package.
+The <code>krb5-server</code> package can be removed with the following command:
+<pre>
+$ sudo yum erase krb5-server</pre>
+The krb5-server RPM is not installed by default on a Red Hat Enterprise Linux 8
+system. It is needed only by the Kerberos servers, not by the
+clients which use Kerberos for authentication. If the system is not
+intended for use as a Kerberos Server it should be removed.</pre></td>
 <td>RHEL-08-010163</td>
-<td>Missing Rule</td>
+<td>package_krb5-server_removed</td>
 </tr>
 <tr>
 <td>V-230240</td>
 <td>1084</td>
 <td>medium</td>
 <td>RHEL 8 must use a Linux Security Module configured to enforce limits on system services.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Setting the SELinux state to enforcing ensures SELinux is able to confine
 potentially compromised processes to the security policy, which is designed to
 prevent them from causing damage to the system or further elevating their
@@ -872,6 +913,7 @@ following line to configure the system to boot into enforcing mode:
 <td>1084</td>
 <td>low</td>
 <td>RHEL 8 must have policycoreutils package installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Security-enhanced Linux is a feature of the Linux kernel and a number of utilities
 with enhanced security functionality designed to add mandatory access controls to Linux.
 The Security-enhanced Linux kernel contains new architectural components originally
@@ -898,6 +940,7 @@ $ sudo yum install policycoreutils</pre></pre></td>
 <td>1090</td>
 <td>medium</td>
 <td>A sticky bit must be set on all RHEL 8 public directories to prevent unauthorized and unintended information transferred via shared system resources.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Failing to set the sticky bit on public directories allows unauthorized
 users to delete files in the directory structure.
 <br><br>
@@ -932,6 +975,7 @@ following command:
 <td>1133</td>
 <td>medium</td>
 <td>RHEL 8 must be configured so that all network connections associated with SSH traffic are terminated at the end of the session or after 10 minutes of inactivity, except to fulfill documented and validated mission requirements.</td>
+<td>SRG-OS-ID</td>
 <td><pre>This ensures a user login will be terminated as soon as the <code>ClientAliveInterval</code>
 is reached.</pre></td>
 <td><pre>To ensure ClientAliveInterval is set correctly, run the following command:
@@ -966,6 +1010,7 @@ value of <code>0</code> in
 <td>1133</td>
 <td>medium</td>
 <td>The RHEL 8 SSH daemon must be configured with a timeout interval.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Terminating an idle ssh session within a short time period reduces the window of
 opportunity for unauthorized personnel to take control of a management session
 enabled on the console or console port that has been let unattended.</pre></td>
@@ -996,6 +1041,7 @@ some processes may stop SSH  from correctly detecting that the user is idle.</pr
 <td>1314</td>
 <td>medium</td>
 <td>The RHEL 8 /var/log/messages file must have mode 0640 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>/var/log/messages</code> file contains logs of error messages in
 the system and should only be accessed by authorized personnel.</pre></td>
 <td><pre>To check the permissions of /var/log/messages,
@@ -1016,6 +1062,7 @@ To properly set the permissions of <code>/var/log/messages</code>, run the comma
 <td>1314</td>
 <td>medium</td>
 <td>The RHEL 8 /var/log/messages file must be owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>/var/log/messages</code> file contains logs of error messages in
 the system and should only be accessed by authorized personnel.</pre></td>
 <td><pre>To check the ownership of /var/log/messages,
@@ -1034,6 +1081,7 @@ root
 <td>1314</td>
 <td>medium</td>
 <td>The RHEL 8 /var/log/messages file must be group-owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>/var/log/messages</code> file contains logs of error messages in
 the system and should only be accessed by authorized personnel.</pre></td>
 <td><pre>To check the group ownership of /var/log/messages,
@@ -1052,6 +1100,7 @@ root
 <td>1314</td>
 <td>medium</td>
 <td>The RHEL 8 /var/log directory must have mode 0755 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>/var/log</code> directory contains files with logs of error
 messages in the system and should only be accessed by authorized
 personnel.</pre></td>
@@ -1073,6 +1122,7 @@ To properly set the permissions of <code>/var/log</code>, run the command:
 <td>1314</td>
 <td>medium</td>
 <td>The RHEL 8 /var/log directory must be owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>/var/log</code> directory contains files with logs of error
 messages in the system and should only be accessed by authorized
 personnel.</pre></td>
@@ -1092,6 +1142,7 @@ root
 <td>1314</td>
 <td>medium</td>
 <td>The RHEL 8 /var/log directory must be group-owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>/var/log</code> directory contains files with logs of error
 messages in the system and should only be accessed by authorized
 personnel.</pre></td>
@@ -1111,6 +1162,7 @@ root
 <td>1453</td>
 <td>medium</td>
 <td>The RHEL 8 SSH daemon must be configured to use system-wide crypto policies.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Overriding the system crypto policy makes the behavior of the SSH service violate expectations,
 and makes system configuration more fragmented.</pre></td>
 <td><pre>Check that the CRYPTO_POLICY variable is not set or is commented in the
@@ -1131,6 +1183,7 @@ in the <code>/etc/sysconfig/sshd</code>.</pre></td>
 <td>1453</td>
 <td>medium</td>
 <td>The RHEL 8 SSH server must be configured to use only Message Authentication Codes (MACs) employing FIPS 140-2 validated cryptographic hash algorithms.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Overriding the system crypto policy makes the behavior of the OpenSSH
 server violate expectations, and makes system configuration more
 fragmented.</pre></td>
@@ -1156,6 +1209,7 @@ text and is not commented out:
 <td>1453</td>
 <td>medium</td>
 <td>The RHEL 8 operating system must implement DoD-approved encryption to protect the confidentiality of SSH server connections.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Overriding the system crypto policy makes the behavior of the OpenSSH server
 violate expectations, and makes system configuration more fragmented. By
 specifying a cipher list with the order of ciphers being in a “strongest to
@@ -1183,6 +1237,7 @@ text and is not commented out:
 <td>366</td>
 <td>low</td>
 <td>RHEL 8 must ensure the SSH server uses strong entropy.</td>
+<td>SRG-OS-ID</td>
 <td><pre>SSH implementation in RHEL8 uses the openssl library, which doesn't use high-entropy sources by default.
 Randomness is needed to generate data-encryption keys, and as plaintext padding and initialization vectors
 in encryption algorithms, and high-quality entropy elliminates the possibility that the output of
@@ -1205,6 +1260,7 @@ make sure that the file contains line
 <td>1453</td>
 <td>medium</td>
 <td>The RHEL 8 operating system must implement DoD-approved encryption in the OpenSSL package.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Overriding the system crypto policy makes the behavior of the Java runtime violates expectations,
 and makes system configuration more fragmented.</pre></td>
 <td><pre>To verify that OpenSSL uses the system crypto policy, check out that the OpenSSL config file
@@ -1229,6 +1285,7 @@ if there is a <code>[ crypto_policy ]</code> section that contains the <code>.in
 <td>1453</td>
 <td>medium</td>
 <td>The RHEL 8 operating system must implement DoD-approved TLS encryption in the OpenSSL package.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without cryptographic integrity protections, information can be altered by
 unauthorized users without detection.</pre></td>
 <td><pre>To verify if the OpenSSL uses defined TLS Crypto Policy, run:
@@ -1269,6 +1326,7 @@ DTLS.MinProtocol = DTLSv1.2</pre></pre></td>
 <td>1453</td>
 <td>medium</td>
 <td>The RHEL 8 operating system must implement DoD-approved TLS encryption in the GnuTLS package.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Overriding the system crypto policy makes the behavior of the GnuTLS
 library violate expectations, and makes system configuration more
 fragmented.</pre></td>
@@ -1294,6 +1352,7 @@ line and is not commented out:
 <td>1499</td>
 <td>medium</td>
 <td>RHEL 8 system commands must have mode 755 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>System binaries are executed by privileged users, as well as system services,
 and restrictive permissions are necessary to ensure execution of these programs
 cannot be co-opted.</pre></td>
@@ -1331,6 +1390,7 @@ following command:
 <td>1499</td>
 <td>medium</td>
 <td>RHEL 8 system commands must be owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre>System binaries are executed by privileged users as well as system services,
 and restrictive permissions are necessary to ensure that their
 execution of these programs cannot be co-opted.</pre></td>
@@ -1368,6 +1428,7 @@ following command:
 <td>1499</td>
 <td>medium</td>
 <td>RHEL 8 system commands must be group-owned by root or a system account.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If the operating system allows any user to make changes to software
 libraries, then those changes might be implemented without undergoing the
 appropriate testing and approvals that are part of a robust change management
@@ -1410,6 +1471,7 @@ by a group other than root correct its ownership with the following command:
 <td>1499</td>
 <td>medium</td>
 <td>RHEL 8 library files must have mode 755 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Files from shared library directories are loaded into the address
 space of processes (including privileged ones) or of the kernel itself at
 runtime. Restrictive permissions are necessary to protect the integrity of the system.</pre></td>
@@ -1446,6 +1508,7 @@ its permission with the following command:
 <td>1499</td>
 <td>medium</td>
 <td>RHEL 8 library directories must have mode 755 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If the operating system were to allow any user to make changes to software libraries,
 then those changes might be implemented without undergoing the appropriate testing
 and approvals that are part of a robust change management process.
@@ -1488,6 +1551,7 @@ its permission with the following command:
 <td>1499</td>
 <td>medium</td>
 <td>RHEL 8 library files must be owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Files from shared library directories are loaded into the address
 space of processes (including privileged ones) or of the kernel itself at
 runtime. Proper ownership is necessary to protect the integrity of the system.</pre></td>
@@ -1523,6 +1587,7 @@ ownership with the following command:
 <td>1499</td>
 <td>medium</td>
 <td>RHEL 8 library directories must be owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Files from shared library directories are loaded into the address
 space of processes (including privileged ones) or of the kernel itself at
 runtime. Proper ownership of library directories is necessary to protect
@@ -1559,6 +1624,7 @@ ownership with the following command:
 <td>1499</td>
 <td>medium</td>
 <td>RHEL 8 library files must be group-owned by root or a system account.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If the operating system were to allow any user to make changes to software libraries,
 then those changes might be implemented without undergoing the appropriate testing and
 approvals that are part of a robust change management process.
@@ -1598,6 +1664,7 @@ the following command:
 <td>1499</td>
 <td>medium</td>
 <td>RHEL 8 library directories must be group-owned by root or a system account.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Files from shared library directories are loaded into the address
 space of processes (including privileged ones) or of the kernel itself at
 runtime. Proper ownership of library directories is necessary to protect
@@ -1634,6 +1701,7 @@ ownership with the following command:
 <td>2696</td>
 <td>medium</td>
 <td>The RHEL 8 operating system must use a file integrity tool to verify correct operation of all security functions.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The AIDE package must be installed if it is to be available for integrity checking.</pre></td>
 <td><pre>Run the following command to determine if the aide package is installed: $ rpm -q aide
       Is it the case that the package is not installed?
@@ -1649,6 +1717,7 @@ $ sudo yum install aide</pre></pre></td>
 <td>1744</td>
 <td>medium</td>
 <td>The RHEL 8 file integrity tool must notify the system administrator when changes to the baseline configuration or anomalies in the operation of any security functions are discovered within an organizationally defined frequency.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unauthorized changes to the baseline configuration could make the system vulnerable
 to various attacks or allow unauthorized access to the operating system. Changes to
 operating system configurations can have unintended side effects, some of which may
@@ -1682,6 +1751,7 @@ AIDE can be executed periodically through other means; this is merely one exampl
 <td>1749</td>
 <td>high</td>
 <td>RHEL 8 must prevent the installation of software, patches, service packs, device drivers, or operating system components from a repository without verification they have been digitally signed using a certificate that is issued by a Certificate Authority (CA) that is recognized and approved by the organization.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Changes to any software components can have significant effects on the
 overall security of the operating system. This requirement ensures the
 software has not been tampered with and that it has been provided by a
@@ -1719,6 +1789,7 @@ the <code>[main]</code> section:
 <td>1749</td>
 <td>high</td>
 <td>RHEL 8 must prevent the installation of software, patches, service packs, device drivers, or operating system components of local packages without verification they have been digitally signed using a certificate that is issued by a Certificate Authority (CA) that is recognized and approved by the organization.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Changes to any software components can have significant effects to the overall security
 of the operating system. This requirement ensures the software has not been tampered and
 has been provided by a trusted vendor.
@@ -1743,6 +1814,7 @@ packages, set the <code>localpkg_gpgcheck</code> to <code>1</code> in <code>/etc
 <td>1749</td>
 <td>medium</td>
 <td>RHEL 8 must prevent the loading of a new kernel for later execution.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Disabling kexec_load allows greater control of the kernel memory.
 It makes it impossible to load another kernel image after it has been disabled.
 </pre></td>
@@ -1778,6 +1850,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>2165</td>
 <td>medium</td>
 <td>RHEL 8 must enable kernel parameters to enforce discretionary access control on symlinks.</td>
+<td>SRG-OS-ID</td>
 <td><pre>By enabling this kernel parameter, symbolic links are permitted to be followed
 only when outside a sticky world-writable directory, or when the UID of the
 link and follower match, or when the directory owner matches the symlink's owner.
@@ -1816,6 +1889,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>2165</td>
 <td>medium</td>
 <td>RHEL 8 must enable kernel parameters to enforce discretionary access control on hardlinks.</td>
+<td>SRG-OS-ID</td>
 <td><pre>By enabling this kernel parameter, users can no longer create soft or hard links to
 files which they do not own. Disallowing such hardlinks mitigate vulnerabilities
 based on insecure file system accessed by privileged programs, avoiding an
@@ -1852,6 +1926,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>1090</td>
 <td>low</td>
 <td>RHEL 8 must restrict access to the kernel message buffer.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unprivileged access to the kernel syslog can expose sensitive kernel
 address information.</pre></td>
 <td><pre>The runtime status of the kernel.dmesg_restrict kernel parameter can be queried
@@ -1886,6 +1961,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>1090</td>
 <td>low</td>
 <td>RHEL 8 must prevent kernel profiling by unprivileged users.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Kernel profiling can reveal sensitive information about kernel behaviour.</pre></td>
 <td><pre>The runtime status of the kernel.perf_event_paranoid kernel parameter can be queried
 by running the following command:
@@ -1919,6 +1995,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must specify the default "include" directory for the /etc/sudoers file.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Some <code>sudo</code> configurtion options allow users to run programs without re-authenticating.
 Use of these configuration options makes it easier for one compromised accound to be used to
 compromise other accounts.</pre></td>
@@ -1944,6 +2021,7 @@ Note that the '#' character doesn't denote a comment in the configuration file.<
 <td>2038</td>
 <td>medium</td>
 <td>RHEL 8 must require users to provide a password for privilege escalation.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without re-authentication, users may access resources or perform tasks for which they
 do not have authorization.
 <br><br>
@@ -1967,6 +2045,7 @@ in <code>/etc/sudoers.d/</code>.</pre></td>
 <td>2038</td>
 <td>medium</td>
 <td>RHEL 8 must require users to reauthenticate for privilege escalation.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without re-authentication, users may access resources or perform tasks for which they
 do not have authorization.
 <br><br>
@@ -1989,6 +2068,7 @@ any sudo configuration snippets in <code>/etc/sudoers.d/</code>.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must restrict privilege elevation to authorized personnel.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If the "sudoers" file is not configured correctly, any user defined
 on the system can initiate privileged actions on the target system.</pre></td>
 <td><pre>To determine if "sudoers" file, restricts sudo access, run the following commands:
@@ -2012,6 +2092,7 @@ Restrict privileged actions by removing the following entries from the sudoers f
 <td>2227</td>
 <td>medium</td>
 <td>RHEL 8 must use the invoking user's password for privilege escalation when using "sudo".</td>
+<td>SRG-OS-ID</td>
 <td><pre>If the rootpw, targetpw, or runaspw flags are defined and not disabled, by default the operating system will prompt
 the invoking user for the "root" user password.</pre></td>
 <td><pre>Run the following command to Verify that the sudoers security policy is configured to use the invoking user's password for privilege escalation:
@@ -2038,6 +2119,7 @@ The expected output for:
 <td>2038</td>
 <td>medium</td>
 <td>RHEL 8 must require re-authentication when using the "sudo" command.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without re-authentication, users may access resources or perform tasks for which they
 do not have authorization.
 <br><br>
@@ -2067,6 +2149,7 @@ and the user will not have to re-authenticate for privileged actions until the u
 <td></td>
 <td>medium</td>
 <td>The RHEL 8 operating system must not be configured to bypass password requirements for privilege escalation.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -2078,6 +2161,7 @@ and the user will not have to re-authenticate for privileged actions until the u
 <td>1948</td>
 <td>medium</td>
 <td>RHEL 8 must have the packages required for multifactor authentication installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Using an authentication device, such as a CAC or token that is separate from
 the information system, ensures that even if the information system is
 compromised, that compromise will not affect credentials stored on the
@@ -2107,6 +2191,7 @@ $ sudo yum install openssl-pkcs11</pre></pre></td>
 <td>1948</td>
 <td>medium</td>
 <td>RHEL 8 must implement certificate status checking for multifactor authentication.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Enusring that multifactor solutions certificates are checked via Online Certificate Status Protocol (OCSP)
 ensures the security of the system.</pre></td>
 <td><pre>Check to see if Online Certificate Status Protocol (OCSP)
@@ -2132,6 +2217,7 @@ multifactor solutions are checked via Online Certificate Status Protocol (OCSP).
 <td>1953</td>
 <td>medium</td>
 <td>RHEL 8 must accept Personal Identity Verification (PIV) credentials.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Using an authentication device, such as a CAC or token that is separate from
 the information system, ensures that even if the information system is
 compromised, that compromise will not affect credentials stored on the
@@ -2157,6 +2243,7 @@ $ sudo yum install opensc</pre></pre></td>
 <td>2824</td>
 <td>medium</td>
 <td>RHEL 8 must implement non-executable data to protect its memory from unauthorized code execution.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Computers with the ability to prevent this type of code execution frequently put an option in the BIOS that will
 allow users to turn the feature on or off at will.</pre></td>
 <td><pre></pre></td>
@@ -2172,6 +2259,7 @@ on AMD-based systems.</pre></td>
 <td>1084</td>
 <td>medium</td>
 <td>RHEL 8 must clear the page allocator to prevent use-after-free attacks.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Poisoning writes an arbitrary value to freed pages, so any modification or
 reference to that page after being freed or before being initialized will be
 detected and prevented.
@@ -2208,6 +2296,7 @@ Run the following command to update command line for already installed kernels:<
 <td>1084</td>
 <td>medium</td>
 <td>RHEL 8 must disable virtual syscalls.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Virtual Syscalls provide an opportunity of attack for a user who has control
 of the return instruction pointer.</pre></td>
 <td><pre>Inspect the form of default GRUB 2 command line for the Linux operating system
@@ -2241,6 +2330,7 @@ Run the following command to update command line for already installed kernels:<
 <td>1084</td>
 <td>medium</td>
 <td>RHEL 8 must clear SLUB/SLAB objects to prevent use-after-free attacks.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Poisoning writes an arbitrary value to freed objects, so any modification or
 reference to that object after being freed or before being initialized will be
 detected and prevented.
@@ -2277,6 +2367,7 @@ Run the following command to update command line for already installed kernels:<
 <td>2824</td>
 <td>medium</td>
 <td>RHEL 8 must implement address space layout randomization (ASLR) to protect its memory from unauthorized code execution.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Address space layout randomization (ASLR) makes it more difficult for an
 attacker to predict the location of attack code they have introduced into a
 process's address space during an attempt at exploitation. Additionally,
@@ -2315,6 +2406,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>2617</td>
 <td>low</td>
 <td>YUM must remove all software components after updated versions have been installed on RHEL 8.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Previous versions of software components that are not removed from the information
 system after updates have been installed may be exploited by some adversaries.</pre></td>
 <td><pre>Verify Red Hat Enterprise Linux 8 removes all software components after updated versions have been installed.
@@ -2343,6 +2435,7 @@ to <code>1</code> in <code>/etc/yum.conf</code>.</pre></td>
 <td>2696</td>
 <td>medium</td>
 <td>RHEL 8 must enable the SELinux targeted policy.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Setting the SELinux policy to <code>targeted</code> or a more specialized policy
 ensures the system will confine processes that are likely to be
 targeted for exploitation, such as network or system services.
@@ -2374,6 +2467,7 @@ use cases.</pre></td>
 <td>366</td>
 <td>high</td>
 <td>There must be no shosts.equiv files on the RHEL 8 operating system.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The shosts.equiv files are used to configure host-based authentication for the
 system via SSH. Host-based authentication is not sufficient for preventing
 unauthorized access to the system, as it does not require interactive
@@ -2398,6 +2492,7 @@ location:
 <td>366</td>
 <td>high</td>
 <td>There must be no .shosts files on the RHEL 8 operating system.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The .shosts files are used to configure host-based authentication for
 individual users or the system via SSH. Host-based authentication is not
 sufficient for preventing unauthorized access to the system, as it does not
@@ -2422,6 +2517,7 @@ to delete them from any location:
 <td>366</td>
 <td>low</td>
 <td>RHEL 8 must enable the hardware random number generator entropy gatherer service.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>rngd</code> service
 feeds random data from hardware device to kernel random device.</pre></td>
 <td><pre>
@@ -2444,6 +2540,7 @@ The <code>rngd</code> service can be enabled with the following command:
 <td>366</td>
 <td>low</td>
 <td>RHEL 8 must have the packages required to use the hardware random number generator entropy gatherer service.</td>
+<td>SRG-OS-ID</td>
 <td><pre><code>rng-tools</code> provides hardware random number generator tools,
 such as those used in the formation of x509/PKI certificates.</pre></td>
 <td><pre>Run the following command to determine if the rng-tools package is installed: $ rpm -q rng-tools
@@ -2460,6 +2557,7 @@ $ sudo yum install rng-tools</pre></pre></td>
 <td>366</td>
 <td>medium</td>
 <td>The RHEL 8 SSH public host key files must have mode 0644 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If a public host key file is modified by an unauthorized user, the SSH service
 may be compromised.</pre></td>
 <td><pre>To check the permissions of /etc/ssh/*.pub,
@@ -2478,6 +2576,7 @@ If properly configured, the output should indicate the following permissions:
 <td>366</td>
 <td>medium</td>
 <td>The RHEL 8 SSH private host key files must have mode 0600 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If an unauthorized user obtains the private SSH host key file, the host could be
 impersonated.</pre></td>
 <td><pre>To check the permissions of /etc/ssh/*_key,
@@ -2498,6 +2597,7 @@ To properly set the permissions of <code>/etc/ssh/*_key</code>, run the command:
 <td>366</td>
 <td>medium</td>
 <td>The RHEL 8 SSH daemon must perform strict mode checking of home directory configuration files.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If other users have access to modify user-specific SSH configuration files, they
 may be able to log into the system as another user.</pre></td>
 <td><pre>To determine how the SSH daemon's StrictModes option is set, run the following command:
@@ -2529,6 +2629,7 @@ To explicitly enable <code>StrictModes</code> in SSH, add or correct the followi
 <td>366</td>
 <td>medium</td>
 <td>The RHEL 8 SSH daemon must not allow compression or must only allow compression after successful authentication.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If compression is allowed in an SSH connection prior to authentication,
 vulnerabilities in the compression software could result in compromise of the
 system from an unauthenticated connection, potentially with root privileges.</pre></td>
@@ -2553,6 +2654,7 @@ a user has successfully authenticated, add or correct the following line in the
 <td>366</td>
 <td>medium</td>
 <td>The RHEL 8 SSH daemon must not allow authentication using known host’s authentication.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Configuring this setting for the SSH daemon provides additional
 assurance that remote login via SSH will require a password, even
 in the event of misconfiguration elsewhere.</pre></td>
@@ -2582,6 +2684,7 @@ To ensure this behavior is disabled, add or correct the following line in
 <td>366</td>
 <td>medium</td>
 <td>The RHEL 8 SSH daemon must not allow Kerberos authentication, except to fulfill documented and validated mission requirements.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Kerberos authentication for SSH is often implemented using GSSAPI. If Kerberos
 is enabled through SSH, the SSH daemon provides a means of access to the
 system's Kerberos implementation. Vulnerabilities in the system's Kerberos
@@ -2614,6 +2717,7 @@ To explicitly disable Kerberos authentication, add or correct the following line
 <td>366</td>
 <td>medium</td>
 <td>The RHEL 8 SSH daemon must not allow GSSAPI authentication, except to fulfill documented and validated mission requirements.</td>
+<td>SRG-OS-ID</td>
 <td><pre>GSSAPI authentication is used to provide additional authentication mechanisms to
 applications. Allowing GSSAPI authentication through SSH exposes the system's
 GSSAPI to remote hosts, increasing the attack surface of the system.</pre></td>
@@ -2645,6 +2749,7 @@ To explicitly disable GSSAPI authentication, add or correct the following line i
 <td>366</td>
 <td>low</td>
 <td>RHEL 8 must use a separate file system for /var.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Ensuring that <code>/var</code> is mounted on its own partition enables the
 setting of more restrictive mount options. This helps protect
 system services such as daemons or other programs which use it.
@@ -2668,6 +2773,7 @@ or logical volume at installation time, or migrate it using LVM.</pre></td>
 <td>366</td>
 <td>low</td>
 <td>RHEL 8 must use a separate file system for /var/log.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Placing <code>/var/log</code> in its own partition
 enables better separation between log files
 and other files in <code>/var/</code>.</pre></td>
@@ -2690,6 +2796,7 @@ volume at installation time, or migrate it using LVM.</pre></td>
 <td>366</td>
 <td>low</td>
 <td>RHEL 8 must use a separate file system for the system audit data path.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Placing <code>/var/log/audit</code> in its own partition
 enables better separation between audit files
 and other files, and helps ensure that
@@ -2716,6 +2823,7 @@ audit logs that will be created by the auditing daemon.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>A separate RHEL 8 filesystem must be used for the /tmp directory.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>/tmp</code> partition is used as temporary storage by many programs.
 Placing <code>/tmp</code> in its own partition enables the setting of more
 restrictive mount options, which can help protect programs which use it.</pre></td>
@@ -2737,6 +2845,7 @@ logical volume at installation time, or migrate it using LVM.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must use a separate file system for /var/tmp.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>/var/tmp</code> partition is used as temporary storage by many programs.
 Placing <code>/var/tmp</code> in its own partition enables the setting of more
 restrictive mount options, which can help protect programs which use it.</pre></td>
@@ -2758,6 +2867,7 @@ logical volume at installation time, or migrate it using LVM.</pre></td>
 <td>770</td>
 <td>medium</td>
 <td>RHEL 8 must not permit direct logons to the root account using remote access via SSH.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Even though the communications channel may be encrypted, an additional layer of
 security is gained by extending the policy of not logging directly on as root.
 In addition, logging in with a user-specific account provides individual
@@ -2788,6 +2898,7 @@ To disable root login via SSH, add or correct the following line in
 <td>366</td>
 <td>medium</td>
 <td>The rsyslog service must be running in RHEL 8.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>rsyslog</code> service must be running in order to provide
 logging services, which are essential to system administration.</pre></td>
 <td><pre>
@@ -2810,6 +2921,7 @@ The <code>rsyslog</code> service can be enabled with the following command:
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must prevent files with the setuid and setgid bit set from being executed on file systems that contain user home directories.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The presence of SUID and SGID executables should be tightly controlled. Users
 should not be able to execute SUID or SGID binaries from user home directory partitions.</pre></td>
 <td><pre>To verify the nosuid option is configured for the /home mount point,
@@ -2833,6 +2945,7 @@ Add the <code>nosuid</code> option to the fourth column of
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must prevent files with the setuid and setgid bit set from being executed on the /boot directory.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The presence of SUID and SGID executables should be tightly controlled. Users
 should not be able to execute SUID or SGID binaries from boot partitions.</pre></td>
 <td><pre>To verify the nosuid option is configured for the /boot mount point,
@@ -2856,6 +2969,7 @@ Add the <code>nosuid</code> option to the fourth column of
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must prevent files with the setuid and setgid bit set from being executed on the /boot/efi directory.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -2867,6 +2981,7 @@ Add the <code>nosuid</code> option to the fourth column of
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must prevent special devices on non-root local partitions.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>nodev</code> mount option prevents files from being
 interpreted as character or block devices. The only legitimate location
 for device files is the <code>/dev</code> directory located on the root partition.
@@ -2894,6 +3009,7 @@ Add the <code>nodev</code> option to the fourth column of
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must prevent code from being executed on file systems that contain user home directories.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>/home</code> directory contains data of individual users. Binaries in
 this directory should not be considered as trusted and users should not be
 able to execute them.</pre></td>
@@ -2917,6 +3033,7 @@ Add the <code>noexec</code> option to the fourth column of
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must prevent special devices on file systems that are used with removable media.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The only legitimate location for device files is the <code>/dev</code> directory
 located on the root partition. An exception to this is chroot jails, and it is
 not advised to set <code>nodev</code> on partitions which contain their root
@@ -2939,6 +3056,7 @@ Add the <code>nodev</code> option to the fourth column of
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must prevent code from being executed on file systems that are used with removable media.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Allowing users to execute binaries from removable media such as USB keys exposes
 the system to potential compromise.</pre></td>
 <td><pre>To verify that binaries cannot be directly executed from removable media, run the following command:
@@ -2963,6 +3081,7 @@ Add the <code>noexec</code> option to the fourth column of
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must prevent files with the setuid and setgid bit set from being executed on file systems that are used with removable media.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The presence of SUID and SGID executables should be tightly controlled. Allowing
 users to introduce SUID or SGID binaries from partitions mounted off of
 removable media would allow them to introduce their own highly-privileged programs.</pre></td>
@@ -2984,6 +3103,7 @@ Add the <code>nosuid</code> option to the fourth column of
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must prevent code from being executed on file systems that are imported via Network File System (NFS).</td>
+<td>SRG-OS-ID</td>
 <td><pre>The noexec mount option causes the system not to execute binary files. This option must be used
 for mounting any file system not containing approved binary files as they may be incompatible. Executing
 files from untrusted file systems increases the opportunity for unprivileged users to attain unauthorized
@@ -3004,6 +3124,7 @@ any NFS mounts.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must prevent special devices on file systems that are imported via Network File System (NFS).</td>
+<td>SRG-OS-ID</td>
 <td><pre>Legitimate device files should only exist in the /dev directory. NFS mounts
 should not present device files to users.</pre></td>
 <td><pre>To verify the nodev option is configured for all NFS mounts, run
@@ -3023,6 +3144,7 @@ any NFS mounts.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must prevent files with the setuid and setgid bit set from being executed on file systems that are imported via Network File System (NFS).</td>
+<td>SRG-OS-ID</td>
 <td><pre>NFS mounts should not present suid binaries to users. Only vendor-supplied suid executables
 should be installed to their default location on the local filesystem.</pre></td>
 <td><pre>To verify the nosuid option is configured for all NFS mounts, run
@@ -3042,6 +3164,7 @@ any NFS mounts.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>Local RHEL 8 initialization files must not execute world-writable programs.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If user start-up files execute world-writable programs, especially in
 unprotected directories, they could be maliciously modified to destroy user
 files or otherwise compromise the system at the user level. If the system is
@@ -3064,6 +3187,7 @@ following command:
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must disable kernel dumps unless needed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Kernel core dumps may contain the full contents of system memory at the
 time of the crash. Kernel core dumps consume a considerable amount of disk
 space and may result in denial of service by exhausting the available space
@@ -3107,6 +3231,7 @@ The <code>kdump</code> service can be disabled with the following command:
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must disable the kernel.core_pattern.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A core dump includes a memory image taken at the time the operating system
 terminates an application. The memory image could contain sensitive data and is generally useful
 only for developers trying to debug problems.</pre></td>
@@ -3142,6 +3267,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must disable acquiring, saving, and processing core dumps.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A core dump includes a memory image taken at the time the operating system
 terminates an application. The memory image could contain sensitive data
 and is generally useful only for developers trying to debug problems.</pre></td>
@@ -3166,6 +3292,7 @@ By masking the unit, core dump processing is disabled.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must disable core dumps for all users.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A core dump includes a memory image taken at the time the operating system
 terminates an application. The memory image could contain sensitive data and is generally useful
 only for developers trying to debug problems.</pre></td>
@@ -3187,6 +3314,7 @@ The output should be:
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must disable storing core dumps.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A core dump includes a memory image taken at the time the operating system
 terminates an application. The memory image could contain sensitive data
 and is generally useful only for developers or system operators trying to
@@ -3211,6 +3339,7 @@ can be set to <code>none</code> to disable storing core dumps permanently.</pre>
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must disable core dump backtraces.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A core dump includes a memory image taken at the time the operating system
 terminates an application. The memory image could contain sensitive data
 and is generally useful only for developers or system operators trying to
@@ -3240,6 +3369,7 @@ be generated.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>For RHEL 8 systems using Domain Name Servers (DNS) resolution, at least two name servers must be configured.</td>
+<td>SRG-OS-ID</td>
 <td><pre>To provide availability for name resolution services, multiple redundant
 name servers are mandated. A failure in name resolution could lead to the
 failure of security functions requiring name resolution, which may include
@@ -3280,6 +3410,7 @@ nameserver 192.168.0.2</pre></pre></td>
 <td>366</td>
 <td>medium</td>
 <td>Executable search paths within the initialization files of all local interactive RHEL 8 users must only contain paths that resolve to the system default or the users home directory.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The executable search path (typically the PATH environment variable) contains a
 list of directories for the shell to search to find executables. If this path
 includes the current working directory (other than the users home directory),
@@ -3307,6 +3438,7 @@ directory other than the users home directory.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>All RHEL 8 world-writable directories must be owned by root, sys, bin, or an application user.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Allowing a user account to own a world-writable directory is
 undesirable because it allows the owner of that directory to remove
 or replace any files that may be placed in the directory by other
@@ -3328,6 +3460,7 @@ assigned to root user.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>All RHEL 8 world-writable directories must be group-owned by root, sys, bin, or an application group.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Allowing a user account to group own a world-writable directory is
 undesirable because it allows the owner of that directory to remove
 or replace any files that may be placed in the directory by other
@@ -3352,6 +3485,7 @@ appropriate group.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>All RHEL 8 local interactive users must have a home directory assigned in the /etc/passwd file.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If local interactive users are not assigned a valid home directory, there is no
 place for the storage and control of files they should own.</pre></td>
 <td><pre>To verify interactive users on the system have a home directory assigned,
@@ -3376,6 +3510,7 @@ Therefore, this rule will report a finding for home directories like <code>/user
 <td>366</td>
 <td>medium</td>
 <td>All RHEL 8 local interactive user home directories must have mode 0750 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Excessive permissions on local interactive user home directories may allow
 unauthorized access to user files by other users.</pre></td>
 <td><pre>To verify the assigned home directory of all interactive user home directories
@@ -3396,6 +3531,7 @@ following command:
 <td></td>
 <td>medium</td>
 <td>All RHEL 8 local interactive user home directory files must have mode 0750 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3407,6 +3543,7 @@ following command:
 <td>366</td>
 <td>medium</td>
 <td>All RHEL 8 local interactive user home directories must be group-owned by the home directory owner’s primary group.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If the Group Identifier (GID) of a local interactive users home directory is
 not the same as the primary GID of the user, this would allow unauthorized
 access to the users files, and users that share the same group may not be
@@ -3432,6 +3569,7 @@ are group-owners of one and only one home directory.</pre></td>
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must be configured so that all files and directories contained in local interactive user home directories are group-owned by a group of which the home directory owner is a member.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3443,6 +3581,7 @@ are group-owners of one and only one home directory.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>All RHEL 8 local interactive user home directories defined in the /etc/passwd file must exist.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If a local interactive user has a home directory defined that does not exist,
 the user may be given access to the / directory as the current working directory
 upon logon. This could create a Denial of Service because the user would not be
@@ -3466,6 +3605,7 @@ home directory assigned in <code>/etc/passwd</code>:
 <td>366</td>
 <td>medium</td>
 <td>All RHEL 8 local interactive user accounts must be assigned a home directory upon creation.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If local interactive users are not assigned a valid home directory, there is no place
 for the storage and control of files they should own.</pre></td>
 <td><pre>Check if the system is configured to create home directories for local interactive users with the following command:
@@ -3488,6 +3628,7 @@ parameter in <code>/etc/login.defs</code> to <code>yes</code> as follows:
 <td>366</td>
 <td>medium</td>
 <td>All RHEL 8 local initialization files must have mode 0740 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Local initialization files are used to configure the user's shell environment
 upon logon. Malicious modification of these files could compromise accounts upon
 logon.</pre></td>
@@ -3508,6 +3649,7 @@ following command:
 <td>366</td>
 <td>medium</td>
 <td>All RHEL 8 local files and directories must have a valid owner.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unowned files do not directly imply a security problem, but they are generally
 a sign that something is amiss. They may
 be caused by an intruder, by incorrect software installation or
@@ -3542,6 +3684,7 @@ filesystems the following command can be run manually for each partition:
 <td>366</td>
 <td>medium</td>
 <td>All RHEL 8 local files and directories must have a valid group owner.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unowned files do not directly imply a security problem, but they are generally
 a sign that something is amiss. They may
 be caused by an intruder, by incorrect software installation or
@@ -3575,6 +3718,7 @@ filesystems the following command can be run manually for each partition:
 <td>366</td>
 <td>medium</td>
 <td>A separate RHEL 8 filesystem must be used for user home directories (such as /home or an equivalent).</td>
+<td>SRG-OS-ID</td>
 <td><pre>Ensuring that <code>/home</code> is mounted on its own partition enables the
 setting of more restrictive mount options, and also helps ensure that
 users cannot trivially fill partitions used for log or audit data storage.</pre></td>
@@ -3598,6 +3742,7 @@ mountpoint can instead be configured later.</pre></td>
 <td>366</td>
 <td>high</td>
 <td>Unattended or automatic logon via the RHEL 8 graphical user interface must not be allowed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Failure to restrict system access to authenticated users negatively impacts operating
 system security.</pre></td>
 <td><pre>To verify that automatic logins are disabled, run the following command:
@@ -3622,6 +3767,7 @@ AutomaticLoginEnable=false</pre></pre></td>
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must not allow users to override SSH environment variables.</td>
+<td>SRG-OS-ID</td>
 <td><pre>SSH environment options potentially allow users to bypass
 access restriction in some configurations.</pre></td>
 <td><pre>To determine how the SSH daemon's PermitUserEnvironment option is set, run the following command:
@@ -3651,6 +3797,7 @@ To explicitly disable Environment options, add or correct the following
 <td>16</td>
 <td>medium</td>
 <td>RHEL 8 temporary user accounts must be provisioned with an expiration time of 72 hours or less.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If temporary user accounts remain active when no longer needed or for
 an excessive period, these accounts may be used to gain unauthorized access.
 To mitigate this risk, automated termination of all temporary accounts
@@ -3682,6 +3829,7 @@ period of 72 hours.</pre></td>
 <td>44</td>
 <td>medium</td>
 <td>RHEL 8 must automatically lock an account when three unsuccessful logon attempts occur.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Locking out user accounts after a number of incorrect attempts prevents direct password
 guessing attacks. In combination with the <code>silent</code> option, user enumeration attacks
 are also mitigated.</pre></td>
@@ -3706,6 +3854,7 @@ depending on the OS version.</pre></td>
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must automatically lock an account when three unsuccessful logon attempts occur.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3717,6 +3866,7 @@ depending on the OS version.</pre></td>
 <td>44</td>
 <td>medium</td>
 <td>RHEL 8 must automatically lock an account when three unsuccessful logon attempts occur during a 15-minute time period.</td>
+<td>SRG-OS-ID</td>
 <td><pre>By limiting the number of failed logon attempts the risk of unauthorized system
 access via user password guessing, otherwise known as brute-forcing, is reduced.
 Limits are imposed by locking the account.</pre></td>
@@ -3751,6 +3901,7 @@ Then edit the <code>/etc/security/faillock.conf</code> file as follows:
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must automatically lock an account when three unsuccessful logon attempts occur during a 15-minute time period.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3762,6 +3913,7 @@ Then edit the <code>/etc/security/faillock.conf</code> file as follows:
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must automatically lock an account until the locked account is released by an administrator when three unsuccessful logon attempts occur during a 15-minute time period.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3773,6 +3925,7 @@ Then edit the <code>/etc/security/faillock.conf</code> file as follows:
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must automatically lock an account until the locked account is released by an administrator when three unsuccessful logon attempts occur during a 15-minute time period.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3784,6 +3937,7 @@ Then edit the <code>/etc/security/faillock.conf</code> file as follows:
 <td>44</td>
 <td>medium</td>
 <td>RHEL 8 must ensure account lockouts persist.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Locking out user accounts after a number of incorrect attempts prevents direct password
 guessing attacks. Ensuring that an administrator is involved in unlocking locked accounts
 draws appropriate attention to such situations.</pre></td>
@@ -3810,6 +3964,7 @@ depending on the OS version.</pre></td>
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must ensure account lockouts persist.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3821,6 +3976,7 @@ depending on the OS version.</pre></td>
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must prevent system messages from being presented when three unsuccessful logon attempts occur.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3832,6 +3988,7 @@ depending on the OS version.</pre></td>
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must prevent system messages from being presented when three unsuccessful logon attempts occur.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3843,6 +4000,7 @@ depending on the OS version.</pre></td>
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must log user name information when unsuccessful logon attempts occur.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3854,6 +4012,7 @@ depending on the OS version.</pre></td>
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must log user name information when unsuccessful logon attempts occur.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3865,6 +4024,7 @@ depending on the OS version.</pre></td>
 <td>44</td>
 <td>medium</td>
 <td>RHEL 8 must include root when automatically locking an account until the locked account is released by an administrator when three unsuccessful logon attempts occur during a 15-minute time period.</td>
+<td>SRG-OS-ID</td>
 <td><pre>By limiting the number of failed logon attempts, the risk of unauthorized system access via
 user password guessing, also known as brute-forcing, is reduced. Limits are imposed by locking
 the account.</pre></td>
@@ -3890,6 +4050,7 @@ depending on the OS version.</pre></td>
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must include root when automatically locking an account until the locked account is released by an administrator when three unsuccessful logon attempts occur during a 15-minute time period.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3901,6 +4062,7 @@ depending on the OS version.</pre></td>
 <td>54</td>
 <td>low</td>
 <td>RHEL 8 must limit the number of concurrent sessions to ten for all accounts and/or account types.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Limiting simultaneous user logins can insulate the system from denial of service
 problems caused by excessive logins. Automated login processes operating improperly or
 maliciously may result in an exceptional number of simultaneous login sessions.</pre></td>
@@ -3925,6 +4087,7 @@ a file under <code>/etc/security/limits.d/</code>:
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must configure the use of the pam_faillock.so module in the /etc/pam.d/system-auth file.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3936,6 +4099,7 @@ a file under <code>/etc/security/limits.d/</code>:
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must configure the use of the pam_faillock.so module in the /etc/pam.d/password-auth file.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3947,6 +4111,7 @@ a file under <code>/etc/security/limits.d/</code>:
 <td></td>
 <td>medium</td>
 <td>RHEL 8 systems, versions 8.2 and above, must configure SELinux context type to allow the use of a non-default faillock tally directory.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3958,6 +4123,7 @@ a file under <code>/etc/security/limits.d/</code>:
 <td></td>
 <td>medium</td>
 <td>RHEL 8 systems below version 8.2 must configure SELinux context type to allow the use of a non-default faillock tally directory.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -3969,6 +4135,7 @@ a file under <code>/etc/security/limits.d/</code>:
 <td>56</td>
 <td>medium</td>
 <td>RHEL 8 must enable a user session lock until that user re-establishes access using established identification and authentication procedures for graphical user sessions.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity
 of the information system but does not want to logout because of the temporary nature of the absense.</pre></td>
 <td><pre>To check the status of the idle screen lock activation, run the following command:
@@ -4000,6 +4167,7 @@ After the settings have been set, run <code>dconf update</code>.</pre></td>
 <td>57</td>
 <td>medium</td>
 <td>RHEL 8 must initiate a session lock for graphical user interfaces when the screensaver is activated.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity
 of the information system but does not want to logout because of the temporary nature of the absense.</pre></td>
 <td><pre>To check that the screen locks immediately when activated, run the following command:
@@ -4030,6 +4198,7 @@ After the settings have been set, run <code>dconf update</code>.</pre></td>
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must disable the user list at logon for graphical user interfaces.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4041,6 +4210,7 @@ After the settings have been set, run <code>dconf update</code>.</pre></td>
 <td>56</td>
 <td>medium</td>
 <td>RHEL 8 must have the tmux package installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate
 physical vicinity of the information system but does not logout because of the temporary nature of the absence.
 Rather than relying on the user to manually lock their operation system session prior to vacating the vicinity,
@@ -4067,6 +4237,7 @@ The console can now be locked with the following key combination:
 <td>56</td>
 <td>medium</td>
 <td>RHEL 8 must enable a user session lock until that user re-establishes access using established identification and authentication procedures for command line sessions.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>tmux</code> package allows for a session lock to be implemented and configured.
 However, the session lock is implemented by an external command. The <code>tmux</code>
 default configuration does not contain an effective session lock.</pre></td>
@@ -4091,6 +4262,7 @@ The console can now be locked with the following key combination:
 <td>56</td>
 <td>medium</td>
 <td>RHEL 8 must ensure session control is automatically started at shell initialization.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unlike <code>bash</code> itself, the <code>tmux</code> terminal multiplexer
 provides a mechanism to lock sessions after period of inactivity.
 A session lock is a temporary action taken when a user stops work and moves away from the
@@ -4118,6 +4290,7 @@ automatic session locking. It should be started from
 <td>56</td>
 <td>low</td>
 <td>RHEL 8 must prevent users from disabling session control mechanisms.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Not listing <code>tmux</code> among permitted shells
 prevents malicious program running as user
 from lowering security by disabling the screen lock.</pre></td>
@@ -4138,6 +4311,7 @@ automatic session locking. It should not be listed in
 <td>56</td>
 <td>medium</td>
 <td>RHEL 8 must be able to initiate directly a session lock for all connection types using smartcard when the smartcard is removed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Locking the screen automatically when removing the smartcard can
 prevent undesired access to system.</pre></td>
 <td><pre>To ensure screen locking on smartcard removal is enabled, run the following command:
@@ -4169,6 +4343,7 @@ After the settings have been set, run <code>dconf update</code>.</pre></td>
 <td>57</td>
 <td>medium</td>
 <td>RHEL 8 must automatically lock graphical user sessions after 15 minutes of inactivity.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A session time-out lock is a temporary action taken when a user stops work and moves away from
 the immediate physical vicinity of the information system but does not logout because of the
 temporary nature of the absence. Rather than relying on the user to manually lock their operating
@@ -4203,6 +4378,7 @@ After the settings have been set, run <code>dconf update</code>.</pre></td>
 <td>57</td>
 <td>medium</td>
 <td>RHEL 8 must automatically lock command line user sessions after 15 minutes of inactivity.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Locking the session after a period of inactivity limits the
 potential exposure if the session is left unattended.</pre></td>
 <td><pre>To verify that session locking after period of inactivity is configured in tmux,
@@ -4224,6 +4400,7 @@ the <code>lock-after-time</code> option has to be set to nonzero value in
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must prevent a user from overriding the session lock-delay setting for the graphical user interface.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4235,6 +4412,7 @@ the <code>lock-after-time</code> option has to be set to nonzero value in
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must prevent a user from overriding the session idle-delay setting for the graphical user interface.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4246,6 +4424,7 @@ the <code>lock-after-time</code> option has to be set to nonzero value in
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must prevent a user from overriding the screensaver lock-enabled setting for the graphical user interface.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4257,6 +4436,7 @@ the <code>lock-after-time</code> option has to be set to nonzero value in
 <td>187</td>
 <td>medium</td>
 <td>RHEL 8 must map the authenticated identity to the user or group account for PKI-based authentication.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without mapping the certificate used to authenticate to the user account, the ability to
 determine the identity of the individual user or group will not be available for forensic
 analysis.</pre></td>
@@ -4288,6 +4468,7 @@ domains = testing.test
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must ensure the password complexity module is enabled in the password-auth file.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Enabling PAM password complexity permits to enforce strong passwords and consequently
 makes the system less prone to dictionary attacks.</pre></td>
 <td><pre>To check if pam_pwhistory.so is enabled in password-auth, run the following command:
@@ -4308,6 +4489,7 @@ Edit the <code>password</code> section in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must ensure the password complexity module is enabled in the system-auth file.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Enabling PAM password complexity permits to enforce strong passwords and consequently
 makes the system less prone to dictionary attacks.</pre></td>
 <td><pre>To check if pam_pwhistory.so is enabled in system-auth, run the following command:
@@ -4328,6 +4510,7 @@ Edit the <code>password</code> section in
 <td></td>
 <td>medium</td>
 <td>RHEL 8 systems below version 8.4 must ensure the password complexity module in the system-auth file is configured for three retries or less.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4339,6 +4522,7 @@ Edit the <code>password</code> section in
 <td></td>
 <td>medium</td>
 <td>RHEL 8 systems below version 8.4 must ensure the password complexity module in the password-auth file is configured for three retries or less.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -4350,6 +4534,7 @@ Edit the <code>password</code> section in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 systems, version 8.4 and above, must ensure the password complexity module is configured for three retries or less.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Setting the password retry prompts that are permitted on a per-session basis to a low value
 requires some software, such as SSH, to re-connect. This can slow down and
 draw additional attention to some types of password-guessing attacks. Note that this
@@ -4378,6 +4563,7 @@ per session.</pre></td>
 <td>192</td>
 <td>medium</td>
 <td>RHEL 8 must enforce password complexity by requiring that at least one uppercase character be used.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Use of a complex password helps to increase the time and resources reuiqred to compromise the password.
 Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts
 at guessing and brute-force attacks.
@@ -4405,6 +4591,7 @@ length credit for each uppercase character. Modify the <code>ucredit</code> sett
 <td>193</td>
 <td>medium</td>
 <td>RHEL 8 must enforce password complexity by requiring that at least one lower-case character be used.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Use of a complex password helps to increase the time and resources required
 to compromise the password. Password complexity, or strength, is a measure of
 the effectiveness of a password in resisting attempts at guessing and brute-force
@@ -4434,6 +4621,7 @@ length credit for each lowercase character. Modify the <code>lcredit</code> sett
 <td>194</td>
 <td>medium</td>
 <td>RHEL 8 must enforce password complexity by requiring that at least one numeric character be used.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Use of a complex password helps to increase the time and resources required
 to compromise the password. Password complexity, or strength, is a measure of
 the effectiveness of a password in resisting attempts at guessing and brute-force
@@ -4463,6 +4651,7 @@ length credit for each digit. Modify the <code>dcredit</code> setting in
 <td>195</td>
 <td>medium</td>
 <td>RHEL 8 must require the maximum number of repeating characters of the same character class be limited to four when passwords are changed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Use of a complex password helps to increase the time and resources required to comrpomise the password.
 Password complexity, or strength, is a measure of the effectiveness of a password in resisting
 attempts at guessing and brute-force attacks.
@@ -4488,6 +4677,7 @@ to prevent a run of (<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/
 <td>195</td>
 <td>medium</td>
 <td>RHEL 8 must require the maximum number of repeating characters be limited to three when passwords are changed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Use of a complex password helps to increase the time and resources required to compromise the password.
 Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at
 guessing and brute-force attacks.
@@ -4516,6 +4706,7 @@ run of (<xccdf-1.1:sub xmlns:xccdf-1.1="http://checklists.nist.gov/xccdf/1.1" id
 <td>195</td>
 <td>medium</td>
 <td>RHEL 8 must require the change of at least four character classes when passwords are changed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Use of a complex password helps to increase the time and resources required to compromise the password.
 Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts
 at guessing and brute-force attacks.
@@ -4558,6 +4749,7 @@ differing categories of characters when changing passwords.</pre></td>
 <td>195</td>
 <td>medium</td>
 <td>RHEL 8 must require the change of at least 8 characters when passwords are changed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Use of a complex password helps to increase the time and resources
 required to compromise the password. Password complexity, or strength,
 is a measure of the effectiveness of a password in resisting attempts
@@ -4590,6 +4782,7 @@ when changing passwords.</pre></td>
 <td>198</td>
 <td>medium</td>
 <td>RHEL 8 passwords must have a 24 hours/1 day minimum password lifetime restriction in /etc/shadow.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Enforcing a minimum password lifetime helps to prevent repeated password
 changes to defeat the password reuse or history enforcement requirement. If
 users are allowed to immediately and continually change their password, the
@@ -4614,6 +4807,7 @@ lifetime by running the following command:
 <td>198</td>
 <td>medium</td>
 <td>RHEL 8 passwords for new users or password changes must have a 24 hours/1 day minimum password lifetime restriction in /etc/logins.def.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Enforcing a minimum password lifetime helps to prevent repeated password
 changes to defeat the password reuse or history enforcement requirement. If
 users are allowed to immediately and continually change their password,
@@ -4641,6 +4835,7 @@ The profile requirement is <code><xccdf-1.1:sub xmlns:xccdf-1.1="http://checklis
 <td>199</td>
 <td>medium</td>
 <td>RHEL 8 user account passwords must have a 60-day maximum password lifetime restriction.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Any password, no matter how complex, can eventually be cracked. Therefore, passwords
 need to be changed periodically. If the operating system does not limit the lifetime
 of passwords and force users to change their passwords, there is the risk that the
@@ -4670,6 +4865,7 @@ The profile requirement is <code><xccdf-1.1:sub xmlns:xccdf-1.1="http://checklis
 <td>199</td>
 <td>medium</td>
 <td>RHEL 8 user account passwords must be configured so that existing passwords are restricted to a 60-day maximum lifetime.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Any password, no matter how complex, can eventually be cracked. Therefore,
 passwords need to be changed periodically. If the operating system does
 not limit the lifetime of passwords and force users to change their
@@ -4693,6 +4889,7 @@ restriction by running the following command:
 <td>200</td>
 <td>medium</td>
 <td>RHEL 8 must be configured in the password-auth file to prohibit password reuse for a minimum of five generations.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Preventing re-use of previous passwords helps ensure that a compromised password is not re-used by a user.</pre></td>
 <td><pre>Check that the operating system prohibits the reuse of a password for
 a minimum of  generations with the following command:
@@ -4721,6 +4918,7 @@ The DoD STIG requirement is 5 passwords.</pre></td>
 <td>200</td>
 <td>medium</td>
 <td>RHEL 8 must be configured in the system-auth file to prohibit password reuse for a minimum of five generations.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Preventing re-use of previous passwords helps ensure that a compromised password is not re-used by a user.</pre></td>
 <td><pre>Check that the operating system prohibits the reuse of a password for
 a minimum of  generations with the following command:
@@ -4749,6 +4947,7 @@ The DoD STIG requirement is 5 passwords.</pre></td>
 <td>205</td>
 <td>medium</td>
 <td>RHEL 8 passwords must have a minimum of 15 characters.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The shorter the password, the lower the number of possible combinations
 that need to be tested before the password is compromised.
 <br>
@@ -4774,6 +4973,7 @@ after pam_pwquality to set minimum password length requirements.</pre></td>
 <td>205</td>
 <td>medium</td>
 <td>RHEL 8 passwords for new users must have a minimum of 15 characters.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Requiring a minimum password length makes password
 cracking attacks more difficult by ensuring a larger
 search space. However, any security benefit from an onerous requirement
@@ -4804,6 +5004,7 @@ information about enforcing password quality requirements.</pre></td>
 <td>764</td>
 <td>medium</td>
 <td>RHEL 8 duplicate User IDs (UIDs) must not exist for interactive users.</td>
+<td>SRG-OS-ID</td>
 <td><pre>To assure accountability and prevent unauthenticated access, interactive users must be identified and authenticated to prevent potential misuse and compromise of the system.</pre></td>
 <td><pre>Run the following command to check for duplicate account names:
 Check that the operating system contains no duplicate UIDs for interactive users by running the following command:
@@ -4822,6 +5023,7 @@ Edit the file "/etc/passwd" and provide each interactive user account that has a
 <td>765</td>
 <td>medium</td>
 <td>RHEL 8 must implement smart card logon for multifactor authentication for access to interactive accounts.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Using an authentication device, such as a CAC or token that is separate from
 the information system, ensures that even if the information system is
 compromised, that compromise will not affect credentials stored on the
@@ -4853,6 +5055,7 @@ pam_cert_auth = true
 <td>795</td>
 <td>medium</td>
 <td>RHEL 8 account identifiers (individuals, groups, roles, and devices) must be disabled after 35 days of inactivity.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system.
 Disabling inactive accounts ensures that accounts which may not have been responsibly removed are not available to attackers who may have compromised their credentials.
 Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained.</pre></td>
@@ -4883,6 +5086,7 @@ elapse until the account would be automatically disabled. See the
 <td>1682</td>
 <td>medium</td>
 <td>RHEL 8 emergency accounts must be automatically removed or disabled after the crisis is resolved or within 72 hours.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If emergency user accounts remain active when no longer needed or for
 an excessive period, these accounts may be used to gain unauthorized access.
 To mitigate this risk, automated termination of all emergency accounts
@@ -4914,6 +5118,7 @@ period of 72 hours.</pre></td>
 <td>1619</td>
 <td>medium</td>
 <td>All RHEL 8 passwords must contain at least one special character.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Use of a complex password helps to increase the time and resources required
 to compromise the password. Password complexity, or strength, is a measure of
 the effectiveness of a password in resisting attempts at guessing and brute-force
@@ -4946,6 +5151,7 @@ to require use of a special character in passwords.</pre></td>
 <td>2007</td>
 <td>medium</td>
 <td>RHEL 8 must prohibit the use of cached authentications after one day.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If cached authentication information is out-of-date, the validity of the
 authentication information may be questionable.</pre></td>
 <td><pre>To verify that SSSD expires offline credentials, run the following command:
@@ -4969,6 +5175,7 @@ offline_credentials_expiration = 1
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must prevent the use of dictionary words for passwords.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Use of a complex password helps to increase the time and resources required to compromise the password.
 Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at
 guessing and brute-force attacks.
@@ -4994,6 +5201,7 @@ dictcheck=1
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must enforce a delay of at least four seconds between logon prompts following a failed logon attempt.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Increasing the time between a failed authentication attempt and re-prompting to
 enter credentials helps to slow a single-threaded brute force attack.</pre></td>
 <td><pre>Verify the FAIL_DELAY setting is configured correctly in the /etc/login.defs file by
@@ -5015,6 +5223,7 @@ add or correct the <code>FAIL_DELAY</code> setting in <code>/etc/login.defs</cod
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must not have unnecessary accounts.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Accounts providing no operational purpose provide additional opportunities for
 system compromise. Unnecessary accounts include user accounts for individuals not
 requiring access to the system and application accounts for applications not installed
@@ -5045,6 +5254,7 @@ To remove unauthorized system accounts, use the following command:
 <td>366</td>
 <td>high</td>
 <td>RHEL 8 must not allow accounts configured with blank or null passwords.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Configuring this setting for the SSH daemon provides additional assurance
 that remote login via SSH will require a password, even in the event of
 misconfiguration elsewhere.</pre></td>
@@ -5078,6 +5288,7 @@ should prevent users from being able to assign themselves empty passwords.</pre>
 <td>366</td>
 <td>high</td>
 <td>RHEL 8 must not allow blank or null passwords in the system-auth file.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If an account has an empty password, anyone could log in and
 run commands with the privileges of that account. Accounts with
 empty passwords should never be used in operational environments.</pre></td>
@@ -5106,6 +5317,7 @@ to prevent logins with empty passwords.</pre></td>
 <td></td>
 <td>high</td>
 <td>RHEL 8 must not allow blank or null passwords in the password-auth file.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -5117,6 +5329,7 @@ to prevent logins with empty passwords.</pre></td>
 <td>366</td>
 <td>low</td>
 <td>RHEL 8 must display the date and time of the last successful account logon upon logon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Users need to be aware of activity that occurs regarding
 their account. Providing users with information regarding the number
 of unsuccessful attempts that were made to login to their account
@@ -5143,6 +5356,7 @@ And make sure that the <code>silent</code> option is not set.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must display the date and time of the last successful account logon upon an SSH logon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Providing users feedback on when account accesses last occurred facilitates user
 recognition and reporting of unauthorized account use.</pre></td>
 <td><pre>To determine how the SSH daemon's PrintLastLog option is set, run the following command:
@@ -5172,6 +5386,7 @@ To explicitly enable LastLog in SSH, add or correct the following line in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must define default permissions for all authenticated users in such a way that the user can only read and modify their own files.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The umask value influences the permissions assigned to files when they are created.
 A misconfigured umask value could result in files with excessive permissions that can be read and
 written to by unauthorized users.</pre></td>
@@ -5194,6 +5409,7 @@ add or correct the <code>UMASK</code> setting in <code>/etc/login.defs</code> to
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must set the umask value to 077 for all local interactive user accounts.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The umask controls the default access mode assigned to newly created files. A
 umask of 077 limits new files to mode 700 or less permissive. Although umask can
 be represented as a four-digit number, the first digit representing special
@@ -5215,6 +5431,7 @@ There should be no output.
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must define default permissions for logon and non-logon shells.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The umask value influences the permissions assigned to files when they are created.
 A misconfigured umask value could result in files with excessive permissions that can be read or
 written to by unauthorized users.</pre></td>
@@ -5237,6 +5454,7 @@ add or correct the <code>umask</code> setting in <code>/etc/profile</code> to re
 <td>2233</td>
 <td>medium</td>
 <td>The RHEL 8 audit system must be configured to audit the execution of privileged functions and prevent all software from executing at higher privilege levels than users executing the software.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have
 compromised information system accounts, is a serious and ongoing concern
@@ -5277,6 +5495,7 @@ If both the "b32" and "b64" audit rules for "SGID" files are not defined, this i
 <td>366</td>
 <td>medium</td>
 <td>Cron logging must be implemented in RHEL 8.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Cron logging can be used to trace the successful or unsuccessful execution
 of cron jobs. It can also be used to spot intrusions into the use of the cron
 facility by unauthorized and malicious users.</pre></td>
@@ -5300,6 +5519,7 @@ can be implemented by adding the following to the <i>RULES</i> section of
 <td>139</td>
 <td>medium</td>
 <td>The RHEL 8 System Administrator (SA) and Information System Security Officer (ISSO) (at a minimum) must be alerted of an audit processing failure event.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Email sent to the root account is typically aliased to the
 administrators of the system, who can take appropriate action.</pre></td>
 <td><pre>Inspect /etc/audit/auditd.conf and locate the following line to
@@ -5321,6 +5541,7 @@ via email for those situations:
 <td>139</td>
 <td>medium</td>
 <td>The RHEL 8 Information System Security Officer (ISSO) and System Administrator (SA) (at a minimum) must have mail aliases to be notified of an audit processing failure.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A number of system services utilize email messages sent to the root user to
 notify system administrators of active or impending issues.  These messages must
 be forwarded to at least one monitored email address.</pre></td>
@@ -5346,6 +5567,7 @@ $ sudo newaliases</pre></pre></td>
 <td>140</td>
 <td>medium</td>
 <td>The RHEL 8 System must take appropriate action when an audit processing failure occurs.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Taking appropriate action in case of disk errors will minimize the possibility of
 losing audit records.</pre></td>
 <td><pre>Inspect /etc/audit/auditd.conf and locate the following line to
@@ -5374,6 +5596,7 @@ determined. Details regarding all possible values for <i>ACTION</i> are describe
 <td>140</td>
 <td>medium</td>
 <td>The RHEL 8 audit system must take appropriate action when the audit storage volume is full.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Taking appropriate action in case of a filled audit storage volume will minimize
 the possibility of losing audit records.</pre></td>
 <td><pre>Inspect /etc/audit/auditd.conf and locate the following line to
@@ -5405,6 +5628,7 @@ determined. Details regarding all possible values for <i>ACTION</i> are describe
 <td>366</td>
 <td>medium</td>
 <td>The RHEL 8 audit system must audit local events.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If option <code>local_events</code> isn't set to <code>yes</code> only events from
 network will be aggregated.</pre></td>
 <td><pre>To verify that Audit Daemon is configured to include local events, run the
@@ -5425,6 +5649,7 @@ This is the default setting.</pre></td>
 <td>1851</td>
 <td>medium</td>
 <td>RHEL 8 must label all off-loaded audit logs before sending them to the central log server.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If option <code>name_format</code> is left at its default value of
 <code>none</code>, audit events from different computers may be hard
 to distinguish.</pre></td>
@@ -5447,6 +5672,7 @@ in <code>/etc/audit/auditd.conf</code>.</pre></td>
 <td>366</td>
 <td>low</td>
 <td>RHEL 8 must resolve audit information before writing to disk.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If option <code>log_format</code> isn't set to <code>ENRICHED</code>, the
 audit records will be stored in a format exactly as the kernel sends them.</pre></td>
 <td><pre>To verify that Audit Daemon is configured to resolve all uid, gid, syscall,
@@ -5469,6 +5695,7 @@ in <code>/etc/audit/auditd.conf</code>.</pre></td>
 <td>162</td>
 <td>medium</td>
 <td>RHEL 8 audit logs must have a mode of 0600 or less permissive to prevent unauthorized read access.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If users can write to audit logs, audit trails can be modified or destroyed.</pre></td>
 <td><pre>Run the following command to check the mode of the system audit logs:
 $ sudo grep -iw log_file /etc/audit/auditd.conf
@@ -5492,6 +5719,7 @@ Otherwise, change the mode of the audit log files with the following command:
 <td>162</td>
 <td>medium</td>
 <td>RHEL 8 audit logs must be owned by root to prevent unauthorized read access.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unauthorized disclosure of audit records can reveal system and configuration data to
 attackers, thus compromising its confidentiality.</pre></td>
 <td><pre>Run the following commands to check who owns the system audit logs:
@@ -5515,6 +5743,7 @@ To properly set the owner of <code>/var/log/audit/*</code>, run the command:
 <td>162</td>
 <td>medium</td>
 <td>RHEL 8 audit logs must be group-owned by root to prevent unauthorized read access.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unauthorized disclosure of audit records can reveal system and configuration data to
 attackers, thus compromising its confidentiality.</pre></td>
 <td><pre>Run the following commands to check who owns the system audit logs:
@@ -5541,6 +5770,7 @@ to this specific group.</pre></td>
 <td>162</td>
 <td>medium</td>
 <td>RHEL 8 audit log directory must be owned by root to prevent unauthorized read access.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unauthorized disclosure of audit records can reveal system and configuration data to
 attackers, thus compromising its confidentiality.</pre></td>
 <td><pre>
@@ -5560,6 +5790,7 @@ To properly set the owner of <code>/var/log/audit</code>, run the command:
 <td>162</td>
 <td>medium</td>
 <td>RHEL 8 audit log directory must be group-owned by root to prevent unauthorized read access.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unauthorized disclosure of audit records can reveal system and configuration data to
 attackers, thus compromising its confidentiality.</pre></td>
 <td><pre>
@@ -5581,6 +5812,7 @@ group account, change the group ownership of the audit directories to this speci
 <td>162</td>
 <td>medium</td>
 <td>RHEL 8 audit log directory must have a mode of 0700 or less permissive to prevent unauthorized read access.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If users can write to audit logs, audit trails can be modified or destroyed.</pre></td>
 <td><pre>Run the following command to check the mode of the system audit logs:
 $ sudo ls -ld /var/log/audit
@@ -5601,6 +5833,7 @@ Otherwise, change the mode of the audit log files with the following command:
 <td>162</td>
 <td>medium</td>
 <td>RHEL 8 audit system must protect auditing rules from unauthorized change.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Making the audit configuration immutable prevents accidental as
 well as malicious modification of the audit rules, although it may be
 problematic if legitimate changes are needed during system
@@ -5626,6 +5859,7 @@ With this setting, a reboot will be required to change any audit rules.</pre></t
 <td>162</td>
 <td>medium</td>
 <td>RHEL 8 audit system must protect logon UIDs from unauthorized change.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If modification of login UIDs is not prevented, they can be changed by unprivileged users and make auditing complicated or impossible. </pre></td>
 <td><pre>To verify that the Audit is correctly configured according to recommended rules, check the content of the file with the following command:
 cat /etc/audit/rules.d/11-loginuid.rules
@@ -5659,6 +5893,7 @@ Load new Audit rules into kernel by running:
 <td>169</td>
 <td>medium</td>
 <td>RHEL 8 must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/shadow.</td>
+<td>SRG-OS-ID</td>
 <td><pre>In addition to auditing new user and group accounts, these watches
 will alert the system administrator(s) to any modifications. Any unexpected
 users, groups, or modifications should be investigated for legitimacy.</pre></td>
@@ -5693,6 +5928,7 @@ account changes:
 <td>169</td>
 <td>medium</td>
 <td>RHEL 8 must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/security/opasswd.</td>
+<td>SRG-OS-ID</td>
 <td><pre>In addition to auditing new user and group accounts, these watches
 will alert the system administrator(s) to any modifications. Any unexpected
 users, groups, or modifications should be investigated for legitimacy.</pre></td>
@@ -5727,6 +5963,7 @@ account changes:
 <td>169</td>
 <td>medium</td>
 <td>RHEL 8 must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/passwd.</td>
+<td>SRG-OS-ID</td>
 <td><pre>In addition to auditing new user and group accounts, these watches
 will alert the system administrator(s) to any modifications. Any unexpected
 users, groups, or modifications should be investigated for legitimacy.</pre></td>
@@ -5761,6 +5998,7 @@ account changes:
 <td>169</td>
 <td>medium</td>
 <td>RHEL 8 must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/gshadow.</td>
+<td>SRG-OS-ID</td>
 <td><pre>In addition to auditing new user and group accounts, these watches
 will alert the system administrator(s) to any modifications. Any unexpected
 users, groups, or modifications should be investigated for legitimacy.</pre></td>
@@ -5795,6 +6033,7 @@ account changes:
 <td>169</td>
 <td>medium</td>
 <td>RHEL 8 must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/group.</td>
+<td>SRG-OS-ID</td>
 <td><pre>In addition to auditing new user and group accounts, these watches
 will alert the system administrator(s) to any modifications. Any unexpected
 users, groups, or modifications should be investigated for legitimacy.</pre></td>
@@ -5829,6 +6068,7 @@ account changes:
 <td>169</td>
 <td>medium</td>
 <td>RHEL 8 must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/sudoers.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The actions taken by system administrators should be audited to keep a record
 of what was executed on the system, as well as, for accountability purposes.
 Editing the sudoers file may be sign of an attacker trying to
@@ -5856,6 +6096,7 @@ utility to read audit rules during daemon startup, add the following line to
 <td>169</td>
 <td>medium</td>
 <td>RHEL 8 must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/sudoers.d/.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The actions taken by system administrators should be audited to keep a record
 of what was executed on the system, as well as, for accountability purposes.
 Editing the sudoers file may be sign of an attacker trying to
@@ -5883,6 +6124,7 @@ utility to read audit rules during daemon startup, add the following line to
 <td>169</td>
 <td>medium</td>
 <td>The RHEL 8 audit package must be installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The auditd service is an access monitoring and accounting daemon, watching system calls to audit any access, in comparison with potential local access control policy such as SELinux policy.</pre></td>
 <td><pre>Run the following command to determine if the audit package is installed: $ rpm -q audit
       Is it the case that the package is not installed?
@@ -5896,6 +6138,7 @@ utility to read audit rules during daemon startup, add the following line to
 <td>169</td>
 <td>medium</td>
 <td>RHEL 8 audit records must contain information to establish what type of events occurred, the source of events, where events occurred, and the outcome of events.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without establishing what type of events occurred, it would be difficult
 to establish, correlate, and investigate the events leading up to an outage or attack.
 Ensuring the <code>auditd</code> service is active ensures audit records
@@ -5910,7 +6153,7 @@ Run the following command to determine the current status of the
 auditd service:
 $ systemctl is-active auditd
 If the service is running, it should return the following: active
-      Is it the case that ?
+      Is it the case that the auditd service is not running?
       </pre></td>
 <td><pre>The <code>auditd</code> service is an essential userspace component of
 the Linux Auditing System, as it is responsible for writing audit records to
@@ -5926,6 +6169,7 @@ The <code>auditd</code> service can be enabled with the following command:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the su command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -5960,6 +6204,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>The RHEL 8 audit system must be configured to audit any usage of the setxattr, fsetxattr, lsetxattr, removexattr, fremovexattr, and lremovexattr system calls.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The changing of file permissions could indicate that a user is attempting to
 gain access to information that would otherwise be disallowed. Auditing DAC modifications
 can facilitate the identification of patterns of abuse among both authorized and
@@ -5997,6 +6242,7 @@ If the system is 64 bit then also add the following line:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the chage command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6031,6 +6277,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the chcon command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6065,6 +6312,7 @@ utility to read audit rules during daemon startup, add the following lines to
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the ssh-agent in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without generating audit records that are specific to the security and
 mission needs of the organization, it would be difficult to establish,
 correlate, and investigate the events relating to an incident or identify
@@ -6096,6 +6344,7 @@ utility to read audit rules during daemon startup, add the following lines to
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the passwd command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6130,6 +6379,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the mount command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6164,6 +6414,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the umount command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6198,6 +6449,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the mount syscall in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The unauthorized exportation of data to external media could result in an information leak
 where classified information, Privacy Act information, and intellectual property could be lost. An audit
 trail should be created each time a filesystem is mounted to help identify and guard against information
@@ -6226,6 +6478,7 @@ appropriate for your system:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the unix_update in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6260,6 +6513,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of postdrop in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6294,6 +6548,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of postqueue in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6328,6 +6583,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of semanage in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6362,6 +6618,7 @@ utility to read audit rules during daemon startup, add the following lines to
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of setfiles in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6396,6 +6653,7 @@ utility to read audit rules during daemon startup, add the following lines to
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of userhelper in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6430,6 +6688,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of setsebool in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6464,6 +6723,7 @@ utility to read audit rules during daemon startup, add the following lines to
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of unix_chkpwd in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6498,6 +6758,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the ssh-keysign in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6532,6 +6793,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the setfacl command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without generating audit records that are specific to the security and
 mission needs of the organization, it would be difficult to establish,
 correlate, and investigate the events relating to an incident or identify
@@ -6568,6 +6830,7 @@ utility to read audit rules during daemon startup, add the following lines to
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the pam_timestamp_check command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6604,6 +6867,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the newgrp command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6638,6 +6902,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the init_module and finit_module system calls in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The addition of kernel modules can be used to alter the behavior of
 the kernel and potentially introduce malicious code into kernel space. It is important
 to have an audit trail of modules that have been introduced into the kernel.</pre></td>
@@ -6650,7 +6915,9 @@ If the system is configured to audit this activity, it will return a line.
       </pre></td>
 <td><pre>To capture kernel module loading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S init_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -6666,6 +6933,7 @@ add the line to file <code>/etc/audit/audit.rules</code>.</pre></td>
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the rename, unlink, rmdir, renameat, and unlinkat system calls in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Auditing file deletions will create an audit trail for files that are removed
 from the system. The audit trail could aid in system troubleshooting, as well as, detecting
 malicious processes that attempt to delete log files to conceal their presence.</pre></td>
@@ -6696,6 +6964,7 @@ appropriate for your system:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the gpasswd command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6730,6 +6999,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the delete_module command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The removal of kernel modules can be used to alter the behavior of
 the kernel and potentially introduce malicious code into kernel space. It is important
 to have an audit trail of modules that have been introduced into the kernel.</pre></td>
@@ -6742,7 +7012,9 @@ If the system is configured to audit this activity, it will return a line.
       </pre></td>
 <td><pre>To capture kernel module unloading events, use following line, setting ARCH to
 either b32 for 32-bit system, or having two lines for both b32 and b64 in case your system is 64-bit:
-<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F key=modules</pre>
+
+<pre>-a always,exit -F arch=<i>ARCH</i> -S delete_module -F auid&gt;=1000 -F auid!=unset -F key=modules</pre>
+
 
 Place to add the line depends on a way <code>auditd</code> daemon is configured. If it is configured
 to use the <code>augenrules</code> program (the default), add the line to a file with suffix
@@ -6758,6 +7030,7 @@ add the line to file <code>/etc/audit/audit.rules</code>.</pre></td>
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the crontab command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6792,6 +7065,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the chsh command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6826,6 +7100,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the truncate, ftruncate, creat, open, openat, and open_by_handle_at system calls in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unsuccessful attempts to access files could be an indicator of malicious activity on a system. Auditing
 these events could serve as evidence of potential system compromise.</pre></td>
 <td><pre>To determine if the system is configured to audit calls to the
@@ -6866,6 +7141,7 @@ If the system is 64 bit then also add the following lines:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the chown, fchown, fchownat, and lchown system calls in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The changing of file permissions could indicate that a user is attempting to
 gain access to information that would otherwise be disallowed. Auditing DAC modifications
 can facilitate the identification of patterns of abuse among both authorized and
@@ -6899,6 +7175,7 @@ If the system is 64 bit then also add the following line:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the chmod, fchmod, and fchmodat system calls in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The changing of file permissions could indicate that a user is attempting to
 gain access to information that would otherwise be disallowed. Auditing DAC modifications
 can facilitate the identification of patterns of abuse among both authorized and
@@ -6932,6 +7209,7 @@ If the system is 64 bit then also add the following line:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the sudo command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -6966,6 +7244,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the usermod command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Misuse of privileged functions, either intentionally or unintentionally by
 authorized users, or by unauthorized external entities that have compromised system accounts,
 is a serious and ongoing concern and can have significant adverse impacts on organizations.
@@ -7000,6 +7279,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the chacl command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without generating audit records that are specific to the security and
 mission needs of the organization, it would be difficult to establish,
 correlate, and investigate the events relating to an incident or identify
@@ -7033,6 +7313,7 @@ utility to read audit rules during daemon startup, add the following lines to
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful uses of the kmod command in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without generating audit records that are specific to the security and
 mission needs of the organization, it would be difficult to establish,
 correlate, and investigate the events relating to an incident or identify
@@ -7069,6 +7350,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td></td>
 <td>medium</td>
 <td>Successful/unsuccessful modifications to the faillock log file in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -7080,6 +7362,7 @@ form to <code>/etc/audit/audit.rules</code>:
 <td>169</td>
 <td>medium</td>
 <td>Successful/unsuccessful modifications to the lastlog file in RHEL 8 must generate an audit record.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Manual editing of these files may indicate nefarious activity, such
 as an attacker attempting to remove evidence of an intrusion.</pre></td>
 <td><pre>To verify that auditing is configured for system administrator actions, run the following command:
@@ -7106,6 +7389,7 @@ edits of files involved in storing logon events:
 <td>169</td>
 <td>low</td>
 <td>RHEL 8 must enable auditing of processes that start prior to the audit daemon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Each process on the system carries an "auditable" flag which indicates whether
 its activities can be audited. Although <code>auditd</code> takes care of enabling
 this for all processes which launch after it does, adding the kernel argument
@@ -7141,6 +7425,7 @@ Run the following command to update command line for already installed kernels:<
 <td>1849</td>
 <td>low</td>
 <td>RHEL 8 must allocate an audit_backlog_limit of sufficient size to capture processes that start prior to the audit daemon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>audit_backlog_limit sets the queue length for audit events awaiting transfer
 to the audit daemon. Until the audit daemon is up and running, all log messages
 are stored in this queue.  If the queue is overrun during boot process, the action
@@ -7176,6 +7461,7 @@ Run the following command to update command line for already installed kernels:<
 <td>169</td>
 <td>low</td>
 <td>RHEL 8 must enable Linux audit logging for the USBGuard daemon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Using the Linux Audit logging allows for centralized trace
 of events.</pre></td>
 <td><pre>To verify that Linux Audit logging is enabled for the USBGuard daemon,
@@ -7197,6 +7483,7 @@ needs to be set to <code>LinuxAudit</code>.</pre></td>
 <td>171</td>
 <td>medium</td>
 <td>RHEL 8 must allow only the Information System Security Manager (ISSM) (or individuals or roles appointed by the ISSM) to select which auditable events are to be audited.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without the capability to restrict the roles and individuals that can select which events
 are audited, unauthorized personnel may be able to prevent the auditing of critical
 events. Misconfigured audits may degrade the system's performance by overwhelming
@@ -7221,6 +7508,7 @@ To properly set the permissions of <code>/etc/audit/rules.d/*.rules</code>, run 
 <td></td>
 <td>medium</td>
 <td>RHEL 8 audit tools must have a mode of 0755 or less permissive.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -7232,6 +7520,7 @@ To properly set the permissions of <code>/etc/audit/rules.d/*.rules</code>, run 
 <td></td>
 <td>medium</td>
 <td>RHEL 8 audit tools must be owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -7243,6 +7532,7 @@ To properly set the permissions of <code>/etc/audit/rules.d/*.rules</code>, run 
 <td></td>
 <td>medium</td>
 <td>RHEL 8 audit tools must be group-owned by root.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -7254,6 +7544,7 @@ To properly set the permissions of <code>/etc/audit/rules.d/*.rules</code>, run 
 <td>1496</td>
 <td>medium</td>
 <td>RHEL 8 must use cryptographic mechanisms to protect the integrity of audit tools.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Protecting the integrity of the tools used for auditing purposes is a
 critical step toward ensuring the integrity of audit information. Audit
 information includes all information (e.g., audit records, audit settings,
@@ -7302,6 +7593,7 @@ If one or more lines are missing, this is a finding.
 <td>1849</td>
 <td>medium</td>
 <td>RHEL 8 must allocate audit record storage capacity to store at least one week of audit records, when audit records are not immediately sent to a central audit record storage facility.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Information stored in one location is vulnerable to accidental or incidental
 deletion or alteration.Off-loading is a common process in information
 systems with limited audit storage capacity.</pre></td>
@@ -7356,6 +7648,7 @@ following command:
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must have the packages required for offloading audit logs installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The rsyslog package provides the rsyslog daemon, which provides
 system logging services.</pre></td>
 <td><pre>Run the following command to determine if the rsyslog package is installed: $ rpm -q rsyslog
@@ -7370,6 +7663,7 @@ system logging services.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must have the packages required for encrypting offloaded audit logs installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The rsyslog-gnutls package provides Transport Layer Security (TLS) support
 for the rsyslog daemon, which enables secure remote logging.</pre></td>
 <td><pre>Run the following command to determine if the rsyslog-gnutls package is installed: $ rpm -q rsyslog-gnutls
@@ -7387,6 +7681,7 @@ $ sudo yum install rsyslog-gnutls</pre></pre></td>
 <td>1851</td>
 <td>medium</td>
 <td>The RHEL 8 audit records must be off-loaded onto a different system or storage media from the system being audited.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A log server (loghost) receives syslog messages from one or more
 systems. This data can be used as an additional log source in the event a
 system is compromised and its local logs are suspect. Forwarding log messages
@@ -7432,6 +7727,7 @@ There must be a resolvable DNS CNAME or Alias record set to "<xccdf-1.1:sub xmln
 <td>1851</td>
 <td>medium</td>
 <td>RHEL 8 must take appropriate action when the internal event queue is full.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The audit system should have an action setup in the event the internal event queue becomes full
 so that no data is lost.</pre></td>
 <td><pre>Verify the audit system is configured to take an appropriate action when the internal event queue is full:
@@ -7455,6 +7751,7 @@ to one of the following values: <code>syslog</code>, <code>single</code>, <code>
 <td>1851</td>
 <td>medium</td>
 <td>RHEL 8 must encrypt the transfer of audit records off-loaded onto a different system or media from the system being audited.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The audit records generated by Rsyslog contain valuable information regarding system
 configuration, user authentication, and other such information. Audit records should be
 protected from unauthorized access.</pre></td>
@@ -7481,6 +7778,7 @@ When using <code>rsyslogd</code> to off-load logs off a encrpytion system must b
 <td>1851</td>
 <td>medium</td>
 <td>RHEL 8 must authenticate the remote logging server for off-loading audit logs.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The audit records generated by Rsyslog contain valuable information regarding system
 configuration, user authentication, and other such information. Audit records should be
 protected from unauthorized access.</pre></td>
@@ -7506,6 +7804,7 @@ When using <code>rsyslogd</code> to off-load logs the remote system must be auth
 <td>1855</td>
 <td>medium</td>
 <td>RHEL 8 must take action when allocated audit record storage volume reaches 75 percent of the repository maximum audit record storage capacity.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Notifying administrators of an impending disk space problem may allow them to
 take corrective action prior to any disruption.</pre></td>
 <td><pre>Inspect /etc/audit/auditd.conf and locate the following line to
@@ -7528,6 +7827,7 @@ notify the user of an issue.</pre></td>
 <td>1855</td>
 <td>medium</td>
 <td>RHEL 8 must notify the System Administrator (SA) and Information System Security Officer (ISSO) (at a minimum) when allocated audit record storage volume 75 percent utilization.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Notifying administrators of an impending disk space problem may
 allow them to take corrective action prior to any disruption.</pre></td>
 <td><pre>Inspect /etc/audit/auditd.conf and locate the following line to
@@ -7564,6 +7864,7 @@ also include <code>suspend</code>, <code>single</code>, and <code>halt</code>.</
 <td>1891</td>
 <td>medium</td>
 <td>RHEL 8 must securely compare internal information system clocks at least every 24 hours with a server synchronized to an authoritative time source, such as the United States Naval Observatory (USNO) time servers, or a time server designated for the appropriate DoD network (NIPRNet/SIPRNet), and/or the Global Positioning System (GPS).</td>
+<td>SRG-OS-ID</td>
 <td><pre>Depending on the infrastruture being used the <code>pool</code> directive may not be supported.</pre></td>
 <td><pre>Run the following command and verify that time sources are only configure with server directive:
 # grep -E "^(server|pool)" /etc/chrony.conf
@@ -7579,6 +7880,7 @@ A line with the appropriate server should be returned, any line returned startin
 <td>381</td>
 <td>low</td>
 <td>RHEL 8 must disable the chrony daemon from acting as a server.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Minimizing the exposure of the server functionality of the chrony
 daemon diminishes the attack surface.</pre></td>
 <td><pre>To verify that port has been set properly, perform the following:
@@ -7598,6 +7900,7 @@ for server operation and to operate strictly in a client-only mode.</pre></td>
 <td>381</td>
 <td>low</td>
 <td>RHEL 8 must disable network management of the chrony daemon.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Not exposing the management interface of the chrony daemon on
 the network diminishes the attack space.</pre></td>
 <td><pre>To verify that cmdport has been set properly, perform the following:
@@ -7617,6 +7920,7 @@ for management connections made by chronyc.</pre></td>
 <td>381</td>
 <td>high</td>
 <td>RHEL 8 must not have the telnet-server package installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>It is detrimental for operating systems to provide, or install by default,
 functionality exceeding requirements or mission objectives. These
 unnecessary capabilities are often overlooked and therefore may remain
@@ -7645,6 +7949,7 @@ $ sudo yum erase telnet-server</pre></pre></td>
 <td>381</td>
 <td>medium</td>
 <td>RHEL 8 must not have any automated bug reporting tools installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Mishandling crash data could expose sensitive information about
 vulnerabilities in software executing on the system, as well as sensitive
 information from within a process's address space or registers.</pre></td>
@@ -7668,6 +7973,7 @@ $ sudo yum erase abrt</pre></pre></td>
 <td>381</td>
 <td>medium</td>
 <td>RHEL 8 must not have the sendmail package installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The sendmail software was not developed with security in mind and
 its design prevents it from being effectively contained by SELinux.  Postfix
 should be used instead.</pre></td>
@@ -7688,6 +7994,7 @@ $ sudo yum erase sendmail</pre></pre></td>
 <td>381</td>
 <td>low</td>
 <td>RHEL 8 must enable mitigations against processor-based vulnerabilities.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Kernel page-table isolation is a kernel feature that mitigates
 the Meltdown security vulnerability and hardens the kernel
 against attempts to bypass kernel address space layout
@@ -7723,6 +8030,7 @@ Run the following command to update command line for already installed kernels:<
 <td>381</td>
 <td>high</td>
 <td>RHEL 8 must not have the rsh-server package installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>rsh-server</code> service provides unencrypted remote access service which does not
 provide for the confidentiality and integrity of user passwords or the remote session and has very weak
 authentication. If a privileged user were to login using this service, the privileged user password
@@ -7744,6 +8052,7 @@ $ sudo yum erase rsh-server</pre></pre></td>
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must cover or disable the built-in or attached camera when not in use.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -7755,6 +8064,7 @@ $ sudo yum erase rsh-server</pre></pre></td>
 <td>381</td>
 <td>low</td>
 <td>RHEL 8 must disable the asynchronous transfer mode (ATM) protocol.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Disabling ATM protects the system against exploitation of any
 flaws in its implementation.</pre></td>
 <td><pre>
@@ -7780,6 +8090,7 @@ kernel module from being loaded, add the following line to a file in the directo
 <td>381</td>
 <td>low</td>
 <td>RHEL 8 must disable the controller area network (CAN) protocol.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Disabling CAN protects the system against exploitation of any
 flaws in its implementation.</pre></td>
 <td><pre>
@@ -7805,6 +8116,7 @@ kernel module from being loaded, add the following line to a file in the directo
 <td>381</td>
 <td>low</td>
 <td>RHEL 8 must disable the stream control transmission protocol (SCTP).</td>
+<td>SRG-OS-ID</td>
 <td><pre>Disabling SCTP protects
 the system against exploitation of any flaws in its implementation.</pre></td>
 <td><pre>
@@ -7831,6 +8143,7 @@ kernel module from being loaded, add the following line to a file in the directo
 <td>381</td>
 <td>low</td>
 <td>RHEL 8 must disable the transparent inter-process communication (TIPC) protocol.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Disabling TIPC protects
 the system against exploitation of any flaws in its implementation.</pre></td>
 <td><pre>
@@ -7856,6 +8169,7 @@ kernel module from being loaded, add the following line to a file in the directo
 <td>381</td>
 <td>low</td>
 <td>RHEL 8 must disable mounting of cramfs.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Removing support for unneeded filesystem types reduces the local attack surface
 of the server.</pre></td>
 <td><pre>
@@ -7884,6 +8198,7 @@ decompress the image.</pre></td>
 <td>381</td>
 <td>low</td>
 <td>RHEL 8 must disable IEEE 1394 (FireWire) Support.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Disabling FireWire protects the system against exploitation of any
 flaws in its implementation.</pre></td>
 <td><pre>
@@ -7908,6 +8223,7 @@ kernel module from being loaded, add the following line to a file in the directo
 <td>382</td>
 <td>medium</td>
 <td>RHEL 8 must be configured to prohibit or restrict the use of functions, ports, protocols, and/or services, as defined in the Ports, Protocols, and Services Management (PPSM) Category Assignments List (CAL) and vulnerability assessments.</td>
+<td>SRG-OS-ID</td>
 <td><pre>In order to prevent unauthorized connection of devices, unauthorized
 transfer of information, or unauthorized tunneling (i.e., embedding of data
 types within data types), organizations must disable or restrict unused or
@@ -7950,6 +8266,7 @@ To configure <code>firewalld</code> to allow access, run the following command(s
 <td>778</td>
 <td>medium</td>
 <td>The RHEL 8 file system automounter must be disabled unless required.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Disabling the automounter permits the administrator to
 statically control filesystem mounting through <code>/etc/fstab</code>.
 <br><br>
@@ -7998,6 +8315,7 @@ The <code>autofs</code> service can be disabled with the following command:
 <td>778</td>
 <td>medium</td>
 <td>RHEL 8 must be configured to disable USB mass storage.</td>
+<td>SRG-OS-ID</td>
 <td><pre>USB storage devices such as thumb drives can be used to introduce
 malicious software.</pre></td>
 <td><pre>
@@ -8025,6 +8343,7 @@ module, but will not prevent an administrator (or another program) from using th
 <td></td>
 <td>medium</td>
 <td>A RHEL 8 firewall must employ a deny-all, allow-by-exception policy for allowing connections to other systems.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -8036,6 +8355,7 @@ module, but will not prevent an administrator (or another program) from using th
 <td>2314</td>
 <td>medium</td>
 <td>A firewall must be installed on RHEL 8.</td>
+<td>SRG-OS-ID</td>
 <td><pre>"Firewalld" provides an easy and effective way to block/limit remote access to the system via ports, services, and protocols.
 
 Remote access services, such as those providing remote access to network devices and information systems, which lack automated control capabilities, increase risk and make remote user access management difficult at best.
@@ -8058,6 +8378,7 @@ $ sudo yum install firewalld</pre></pre></td>
 <td>2314</td>
 <td>medium</td>
 <td>A firewall must be active on RHEL 8.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Access control methods provide the ability to enhance system security posture
 by restricting services and known good IP addresses and address ranges. This
 prevents connections from unknown hosts and protocols.</pre></td>
@@ -8080,6 +8401,7 @@ The <code>firewalld</code> service can be enabled with the following command:
 <td>1444</td>
 <td>medium</td>
 <td>RHEL 8 wireless network adapters must be disabled.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The use of wireless networking can introduce many different attack vectors into
 the organization's network. Common attack vectors such as malicious association
 and ad hoc networks will allow an attacker to spoof a wireless access point
@@ -8110,6 +8432,7 @@ following command:
 <td>1443</td>
 <td>medium</td>
 <td>RHEL 8 Bluetooth must be disabled.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If Bluetooth functionality must be disabled, preventing the kernel
 from loading the kernel module provides an additional safeguard against its
 activation.</pre></td>
@@ -8134,6 +8457,7 @@ to prevent the loading of the Bluetooth module:
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /dev/shm with the nodev option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The only legitimate location for device files is the <code>/dev</code> directory
 located on the root partition. The only exception to this is chroot jails.</pre></td>
 <td><pre>To verify the nodev option is configured for the /dev/shm mount point,
@@ -8157,6 +8481,7 @@ Add the <code>nodev</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /dev/shm with the nosuid option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The presence of SUID and SGID executables should be tightly controlled. Users
 should not be able to execute SUID or SGID binaries from temporary storage partitions.</pre></td>
 <td><pre>To verify the nosuid option is configured for the /dev/shm mount point,
@@ -8180,6 +8505,7 @@ Add the <code>nosuid</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /dev/shm with the noexec option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Allowing users to execute binaries from world-writable directories
 such as <code>/dev/shm</code> can expose the system to potential compromise.</pre></td>
 <td><pre>To verify the noexec option is configured for the /dev/shm mount point,
@@ -8204,6 +8530,7 @@ Add the <code>noexec</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /tmp with the nodev option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The only legitimate location for device files is the <code>/dev</code> directory
 located on the root partition. The only exception to this is chroot jails.</pre></td>
 <td><pre>To verify the nodev option is configured for the /tmp mount point,
@@ -8227,6 +8554,7 @@ Add the <code>nodev</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /tmp with the nosuid option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The presence of SUID and SGID executables should be tightly controlled. Users
 should not be able to execute SUID or SGID binaries from temporary storage partitions.</pre></td>
 <td><pre>To verify the nosuid option is configured for the /tmp mount point,
@@ -8250,6 +8578,7 @@ Add the <code>nosuid</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /tmp with the noexec option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Allowing users to execute binaries from world-writable directories
 such as <code>/tmp</code> should never be necessary in normal operation and
 can expose the system to potential compromise.</pre></td>
@@ -8273,6 +8602,7 @@ Add the <code>noexec</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /var/log with the nodev option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The only legitimate location for device files is the <code>/dev</code> directory
 located on the root partition. The only exception to this is chroot jails.</pre></td>
 <td><pre>To verify the nodev option is configured for the /var/log mount point,
@@ -8298,6 +8628,7 @@ Add the <code>nodev</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /var/log with the nosuid option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The presence of SUID and SGID executables should be tightly controlled. Users
 should not be able to execute SUID or SGID binaries from partitions
 designated for log files.</pre></td>
@@ -8322,6 +8653,7 @@ Add the <code>nosuid</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /var/log with the noexec option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Allowing users to execute binaries from directories containing log files
 such as <code>/var/log</code> should never be necessary in normal operation and
 can expose the system to potential compromise.</pre></td>
@@ -8345,6 +8677,7 @@ Add the <code>noexec</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /var/log/audit with the nodev option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The only legitimate location for device files is the <code>/dev</code> directory
 located on the root partition. The only exception to this is chroot jails.</pre></td>
 <td><pre>To verify the nodev option is configured for the /var/log/audit mount point,
@@ -8370,6 +8703,7 @@ Add the <code>nodev</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /var/log/audit with the nosuid option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The presence of SUID and SGID executables should be tightly controlled. Users
 should not be able to execute SUID or SGID binaries from partitions
 designated for audit log files.</pre></td>
@@ -8394,6 +8728,7 @@ Add the <code>nosuid</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /var/log/audit with the noexec option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Allowing users to execute binaries from directories containing audit log files
 such as <code>/var/log/audit</code> should never be necessary in normal operation and
 can expose the system to potential compromise.</pre></td>
@@ -8417,6 +8752,7 @@ Add the <code>noexec</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /var/tmp with the nodev option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The only legitimate location for device files is the <code>/dev</code> directory
 located on the root partition. The only exception to this is chroot jails.</pre></td>
 <td><pre>To verify the nodev option is configured for the /var/tmp mount point,
@@ -8440,6 +8776,7 @@ Add the <code>nodev</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /var/tmp with the nosuid option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The presence of SUID and SGID executables should be tightly controlled. Users
 should not be able to execute SUID or SGID binaries from temporary storage partitions.</pre></td>
 <td><pre>To verify the nosuid option is configured for the /var/tmp mount point,
@@ -8463,6 +8800,7 @@ Add the <code>nosuid</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>RHEL 8 must mount /var/tmp with the noexec option.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Allowing users to execute binaries from world-writable directories
 such as <code>/var/tmp</code> should never be necessary in normal operation and
 can expose the system to potential compromise.</pre></td>
@@ -8486,6 +8824,7 @@ Add the <code>noexec</code> option to the fourth column of
 <td>1764</td>
 <td>medium</td>
 <td>The RHEL 8 fapolicy module must be installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre><code>fapolicyd</code> (File Access Policy Daemon)
 implements application whitelisting to decide file access rights.</pre></td>
 <td><pre>Run the following command to determine if the fapolicyd package is installed: $ rpm -q fapolicyd
@@ -8502,6 +8841,7 @@ $ sudo yum install fapolicyd</pre></pre></td>
 <td>1764</td>
 <td>medium</td>
 <td>The RHEL 8 fapolicy module must be enabled.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>fapolicyd</code> service (File Access Policy Daemon)
 implements application whitelisting to decide file access rights.</pre></td>
 <td><pre>
@@ -8524,6 +8864,7 @@ The <code>fapolicyd</code> service can be enabled with the following command:
 <td></td>
 <td>medium</td>
 <td>The RHEL 8 fapolicy module must be configured to employ a deny-all, permit-by-exception policy to allow the execution of authorized software programs.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -8535,6 +8876,7 @@ The <code>fapolicyd</code> service can be enabled with the following command:
 <td>1958</td>
 <td>medium</td>
 <td>RHEL 8 must have the USBGuard installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre><code>usbguard</code> is a software framework that helps to protect
 against rogue USB devices by implementing basic whitelisting/blacklisting
 capabilities based on USB device attributes.</pre></td>
@@ -8553,6 +8895,7 @@ $ sudo yum install usbguard</pre></pre></td>
 <td>1958</td>
 <td>medium</td>
 <td>RHEL 8 must block unauthorized peripherals before establishing a connection.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>usbguard</code> must be configured to allow connected USB devices to work
 properly, avoiding the system to become inaccessible.</pre></td>
 <td><pre>Check that the file /etc/usbguard/rules.conf exists and contains a valid configuration
@@ -8570,6 +8913,7 @@ devices.</pre></td>
 <td>1958</td>
 <td>medium</td>
 <td>RHEL 8 must enable the USBGuard.</td>
+<td>SRG-OS-ID</td>
 <td><pre>The <code>usbguard</code> service must be running in order to
 enforce the USB device authorization policy for all USB devices.</pre></td>
 <td><pre>
@@ -8592,6 +8936,7 @@ The <code>usbguard</code> service can be enabled with the following command:
 <td></td>
 <td>medium</td>
 <td>A firewall must be able to protect against or limit the effects of Denial of Service (DoS) attacks by ensuring RHEL 8 can implement rate-limiting measures on impacted network interfaces.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -8603,6 +8948,7 @@ The <code>usbguard</code> service can be enabled with the following command:
 <td>2418</td>
 <td>medium</td>
 <td>All RHEL 8 networked systems must have SSH installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without protection of the transmitted information, confidentiality, and
 integrity may be compromised because unprotected communications can be
 intercepted and either read or altered.</pre></td>
@@ -8621,6 +8967,7 @@ $ sudo yum install openssh-server</pre></pre></td>
 <td>2418</td>
 <td>medium</td>
 <td>All RHEL 8 networked systems must have and implement SSH to protect the confidentiality and integrity of transmitted and received information, as well as information during preparation for transmission.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Without protection of the transmitted information, confidentiality, and
 integrity may be compromised because unprotected communications can be
 intercepted and either read or altered.
@@ -8650,6 +8997,7 @@ The <code>sshd</code> service can be enabled with the following command:
 <td>68</td>
 <td>medium</td>
 <td>RHEL 8 must force a frequent session key renegotiation for SSH connections to the server.</td>
+<td>SRG-OS-ID</td>
 <td><pre>By decreasing the limit based on the amount of data and enabling
 time-based limit, effects of potential attacks against
 encryption keys are limited.</pre></td>
@@ -8680,6 +9028,7 @@ To decrease the default limits, add or correct the following line in
 <td>366</td>
 <td>high</td>
 <td>The x86 Ctrl-Alt-Delete key sequence must be disabled on RHEL 8.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A locally logged-in user who presses Ctrl-Alt-Del, when at the console,
 can reboot the system. If accidentally pressed, as could happen in
 the case of mixed OS environment, this can create the risk of short-term
@@ -8715,6 +9064,7 @@ as this file may be restored during future system updates.</pre></td>
 <td>366</td>
 <td>high</td>
 <td>The x86 Ctrl-Alt-Delete key sequence in RHEL 8 must be disabled if a graphical user interface is installed.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A locally logged-in user who presses Ctrl-Alt-Del, when at the console,
 can reboot the system. If accidentally pressed, as could happen in
 the case of mixed OS environment, this can create the risk of short-term
@@ -8751,6 +9101,7 @@ After the settings have been set, run <code>dconf update</code>.</pre></td>
 <td>366</td>
 <td>high</td>
 <td>The systemd Ctrl-Alt-Delete burst key sequence in RHEL 8 must be disabled.</td>
+<td>SRG-OS-ID</td>
 <td><pre>A locally logged-in user who presses Ctrl-Alt-Del, when at the console,
 can reboot the system. If accidentally pressed, as could happen in
 the case of mixed OS environment, this can create the risk of short-term
@@ -8777,6 +9128,7 @@ setting, add or modify the following to <code>/etc/systemd/system.conf</code>:
 <td>366</td>
 <td>medium</td>
 <td>The debug-shell systemd service must be disabled on RHEL 8.</td>
+<td>SRG-OS-ID</td>
 <td><pre>This prevents attackers with physical access from trivially bypassing security
 on the machine through valid troubleshooting configurations and gaining root
 access when the system is rebooted.</pre></td>
@@ -8823,6 +9175,7 @@ The <code>debug-shell</code> service can be disabled with the following command:
 <td>366</td>
 <td>high</td>
 <td>The Trivial File Transfer Protocol (TFTP) server package must not be installed if not required for RHEL 8 operational support.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Removing the <code>tftp-server</code> package decreases the risk of the accidental
 (or intentional) activation of tftp services.
 <br><br>
@@ -8843,6 +9196,7 @@ $ rpm -q tftp-server
 <td>366</td>
 <td>high</td>
 <td>The root account must be the only account having unrestricted access to the RHEL 8 system.</td>
+<td>SRG-OS-ID</td>
 <td><pre>An account has root authority if it has a UID of 0. Multiple accounts
 with a UID of 0 afford more opportunity for potential intruders to
 guess a password for a privileged account. Proper configuration of
@@ -8876,6 +9230,7 @@ assigned.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must prevent IPv4 Internet Control Message Protocol (ICMP) redirect messages from being accepted.</td>
+<td>SRG-OS-ID</td>
 <td><pre>ICMP redirect messages are used by routers to inform hosts that a more
 direct route exists for a particular destination. These messages modify the
 host's route table and are unauthenticated. An illicit ICMP redirect
@@ -8914,6 +9269,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must prevent IPv6 Internet Control Message Protocol (ICMP) redirect messages from being accepted.</td>
+<td>SRG-OS-ID</td>
 <td><pre>An illicit ICMP redirect message could result in a man-in-the-middle attack.</pre></td>
 <td><pre>The runtime status of the net.ipv6.conf.default.accept_redirects kernel parameter can be queried
 by running the following command:
@@ -8947,6 +9303,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must not send Internet Control Message Protocol (ICMP) redirects.</td>
+<td>SRG-OS-ID</td>
 <td><pre>ICMP redirect messages are used by routers to inform hosts that a more
 direct route exists for a particular destination. These messages contain information
 from the system's route table possibly revealing portions of the network topology.
@@ -8984,6 +9341,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must not respond to Internet Control Message Protocol (ICMP) echoes sent to a broadcast address.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Responding to broadcast (ICMP) echoes facilitates network mapping
 and provides a vector for amplification attacks.
 <br>
@@ -9021,6 +9379,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must not forward IPv4 source-routed packets.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Source-routed packets allow the source of the packet to suggest routers
 forward the packet along a different path than configured on the router,
 which can be used to bypass network security measures. This requirement
@@ -9061,6 +9420,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must not forward IPv6 source-routed packets.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Source-routed packets allow the source of the packet to suggest routers
 forward the packet along a different path than configured on the router, which can
 be used to bypass network security measures. This requirement applies only to the
@@ -9101,6 +9461,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must not forward IPv4 source-routed packets by default.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Source-routed packets allow the source of the packet to suggest routers
 forward the packet along a different path than configured on the router,
 which can be used to bypass network security measures.
@@ -9141,6 +9502,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must not forward IPv6 source-routed packets by default.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Source-routed packets allow the source of the packet to suggest routers
 forward the packet along a different path than configured on the router, which can
 be used to bypass network security measures. This requirement applies only to the
@@ -9181,6 +9543,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td></td>
 <td>medium</td>
 <td>RHEL 8 must not enable IPv4 packet forwarding unless the system is a router.</td>
+<td>SRG-OS-ID</td>
 <td><pre></pre></td>
 <td><pre></pre></td>
 <td><pre></pre></td>
@@ -9192,6 +9555,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must not enable IPv6 packet forwarding unless the system is a router.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Routing protocol daemons are typically used on routers to exchange
 network topology information with other routers. If this capability is used when
 not required, system network information may be unnecessarily transmitted across
@@ -9228,6 +9592,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must not accept router advertisements on all IPv6 interfaces.</td>
+<td>SRG-OS-ID</td>
 <td><pre>An illicit router advertisement message could result in a man-in-the-middle attack.</pre></td>
 <td><pre>The runtime status of the net.ipv6.conf.all.accept_ra kernel parameter can be queried
 by running the following command:
@@ -9261,6 +9626,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must not accept router advertisements on all IPv6 interfaces by default.</td>
+<td>SRG-OS-ID</td>
 <td><pre>An illicit router advertisement message could result in a man-in-the-middle attack.</pre></td>
 <td><pre>The runtime status of the net.ipv6.conf.default.accept_ra kernel parameter can be queried
 by running the following command:
@@ -9294,6 +9660,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must not allow interfaces to perform Internet Control Message Protocol (ICMP) redirects by default.</td>
+<td>SRG-OS-ID</td>
 <td><pre>ICMP redirect messages are used by routers to inform hosts that a more
 direct route exists for a particular destination. These messages contain information
 from the system's route table possibly revealing portions of the network topology.
@@ -9331,6 +9698,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must ignore IPv4 Internet Control Message Protocol (ICMP) redirect messages.</td>
+<td>SRG-OS-ID</td>
 <td><pre>ICMP redirect messages are used by routers to inform hosts that a more
 direct route exists for a particular destination. These messages modify the
 host's route table and are unauthenticated. An illicit ICMP redirect
@@ -9370,6 +9738,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must ignore IPv6 Internet Control Message Protocol (ICMP) redirect messages.</td>
+<td>SRG-OS-ID</td>
 <td><pre>An illicit ICMP redirect message could result in a man-in-the-middle attack.</pre></td>
 <td><pre>The runtime status of the net.ipv6.conf.all.accept_redirects kernel parameter can be queried
 by running the following command:
@@ -9403,6 +9772,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must disable access to network bpf syscall from unprivileged processes.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Loading and accessing the packet filters programs and maps using the bpf()
 syscall has the potential of revealing sensitive information about the kernel state.</pre></td>
 <td><pre>The runtime status of the kernel.unprivileged_bpf_disabled kernel parameter can be queried
@@ -9437,6 +9807,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must restrict usage of ptrace to descendant  processes.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unrestricted usage of ptrace allows compromised binaries to run ptrace
 on another processes of the user. Like this, the attacker can steal
 sensitive information from the target processes (e.g. SSH sessions, web browser, ...)
@@ -9474,6 +9845,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must restrict exposed kernel pointer addresses access.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Exposing kernel pointers (through procfs or <code>seq_printf()</code>) exposes kernel
 writeable structures which may contain functions pointers. If a write vulnerability
 occurs in the kernel, allowing write access to any of this structure, the kernel can
@@ -9511,6 +9883,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must disable the use of user namespaces.</td>
+<td>SRG-OS-ID</td>
 <td><pre>User namespaces are used primarily for Linux containers. The value 0
 disallows the use of user namespaces.</pre></td>
 <td><pre>The runtime status of the user.max_user_namespaces kernel parameter can be queried
@@ -9552,6 +9925,7 @@ to large non-zero value.</pre></td>
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must use reverse path filtering on all IPv4 interfaces.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Enabling reverse path filtering drops packets with source addresses
 that should not have been able to be received on the interface they were
 received on. It should not be used on systems which are routers for
@@ -9589,6 +9963,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must enable hardening for the Berkeley Packet Filter Just-in-time compiler.</td>
+<td>SRG-OS-ID</td>
 <td><pre>When hardened, the extended Berkeley Packet Filter just-in-time compiler
 will randomize any kernel addresses in the BPF programs and maps,
 and will not expose the JIT addresses in <code>/proc/kallsyms</code>.</pre></td>
@@ -9624,6 +9999,7 @@ To make sure that the setting is persistent, add the following line to a file in
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 must be configured to prevent unrestricted mail relaying.</td>
+<td>SRG-OS-ID</td>
 <td><pre>If unrestricted mail relaying is permitted, unauthorized senders could use this
 host as a mail relay for the purpose of sending spam or other unauthorized
 activity.</pre></td>
@@ -9645,6 +10021,7 @@ to the local network with the following command:
 <td>366</td>
 <td>low</td>
 <td>The RHEL 8 file integrity tool must be configured to verify extended attributes.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Extended attributes in file systems are used to contain arbitrary data and file metadata
 with security implications.</pre></td>
 <td><pre>To determine that AIDE is verifying extended file attributes, run the following command:
@@ -9670,6 +10047,7 @@ The remediation provided with this rule adds <code>xattrs</code> to all rule set
 <td>366</td>
 <td>low</td>
 <td>The RHEL 8 file integrity tool must be configured to verify Access Control Lists (ACLs).</td>
+<td>SRG-OS-ID</td>
 <td><pre>ACLs can provide permissions beyond those permitted through the file mode and must be
 verified by the file integrity tools.</pre></td>
 <td><pre>To determine that AIDE is verifying ACLs, run the following command:
@@ -9695,6 +10073,7 @@ The remediation provided with this rule adds <code>acl</code> to all rule sets a
 <td>366</td>
 <td>medium</td>
 <td>The graphical display manager must not be installed on RHEL 8 unless approved.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Unnecessary service packages must not be installed to decrease the attack surface of the system. X windows has a long history of security
 vulnerabilities and should not be installed unless approved and documented.</pre></td>
 <td><pre>To ensure the X Windows package group is removed, run the following command:
@@ -9722,6 +10101,7 @@ mode. To do so, run the following command:
 <td>366</td>
 <td>medium</td>
 <td>The graphical display manager must not be the default target on RHEL 8 unless approved.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Services that are not required for system and application processes
 must not be active to decrease the attack surface of the system. X windows has a
 long history of security vulnerabilities and should not be used unless approved
@@ -9748,6 +10128,7 @@ Created symlink from /etc/systemd/system/default.target to /usr/lib/systemd/syst
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 network interfaces must not be in promiscuous mode.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Network interfaces in promiscuous mode allow for the capture of all network traffic
 visible to the system. If unauthorized individuals can access these applications, it
 may allow them to collect information such as logon IDs, passwords, and key exchanges
@@ -9775,6 +10156,7 @@ Promiscuous mode of an interface can be disabled with the following command:
 <td>366</td>
 <td>medium</td>
 <td>RHEL 8 remote X connections for interactive users must be disabled unless to fulfill documented and validated mission requirements.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Disable X11 forwarding unless there is an operational requirement to use X11
 applications directly. There is a small risk that the remote X11 servers of
 users who are logged in via SSH with X11 forwarding could be compromised by
@@ -9810,6 +10192,7 @@ To explicitly disable X11 Forwarding, add or correct the following line in
 <td>366</td>
 <td>medium</td>
 <td>The RHEL 8 SSH daemon must prevent remote hosts from connecting to the proxy display.</td>
+<td>SRG-OS-ID</td>
 <td><pre>When X11 forwarding is enabled, there may be additional exposure to the
 server and client displays if the sshd proxy display is configured to listen
 on the wildcard address. By default, sshd binds the forwarding server to the
@@ -9844,6 +10227,7 @@ the following line in
 <td>366</td>
 <td>medium</td>
 <td>If the Trivial File Transfer Protocol (TFTP) server is required, the RHEL 8 TFTP daemon must be configured to operate in secure mode.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Using the <code>-s</code> option causes the TFTP service to only serve files from the
 given directory. Serving files from an intentionally-specified directory
 reduces the risk of sharing files which should remain private.</pre></td>
@@ -9873,6 +10257,7 @@ the following example:
 <td>366</td>
 <td>high</td>
 <td>A File Transfer Protocol (FTP) server package must not be installed unless mission essential on RHEL 8.</td>
+<td>SRG-OS-ID</td>
 <td><pre>Removing the <code>vsftpd</code> package decreases the risk of its
 accidental activation.</pre></td>
 <td><pre>Run the following command to determine if the vsftpd package is installed:
@@ -9888,6 +10273,7 @@ $ rpm -q vsftpd
 <td>381</td>
 <td>medium</td>
 <td>The gssproxy package must not be installed unless mission essential on RHEL 8.</td>
+<td>SRG-OS-ID</td>
 <td><pre><code>gssproxy</code> is a proxy for GSS API credential handling.</pre></td>
 <td><pre>Run the following command to determine if the gssproxy package is installed:
 $ rpm -q gssproxy
@@ -9904,6 +10290,7 @@ $ sudo yum erase gssproxy</pre></pre></td>
 <td>366</td>
 <td>medium</td>
 <td>The iprutils package must not be installed unless mission essential on RHEL 8.</td>
+<td>SRG-OS-ID</td>
 <td><pre><code>iprutils</code> provides a suite of utlilities to manage and configure SCSI devices
 supported by the ipr SCSI storage device driver.</pre></td>
 <td><pre>Run the following command to determine if the iprutils package is installed:
@@ -9921,6 +10308,7 @@ $ sudo yum erase iprutils</pre></pre></td>
 <td>366</td>
 <td>medium</td>
 <td>The tuned package must not be installed unless mission essential on RHEL 8.</td>
+<td>SRG-OS-ID</td>
 <td><pre><code>tuned</code> contains a daemon that tunes the system settings dynamically.
 It does so by monitoring the usage of several system components periodically. Based
 on that information, components will then be put into lower or higher power savings
