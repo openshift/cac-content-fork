@@ -2,19 +2,19 @@ apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
   annotations:
-    build.appstudio.openshift.io/build-nudge-files: "bundle-hack/update_csv.go"
-    build.appstudio.openshift.io/repo: https://github.com/ComplianceAsCode/content?rev={{revision}}
+    build.appstudio.openshift.io/repo: https://github.com/openshfit/cac-content-fork?rev={{revision}}
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
-    pipelinesascode.tekton.dev/cancel-in-progress: "false"
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "master"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch == "release-1.8"
   creationTimestamp:
   labels:
-    appstudio.openshift.io/application: compliance-operator-dev
-    appstudio.openshift.io/component: compliance-operator-content-dev
+    appstudio.openshift.io/application: compliance-operator-release-1-8
+    appstudio.openshift.io/component: compliance-operator-content-release-1-8
     pipelines.appstudio.openshift.io/type: build
-  name: compliance-operator-content-dev-on-push
+  name: compliance-operator-content-release-1-8-on-pull-request
   namespace: ocp-isc-tenant
 spec:
   params:
@@ -23,7 +23,9 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/ocp-isc-tenant/compliance-operator-content-dev:{{revision}}
+    value: quay.io/redhat-user-workloads/ocp-isc-tenant/compliance-operator-content-release:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
   - name: build-platforms
     value:
     - linux/x86_64
@@ -492,7 +494,7 @@ spec:
         - name: name
           value: sast-coverity-check-oci-ta
         - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-sast-coverity-check-oci-ta:0.3@sha256:cdbe1a968676e4f5519b082bf1e27a4cdcf66dd60af66dbc26b3e604f957f7e9
+          value: quay.io/konflux-ci/tekton-catalog/task-sast-coverity-check-oci-ta:0.3@sha256:ae62d14c999fd93246fef4e57d28570fa5200c3266b9a3263a39965e5a5b02d7
         - name: kind
           value: task
         resolver: bundles
@@ -580,9 +582,6 @@ spec:
         value: $(tasks.build-image-index.results.IMAGE_URL)
       - name: IMAGE_DIGEST
         value: $(tasks.build-image-index.results.IMAGE_DIGEST)
-      - name: ADDITIONAL_TAGS
-        value:
-        - '{{ target_branch }}'
       runAfter:
       - build-image-index
       taskRef:
@@ -645,7 +644,7 @@ spec:
     - name: netrc
       optional: true
   taskRunTemplate:
-    serviceAccountName: build-pipeline-compliance-operator-content-dev
+    serviceAccountName: build-pipeline-compliance-operator-content-release-1-8
   workspaces:
   - name: git-auth
     secret:
