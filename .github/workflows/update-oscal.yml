@@ -30,7 +30,7 @@ jobs:
             - name: Install Python
               uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v5
               with:
-                  python-version: '3.9'
+                  python-version: '3.14'
             - name: Install python deps
               run: pip3 install requests compliance-trestle==2.4.0
             - name: Update catalogs
