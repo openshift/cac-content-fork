@@ -44,7 +44,7 @@ jobs:
     name: Build, Test on OpenSUSE Leap 15 (Container)
     runs-on: ubuntu-latest
     container:
-      image: opensuse/leap:15
+      image: opensuse/leap:42
     steps:
       - name: Install Deps
         run: zypper install -y git cmake make openscap-utils python3-PyYAML bats python3-pytest python3-pytest-cov python3-Jinja2 python3-setuptools libxslt-tools libxml2-tools ShellCheck
