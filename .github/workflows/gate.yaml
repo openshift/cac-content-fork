@@ -62,7 +62,7 @@ jobs:
     name: Build, Test on Debian 12 (Container)
     runs-on: ubuntu-latest
     container:
-      image: debian:bookworm
+      image: debian:trixie-20260610
     steps:
       - name: Update the package repository
         run: apt-get update
